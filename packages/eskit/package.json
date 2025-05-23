@@ -1,5 +1,5 @@
 {
-  "name": "ts-copilot",
+  "name": "@gvray/eskit",
   "version": "1.0.0-Beta",
   "description": "A rich and colorful toolkit about typescript and javascript.",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
     "build": "npm run clean && npm run script:gen-index && run-p build:*",
     "build:esm": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir esm",
     "build:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
-    "clean": "rm -rf lib && rm -rf esm",
+    "clean": "rimraf lib esm",
     "tsc": "tsc --noEmit",
     "test": "jest",
     "test:coverage": "jest --coverage",
@@ -24,7 +24,7 @@
     "md": "node ./scripts/jsdoc2md.js",
     "doc": "typedoc --tsconfig ./tsconfig.json",
     "update:readme": "npm run doc && node ./scripts/update-docs.js",
-    "pub": "npm run test && npm run build && npm run update:readme && npm publish"
+    "pub": "echo 'Use root-level changeset publish to release packages'"
   },
   "keywords": [
     "util",
@@ -48,9 +48,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GavinBirkhoff/toolkit.git"
-  },
-  "devDependencies": {
-    "docdash": "^1.2.0",
-    "jsdoc-to-markdown": "^7.1.1"
   }
 }

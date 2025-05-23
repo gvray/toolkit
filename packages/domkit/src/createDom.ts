@@ -1,4 +1,4 @@
-import { isElement, isString } from 'ts-copilot'
+import { isElement, isString } from '@gvray/eskit'
 
 export interface DomAttrs<T> {
   tagName: T

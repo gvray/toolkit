@@ -1,8 +1,8 @@
 # Toolkit
 
-🧰 Toolkit which including libraries dom (dom-copilot), path (path-copilot) add ts (ts-copilot), etc.🪛🔧🔨
+🧰 Toolkit which including libraries dom (@gvray/domkit), path (@gvray/pathkit) add ts (@gvray/eskit), etc.🪛🔧🔨
 
-## ts-copilot
+## @gvray/eskit
 
 Workspace `./packages/eskit`
 
@@ -10,29 +10,29 @@ Workspace `./packages/eskit`
 
 ```shell
 # npm
-npm i ts-copilot
+npm i @gvray/eskit
 # yarn
-yarn add ts-copilot
+yarn add @gvray/eskit
 ```
 
-## dom-copilot
+## @gvray/domkit
 
 Workspace `./packages/domkit`
 
 ### Usage
 
 ```shell
-npm i dom-copilot
+npm i @gvray/domkit
 ```
 
-## path-copilot
+## @gvray/pathkit
 
 Workspace `./packages/pathkit`
 
 ### Usage
 
 ```shell
-npm i path-copilot
+npm i @gvray/pathkit
 ```
 
 # Usage

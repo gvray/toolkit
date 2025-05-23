@@ -1,9 +1,9 @@
-# ts-copilot
+# @gvray/eskit
 
 A toolkit for ts
 
 ## Usage
 
 ```shell
-npm i ts-copilot
+npm i @gvray/eskit
 ```

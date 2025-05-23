@@ -1,9 +1,9 @@
-# path-copilot
+# @gvray/pathkit
 
 A toolkit for path
 
 ## Usage
 
 ```shell
-npm i path-copilot
+npm i @gvray/pathkit
 ```

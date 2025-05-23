@@ -1,9 +1,9 @@
-# dom-copilot
+# @gvray/domkit
 
 A toolkit for dom
 
 ## Usage
 
 ```shell
-npm i dom-copilot
+npm i @gvray/domkit
 ```

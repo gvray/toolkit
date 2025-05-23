@@ -16,7 +16,7 @@ type TargetType = HTMLElement | Element | Window | Document
  *
  * @example
  * ```typescript
- * import { getScrollPosition } from "dom-copilot";
+ * import { getScrollPosition } from "@gvray/domkit";
  *
  * // Get scroll position for window object
  * const windowScrollPosition = getScrollPosition(window);

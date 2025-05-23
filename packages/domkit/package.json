@@ -1,5 +1,5 @@
 {
-  "name": "dom-copilot",
+  "name": "@gvray/domkit",
   "version": "1.0.0-Beta",
   "description": "A rich and colorful toolkit about DOM.",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
     "build": "npm run clean && npm run script:gen-index && run-p build:*",
     "build:esm": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir esm",
     "build:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
-    "clean": "rm -rf lib && rm -rf esm",
+    "clean": "rimraf lib esm",
     "tsc": "tsc --noEmit",
     "test": "jest",
     "test:coverage": "jest --coverage",
@@ -48,9 +48,6 @@
     "url": "git+https://github.com/GavinBirkhoff/toolkit.git"
   },
   "dependencies": {
-    "ts-copilot": "^1.0.0-Beta"
-  },
-  "devDependencies": {
-    "docdash": "^1.2.0"
+    "@gvray/eskit": "workspace:*"
   }
 }

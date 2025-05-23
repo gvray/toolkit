@@ -1,4 +1,4 @@
-import { hasOwnProperty } from 'ts-copilot'
+import { hasOwnProperty } from '@gvray/eskit'
 
 /**
  * Parses the query or hash parameter string.

@@ -1,4 +1,4 @@
-import { throttle, debounced } from 'ts-copilot'
+import { throttle, debounced } from '@gvray/eskit'
 /**
  * Adds an event listener to a given element.
  *

@@ -1,17 +1,16 @@
-# dom-copilot
+# @gvray/domkit
 
 A toolkit for dom
 
 ## Usage
 
 ```shell
-npm i dom-copilot
+npm i @gvray/domkit
 ```
 
+@gvray/domkit - v1.0.0-Beta
 
-dom-copilot - v1.0.0-Beta
-
-# dom-copilot - v1.0.0-Beta
+# @gvray/domkit - v1.0.0-Beta
 
 ## Table of contents
 
@@ -64,8 +63,8 @@ Adds one or more classes to an element's class attribute, excluding classes that
 **`Example`**
 
 ```ts
-const el = document.querySelector('.example-class')!;
-addClass(el, 'new-class-1', 'new-class-2', 'example-class');
+const el = document.querySelector('.example-class')!
+addClass(el, 'new-class-1', 'new-class-2', 'example-class')
 ```
 
 **`Since`**
@@ -74,10 +73,10 @@ addClass(el, 'new-class-1', 'new-class-2', 'example-class');
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `el` | `HTMLElement` \| `SVGElement` | The element to add class names to |
-| `...classes` | `string`[] | One or more classes to add to the element, passing one or multiple class names in each argument |
+| Name         | Type                          | Description                                                                                     |
+| :----------- | :---------------------------- | :---------------------------------------------------------------------------------------------- |
+| `el`         | `HTMLElement` \| `SVGElement` | The element to add class names to                                                               |
+| `...classes` | `string`[]                    | One or more classes to add to the element, passing one or multiple class names in each argument |
 
 #### Returns
 
@@ -87,7 +86,7 @@ addClass(el, 'new-class-1', 'new-class-2', 'example-class');
 
 [addClass.ts:15](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/addClass.ts#L15)
 
-___
+---
 
 ### addCss
 
@@ -108,11 +107,11 @@ addCss('.my-class', { color: 'red', backgroundColor: 'blue' }, 'my-stylesheet')
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `selector` | `string` | `undefined` | The CSS selector to which to apply the rules. |
-| `cssRules` | `StyleProps` | `undefined` | An object containing CSS rules to apply. |
-| `title` | `string` | `'sheet'` | The title of the stylesheet. |
+| Name       | Type         | Default value | Description                                   |
+| :--------- | :----------- | :------------ | :-------------------------------------------- |
+| `selector` | `string`     | `undefined`   | The CSS selector to which to apply the rules. |
+| `cssRules` | `StyleProps` | `undefined`   | An object containing CSS rules to apply.      |
+| `title`    | `string`     | `'sheet'`     | The title of the stylesheet.                  |
 
 #### Returns
 
@@ -122,7 +121,7 @@ addCss('.my-class', { color: 'red', backgroundColor: 'blue' }, 'my-stylesheet')
 
 [addCss.ts:23](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/addCss.ts#L23)
 
-___
+---
 
 ### addEvent
 
@@ -133,8 +132,8 @@ Adds an event listener to a given element.
 **`Example`**
 
 ```ts
-const button = document.querySelector('button');
-addEvent(button, 'click', () => console.log('Button clicked!'));
+const button = document.querySelector('button')
+addEvent(button, 'click', () => console.log('Button clicked!'))
 ```
 
 **`Since`**
@@ -143,21 +142,21 @@ addEvent(button, 'click', () => console.log('Button clicked!'));
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `HTMLElement` \| `SVGElement` |
+| Name | Type                                  |
+| :--- | :------------------------------------ |
+| `T`  | extends `HTMLElement` \| `SVGElement` |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `ele` | `T` | The element to which the event listener should be added. |
-| `type` | keyof `HTMLElementEventMap` | The type of event to listen for. |
-| `eventHandle` | (`ev`: `Event` \| `ProgressEvent`<`EventTarget`\> \| `ClipboardEvent` \| `UIEvent` \| `AnimationEvent` \| `MouseEvent` \| `InputEvent` \| `FocusEvent` \| `CompositionEvent` \| `DragEvent` \| `ErrorEvent` \| `FormDataEvent` \| `PointerEvent` \| `KeyboardEvent` \| `SecurityPolicyViolationEvent` \| `SubmitEvent` \| `TouchEvent` \| `TransitionEvent` \| `WheelEvent`) => `void` | The function to be called when the event occurs. |
-| `options` | `Object` | Additional options to modify the behavior of the event listener. |
-| `options.useCapture` | `undefined` \| `boolean` | A boolean indicating whether events of this type should be dispatched to the registered listener before being dispatched to any EventTarget beneath it in the DOM tree. |
-| `options.useDebounce` | `undefined` \| `boolean` | A boolean indicating whether the event handler should be debounced. |
-| `options.useThrottle` | `undefined` \| `boolean` | A boolean indicating whether the event handler should be throttled. |
+| Name                  | Type                                                                                                                                                                                                                                                                                                                                                                                   | Description                                                                                                                                                             |
+| :-------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ele`                 | `T`                                                                                                                                                                                                                                                                                                                                                                                    | The element to which the event listener should be added.                                                                                                                |
+| `type`                | keyof `HTMLElementEventMap`                                                                                                                                                                                                                                                                                                                                                            | The type of event to listen for.                                                                                                                                        |
+| `eventHandle`         | (`ev`: `Event` \| `ProgressEvent`<`EventTarget`\> \| `ClipboardEvent` \| `UIEvent` \| `AnimationEvent` \| `MouseEvent` \| `InputEvent` \| `FocusEvent` \| `CompositionEvent` \| `DragEvent` \| `ErrorEvent` \| `FormDataEvent` \| `PointerEvent` \| `KeyboardEvent` \| `SecurityPolicyViolationEvent` \| `SubmitEvent` \| `TouchEvent` \| `TransitionEvent` \| `WheelEvent`) => `void` | The function to be called when the event occurs.                                                                                                                        |
+| `options`             | `Object`                                                                                                                                                                                                                                                                                                                                                                               | Additional options to modify the behavior of the event listener.                                                                                                        |
+| `options.useCapture`  | `undefined` \| `boolean`                                                                                                                                                                                                                                                                                                                                                               | A boolean indicating whether events of this type should be dispatched to the registered listener before being dispatched to any EventTarget beneath it in the DOM tree. |
+| `options.useDebounce` | `undefined` \| `boolean`                                                                                                                                                                                                                                                                                                                                                               | A boolean indicating whether the event handler should be debounced.                                                                                                     |
+| `options.useThrottle` | `undefined` \| `boolean`                                                                                                                                                                                                                                                                                                                                                               | A boolean indicating whether the event handler should be throttled.                                                                                                     |
 
 #### Returns
 
@@ -169,7 +168,7 @@ A function to remove the event listener.
 
 [addEvent.ts:19](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/addEvent.ts#L19)
 
-___
+---
 
 ### canUseDom
 
@@ -185,7 +184,7 @@ Returns a boolean indicating if the current environment is a browser environment
 
 [canUseDom.ts:4](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/canUseDom.ts#L4)
 
-___
+---
 
 ### cancelAnimationFrame
 
@@ -210,8 +209,8 @@ jest
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name      | Type     | Description                                |
+| :-------- | :------- | :----------------------------------------- |
 | `handler` | `number` | The return that requestAnimationFrame back |
 
 #### Returns
@@ -222,7 +221,7 @@ jest
 
 [cancelAnimationFrame.ts:10](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/cancelAnimationFrame.ts#L10)
 
-___
+---
 
 ### createDom
 
@@ -238,7 +237,7 @@ const myDiv = createDom({
   tagName: 'div',
   node: 'Hello, world!',
   container: document.body
-});
+})
 ```
 
 **`Since`**
@@ -247,14 +246,14 @@ const myDiv = createDom({
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `K` | extends keyof `HTMLElementTagNameMap` |
+| Name | Type                                  |
+| :--- | :------------------------------------ |
+| `K`  | extends keyof `HTMLElementTagNameMap` |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name        | Type             | Description                              |
+| :---------- | :--------------- | :--------------------------------------- |
 | `domAttrs?` | `DomAttrs`<`K`\> | Optional attributes for the new element. |
 
 #### Returns
@@ -267,7 +266,7 @@ The newly created element.
 
 [createDom.ts:24](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/createDom.ts#L24)
 
-___
+---
 
 ### downloadByBlob
 
@@ -279,10 +278,10 @@ Downloads a file from a Blob object by creating a temporary object URL and click
 
 ```ts
 // Download a file from an ExcelJS workbook
-const workbook = new ExcelJS.Workbook();
+const workbook = new ExcelJS.Workbook()
 // ...
-const buffer = await workbook.xlsx.writeBuffer();
-downloadByBlob(buffer, 'my-file');
+const buffer = await workbook.xlsx.writeBuffer()
+downloadByBlob(buffer, 'my-file')
 ```
 
 **`Since`**
@@ -291,10 +290,10 @@ downloadByBlob(buffer, 'my-file');
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `dataStream` | `BlobPart` | `undefined` | The data to download as a Blob object. |
-| `fileName` | `string` | `'unknown'` | The name to use for the downloaded file. Defaults to 'unknown'. |
+| Name         | Type       | Default value | Description                                                     |
+| :----------- | :--------- | :------------ | :-------------------------------------------------------------- |
+| `dataStream` | `BlobPart` | `undefined`   | The data to download as a Blob object.                          |
+| `fileName`   | `string`   | `'unknown'`   | The name to use for the downloaded file. Defaults to 'unknown'. |
 
 #### Returns
 
@@ -304,7 +303,7 @@ downloadByBlob(buffer, 'my-file');
 
 [downloadByBlob.ts:13](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/downloadByBlob.ts#L13)
 
-___
+---
 
 ### downloadByUrl
 
@@ -315,14 +314,14 @@ Downloads a file from a URL by creating a temporary object URL and clicking a li
 **`Example`**
 
 ```ts
-downloadByUrl('https://example.com/my-file.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+downloadByUrl('https://example.com/my-file.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
 ```
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `Url` | `string` | `undefined` | The URL of the file to download. |
+| Name   | Type     | Default value                | Description                                                        |
+| :----- | :------- | :--------------------------- | :----------------------------------------------------------------- |
+| `Url`  | `string` | `undefined`                  | The URL of the file to download.                                   |
 | `type` | `string` | `'application/octet-stream'` | The MIME type of the file. Defaults to 'application/octet-stream'. |
 
 #### Returns
@@ -333,7 +332,7 @@ downloadByUrl('https://example.com/my-file.xlsx', 'application/vnd.openxmlformat
 
 [downloadByUrl.ts:8](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/downloadByUrl.ts#L8)
 
-___
+---
 
 ### emptyDom
 
@@ -351,8 +350,8 @@ emptyDom(el)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name | Type          | Description               |
+| :--- | :------------ | :------------------------ |
 | `el` | `HTMLElement` | The DOM element to empty. |
 
 #### Returns
@@ -363,7 +362,7 @@ emptyDom(el)
 
 [emptyDom.ts:11](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/emptyDom.ts#L11)
 
-___
+---
 
 ### getBoundingClientPosition
 
@@ -382,8 +381,8 @@ console.log(bounds.x, bounds.y)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name  | Type          | Description                                 |
+| :---- | :------------ | :------------------------------------------ |
 | `ele` | `HTMLElement` | The element to get the bounding client for. |
 
 #### Returns
@@ -396,7 +395,7 @@ The client (x, y) coordinates of the element.
 
 [getBoundingClientPosition.ts:18](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getBoundingClientPosition.ts#L18)
 
-___
+---
 
 ### getBrowser
 
@@ -419,7 +418,7 @@ An enumerated value representing the current browser.
 
 [getBrowser.ts:24](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getBrowser.ts#L24)
 
-___
+---
 
 ### getClass
 
@@ -430,9 +429,9 @@ Returns a string of all the CSS class names assigned to an element, including SV
 **`Example`**
 
 ```ts
-const el = document.querySelector('.example-class')!;
-const classes = getClass(el);
-console.log(classes); // 'example-class'
+const el = document.querySelector('.example-class')!
+const classes = getClass(el)
+console.log(classes) // 'example-class'
 ```
 
 **`Since`**
@@ -441,8 +440,8 @@ console.log(classes); // 'example-class'
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name | Type                          | Description                                  |
+| :--- | :---------------------------- | :------------------------------------------- |
 | `el` | `HTMLElement` \| `SVGElement` | The element to retrieve the class names from |
 
 #### Returns
@@ -455,7 +454,7 @@ A string containing class names
 
 [getClass.ts:15](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getClass.ts#L15)
 
-___
+---
 
 ### getCssVariable
 
@@ -467,18 +466,18 @@ Gets the value of a CSS variable on the specified element or the root element.
 
 ```ts
 // Get the value of a CSS variable on the root element
-const bgColor = getCssVariable('--main-bg-color');
+const bgColor = getCssVariable('--main-bg-color')
 
 // Get the value of a CSS variable on a specific element
-const element = document.querySelector('.my-element');
-const bgColor = getCssVariable('--main-bg-color', element);
+const element = document.querySelector('.my-element')
+const bgColor = getCssVariable('--main-bg-color', element)
 ```
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `key` | `string` | The name of the CSS variable to get. |
+| Name   | Type          | Description                                                                               |
+| :----- | :------------ | :---------------------------------------------------------------------------------------- |
+| `key`  | `string`      | The name of the CSS variable to get.                                                      |
 | `ele?` | `HTMLElement` | The element to get the CSS variable from. If not specified, defaults to the root element. |
 
 #### Returns
@@ -491,7 +490,7 @@ The value of the CSS variable.
 
 [getCssVariable.ts:14](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getCssVariable.ts#L14)
 
-___
+---
 
 ### getOffsetPosition
 
@@ -510,8 +509,8 @@ console.log(offset.left, offset.top)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name  | Type          | Description                                 |
+| :---- | :------------ | :------------------------------------------ |
 | `ele` | `HTMLElement` | The element to get the offset position for. |
 
 #### Returns
@@ -520,16 +519,16 @@ console.log(offset.left, offset.top)
 
 The offset (left, top) position of the element relative to its parent.
 
-| Name | Type |
-| :------ | :------ |
+| Name   | Type     |
+| :----- | :------- |
 | `left` | `number` |
-| `top` | `number` |
+| `top`  | `number` |
 
 #### Defined in
 
 [getOffsetPosition.ts:13](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getOffsetPosition.ts#L13)
 
-___
+---
 
 ### getPlatform
 
@@ -540,8 +539,8 @@ Get the platform string of the user's operating system.
 **`Example`**
 
 ```ts
-const platform = getPlatform();
-console.log(platform); // Outputs: Windows / MacOS / Linux / Android / iOS / Unknown
+const platform = getPlatform()
+console.log(platform) // Outputs: Windows / MacOS / Linux / Android / iOS / Unknown
 ```
 
 #### Returns
@@ -554,7 +553,7 @@ The platform string.
 
 [getPlatform.ts:20](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getPlatform.ts#L20)
 
-___
+---
 
 ### getScrollPosition
 
@@ -570,26 +569,26 @@ an HTML element or the window or document object.
 **`Example`**
 
 ```typescript
-import { getScrollPosition } from "dom-copilot";
+import { getScrollPosition } from '@gvray/domkit'
 
 // Get scroll position for window object
-const windowScrollPosition = getScrollPosition(window);
-console.log(`Window scroll position: left = ${windowScrollPosition.left}, top = ${windowScrollPosition.top}`);
+const windowScrollPosition = getScrollPosition(window)
+console.log(`Window scroll position: left = ${windowScrollPosition.left}, top = ${windowScrollPosition.top}`)
 
 // Get scroll position for document object
-const documentScrollPosition = getScrollPosition(document);
-console.log(`Document scroll position: left = ${documentScrollPosition.left}, top = ${documentScrollPosition.top}`);
+const documentScrollPosition = getScrollPosition(document)
+console.log(`Document scroll position: left = ${documentScrollPosition.left}, top = ${documentScrollPosition.top}`)
 
 // Get scroll position for HTML element
-const element = document.getElementById("my-element");
-const elementScrollPosition = getScrollPosition(element);
-console.log(`Element scroll position: left = ${elementScrollPosition.left}, top = ${elementScrollPosition.top}`);
+const element = document.getElementById('my-element')
+const elementScrollPosition = getScrollPosition(element)
+console.log(`Element scroll position: left = ${elementScrollPosition.left}, top = ${elementScrollPosition.top}`)
 ```
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name | Type         | Description                                        |
+| :--- | :----------- | :------------------------------------------------- |
 | `el` | `TargetType` | The target element to get the scroll position for. |
 
 #### Returns
@@ -603,7 +602,7 @@ element.
 
 [getScrollPosition.ts:35](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getScrollPosition.ts#L35)
 
-___
+---
 
 ### getStyleProps
 
@@ -614,17 +613,19 @@ Get the style properties of an element.
 **`Example`**
 
 Get all style properties of a specified element:
+
 ```typescript
-const element = document.getElementById('my-element');
-const styleProps = getStyleProps(element);
-console.log(styleProps);
+const element = document.getElementById('my-element')
+const styleProps = getStyleProps(element)
+console.log(styleProps)
 ```
 
 Get the `color` property of a specified element:
+
 ```typescript
-const element = document.getElementById('my-element');
-const color = getStyleProps(element, 'color');
-console.log(color);
+const element = document.getElementById('my-element')
+const color = getStyleProps(element, 'color')
+console.log(color)
 ```
 
 **`Since`**
@@ -633,10 +634,10 @@ console.log(color);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `element` | `HTMLElement` | The element to get the style properties of. |
-| `propName?` | `string` | The name of the property to get. |
+| Name        | Type          | Description                                 |
+| :---------- | :------------ | :------------------------------------------ |
+| `element`   | `HTMLElement` | The element to get the style properties of. |
+| `propName?` | `string`      | The name of the property to get.            |
 
 #### Returns
 
@@ -648,7 +649,7 @@ If `propName` is specified, returns the value of that property. Otherwise, retur
 
 [getStyleProps.ts:38](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getStyleProps.ts#L38)
 
-___
+---
 
 ### getTextPixelWidth
 
@@ -669,14 +670,14 @@ const width = getTextPixelWidth('Hello, World!', { fontFamily: 'Arial', fontSize
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `text` | `string` | The text to calculate the width of. |
-| `options` | `Object` | Options for the font. |
-| `options.font?` | `string` | The font string to use, e.g. `Arial`. |
-| `options.fontFamily?` | `string` | The name of the font family, e.g. `sans-serif`. |
-| `options.fontSize?` | `string` \| `number` | The size of the font in pixels. |
-| `options.fontWeight?` | `string` \| `number` | The weight of the font, e.g. `bold`. |
+| Name                  | Type                 | Description                                     |
+| :-------------------- | :------------------- | :---------------------------------------------- |
+| `text`                | `string`             | The text to calculate the width of.             |
+| `options`             | `Object`             | Options for the font.                           |
+| `options.font?`       | `string`             | The font string to use, e.g. `Arial`.           |
+| `options.fontFamily?` | `string`             | The name of the font family, e.g. `sans-serif`. |
+| `options.fontSize?`   | `string` \| `number` | The size of the font in pixels.                 |
+| `options.fontWeight?` | `string` \| `number` | The weight of the font, e.g. `bold`.            |
 
 #### Returns
 
@@ -688,7 +689,7 @@ The pixel width of the text in the specified font.
 
 [getTextPixelWidth.ts:21](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getTextPixelWidth.ts#L21)
 
-___
+---
 
 ### hasClass
 
@@ -699,9 +700,9 @@ Checks if an element has a specified CSS class, including SVG elements.
 **`Example`**
 
 ```ts
-const el = document.querySelector('.example-class')!;
+const el = document.querySelector('.example-class')!
 if (hasClass(el, 'example-class')) {
-  console.log('Element has class "example-class".');
+  console.log('Element has class "example-class".')
 }
 ```
 
@@ -711,10 +712,10 @@ if (hasClass(el, 'example-class')) {
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `el` | `HTMLElement` \| `SVGElement` | The element to check |
-| `className` | `string` | The CSS class to check for |
+| Name        | Type                          | Description                |
+| :---------- | :---------------------------- | :------------------------- |
+| `el`        | `HTMLElement` \| `SVGElement` | The element to check       |
+| `className` | `string`                      | The CSS class to check for |
 
 #### Returns
 
@@ -726,7 +727,7 @@ If the element has the specified CSS class, returns true; otherwise, returns fal
 
 [hasClass.ts:17](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/hasClass.ts#L17)
 
-___
+---
 
 ### isBrowser
 
@@ -742,12 +743,12 @@ objects, and whether `document.createElement` function is available.
 **`Example`**
 
 ```typescript
-import { isBrowser } from "./browserDetection";
+import { isBrowser } from './browserDetection'
 
 if (isBrowser()) {
-    console.log("This is running in a browser!");
+  console.log('This is running in a browser!')
 } else {
-    console.log("This is not a browser environment!");
+  console.log('This is not a browser environment!')
 }
 ```
 
@@ -761,7 +762,7 @@ A boolean value indicating whether the code is running in a browser environment.
 
 [isBrowser.ts:21](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/isBrowser.ts#L21)
 
-___
+---
 
 ### preload
 
@@ -769,8 +770,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name      | Type             |
+| :-------- | :--------------- |
 | `options` | `PreloadOptions` |
 
 #### Returns
@@ -781,7 +782,7 @@ ___
 
 [preload.ts:23](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/preload.ts#L23)
 
-___
+---
 
 ### rem
 
@@ -794,15 +795,15 @@ Set font size of HTML tag according to the design width.
 ```ts
 // Sets the HTML font size based on a design width of 750 pixels
 // with a maximum width of 2000 pixels and a minimum width of 375 pixels.
-rem(750, { maxWith: 2000, minWith: 375 });
+rem(750, { maxWith: 2000, minWith: 375 })
 ```
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `designWidth` | `number` | The design width of the page. |
-| `options` | `RemOptions` | The optional parameters. |
+| Name          | Type         | Description                   |
+| :------------ | :----------- | :---------------------------- |
+| `designWidth` | `number`     | The design width of the page. |
+| `options`     | `RemOptions` | The optional parameters.      |
 
 #### Returns
 
@@ -812,7 +813,7 @@ rem(750, { maxWith: 2000, minWith: 375 });
 
 [rem.ts:17](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/rem.ts#L17)
 
-___
+---
 
 ### removeClass
 
@@ -824,16 +825,16 @@ Remove a class from an element.
 
 ```ts
 // Removes the class "active" from an element with the "target" ID.
-const target = document.getElementById('target');
-removeClass(target, 'active');
+const target = document.getElementById('target')
+removeClass(target, 'active')
 ```
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `el` | `HTMLElement` | The target element. |
-| `className` | `string` | The class name to remove. |
+| Name        | Type          | Description               |
+| :---------- | :------------ | :------------------------ |
+| `el`        | `HTMLElement` | The target element.       |
+| `className` | `string`      | The class name to remove. |
 
 #### Returns
 
@@ -843,7 +844,7 @@ removeClass(target, 'active');
 
 [removeClass.ts:12](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/removeClass.ts#L12)
 
-___
+---
 
 ### removeCssVariable
 
@@ -855,18 +856,18 @@ Removes a CSS variable from the specified element or the root element.
 
 ```ts
 // Remove a CSS variable from the root element
-removeCssVariable('--main-bg-color');
+removeCssVariable('--main-bg-color')
 
 // Remove a CSS variable from a specific element
-const element = document.querySelector('.my-element');
-removeCssVariable('--main-bg-color', element);
+const element = document.querySelector('.my-element')
+removeCssVariable('--main-bg-color', element)
 ```
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `key` | `string` | The name of the CSS variable to remove. |
+| Name   | Type          | Description                                                                                        |
+| :----- | :------------ | :------------------------------------------------------------------------------------------------- |
+| `key`  | `string`      | The name of the CSS variable to remove.                                                            |
 | `ele?` | `HTMLElement` | The element from which to remove the CSS variable. If not specified, defaults to the root element. |
 
 #### Returns
@@ -877,7 +878,7 @@ removeCssVariable('--main-bg-color', element);
 
 [removeCssVariable.ts:13](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/removeCssVariable.ts#L13)
 
-___
+---
 
 ### removeDom
 
@@ -888,7 +889,7 @@ Remove a DOM element.
 **`Example`**
 
 ```ts
-removeDom(document.getElementById('my-element'));
+removeDom(document.getElementById('my-element'))
 ```
 
 **`Since`**
@@ -897,8 +898,8 @@ removeDom(document.getElementById('my-element'));
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name | Type      | Description            |
+| :--- | :-------- | :--------------------- |
 | `el` | `Element` | The element to remove. |
 
 #### Returns
@@ -909,7 +910,7 @@ removeDom(document.getElementById('my-element'));
 
 [removeDom.ts:12](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/removeDom.ts#L12)
 
-___
+---
 
 ### removeEvent
 
@@ -920,16 +921,16 @@ Remove an event listener from an element.
 **`Example`**
 
 ```ts
-const el = document.getElementById('my-element');
+const el = document.getElementById('my-element')
 const callback = () => {
-  console.log('Button clicked');
-};
+  console.log('Button clicked')
+}
 
 // Add the event listener
-addEvent(el, 'click', callback, { useCapture: false });
+addEvent(el, 'click', callback, { useCapture: false })
 
 // Remove the event listener
-removeEvent(el, 'click', callback, { useCapture: false });
+removeEvent(el, 'click', callback, { useCapture: false })
 ```
 
 **`Since`**
@@ -938,12 +939,12 @@ removeEvent(el, 'click', callback, { useCapture: false });
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `el` | `Element` | The element to remove the event listener from. |
-| `type` | `string` | The event type to remove. |
-| `callback` | `EventListener` | The callback function to remove. |
-| `options` | `RemoveEventOptions` | The options object. |
+| Name       | Type                 | Description                                    |
+| :--------- | :------------------- | :--------------------------------------------- |
+| `el`       | `Element`            | The element to remove the event listener from. |
+| `type`     | `string`             | The event type to remove.                      |
+| `callback` | `EventListener`      | The callback function to remove.               |
+| `options`  | `RemoveEventOptions` | The options object.                            |
 
 #### Returns
 
@@ -953,7 +954,7 @@ removeEvent(el, 'click', callback, { useCapture: false });
 
 [removeEvent.ts:30](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/removeEvent.ts#L30)
 
-___
+---
 
 ### requestAnimationFrame
 
@@ -990,8 +991,8 @@ animate()
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name | Type                   | Description                                                    |
+| :--- | :--------------------- | :------------------------------------------------------------- |
 | `fn` | `FrameRequestCallback` | A function specifying the animation to perform for each frame. |
 
 #### Returns
@@ -1004,7 +1005,7 @@ A numeric ID which can be passed to cancelAnimationFrame() to cancel the request
 
 [requestAnimationFrame.ts:31](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/requestAnimationFrame.ts#L31)
 
-___
+---
 
 ### require
 
@@ -1016,8 +1017,8 @@ Dynamically load a JavaScript file and execute a callback function.
 
 ```ts
 requireScript('path/to/script.js', () => {
-  console.log('Script loaded');
-});
+  console.log('Script loaded')
+})
 ```
 
 **`Since`**
@@ -1026,9 +1027,9 @@ requireScript('path/to/script.js', () => {
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `file` | `string` | The URL of the JavaScript file to load. |
+| Name       | Type                     | Description                                                 |
+| :--------- | :----------------------- | :---------------------------------------------------------- |
+| `file`     | `string`                 | The URL of the JavaScript file to load.                     |
 | `callback` | (`ev`: `Event`) => `any` | The callback function to execute when the script is loaded. |
 
 #### Returns
@@ -1039,7 +1040,7 @@ requireScript('path/to/script.js', () => {
 
 [require.ts:15](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/require.ts#L15)
 
-___
+---
 
 ### scrollTo
 
@@ -1047,8 +1048,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name             | Type              |
+| :--------------- | :---------------- |
 | `«destructured»` | `ScrollToOptions` |
 
 #### Returns
@@ -1059,7 +1060,7 @@ ___
 
 [scrollTo.ts:34](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/scrollTo.ts#L34)
 
-___
+---
 
 ### setClass
 
@@ -1070,8 +1071,8 @@ Sets the class attribute or className property of an element to the specified va
 **`Example`**
 
 ```ts
-const myEl = document.getElementById('my-element')!;
-setClass(myEl, 'my-class');
+const myEl = document.getElementById('my-element')!
+setClass(myEl, 'my-class')
 // The above call sets the class to "my-class" on #my-element.
 ```
 
@@ -1081,10 +1082,10 @@ setClass(myEl, 'my-class');
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `el` | `HTMLElement` \| `SVGElement` | The element to set the class attribute/property for. |
-| `className` | `string` | The class name(s) to set on the element. |
+| Name        | Type                          | Description                                          |
+| :---------- | :---------------------------- | :--------------------------------------------------- |
+| `el`        | `HTMLElement` \| `SVGElement` | The element to set the class attribute/property for. |
+| `className` | `string`                      | The class name(s) to set on the element.             |
 
 #### Returns
 
@@ -1094,7 +1095,7 @@ setClass(myEl, 'my-class');
 
 [setClass.ts:13](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/setClass.ts#L13)
 
-___
+---
 
 ### setCssVariable
 
@@ -1106,19 +1107,19 @@ Sets a CSS variable on the specified element or the root element.
 
 ```ts
 // Set a CSS variable on the root element
-setCssVariable('--main-bg-color', '#ffffff');
+setCssVariable('--main-bg-color', '#ffffff')
 
 // Set a CSS variable on a specific element
-const element = document.querySelector('.my-element');
-setCssVariable('--main-bg-color', '#ffffff', element);
+const element = document.querySelector('.my-element')
+setCssVariable('--main-bg-color', '#ffffff', element)
 ```
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `key` | `string` | The name of the CSS variable to set. |
-| `val` | `string` | The value to set the CSS variable to. |
+| Name   | Type          | Description                                                                             |
+| :----- | :------------ | :-------------------------------------------------------------------------------------- |
+| `key`  | `string`      | The name of the CSS variable to set.                                                    |
+| `val`  | `string`      | The value to set the CSS variable to.                                                   |
 | `ele?` | `HTMLElement` | The element to set the CSS variable on. If not specified, defaults to the root element. |
 
 #### Returns
@@ -1129,7 +1130,7 @@ setCssVariable('--main-bg-color', '#ffffff', element);
 
 [setCssVariable.ts:14](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/setCssVariable.ts#L14)
 
-___
+---
 
 ### setOpacity
 
@@ -1140,8 +1141,8 @@ Set the opacity of an element.
 **`Example`**
 
 ```ts
-const element = document.querySelector('.my-element');
-setOpacity(element, 0.5);
+const element = document.querySelector('.my-element')
+setOpacity(element, 0.5)
 ```
 
 **`Since`**
@@ -1150,10 +1151,10 @@ setOpacity(element, 0.5);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `elem` | `any` | The element whose opacity to set. |
-| `opacity` | `number` | The opacity value to set. |
+| Name      | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `elem`    | `any`    | The element whose opacity to set. |
+| `opacity` | `number` | The opacity value to set.         |
 
 #### Returns
 
@@ -1163,7 +1164,7 @@ setOpacity(element, 0.5);
 
 [setOpacity.ts:14](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/setOpacity.ts#L14)
 
-___
+---
 
 ### setStyleProps
 
@@ -1184,16 +1185,16 @@ setStyleProps(el, { color: 'red', fontSize: '14px' })
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `HTMLElement` |
+| Name | Type                  |
+| :--- | :-------------------- |
+| `T`  | extends `HTMLElement` |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `element` | ``null`` \| `T` | The element to set style properties on. |
-| `props` | `Partial`<{ `[key: string]`: `string`;  }\> | The style properties to set, in the form of an object of key-value pairs. |
+| Name      | Type                                       | Description                                                               |
+| :-------- | :----------------------------------------- | :------------------------------------------------------------------------ |
+| `element` | `null` \| `T`                              | The element to set style properties on.                                   |
+| `props`   | `Partial`<{ `[key: string]`: `string`; }\> | The style properties to set, in the form of an object of key-value pairs. |
 
 #### Returns
 
@@ -1205,7 +1206,7 @@ void
 
 [setStyleProps.ts:18](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/setStyleProps.ts#L18)
 
-___
+---
 
 ### toBack
 
@@ -1217,15 +1218,15 @@ Moves the given element to the back of its parent's children.
 
 ```ts
 // Move the first div to the back of its parent container
-const container = document.querySelector('.container');
-const firstDiv = container.firstElementChild;
-toBack(firstDiv);
+const container = document.querySelector('.container')
+const firstDiv = container.firstElementChild
+toBack(firstDiv)
 ```
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name | Type          | Description                      |
+| :--- | :------------ | :------------------------------- |
 | `el` | `HTMLElement` | The element to move to the back. |
 
 #### Returns
@@ -1236,7 +1237,7 @@ toBack(firstDiv);
 
 [toBack.ts:12](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/toBack.ts#L12)
 
-___
+---
 
 ### toFront
 
@@ -1248,17 +1249,17 @@ Moves the given element to the front of its parent's children.
 
 ```ts
 // Create a new element and add it to the DOM
-const newDiv = document.createElement('div');
-document.body.appendChild(newDiv);
+const newDiv = document.createElement('div')
+document.body.appendChild(newDiv)
 
 // Move the new element to the front of the body
-toFront(newDiv);
+toFront(newDiv)
 ```
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name | Type          | Description                       |
+| :--- | :------------ | :-------------------------------- |
 | `el` | `HTMLElement` | The element to move to the front. |
 
 #### Returns

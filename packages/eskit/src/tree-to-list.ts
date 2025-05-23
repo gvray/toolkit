@@ -1,12 +1,12 @@
-interface IItem<T> {
+export interface TreeNode<T> {
   children?: T[]
 }
 
 /**
- * Flattens a tree structure represented by an array of items with child nodes into a flat array.
+ * Flattens a trees structure represented by an array of items with child nodes into a flat array.
  *
- * @typeParam T - Type of items in the tree.
- * @param tree - The tree structure represented by an array of items with child nodes.
+ * @typeParam T - Type of items in the trees.
+ * @param trees - The trees structure represented by an array of items with child nodes.
  * @returns A flat array of items.
  *
  * @example
@@ -17,7 +17,7 @@ interface IItem<T> {
  *   children?: TreeNode[];
  * }
  *
- * const tree: TreeNode[] = [
+ * const trees: TreeNode[] = [
  *   {
  *     id: 1,
  *     name: "Node 1",
@@ -36,7 +36,7 @@ interface IItem<T> {
  *   }
  * ];
  *
- * const result = treeToList(tree);
+ * const result = treeToList(trees);
  * // [
  * //   { id: 2, name: "Node 1.1" },
  * //   { id: 3, name: "Node 1.2" },
@@ -48,8 +48,8 @@ interface IItem<T> {
  * // ]
  * ```
  */
-const treeToList = <T extends IItem<T>>(tree: T[]): T[] => {
-  const stack = [...tree]
+const treeToList = <T extends TreeNode<T>>(trees: T[]): T[] => {
+  const stack = [...trees]
   const result: T[] = []
 
   while (stack.length) {

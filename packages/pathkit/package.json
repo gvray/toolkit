@@ -1,5 +1,5 @@
 {
-  "name": "path-copilot",
+  "name": "@gvray/pathkit",
   "version": "1.0.0",
   "description": "A rich and colorful toolkit about Path.",
   "main": "lib/index.js",
@@ -23,7 +23,7 @@
     "docs": "npm run build:esm && jsdoc -c jsdoc.json",
     "doc": "typedoc --tsconfig ./tsconfig.json",
     "update:readme": "npm run doc && node ./scripts/update-docs.js",
-    "pub": "npm run test && npm run build && npm run update:readme && npm publish"
+    "pub": "echo 'Use root-level changeset publish to release packages'"
   },
   "keywords": [
     "path",
@@ -48,9 +48,6 @@
     "url": "git+https://github.com/GavinBirkhoff/toolkit.git"
   },
   "dependencies": {
-    "ts-copilot": "^1.0.0-Beta"
-  },
-  "devDependencies": {
-    "docdash": "^1.2.0"
+    "@gvray/eskit": "workspace:*"
   }
 }

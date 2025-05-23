@@ -1,4 +1,4 @@
-import { each, isEmpty } from 'ts-copilot'
+import { each, isEmpty } from '@gvray/eskit'
 
 /**
  * Sets the style properties of an HTML element.
