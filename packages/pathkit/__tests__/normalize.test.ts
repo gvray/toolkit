@@ -1,86 +1,75 @@
 import { normalize } from '../src'
 
 describe('normalize', () => {
-  it('normalizes basic paths', () => {
-    expect(normalize('/')).toBe('/')
-    expect(normalize('/foo')).toBe('/foo')
-    expect(normalize('/foo/')).toBe('/foo/')
-    expect(normalize('/foo//')).toBe('/foo/')
-    expect(normalize('foo/')).toBe('foo/')
-    expect(normalize('foo//')).toBe('foo/')
+  test('should normalize simple paths', () => {
     expect(normalize('foo/bar')).toBe('foo/bar')
+    expect(normalize('/foo/bar')).toBe('/foo/bar')
+    expect(normalize('foo/bar/')).toBe('foo/bar')
+  })
+
+  test('should handle empty paths', () => {
+    expect(normalize('')).toBe('.')
+    expect(normalize('.')).toBe('.')
+    expect(normalize('./')).toBe('.')
+  })
+
+  test('should handle current directory references', () => {
+    expect(normalize('./foo')).toBe('foo')
+    expect(normalize('foo/./bar')).toBe('foo/bar')
+    expect(normalize('foo/./bar/./baz')).toBe('foo/bar/baz')
+    expect(normalize('foo/.')).toBe('foo')
+  })
+
+  test('should handle parent directory references', () => {
+    expect(normalize('../foo')).toBe('../foo')
     expect(normalize('foo/../bar')).toBe('bar')
+    expect(normalize('foo/bar/../../baz')).toBe('baz')
+    expect(normalize('foo/bar/../..')).toBe('.')
+    expect(normalize('foo/../../bar')).toBe('../bar')
   })
 
-  it('normalizes complex paths', () => {
-    expect(normalize('/foo/bar/../baz')).toBe('/foo/baz')
-    expect(normalize('/foo/bar/../../baz')).toBe('/baz')
-    expect(normalize('/foo/bar/../../../baz')).toBe('/baz')
-    expect(normalize('/foo/bar/../../../../baz')).toBe('/baz')
-    expect(normalize('/foo/bar/../../../../baz/../qux')).toBe('/qux')
-    expect(normalize('/foo/bar/../../../..')).toBe('/')
-    expect(normalize('/foo/bar/../../../../..')).toBe('/')
+  test('should handle multiple slashes', () => {
+    expect(normalize('foo//bar')).toBe('foo/bar')
+    expect(normalize('foo///bar')).toBe('foo/bar')
+    expect(normalize('//foo//bar//')).toBe('/foo/bar')
   })
 
-  it('normalizes paths with dots', () => {
-    expect(normalize('/foo/bar/.')).toBe('/foo/bar')
-    expect(normalize('/foo/bar/./baz')).toBe('/foo/bar/baz')
-    expect(normalize('/foo/bar/baz/.')).toBe('/foo/bar/baz')
+  test('should handle Windows-style paths', () => {
+    expect(normalize('foo\\bar')).toBe('foo/bar')
+    expect(normalize('C:\\foo\\bar')).toBe('C:/foo/bar')
+    expect(normalize('foo\\..\\bar')).toBe('bar')
+  })
+
+  test('should handle absolute paths', () => {
+    expect(normalize('/foo/bar')).toBe('/foo/bar')
+    expect(normalize('/foo/../bar')).toBe('/bar')
     expect(normalize('/foo/./bar')).toBe('/foo/bar')
-    expect(normalize('/foo/./bar/')).toBe('/foo/bar/')
-    expect(normalize('/foo/./bar/../baz')).toBe('/foo/baz')
-    expect(normalize('/foo/../bar/./baz/../qux')).toBe('/bar/qux')
+    expect(normalize('/.')).toBe('/')
+    expect(normalize('/..')).toBe('/')
   })
 
-  it('should normalize a path with ".." and "." segments', () => {
-    expect(normalize('/users/john/../jane/./documents/')).toBe('/users/jane/documents/')
+  test('should handle complex paths', () => {
+    expect(normalize('foo/bar/../baz/./qux')).toBe('foo/baz/qux')
+    expect(normalize('./foo/../../bar')).toBe('../bar')
+    expect(normalize('/foo/../bar/./baz/..')).toBe('/bar')
+    expect(normalize('foo/bar/../../..')).toBe('..')
   })
 
-  it('should not change a path with no "." or ".." segments', () => {
-    expect(normalize('/users/john/documents/')).toBe('/users/john/documents/')
+  test('should handle paths with special characters', () => {
+    expect(normalize('foo bar/baz')).toBe('foo bar/baz')
+    expect(normalize('foo!@#/bar$%^')).toBe('foo!@#/bar$%^')
+    expect(normalize('foo bar/../baz')).toBe('baz')
   })
 
-  // it('should normalize a Windows path with backslashes', () => {
-  //   expect(normalize('C:\\users\\john\\..\\jane\\.\\documents\\')).toBe('C:/users/jane/documents/')
-  // })
-
-  it('should normalize an empty path to root', () => {
-    expect(normalize('')).toBe('/')
+  test('should handle UNC paths', () => {
+    expect(normalize('//server/share')).toBe('//server/share')
+    expect(normalize('\\\\server\\share')).toBe('//server/share')
+    expect(normalize('//server/share/foo/../bar')).toBe('//server/share/bar')
   })
 
-  it('should normalize a single slash to root', () => {
-    expect(normalize('/')).toBe('/')
+  test('should handle mixed forward and backward slashes', () => {
+    expect(normalize('foo\\bar/baz')).toBe('foo/bar/baz')
+    expect(normalize('foo/bar\\baz')).toBe('foo/bar/baz')
+    expect(normalize('foo\\bar\\../baz')).toBe('foo/baz')
   })
-
-  it('should remove trailing slashes', () => {
-    expect(normalize('/users/john/documents////')).toBe('/users/john/documents/')
-  })
-
-  it('should normalize a path with a mix of forward and backslashes', () => {
-    expect(normalize('/users/john\\../jane\\./documents/')).toBe('/users/jane/documents/')
-  })
-
-  it('should handle an absolute path with a single trailing slash', () => {
-    expect(normalize('/users/john/documents/')).toBe('/users/john/documents/')
-  })
-
-  it('should handle an absolute path with no trailing slash', () => {
-    expect(normalize('/users/john/documents')).toBe('/users/john/documents')
-  })
-
-  it('should handle a relative path with a single trailing slash', () => {
-    expect(normalize('users/john/documents/')).toBe('users/john/documents/')
-  })
-
-  it('should handle a relative path with no trailing slash', () => {
-    expect(normalize('users/john/documents')).toBe('users/john/documents')
-  })
-
-  it('should handle a double slash as a single slash', () => {
-    expect(normalize('//users/john/documents')).toBe('/users/john/documents')
-  })
-
-  // it('should handle a double backslash as a single slash on Windows', () => {
-  //   expect(normalize('C:\\\\users\\john\\documents\\')).toBe('C:/users/john/documents/')
-  // })
 })

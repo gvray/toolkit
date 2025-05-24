@@ -20,9 +20,9 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "script:gen-index": "node ./scripts/generate-index.js",
-    "docs": "npm run build:esm && jsdoc -c jsdoc.json",
-    "doc": "typedoc --tsconfig ./tsconfig.json",
     "update:readme": "npm run doc && node ./scripts/update-docs.js",
+    "doc:gen": "typedoc",
+    "doc": "pnpm run doc:gen && pnpm -C ../../ append-api ./packages/pathkit docs",
     "pub": "echo 'Use root-level changeset publish to release packages'"
   },
   "keywords": [

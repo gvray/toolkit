@@ -13,6 +13,7 @@
     "script:gen-index": "pnpm -r run script:gen-index",
     "gen": "pnpm run script:gen-index",
     "dev": "webpack-dev-server --progress",
+    "append-api": "ts-node --transpile-only scripts/append-api-to-readme.ts",
     "version-packages": "changeset version",
     "release": "changeset publish"
   },
@@ -77,8 +78,8 @@
     "ts-jest": "^27.0.3",
     "ts-loader": "^9.4.2",
     "ts-node": "^10.0.0",
-    "typedoc": "^0.23.28",
-    "typedoc-plugin-markdown": "^3.14.0",
+    "typedoc": "^0.28.4",
+    "typedoc-plugin-markdown": "^4.6.3",
     "typescript": "^5.8.3",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
