@@ -35,17 +35,17 @@
     "tool"
   ],
   "author": {
-    "name": "GavinBirkhoff",
-    "email": "gavinbirkhoff@gmail.com"
+    "name": "GavinRay",
+    "email": "gavinraydev@gmail.com"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/GavinBirkhoff/toolkit/issues"
+    "url": "https://github.com/gvray/toolkit/issues"
   },
-  "homepage": "https://github.com/GavinBirkhoff/toolkit#readme",
+  "homepage": "https://github.com/gvray/toolkit#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GavinBirkhoff/toolkit.git"
+    "url": "git+https://github.com/gvray/toolkit.git"
   },
   "dependencies": {
     "@gvray/eskit": "workspace:*"

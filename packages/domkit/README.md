@@ -84,7 +84,7 @@ addClass(el, 'new-class-1', 'new-class-2', 'example-class')
 
 #### Defined in
 
-[addClass.ts:15](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/addClass.ts#L15)
+[addClass.ts:15](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/addClass.ts#L15)
 
 ---
 
@@ -119,7 +119,7 @@ addCss('.my-class', { color: 'red', backgroundColor: 'blue' }, 'my-stylesheet')
 
 #### Defined in
 
-[addCss.ts:23](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/addCss.ts#L23)
+[addCss.ts:23](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/addCss.ts#L23)
 
 ---
 
@@ -166,7 +166,7 @@ A function to remove the event listener.
 
 #### Defined in
 
-[addEvent.ts:19](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/addEvent.ts#L19)
+[addEvent.ts:19](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/addEvent.ts#L19)
 
 ---
 
@@ -182,7 +182,7 @@ Returns a boolean indicating if the current environment is a browser environment
 
 #### Defined in
 
-[canUseDom.ts:4](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/canUseDom.ts#L4)
+[canUseDom.ts:4](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/canUseDom.ts#L4)
 
 ---
 
@@ -219,7 +219,7 @@ jest
 
 #### Defined in
 
-[cancelAnimationFrame.ts:10](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/cancelAnimationFrame.ts#L10)
+[cancelAnimationFrame.ts:10](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/cancelAnimationFrame.ts#L10)
 
 ---
 
@@ -264,7 +264,7 @@ The newly created element.
 
 #### Defined in
 
-[createDom.ts:24](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/createDom.ts#L24)
+[createDom.ts:24](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/createDom.ts#L24)
 
 ---
 
@@ -301,7 +301,7 @@ downloadByBlob(buffer, 'my-file')
 
 #### Defined in
 
-[downloadByBlob.ts:13](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/downloadByBlob.ts#L13)
+[downloadByBlob.ts:13](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/downloadByBlob.ts#L13)
 
 ---
 
@@ -330,7 +330,7 @@ downloadByUrl('https://example.com/my-file.xlsx', 'application/vnd.openxmlformat
 
 #### Defined in
 
-[downloadByUrl.ts:8](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/downloadByUrl.ts#L8)
+[downloadByUrl.ts:8](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/downloadByUrl.ts#L8)
 
 ---
 
@@ -360,7 +360,7 @@ emptyDom(el)
 
 #### Defined in
 
-[emptyDom.ts:11](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/emptyDom.ts#L11)
+[emptyDom.ts:11](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/emptyDom.ts#L11)
 
 ---
 
@@ -393,7 +393,7 @@ The client (x, y) coordinates of the element.
 
 #### Defined in
 
-[getBoundingClientPosition.ts:18](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getBoundingClientPosition.ts#L18)
+[getBoundingClientPosition.ts:18](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/getBoundingClientPosition.ts#L18)
 
 ---
 
@@ -416,7 +416,7 @@ An enumerated value representing the current browser.
 
 #### Defined in
 
-[getBrowser.ts:24](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getBrowser.ts#L24)
+[getBrowser.ts:24](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/getBrowser.ts#L24)
 
 ---
 
@@ -452,7 +452,7 @@ A string containing class names
 
 #### Defined in
 
-[getClass.ts:15](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getClass.ts#L15)
+[getClass.ts:15](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/getClass.ts#L15)
 
 ---
 
@@ -488,7 +488,7 @@ The value of the CSS variable.
 
 #### Defined in
 
-[getCssVariable.ts:14](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getCssVariable.ts#L14)
+[getCssVariable.ts:14](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/getCssVariable.ts#L14)
 
 ---
 
@@ -526,7 +526,7 @@ The offset (left, top) position of the element relative to its parent.
 
 #### Defined in
 
-[getOffsetPosition.ts:13](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getOffsetPosition.ts#L13)
+[getOffsetPosition.ts:13](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/getOffsetPosition.ts#L13)
 
 ---
 
@@ -551,7 +551,7 @@ The platform string.
 
 #### Defined in
 
-[getPlatform.ts:20](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getPlatform.ts#L20)
+[getPlatform.ts:20](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/getPlatform.ts#L20)
 
 ---
 
@@ -600,7 +600,7 @@ element.
 
 #### Defined in
 
-[getScrollPosition.ts:35](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getScrollPosition.ts#L35)
+[getScrollPosition.ts:35](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/getScrollPosition.ts#L35)
 
 ---
 
@@ -647,7 +647,7 @@ If `propName` is specified, returns the value of that property. Otherwise, retur
 
 #### Defined in
 
-[getStyleProps.ts:38](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getStyleProps.ts#L38)
+[getStyleProps.ts:38](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/getStyleProps.ts#L38)
 
 ---
 
@@ -687,7 +687,7 @@ The pixel width of the text in the specified font.
 
 #### Defined in
 
-[getTextPixelWidth.ts:21](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/getTextPixelWidth.ts#L21)
+[getTextPixelWidth.ts:21](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/getTextPixelWidth.ts#L21)
 
 ---
 
@@ -725,7 +725,7 @@ If the element has the specified CSS class, returns true; otherwise, returns fal
 
 #### Defined in
 
-[hasClass.ts:17](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/hasClass.ts#L17)
+[hasClass.ts:17](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/hasClass.ts#L17)
 
 ---
 
@@ -760,7 +760,7 @@ A boolean value indicating whether the code is running in a browser environment.
 
 #### Defined in
 
-[isBrowser.ts:21](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/isBrowser.ts#L21)
+[isBrowser.ts:21](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/isBrowser.ts#L21)
 
 ---
 
@@ -780,7 +780,7 @@ A boolean value indicating whether the code is running in a browser environment.
 
 #### Defined in
 
-[preload.ts:23](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/preload.ts#L23)
+[preload.ts:23](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/preload.ts#L23)
 
 ---
 
@@ -811,7 +811,7 @@ rem(750, { maxWith: 2000, minWith: 375 })
 
 #### Defined in
 
-[rem.ts:17](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/rem.ts#L17)
+[rem.ts:17](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/rem.ts#L17)
 
 ---
 
@@ -842,7 +842,7 @@ removeClass(target, 'active')
 
 #### Defined in
 
-[removeClass.ts:12](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/removeClass.ts#L12)
+[removeClass.ts:12](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/removeClass.ts#L12)
 
 ---
 
@@ -876,7 +876,7 @@ removeCssVariable('--main-bg-color', element)
 
 #### Defined in
 
-[removeCssVariable.ts:13](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/removeCssVariable.ts#L13)
+[removeCssVariable.ts:13](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/removeCssVariable.ts#L13)
 
 ---
 
@@ -908,7 +908,7 @@ removeDom(document.getElementById('my-element'))
 
 #### Defined in
 
-[removeDom.ts:12](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/removeDom.ts#L12)
+[removeDom.ts:12](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/removeDom.ts#L12)
 
 ---
 
@@ -952,7 +952,7 @@ removeEvent(el, 'click', callback, { useCapture: false })
 
 #### Defined in
 
-[removeEvent.ts:30](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/removeEvent.ts#L30)
+[removeEvent.ts:30](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/removeEvent.ts#L30)
 
 ---
 
@@ -1003,7 +1003,7 @@ A numeric ID which can be passed to cancelAnimationFrame() to cancel the request
 
 #### Defined in
 
-[requestAnimationFrame.ts:31](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/requestAnimationFrame.ts#L31)
+[requestAnimationFrame.ts:31](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/requestAnimationFrame.ts#L31)
 
 ---
 
@@ -1038,7 +1038,7 @@ requireScript('path/to/script.js', () => {
 
 #### Defined in
 
-[require.ts:15](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/require.ts#L15)
+[require.ts:15](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/require.ts#L15)
 
 ---
 
@@ -1058,7 +1058,7 @@ requireScript('path/to/script.js', () => {
 
 #### Defined in
 
-[scrollTo.ts:34](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/scrollTo.ts#L34)
+[scrollTo.ts:34](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/scrollTo.ts#L34)
 
 ---
 
@@ -1093,7 +1093,7 @@ setClass(myEl, 'my-class')
 
 #### Defined in
 
-[setClass.ts:13](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/setClass.ts#L13)
+[setClass.ts:13](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/setClass.ts#L13)
 
 ---
 
@@ -1128,7 +1128,7 @@ setCssVariable('--main-bg-color', '#ffffff', element)
 
 #### Defined in
 
-[setCssVariable.ts:14](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/setCssVariable.ts#L14)
+[setCssVariable.ts:14](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/setCssVariable.ts#L14)
 
 ---
 
@@ -1162,7 +1162,7 @@ setOpacity(element, 0.5)
 
 #### Defined in
 
-[setOpacity.ts:14](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/setOpacity.ts#L14)
+[setOpacity.ts:14](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/setOpacity.ts#L14)
 
 ---
 
@@ -1204,7 +1204,7 @@ void
 
 #### Defined in
 
-[setStyleProps.ts:18](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/setStyleProps.ts#L18)
+[setStyleProps.ts:18](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/setStyleProps.ts#L18)
 
 ---
 
@@ -1235,7 +1235,7 @@ toBack(firstDiv)
 
 #### Defined in
 
-[toBack.ts:12](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/toBack.ts#L12)
+[toBack.ts:12](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/toBack.ts#L12)
 
 ---
 
@@ -1268,4 +1268,4 @@ toFront(newDiv)
 
 #### Defined in
 
-[toFront.ts:14](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/domkit/src/toFront.ts#L14)
+[toFront.ts:14](https://github.com/gvray/toolkit/blob/7fa8b86/packages/domkit/src/toFront.ts#L14)

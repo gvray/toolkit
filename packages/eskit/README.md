@@ -127,7 +127,7 @@ The result of adding the two numbers.
 
 #### Defined in
 
-[packages/eskit/src/add.ts:14](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/add.ts#L14)
+[packages/eskit/src/add.ts:14](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/add.ts#L14)
 
 ---
 
@@ -171,7 +171,7 @@ The clamped number.
 
 #### Defined in
 
-[packages/eskit/src/clamp.ts:22](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/clamp.ts#L22)
+[packages/eskit/src/clamp.ts:22](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/clamp.ts#L22)
 
 ---
 
@@ -213,7 +213,7 @@ The cloned object.
 
 #### Defined in
 
-[packages/eskit/src/clone.ts:14](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/clone.ts#L14)
+[packages/eskit/src/clone.ts:14](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/clone.ts#L14)
 
 ---
 
@@ -268,7 +268,7 @@ A new function that will execute the input functions in reverse order.
 
 #### Defined in
 
-[packages/eskit/src/compose.ts:17](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/compose.ts#L17)
+[packages/eskit/src/compose.ts:17](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/compose.ts#L17)
 
 ---
 
@@ -300,7 +300,7 @@ Freezes an object and recursively freezes its enumerable properties (but not the
 
 #### Defined in
 
-[packages/eskit/src/constantize.ts:7](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/constantize.ts#L7)
+[packages/eskit/src/constantize.ts:7](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/constantize.ts#L7)
 
 ---
 
@@ -334,7 +334,7 @@ A boolean indicating whether the value was found.
 
 #### Defined in
 
-[packages/eskit/src/contains.ts:19](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/contains.ts#L19)
+[packages/eskit/src/contains.ts:19](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/contains.ts#L19)
 
 ---
 
@@ -379,7 +379,7 @@ console.log(target) // {a: 1, b: 2, c: 3}
 
 #### Defined in
 
-[packages/eskit/src/copy-properties.ts:17](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/copy-properties.ts#L17)
+[packages/eskit/src/copy-properties.ts:17](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/copy-properties.ts#L17)
 
 ---
 
@@ -440,7 +440,7 @@ A curried function.
 
 #### Defined in
 
-[packages/eskit/src/curry.ts:17](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/curry.ts#L17)
+[packages/eskit/src/curry.ts:17](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/curry.ts#L17)
 
 ---
 
@@ -472,7 +472,7 @@ The wrapped debounced function.
 
 #### Defined in
 
-[packages/eskit/src/debounced.ts:14](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/debounced.ts#L14)
+[packages/eskit/src/debounced.ts:14](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/debounced.ts#L14)
 
 ---
 
@@ -498,7 +498,7 @@ The wrapped debounced function.
 
 #### Defined in
 
-[packages/eskit/src/deep-clone.ts:7](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/deep-clone.ts#L7)
+[packages/eskit/src/deep-clone.ts:7](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/deep-clone.ts#L7)
 
 ---
 
@@ -542,7 +542,7 @@ An array of values in `arr` that are not in the `values` array.
 
 #### Defined in
 
-[packages/eskit/src/difference.ts:20](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/difference.ts#L20)
+[packages/eskit/src/difference.ts:20](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/difference.ts#L20)
 
 ---
 
@@ -581,7 +581,7 @@ The quotient.
 
 #### Defined in
 
-[packages/eskit/src/divide.ts:16](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/divide.ts#L16)
+[packages/eskit/src/divide.ts:16](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/divide.ts#L16)
 
 ---
 
@@ -617,7 +617,7 @@ each({ a: 1, b: 2, c: 3 }, (value, key, collection) => console.log(value, key))
 
 #### Defined in
 
-[packages/eskit/src/each.ts:13](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/each.ts#L13)
+[packages/eskit/src/each.ts:13](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/each.ts#L13)
 
 ---
 
@@ -655,7 +655,7 @@ The extended object.
 
 #### Defined in
 
-[packages/eskit/src/extend-deep.ts:19](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/extend-deep.ts#L19)
+[packages/eskit/src/extend-deep.ts:19](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/extend-deep.ts#L19)
 
 ---
 
@@ -714,7 +714,7 @@ A new array or object containing only the elements for which the callback functi
 
 #### Defined in
 
-[packages/eskit/src/filter.ts:31](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/filter.ts#L31)
+[packages/eskit/src/filter.ts:31](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/filter.ts#L31)
 
 ---
 
@@ -756,7 +756,7 @@ The flattened array.
 
 #### Defined in
 
-[packages/eskit/src/flatten.ts:13](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/flatten.ts#L13)
+[packages/eskit/src/flatten.ts:13](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/flatten.ts#L13)
 
 ---
 
@@ -792,7 +792,7 @@ A string with the formatted currency symbol and number.
 
 #### Defined in
 
-[packages/eskit/src/format-money.ts:16](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/format-money.ts#L16)
+[packages/eskit/src/format-money.ts:16](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/format-money.ts#L16)
 
 ---
 
@@ -828,7 +828,7 @@ The formatted number as a string.
 
 #### Defined in
 
-[packages/eskit/src/format-number.ts:18](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/format-number.ts#L18)
+[packages/eskit/src/format-number.ts:18](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/format-number.ts#L18)
 
 ---
 
@@ -864,7 +864,7 @@ The global object for the current runtime environment.
 
 #### Defined in
 
-[packages/eskit/src/get-global.ts:21](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/get-global.ts#L21)
+[packages/eskit/src/get-global.ts:21](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/get-global.ts#L21)
 
 ---
 
@@ -898,7 +898,7 @@ A random integer between the specified minimum and maximum values (inclusive).
 
 #### Defined in
 
-[packages/eskit/src/get-random-int.ts:16](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/get-random-int.ts#L16)
+[packages/eskit/src/get-random-int.ts:16](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/get-random-int.ts#L16)
 
 ---
 
@@ -933,7 +933,7 @@ The type of the value
 
 #### Defined in
 
-[packages/eskit/src/get-type.ts:19](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/get-type.ts#L19)
+[packages/eskit/src/get-type.ts:19](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/get-type.ts#L19)
 
 ---
 
@@ -969,7 +969,7 @@ hasOwnProperty(obj, 'toString') // false
 
 #### Defined in
 
-[packages/eskit/src/hasOwnProperty.ts:18](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/hasOwnProperty.ts#L18)
+[packages/eskit/src/hasOwnProperty.ts:18](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/hasOwnProperty.ts#L18)
 
 ---
 
@@ -1008,7 +1008,7 @@ idleIterator(arr, (item, index) => {
 
 #### Defined in
 
-[packages/eskit/src/idle-iterator.ts:16](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/idle-iterator.ts#L16)
+[packages/eskit/src/idle-iterator.ts:16](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/idle-iterator.ts#L16)
 
 ---
 
@@ -1049,7 +1049,7 @@ isArguments([1, 2, 3])
 
 #### Defined in
 
-[packages/eskit/src/is-arguments.ts:23](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-arguments.ts#L23)
+[packages/eskit/src/is-arguments.ts:23](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-arguments.ts#L23)
 
 ---
 
@@ -1081,7 +1081,7 @@ value is any[]
 
 #### Defined in
 
-[packages/eskit/src/is-array.ts:15](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-array.ts#L15)
+[packages/eskit/src/is-array.ts:15](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-array.ts#L15)
 
 ---
 
@@ -1120,7 +1120,7 @@ value is unknown[]
 
 #### Defined in
 
-[packages/eskit/src/is-array-buffer.ts:21](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-array-buffer.ts#L21)
+[packages/eskit/src/is-array-buffer.ts:21](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-array-buffer.ts#L21)
 
 ---
 
@@ -1153,7 +1153,7 @@ isArrayLike(Function) // => false
 
 #### Defined in
 
-[packages/eskit/src/is-array-like.ts:15](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-array-like.ts#L15)
+[packages/eskit/src/is-array-like.ts:15](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-array-like.ts#L15)
 
 ---
 
@@ -1186,7 +1186,7 @@ isArrayLikeObject(Function) // => false
 
 #### Defined in
 
-[packages/eskit/src/is-array-like-object.ts:19](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-array-like-object.ts#L19)
+[packages/eskit/src/is-array-like-object.ts:19](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-array-like-object.ts#L19)
 
 ---
 
@@ -1219,7 +1219,7 @@ value is boolean
 
 #### Defined in
 
-[packages/eskit/src/is-boolean.ts:16](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-boolean.ts#L16)
+[packages/eskit/src/is-boolean.ts:16](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-boolean.ts#L16)
 
 ---
 
@@ -1251,7 +1251,7 @@ value is Date
 
 #### Defined in
 
-[packages/eskit/src/is-date.ts:15](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-date.ts#L15)
+[packages/eskit/src/is-date.ts:15](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-date.ts#L15)
 
 ---
 
@@ -1283,7 +1283,7 @@ isDecimal('1.23') // => false
 
 #### Defined in
 
-[packages/eskit/src/is-decimal.ts:15](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-decimal.ts#L15)
+[packages/eskit/src/is-decimal.ts:15](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-decimal.ts#L15)
 
 ---
 
@@ -1322,7 +1322,7 @@ val is T
 
 #### Defined in
 
-[packages/eskit/src/is-defined.ts:16](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-defined.ts#L16)
+[packages/eskit/src/is-defined.ts:16](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-defined.ts#L16)
 
 ---
 
@@ -1355,7 +1355,7 @@ isElement('not an element') // => false
 
 #### Defined in
 
-[packages/eskit/src/is-element.ts:15](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-element.ts#L15)
+[packages/eskit/src/is-element.ts:15](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-element.ts#L15)
 
 ---
 
@@ -1399,7 +1399,7 @@ isEmpty(new Set([1, 2, 3])) // => false
 
 #### Defined in
 
-[packages/eskit/src/is-empty.ts:32](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-empty.ts#L32)
+[packages/eskit/src/is-empty.ts:32](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-empty.ts#L32)
 
 ---
 
@@ -1434,7 +1434,7 @@ True if the values are equal, false otherwise.
 
 #### Defined in
 
-[packages/eskit/src/is-equal.ts:19](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-equal.ts#L19)
+[packages/eskit/src/is-equal.ts:19](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-equal.ts#L19)
 
 ---
 
@@ -1477,7 +1477,7 @@ Returns `true` if the values are equivalent, else `false`.
 
 #### Defined in
 
-[packages/eskit/src/is-equal-with.ts:19](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-equal-with.ts#L19)
+[packages/eskit/src/is-equal-with.ts:19](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-equal-with.ts#L19)
 
 ---
 
@@ -1513,7 +1513,7 @@ Whether the given value is an instance of `Error`.
 
 #### Defined in
 
-[packages/eskit/src/is-error.ts:17](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-error.ts#L17)
+[packages/eskit/src/is-error.ts:17](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-error.ts#L17)
 
 ---
 
@@ -1544,7 +1544,7 @@ Whether the number is even or not.
 
 #### Defined in
 
-[packages/eskit/src/is-even.ts:12](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-even.ts#L12)
+[packages/eskit/src/is-even.ts:12](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-even.ts#L12)
 
 ---
 
@@ -1576,7 +1576,7 @@ True if the value is a function, false otherwise
 
 #### Defined in
 
-[packages/eskit/src/is-function.ts:11](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-function.ts#L11)
+[packages/eskit/src/is-function.ts:11](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-function.ts#L11)
 
 ---
 
@@ -1642,7 +1642,7 @@ Whether or not the value is null or undefined.
 
 #### Defined in
 
-[packages/eskit/src/is-nil.ts:17](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-nil.ts#L17)
+[packages/eskit/src/is-nil.ts:17](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-nil.ts#L17)
 
 ---
 
@@ -1673,7 +1673,7 @@ Returns `true` if the value is a number, else `false`.
 
 #### Defined in
 
-[packages/eskit/src/is-number.ts:12](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-number.ts#L12)
+[packages/eskit/src/is-number.ts:12](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-number.ts#L12)
 
 ---
 
@@ -1705,7 +1705,7 @@ value is Record<string, unknown\>
 
 #### Defined in
 
-[packages/eskit/src/is-object.ts:13](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-object.ts#L13)
+[packages/eskit/src/is-object.ts:13](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-object.ts#L13)
 
 ---
 
@@ -1738,7 +1738,7 @@ True if the value is object-like, false otherwise.
 
 #### Defined in
 
-[packages/eskit/src/is-object-like.ts:13](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-object-like.ts#L13)
+[packages/eskit/src/is-object-like.ts:13](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-object-like.ts#L13)
 
 ---
 
@@ -1779,7 +1779,7 @@ Returns `true` if the value is a primitive type, `false` otherwise.
 
 #### Defined in
 
-[packages/eskit/src/is-primitive.ts:20](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-primitive.ts#L20)
+[packages/eskit/src/is-primitive.ts:20](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-primitive.ts#L20)
 
 ---
 
@@ -1812,7 +1812,7 @@ Whether the object is promise-like.
 
 #### Defined in
 
-[packages/eskit/src/is-promise-like.ts:11](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-promise-like.ts#L11)
+[packages/eskit/src/is-promise-like.ts:11](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-promise-like.ts#L11)
 
 ---
 
@@ -1847,7 +1847,7 @@ Whether `value` is a prototype object.
 
 #### Defined in
 
-[packages/eskit/src/is-prototype.ts:16](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-prototype.ts#L16)
+[packages/eskit/src/is-prototype.ts:16](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-prototype.ts#L16)
 
 ---
 
@@ -1878,7 +1878,7 @@ value is RegExp
 
 #### Defined in
 
-[packages/eskit/src/is-reg-exp.ts:12](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-reg-exp.ts#L12)
+[packages/eskit/src/is-reg-exp.ts:12](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-reg-exp.ts#L12)
 
 ---
 
@@ -1909,7 +1909,7 @@ Returns `true` if the given value is a string, else `false`.
 
 #### Defined in
 
-[packages/eskit/src/is-string.ts:12](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-string.ts#L12)
+[packages/eskit/src/is-string.ts:12](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-string.ts#L12)
 
 ---
 
@@ -1941,7 +1941,7 @@ True if the value's type matches the specified type string, false otherwise.
 
 #### Defined in
 
-[packages/eskit/src/is-type.ts:10](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/is-type.ts#L10)
+[packages/eskit/src/is-type.ts:10](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/is-type.ts#L10)
 
 ---
 
@@ -1972,7 +1972,7 @@ The resulting tree structure.
 
 #### Defined in
 
-[packages/eskit/src/list-to-tree.ts:22](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/list-to-tree.ts#L22)
+[packages/eskit/src/list-to-tree.ts:22](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/list-to-tree.ts#L22)
 
 ---
 
@@ -2002,7 +2002,7 @@ Returns the converted string.
 
 #### Defined in
 
-[packages/eskit/src/lower-first.ts:11](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/lower-first.ts#L11)
+[packages/eskit/src/lower-first.ts:11](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/lower-first.ts#L11)
 
 ---
 
@@ -2036,7 +2036,7 @@ The maximum value of the input array, or `undefined` if the input is not an arra
 
 #### Defined in
 
-[packages/eskit/src/max.ts:15](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/max.ts#L15)
+[packages/eskit/src/max.ts:15](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/max.ts#L15)
 
 ---
 
@@ -2080,7 +2080,7 @@ The memoized function.
 
 #### Defined in
 
-[packages/eskit/src/memoize.ts:17](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/memoize.ts#L17)
+[packages/eskit/src/memoize.ts:17](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/memoize.ts#L17)
 
 ---
 
@@ -2112,7 +2112,7 @@ The smallest number in the array, or undefined if the input is not an array or i
 
 #### Defined in
 
-[packages/eskit/src/min.ts:13](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/min.ts#L13)
+[packages/eskit/src/min.ts:13](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/min.ts#L13)
 
 ---
 
@@ -2157,7 +2157,7 @@ baz.bar()
 
 #### Defined in
 
-[packages/eskit/src/mixin.ts:25](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/mixin.ts#L25)
+[packages/eskit/src/mixin.ts:25](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/mixin.ts#L25)
 
 ---
 
@@ -2189,7 +2189,7 @@ The result of the multiplication.
 
 #### Defined in
 
-[packages/eskit/src/multiply.ts:10](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/multiply.ts#L10)
+[packages/eskit/src/multiply.ts:10](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/multiply.ts#L10)
 
 ---
 
@@ -2203,7 +2203,7 @@ The result of the multiplication.
 
 #### Defined in
 
-[packages/eskit/src/noop.ts:3](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/noop.ts#L3)
+[packages/eskit/src/noop.ts:3](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/noop.ts#L3)
 
 ---
 
@@ -2243,7 +2243,7 @@ The new object.
 
 #### Defined in
 
-[packages/eskit/src/pick.ts:16](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/pick.ts#L16)
+[packages/eskit/src/pick.ts:16](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/pick.ts#L16)
 
 ---
 
@@ -2279,7 +2279,7 @@ Returns the range of numbers.
 
 #### Defined in
 
-[packages/eskit/src/range.ts:15](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/range.ts#L15)
+[packages/eskit/src/range.ts:15](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/range.ts#L15)
 
 ---
 
@@ -2319,7 +2319,7 @@ console.log(arr) // Output: [3, 2, 5, 1, 4] (random order)
 
 #### Defined in
 
-[packages/eskit/src/shuffle.ts:16](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/shuffle.ts#L16)
+[packages/eskit/src/shuffle.ts:16](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/shuffle.ts#L16)
 
 ---
 
@@ -2351,7 +2351,7 @@ A promise that resolves after the specified amount of time.
 
 #### Defined in
 
-[packages/eskit/src/sleep.ts:16](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/sleep.ts#L16)
+[packages/eskit/src/sleep.ts:16](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/sleep.ts#L16)
 
 ---
 
@@ -2382,7 +2382,7 @@ The result of subtracting the second number from the first number.
 
 #### Defined in
 
-[packages/eskit/src/subtract.ts:11](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/subtract.ts#L11)
+[packages/eskit/src/subtract.ts:11](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/subtract.ts#L11)
 
 ---
 
@@ -2446,7 +2446,7 @@ setTimeout(() => throttledFn(5, 6), 2000) // logs 11 after 2 seconds
 
 #### Defined in
 
-[packages/eskit/src/throttle.ts:23](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/throttle.ts#L23)
+[packages/eskit/src/throttle.ts:23](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/throttle.ts#L23)
 
 ---
 
@@ -2478,7 +2478,7 @@ The string representation of the value, or an empty string if the value is null 
 
 #### Defined in
 
-[packages/eskit/src/to-string.ts:15](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/to-string.ts#L15)
+[packages/eskit/src/to-string.ts:15](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/to-string.ts#L15)
 
 ---
 
@@ -2548,7 +2548,7 @@ A flat array of items.
 
 #### Defined in
 
-[packages/eskit/src/tree-to-list.ts:51](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/tree-to-list.ts#L51)
+[packages/eskit/src/tree-to-list.ts:51](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/tree-to-list.ts#L51)
 
 ---
 
@@ -2578,4 +2578,4 @@ The modified string.
 
 #### Defined in
 
-[packages/eskit/src/upper-first.ts:11](https://github.com/GavinBirkhoff/toolkit/blob/7fa8b86/packages/eskit/src/upper-first.ts#L11)
+[packages/eskit/src/upper-first.ts:11](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/upper-first.ts#L11)
