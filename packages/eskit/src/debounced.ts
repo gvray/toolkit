@@ -1,12 +1,11 @@
-type DebouncedFn = {
-  (...args: any[]): void
-  cancel: () => void
+export interface DebouncedFunction<TArgs extends any[]> {
+  (...args: TArgs): void
+  cancel(): void
+  flush(): void
+  pending(): boolean
 }
 
 /**
- * @deprecated This function has been moved to @gvray/adminkit. Please use adminkit's debounce instead.
- * 此函数已移至 @gvray/adminkit，请使用 adminkit 中的 debounce 函数。
- *
  * Creates a debounced function that waits for the specified delay after the last call before executing.
  * 创建一个防抖函数，在最后一次调用后等待指定延迟时间再执行。
  *
@@ -14,45 +13,99 @@ type DebouncedFn = {
  * @param delay The delay time (in milliseconds) before the function is executed. / 函数执行前的延迟时间（毫秒）
  * @param immediate Whether to execute the function immediately on the first call. / 是否在第一次调用时立即执行函数
  * @returns The wrapped debounced function. / 包装后的防抖函数
+ *
+ * @example
+ * ```typescript
+ * // Basic debounce
+ * const debouncedFn = debounce(() => {
+ *   console.log('Called after delay!');
+ * }, 1000);
+ *
+ * // With immediate execution
+ * const immediateDebounced = debounce(() => {
+ *   console.log('Called immediately!');
+ * }, 1000, true);
+ *
+ * // Search input example
+ * const searchDebounced = debounce((query: string) => {
+ *   performSearch(query);
+ * }, 300);
+ *
+ * // Cancel if needed
+ * searchDebounced('hello');
+ * searchDebounced.cancel(); // Cancels the pending call
+ *
+ * // Force execution
+ * searchDebounced('world');
+ * searchDebounced.flush(); // Executes immediately
+ * ```
  */
-const debounced = <Args extends any[]>(
-  fn: (...args: Args) => void,
+export function debounce<TArgs extends any[]>(
+  fn: (...args: TArgs) => void,
   delay: number,
   immediate?: boolean
-): DebouncedFn => {
-  console.warn(
-    'debounced function is deprecated in eskit and will be removed in next major version. Please use @gvray/adminkit instead.'
-  )
-  console.warn('eskit 中的 debounced 函数已弃用，将在下个主要版本中移除。请使用 @gvray/adminkit。')
-
+): DebouncedFunction<TArgs> {
   let timeout: ReturnType<typeof setTimeout> | null = null
+  let lastArgs: TArgs | undefined
+  let result: any
 
-  const debouncedFn = (...args: Args) => {
+  const debounced = (...args: TArgs): void => {
+    lastArgs = args
+
     const later = () => {
       timeout = null
-      if (!immediate) fn(...args)
+      if (!immediate) {
+        result = fn(...args)
+      }
     }
 
     const shouldCallNow = immediate && timeout === null
 
-    if (timeout !== null) clearTimeout(timeout)
+    if (timeout !== null) {
+      clearTimeout(timeout)
+    }
+
     timeout = setTimeout(later, delay)
 
-    if (shouldCallNow) fn(...args)
+    if (shouldCallNow) {
+      result = fn(...args)
+    }
   }
 
   /**
    * Cancels the debouncing, so that the debounced function no longer waits and does not execute.
    * 取消防抖，使防抖函数不再等待且不执行。
    */
-  debouncedFn.cancel = () => {
+  debounced.cancel = (): void => {
     if (timeout !== null) {
       clearTimeout(timeout)
       timeout = null
     }
   }
 
-  return debouncedFn as DebouncedFn
+  /**
+   * Immediately executes the debounced function with the last arguments.
+   * 立即执行防抖函数，使用最后的参数。
+   */
+  debounced.flush = (): void => {
+    if (timeout !== null) {
+      clearTimeout(timeout)
+      timeout = null
+      if (lastArgs) {
+        result = fn(...lastArgs)
+      }
+    }
+  }
+
+  /**
+   * Checks if the debounced function is pending execution.
+   * 检查防抖函数是否正在等待执行。
+   */
+  debounced.pending = (): boolean => {
+    return timeout !== null
+  }
+
+  return debounced as DebouncedFunction<TArgs>
 }
 
-export default debounced
+export default debounce

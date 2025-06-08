@@ -4,10 +4,6 @@
  */
 export * from './copy'
 
-// Performance utilities / 性能工具
-export * from './throttle'
-export * from './debounce'
-
 // Storage utilities / 存储工具
 export * from './storage'
 

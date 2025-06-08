@@ -163,7 +163,7 @@ class DemoManager {
         logger.log(`chunk([${arr}], 3) = ${JSON.stringify(chunked)}`, 'success')
         break
 
-      case 'debounce':
+      case 'debounce': {
         let count = 0
         const debouncedFn = eskit.debounce(() => {
           count++
@@ -176,6 +176,26 @@ class DemoManager {
           setTimeout(() => debouncedFn(), i * 50)
         }
         break
+      }
+
+      case 'throttle': {
+        let throttleCount = 0
+        const throttledFn = eskit.throttle(
+          () => {
+            throttleCount++
+            result.innerHTML = `节流函数被调用 ${throttleCount} 次`
+            logger.log(`节流函数执行，调用次数: ${throttleCount}`, 'success')
+          },
+          300,
+          { leading: true }
+        )
+
+        // 连续调用多次
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => throttledFn(), i * 50)
+        }
+        break
+      }
 
       case 'deepClone':
         const obj = { a: 1, b: { c: 2, d: [3, 4] } }

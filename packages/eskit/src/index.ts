@@ -45,6 +45,12 @@ export { default as memoize } from './memoize'
 export { default as noop } from './noop'
 export { default as constantize } from './constantize'
 
+// Performance utilities / 性能工具
+export { default as debounce } from './debounced'
+export { default as throttle } from './throttle'
+export type { DebouncedFunction } from './debounced'
+export type { ThrottleOptions } from './throttle'
+
 // String utilities / 字符串工具
 export { default as toString } from './toString'
 export { default as upperFirst } from './upperFirst'

@@ -15,6 +15,13 @@ export function createEskitDemos(): string {
     </div>
 
     <div class="demo-card">
+      <h3>🚀 节流函数 (throttle)</h3>
+      <p>创建一个节流函数，限制执行频率</p>
+      <button class="btn btn-primary" data-demo="throttle">运行演示</button>
+      <div class="result">点击按钮查看结果</div>
+    </div>
+
+    <div class="demo-card">
       <h3>📋 深度克隆 (deepClone)</h3>
       <p>深度复制对象，避免引用问题</p>
       <button class="btn btn-primary" data-demo="deepClone">运行演示</button>

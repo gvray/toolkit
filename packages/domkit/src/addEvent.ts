@@ -1,4 +1,4 @@
-import { throttle, debounced } from '@gvray/eskit'
+import { throttle, debounce } from '@gvray/eskit'
 /**
  * Adds an event listener to a given element.
  *
@@ -28,7 +28,7 @@ const addEvent = <T extends HTMLElement | SVGElement>(
     callback = throttle(eventHandle, 201, { leading: true })
   }
   if (useDebounce) {
-    callback = debounced(eventHandle, 201)
+    callback = debounce(eventHandle, 201)
   }
 
   if (ele.addEventListener) {
