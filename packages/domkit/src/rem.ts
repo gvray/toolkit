@@ -15,21 +15,25 @@ interface RemOptions {
  * rem(750, { maxWith: 2000, minWith: 375 });
  */
 const rem = (designWidth: number, options: RemOptions = {}): void => {
-  const { maxWith = 1680, minWith = 1024, scale = 100 } = options
+  const { maxWith = 1000, minWith = 100, scale = 100 } = options
 
   const changeHtmlSize = function () {
     const htmlTag = document.documentElement
     const { clientWidth } = htmlTag
     if (clientWidth === 0 || designWidth === 0) {
+      htmlTag.style.fontSize = '0px'
       return
     }
 
-    const dpr = window.devicePixelRatio || 1
-    const screenWidth = window.screen.availWidth * dpr
-    const fontSize = `${(Math.max(Math.min(screenWidth, maxWith * dpr), minWith * dpr) / designWidth / dpr) * scale}px`
+    if (clientWidth < 0) {
+      htmlTag.style.fontSize = '0px'
+      return
+    }
+
+    const screenWidth = Math.max(Math.min(clientWidth, maxWith), minWith)
+    const fontSize = `${(screenWidth / designWidth) * scale}px`
     htmlTag.style.fontSize = fontSize
     document.documentElement.style.setProperty('--html-font-size', fontSize)
-    document.documentElement.style.setProperty('--dpr', dpr.toString())
   }
 
   const resizeEvent = 'orientationchange' in window ? 'orientationchange' : 'resize'
@@ -43,6 +47,9 @@ const rem = (designWidth: number, options: RemOptions = {}): void => {
 
     timer = window.requestAnimationFrame(changeHtmlSize)
   }
+
+  // 立即执行一次
+  changeHtmlSize()
 
   handleWindowResize()
   window.addEventListener(resizeEvent, handleWindowResize, false)

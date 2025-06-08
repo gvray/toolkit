@@ -5,6 +5,8 @@ interface PreloadOptions {
   href: string
 }
 
+export type { PreloadType }
+
 /**
  * Preload resources according to browser support.
  *
@@ -21,15 +23,15 @@ interface PreloadOptions {
  * @since 1.0.0
  */
 const getPreloader = (): ((options: PreloadOptions) => void) => {
-  const supportLink = !!HTMLLinkElement
-  const supportBeacon = !!navigator.sendBeacon
-  const supportImage = !!Image
+  const supportLink = typeof HTMLLinkElement !== 'undefined'
+  const supportBeacon = typeof navigator !== 'undefined' && !!navigator.sendBeacon
+  const supportImage = typeof Image !== 'undefined'
 
   const preloadWithLink = (options: PreloadOptions) => {
     const { as, href } = options
     const link = document.createElement('link')
     link.rel = 'preload'
-    link.as = as
+    link.setAttribute('as', as)
     link.href = href
     document.head.appendChild(link)
   }

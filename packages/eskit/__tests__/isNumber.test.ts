@@ -1,4 +1,4 @@
-import isNumber from '../src/is-number'
+import isNumber from '../src/isNumber'
 
 describe('isNumber', () => {
   test('should return true for numbers', () => {

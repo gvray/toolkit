@@ -23,7 +23,7 @@
  * scrollTo({ x: 100, y: 100, target: element });
  * ```
  */
-type TargetType = HTMLElement | Element | Window
+type TargetType = HTMLElement | Element | Window | null | undefined
 type ScrollToOptions = {
   x: number
   y: number
@@ -32,32 +32,54 @@ type ScrollToOptions = {
 }
 
 export const scrollTo = ({ x = 0, y = 0, target = window, behavior = 'auto' }: ScrollToOptions): void => {
-  if (target instanceof Window) {
-    // Use native window.scrollTo method
+  // 处理负值
+  const scrollX = Math.max(0, x)
+  const scrollY = Math.max(0, y)
+
+  // 如果没有提供 target 或者 target 是 null/undefined，使用 window
+  if (!target || target === window) {
     if ('scrollBehavior' in document.documentElement.style && typeof window.scrollTo === 'function') {
-      target.scrollTo({
-        top: y,
-        left: x,
+      window.scrollTo({
+        top: scrollY,
+        left: scrollX,
         behavior
       })
-    } else {
-      target.scroll(x, y)
+    } else if (typeof window.scroll === 'function') {
+      window.scroll(scrollX, scrollY)
     }
-  } else if (target instanceof HTMLElement) {
-    // Use element.scrollTo method
+    return
+  }
+
+  // 检查是否是 Window 对象
+  if (target instanceof Window) {
+    if ('scrollBehavior' in document.documentElement.style && typeof target.scrollTo === 'function') {
+      target.scrollTo({
+        top: scrollY,
+        left: scrollX,
+        behavior
+      })
+    } else if (typeof target.scroll === 'function') {
+      target.scroll(scrollX, scrollY)
+    }
+    return
+  }
+
+  // 处理 HTMLElement 或 Element
+  if (target instanceof HTMLElement || target instanceof Element) {
     if (typeof target.scrollTo === 'function') {
       target.scrollTo({
-        top: y,
-        left: x,
+        top: scrollY,
+        left: scrollX,
         behavior
       })
     } else {
-      target.scrollTop = y
-      target.scrollLeft = x
+      ;(target as HTMLElement).scrollTop = scrollY
+      ;(target as HTMLElement).scrollLeft = scrollX
     }
-  } else {
-    throw new Error('Invalid target element type. Must be Window or HTMLElement.')
+    return
   }
+
+  throw new Error('Invalid target element type. Must be Window or HTMLElement.')
 }
 
 export default scrollTo

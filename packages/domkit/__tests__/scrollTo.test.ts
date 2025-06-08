@@ -71,26 +71,35 @@ describe('scrollTo', () => {
     expect(element.scrollTop).toBe(0)
   })
 
-  test('should handle window scroll', (done) => {
-    const longContent = document.createElement('div')
-    longContent.style.height = '2000px'
-    document.body.appendChild(longContent)
+  test('should handle window scroll', () => {
+    // Mock window.scrollTo since JSDOM doesn't implement it
+    const mockScrollTo = jest.fn()
+    Object.defineProperty(window, 'scrollTo', {
+      value: mockScrollTo,
+      writable: true
+    })
 
     scrollTo({ x: 0, y: 100, behavior: 'auto' })
-
-    setTimeout(() => {
-      expect(window.pageYOffset).toBe(100)
-      document.body.removeChild(longContent)
-      done()
-    }, 0)
+    expect(mockScrollTo).toHaveBeenCalledWith({
+      top: 100,
+      left: 0,
+      behavior: 'auto'
+    })
   })
 
-  test('should use default values for target and behavior', (done) => {
-    scrollTo({ x: 0, y: 0 })
+  test('should use default values for target and behavior', () => {
+    // Mock window.scrollTo since JSDOM doesn't implement it
+    const mockScrollTo = jest.fn()
+    Object.defineProperty(window, 'scrollTo', {
+      value: mockScrollTo,
+      writable: true
+    })
 
-    setTimeout(() => {
-      expect(window.pageYOffset).toBe(0)
-      done()
-    }, 0)
+    scrollTo({ x: 0, y: 0 })
+    expect(mockScrollTo).toHaveBeenCalledWith({
+      top: 0,
+      left: 0,
+      behavior: 'auto'
+    })
   })
 })

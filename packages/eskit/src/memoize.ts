@@ -1,18 +1,42 @@
 type MemoizeFn = (...args: any[]) => any
 /**
- * Memoizes the result of a function for the same set of arguments.
- * @param fn The function to be memoized.
- * @returns The memoized function.
+ * Creates a memoized version of a function that caches results for identical arguments.
+ * 创建函数的记忆化版本，为相同参数缓存结果。
+ *
+ * The memoized function will cache the result of the first call with specific arguments
+ * and return the cached result on subsequent calls with the same arguments.
+ * 记忆化函数将缓存第一次调用特定参数的结果，
+ * 并在后续使用相同参数调用时返回缓存的结果。
+ *
+ * @template T - The type of the function to memoize / 要记忆化的函数类型
+ * @param fn - The function to be memoized / 要记忆化的函数
+ * @returns The memoized function / 记忆化的函数
+ *
  * @example
- * function expensiveOperation(arg1: string, arg2: number): number {
- *   // ...some expensive operation here...
+ * ```typescript
+ * // Expensive calculation function
+ * function fibonacci(n: number): number {
+ *   if (n <= 1) return n
+ *   return fibonacci(n - 1) + fibonacci(n - 2)
  * }
  *
- * const memoizedOperation = memoize(expensiveOperation);
+ * const memoizedFib = memoize(fibonacci)
  *
- * const result1 = memoizedOperation('foo', 42); // Expensive operation is called.
- * const result2 = memoizedOperation('foo', 42); // Expensive operation is not called.
- * const result3 = memoizedOperation('bar', 42); // Expensive operation is called again.
+ * console.log(memoizedFib(40)) // First call - calculates result
+ * console.log(memoizedFib(40)) // Second call - returns cached result instantly
+ *
+ * // Works with multiple arguments
+ * const expensiveOperation = (a: string, b: number) => {
+ *   console.log('Computing...')
+ *   return `${a}-${b * 2}`
+ * }
+ *
+ * const memoized = memoize(expensiveOperation)
+ * memoized('test', 5) // Logs "Computing..." and returns "test-10"
+ * memoized('test', 5) // Returns "test-10" without logging
+ * ```
+ *
+ * @since 1.0.0
  */
 const memoize = <T extends MemoizeFn>(fn: T): T => {
   const cache = new Map<string, ReturnType<T>>()

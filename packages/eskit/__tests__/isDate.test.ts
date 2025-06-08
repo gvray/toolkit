@@ -1,4 +1,4 @@
-import isDate from '../src/is-date'
+import isDate from '../src/isDate'
 
 describe('isDate', () => {
   test('should return true for Date instances', () => {

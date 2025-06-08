@@ -11,19 +11,36 @@
  * resolve('C:\\temp\\', 'foo', 'bar')   // 返回: 'C:/temp/foo/bar'
  */
 const resolve = (...paths: string[]): string => {
+  // 验证输入参数
+  for (const path of paths) {
+    if (typeof path !== 'string') {
+      throw new TypeError('Path must be a string')
+    }
+  }
+
   if (paths.length === 0) {
     return process.cwd()
   }
 
   let resolvedPath = ''
   let isAbsolute = false
+  let windowsDrive = ''
 
   for (let i = paths.length - 1; i >= -1; i--) {
     let path = i < 0 ? process.cwd() : paths[i]
 
-    // 处理空路径
-    if (!path) {
+    // 处理空路径或 null/undefined
+    if (!path || typeof path !== 'string') {
       continue
+    }
+
+    // 检查是否为 Windows 风格的路径并提取盘符
+    const windowsMatch = path.match(/^[A-Za-z]:/)
+    if (windowsMatch) {
+      windowsDrive = windowsMatch[0]
+      isAbsolute = true
+      // 移除盘符，稍后添加
+      path = path.substring(2)
     }
 
     // 规范化路径分隔符
@@ -33,12 +50,8 @@ const resolve = (...paths: string[]): string => {
     resolvedPath = resolvedPath ? `${path}/${resolvedPath}` : path
 
     // 检查是否为绝对路径
-    isAbsolute = path.startsWith('/')
-
-    // 如果是 Windows 风格的绝对路径
-    if (/^[A-Za-z]:/.test(path)) {
-      isAbsolute = true
-      resolvedPath = resolvedPath.replace(/^[A-Za-z]:/, (match) => `${match}/`)
+    if (!isAbsolute) {
+      isAbsolute = path.startsWith('/')
     }
 
     if (isAbsolute) {
@@ -46,19 +59,44 @@ const resolve = (...paths: string[]): string => {
     }
   }
 
-  // 规范化路径
-  resolvedPath = resolvedPath
-    // 将多个斜杠替换为单个斜杠
-    .replace(/\/+/g, '/')
-    // 处理 ./
-    .replace(/\/\.\//g, '/')
-    // 处理 ../
-    .replace(/\/[^/]+\/\.\./g, '')
-    // 移除末尾的斜杠
-    .replace(/\/$/, '')
+  // 规范化路径 - 使用更准确的方法处理 .. 和 .
+  const segments = resolvedPath.split('/').filter((segment) => segment !== '')
+  const normalizedSegments: string[] = []
 
-  // 确保绝对路径以斜杠开头
-  return isAbsolute ? resolvedPath : `/${resolvedPath}`
+  for (const segment of segments) {
+    if (segment === '.') {
+      // 忽略当前目录
+      continue
+    } else if (segment === '..') {
+      // 返回上级目录
+      if (normalizedSegments.length > 0 && normalizedSegments[normalizedSegments.length - 1] !== '..') {
+        normalizedSegments.pop()
+      } else if (!isAbsolute) {
+        normalizedSegments.push('..')
+      }
+    } else {
+      normalizedSegments.push(segment)
+    }
+  }
+
+  let result = normalizedSegments.join('/')
+
+  // 处理绝对路径
+  if (isAbsolute) {
+    // 检查是否是 Windows 风格的路径
+    if (windowsDrive) {
+      result = `${windowsDrive}/${result}`
+    } else {
+      result = `/${result}`
+    }
+  }
+
+  // 处理空结果
+  if (!result) {
+    return isAbsolute ? '/' : '.'
+  }
+
+  return result
 }
 
 export default resolve

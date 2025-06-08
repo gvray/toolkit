@@ -12,10 +12,17 @@ import setClass from './setClass'
  *
  * @since 1.0.0
  */
-const addClass = (el: HTMLElement | SVGElement, ...classes: string[]): void => {
-  const currentClassList = getClass(el).split(' ')
-  const filteredClassNames = [...new Set(classes)].filter((className) => !currentClassList.includes(className))
-  const newClassList = [...currentClassList, ...filteredClassNames]
+const addClass = (el: HTMLElement | SVGElement | null | undefined, ...classes: string[]): void => {
+  if (!el || classes.length === 0) {
+    return
+  }
+
+  // 处理多个类名的字符串，用空格分割并过滤空字符串
+  const allClasses = classes.join(' ').split(/\s+/).filter(Boolean)
+
+  const currentClassList = getClass(el).split(/\s+/).filter(Boolean)
+  const filteredClassNames = [...new Set(allClasses)].filter((className) => !currentClassList.includes(className))
+  const newClassList = [...currentClassList, ...filteredClassNames].filter(Boolean)
   setClass(el, newClassList.join(' '))
 }
 

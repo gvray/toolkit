@@ -7,10 +7,13 @@ describe('addEvent', () => {
   beforeEach(() => {
     element = document.createElement('div')
     handler = jest.fn()
+    jest.useFakeTimers()
   })
 
   afterEach(() => {
     handler.mockClear()
+    jest.runOnlyPendingTimers()
+    jest.useRealTimers()
   })
 
   test('should add click event listener', () => {
@@ -44,11 +47,18 @@ describe('addEvent', () => {
     const options = { useThrottle: true }
     addEvent(element, 'click', handler, options)
 
+    // 连续点击多次
     element.click()
     element.click()
     element.click()
 
+    // 节流应该限制调用次数
     expect(handler).toHaveBeenCalledTimes(1)
+
+    // 推进时间，让节流器重置
+    jest.advanceTimersByTime(250)
+    element.click()
+    expect(handler).toHaveBeenCalledTimes(2)
   })
 
   test('should handle event with debounce', () => {

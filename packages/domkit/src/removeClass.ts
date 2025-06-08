@@ -14,11 +14,18 @@ const removeClass = (el: HTMLElement, className: string): void => {
     return
   }
 
+  // 处理多个类名的字符串，用空格分割
+  const classesToRemove = className.split(/\s+/).filter(Boolean)
+
   if (el.classList && el.classList.remove) {
-    el.classList.remove(className)
+    classesToRemove.forEach((cls) => el.classList.remove(cls))
   } else {
-    const reg = new RegExp(`(^|\\b)${className.split(' ').join('|')}($|\\b)`, 'gi')
-    el.className = el.className.replace(reg, ' ')
+    let currentClassName = el.className
+    classesToRemove.forEach((cls) => {
+      const reg = new RegExp(`(^|\\s)${cls}(\\s|$)`, 'g')
+      currentClassName = currentClassName.replace(reg, ' ')
+    })
+    el.className = currentClassName.replace(/\s+/g, ' ').trim()
   }
 }
 

@@ -12,7 +12,10 @@
  *
  * @since 1.0.0
  */
-const getClass = (el: HTMLElement | SVGElement): string => {
+const getClass = (el: HTMLElement | SVGElement | null | undefined): string => {
+  if (!el) {
+    return ''
+  }
   if (el instanceof SVGElement) {
     return el.getAttribute('class') || ''
   }

@@ -20,8 +20,18 @@ const dirname = (path: string): string => {
     return '.'
   }
 
+  // 检查是否是 UNC 路径
+  const isUNC = path.startsWith('\\\\')
+
   // 规范化路径分隔符
   path = path.replace(/\\/g, '/')
+
+  // 规范化多个连续斜杠，但保留 UNC 路径的双斜杠
+  if (isUNC) {
+    path = `//${path.slice(2).replace(/\/+/g, '/')}`
+  } else {
+    path = path.replace(/\/+/g, '/')
+  }
 
   // 移除末尾的斜杠
   path = path.replace(/\/+$/, '')
@@ -35,8 +45,15 @@ const dirname = (path: string): string => {
   const parts = path.split('/')
   parts.pop()
 
+  let result = parts.join('/')
+
+  // 规范化结果中的 ./ 部分
+  if (result.endsWith('/.')) {
+    result = result.slice(0, -2)
+  }
+
   // 处理根路径的特殊情况
-  return parts.length === 1 && !parts[0] ? '/' : parts.join('/')
+  return !result || result === '' ? '/' : result
 }
 
 export default dirname

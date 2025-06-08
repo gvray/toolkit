@@ -1,36 +1,60 @@
-import isArray from './is-array'
-import isString from './is-string'
+import isArray from './isArray'
+import isString from './isString'
 export type Collection<V, K extends string | number = number> = V | V[] | Set<V> | Record<K, V> | Map<K, V>
 /**
  * Iterates over a collection and applies a function to each element.
+ * 遍历集合并对每个元素应用函数。
  *
- * @typeParam V - The type of values in the collection.
- * @typeParam K - The type of keys in the collection.
- * @param collection - The collection to iterate over.
- * @param callbackfn - The function to apply to each element.
- * @returns Returns `true` if all iterations pass, or `false` if any iteration returns `false`.
+ * This function provides a unified interface for iterating over different
+ * types of collections including arrays, objects, Maps, Sets, and strings.
+ * The iteration can be stopped early by returning false from the callback.
+ * 此函数为遍历不同类型的集合提供统一接口，包括数组、对象、Map、Set和字符串。
+ * 可以通过从回调函数返回false来提前停止迭代。
+ *
+ * @template V - The type of values in the collection / 集合中值的类型
+ * @template K - The type of keys in the collection / 集合中键的类型
+ * @param collection - The collection to iterate over / 要遍历的集合
+ * @param callbackfn - The function to apply to each element / 应用于每个元素的函数
+ * @returns True if all iterations complete, false if stopped early / 如果所有迭代完成返回true，如果提前停止返回false
  *
  * @example
- * // Example usage with an array
- * const arr = [1, 2, 3];
- * each(arr, (value, index) => {
- *   console.log(value); // Output: 1, 2, 3
- *   console.log(index); // Output: 0, 1, 2
- * });
+ * ```typescript
+ * // Array iteration / 数组遍历
+ * const numbers = [1, 2, 3, 4, 5]
+ * each(numbers, (value, index) => {
+ *   console.log(`numbers[${index}] = ${value}`)
+ *   return value < 3 // Stop when value >= 3
+ * })
  *
- * // Example usage with an object
- * const obj = { a: 1, b: 2, c: 3 };
- * each(obj, (value, key) => {
- *   console.log(value); // Output: 1, 2, 3
- *   console.log(key); // Output: 'a', 'b', 'c'
- * });
+ * // Object iteration / 对象遍历
+ * const user = { name: 'John', age: 30, city: 'New York' }
+ * each(user, (value, key) => {
+ *   console.log(`${key}: ${value}`)
+ * })
  *
- * // Example usage with a Map
- * const map = new Map<number, string>([[1, 'one'], [2, 'two'], [3, 'three']]);
- * each(map, (value, key) => {
- *   console.log(value); // Output: 'one', 'two', 'three'
- *   console.log(key); // Output: 1, 2, 3
- * });
+ * // Map iteration / Map遍历
+ * const userMap = new Map([
+ *   ['name', 'John'],
+ *   ['age', 30],
+ *   ['city', 'New York']
+ * ])
+ * each(userMap, (value, key) => {
+ *   console.log(`${key} => ${value}`)
+ * })
+ *
+ * // Set iteration / Set遍历
+ * const uniqueNumbers = new Set([1, 2, 3, 4, 5])
+ * each(uniqueNumbers, (value, index) => {
+ *   console.log(`Item ${index}: ${value}`)
+ * })
+ *
+ * // String iteration / 字符串遍历
+ * each('hello', (char, index) => {
+ *   console.log(`char[${index}] = ${char}`)
+ * })
+ * ```
+ *
+ * @since 1.0.0
  */
 const each = <V, K extends string | number = number>(
   collection: Collection<V, K>,

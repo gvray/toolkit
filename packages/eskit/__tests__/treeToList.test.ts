@@ -1,12 +1,16 @@
-import { treeToList } from '../src'
-import { TreeNode } from '../src/tree-to-list'
+import treeToList, { TreeNode } from '../src/treeToList'
+
 describe('treeToList', () => {
-  interface IItem<T> {
-    children?: T[]
+  interface Item extends TreeNode<Item> {
+    value: string
   }
 
-  class Item implements IItem<Item> {
-    constructor(public value: string, public children?: Item[]) {}
+  const createItem = (value: string, children?: Item[]): Item => {
+    const item: Item = { value } as Item
+    if (children) {
+      item.children = children
+    }
+    return item
   }
 
   // it('should flatten a trees into a list', () => {

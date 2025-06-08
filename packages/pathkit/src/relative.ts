@@ -16,9 +16,37 @@ const relative = (from: string, to: string): string => {
     throw new TypeError('Arguments must be strings')
   }
 
+  // 处理空路径
+  if (!from) {
+    return to
+  }
+  if (!to) {
+    // 计算从 from 到根目录的相对路径
+    const fromParts = from.replace(/\\/g, '/').split('/').filter(Boolean)
+    return fromParts.map(() => '..').join('/')
+  }
+
   // 规范化路径分隔符
   from = from.replace(/\\/g, '/')
   to = to.replace(/\\/g, '/')
+
+  // 检查是否是不同的驱动器路径 (Windows)
+  const fromDrive = from.match(/^([A-Za-z]:)/)
+  const toDrive = to.match(/^([A-Za-z]:)/)
+
+  if (fromDrive && toDrive && fromDrive[1].toLowerCase() !== toDrive[1].toLowerCase()) {
+    // 不同驱动器，返回绝对路径
+    return to
+  }
+
+  // 检查是否是不同根的路径 (Unix 和 Windows 混合)
+  const fromIsAbsolute = from.startsWith('/')
+  const toIsAbsolute = to.startsWith('/')
+
+  if (fromIsAbsolute !== toIsAbsolute) {
+    // 一个是绝对路径，一个是相对路径，返回绝对路径
+    return to
+  }
 
   // 移除末尾的斜杠
   from = from.replace(/\/*$/, '')

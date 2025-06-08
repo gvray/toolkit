@@ -1,4 +1,4 @@
-import isError from '../src/is-error'
+import isError from '../src/isError'
 
 describe('isError', () => {
   test('should return true for Error instances', () => {

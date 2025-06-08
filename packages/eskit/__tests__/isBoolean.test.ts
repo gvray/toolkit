@@ -1,4 +1,4 @@
-import isBoolean from '../src/is-boolean'
+import isBoolean from '../src/isBoolean'
 
 describe('isBoolean', () => {
   test('should return true for boolean primitives', () => {

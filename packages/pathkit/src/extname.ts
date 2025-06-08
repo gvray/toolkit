@@ -28,6 +28,11 @@ const extname = (path: string): string => {
   // 获取最后一个斜杠后的部分
   const basename = path.split('/').pop() || ''
 
+  // 特殊处理 '.' 和 '..'
+  if (basename === '.' || basename === '..') {
+    return ''
+  }
+
   // 如果文件名以点开头且没有其他扩展名，返回空字符串
   if (basename.startsWith('.') && basename.indexOf('.', 1) === -1) {
     return ''

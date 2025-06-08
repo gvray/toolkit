@@ -1,0 +1,56 @@
+{
+  "name": "@gvray/datekit",
+  "version": "1.0.0",
+  "description": "Professional date and time utilities for JavaScript/TypeScript applications / 专业的JavaScript/TypeScript日期时间工具库",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "esm",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc -p tsconfig.json",
+    "build:esm": "tsc -p tsconfig.json --module esnext --outDir esm",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "docs": "typedoc --out docs src/index.ts",
+    "update:readme": "ts-node scripts/update-readme.ts",
+    "script:gen-index": "ts-node scripts/gen-index.ts"
+  },
+  "keywords": [
+    "date",
+    "time",
+    "datetime",
+    "format",
+    "parse",
+    "timezone",
+    "calendar",
+    "duration",
+    "typescript",
+    "javascript"
+  ],
+  "author": {
+    "name": "GavinRay",
+    "email": "gavinraydev@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.4",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.0.0",
+    "typedoc": "^0.28.4",
+    "typescript": "^5.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gavinray/toolkit.git",
+    "directory": "packages/datekit"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

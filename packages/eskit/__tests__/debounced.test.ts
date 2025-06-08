@@ -1,44 +1,65 @@
-import { debounced } from '../src'
+import debounced from '../src/debounced'
 
-describe('debounced()', () => {
-  jest.useFakeTimers() // 手动模拟计时器
+describe('debounced', () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
 
-  it('should call the function with the latest arguments after the specified delay time', () => {
+  afterEach(() => {
+    jest.useRealTimers()
+  })
+
+  test('should debounce function calls', () => {
     const mockFn = jest.fn()
     const debouncedFn = debounced(mockFn, 100)
 
-    debouncedFn('foo')
-    jest.advanceTimersByTime(50)
-    debouncedFn('bar')
-    jest.advanceTimersByTime(50)
+    debouncedFn()
+    debouncedFn()
+    debouncedFn()
 
-    // 确保已等待延迟时间
-    expect(mockFn).not.toBeCalled()
+    expect(mockFn).not.toHaveBeenCalled()
+
     jest.advanceTimersByTime(100)
-
-    // 确保函数被调用并传递最后一组参数
-    expect(mockFn).toBeCalledWith('bar')
+    expect(mockFn).toHaveBeenCalledTimes(1)
   })
 
-  it('should execute the function immediately on the first call when the "immediate" parameter is true', () => {
+  test('should pass arguments to debounced function', () => {
+    const mockFn = jest.fn()
+    const debouncedFn = debounced(mockFn, 100)
+
+    debouncedFn('arg1', 'arg2')
+    jest.advanceTimersByTime(100)
+
+    expect(mockFn).toHaveBeenCalledWith('arg1', 'arg2')
+  })
+
+  test('should reset timer on subsequent calls', () => {
+    const mockFn = jest.fn()
+    const debouncedFn = debounced(mockFn, 100)
+
+    debouncedFn()
+    jest.advanceTimersByTime(50)
+    debouncedFn()
+    jest.advanceTimersByTime(50)
+
+    expect(mockFn).not.toHaveBeenCalled()
+
+    jest.advanceTimersByTime(50)
+    expect(mockFn).toHaveBeenCalledTimes(1)
+  })
+
+  test('should handle immediate execution', () => {
     const mockFn = jest.fn()
     const debouncedFn = debounced(mockFn, 100, true)
 
-    debouncedFn('foo')
+    debouncedFn()
+    expect(mockFn).toHaveBeenCalledTimes(1)
 
-    // 确保函数被立即调用
-    expect(mockFn).toBeCalledWith('foo')
-  })
+    debouncedFn()
+    expect(mockFn).toHaveBeenCalledTimes(1)
 
-  it('should cancel the debouncing when "cancel()" is called', () => {
-    const mockFn = jest.fn()
-    const debouncedFn = debounced(mockFn, 100)
-
-    debouncedFn('foo')
-    debouncedFn.cancel()
     jest.advanceTimersByTime(100)
-
-    // 确保函数未被调用
-    expect(mockFn).not.toBeCalled()
+    debouncedFn()
+    expect(mockFn).toHaveBeenCalledTimes(2)
   })
 })

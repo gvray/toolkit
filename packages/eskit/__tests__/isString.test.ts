@@ -1,4 +1,4 @@
-import isString from '../src/is-string'
+import isString from '../src/isString'
 
 describe('isString', () => {
   test('should return true for strings', () => {

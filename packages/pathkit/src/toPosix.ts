@@ -28,14 +28,18 @@ const toPosix = (path: string): string => {
   // 将反斜杠转换为正斜杠
   path = path.replace(/\\/g, '/')
 
-  // 处理 UNC 路径
-  if (path.startsWith('//')) {
-    // 保持 UNC 路径的双斜杠
-    return path
-  }
+  // 检查是否是 UNC 路径（两个或更多前导斜杠都应该被视为 UNC）
+  const isUNC = path.startsWith('//')
 
-  // 规范化多个斜杠
-  path = path.replace(/\/+/g, '/')
+  if (isUNC) {
+    // 保持 UNC 路径的双斜杠，但规范化其余部分
+    // 先移除所有前导斜杠，然后添加标准的双斜杠
+    const withoutLeadingSlashes = path.replace(/^\/+/, '')
+    path = `//${withoutLeadingSlashes.replace(/\/+/g, '/')}`
+  } else {
+    // 规范化多个斜杠
+    path = path.replace(/\/+/g, '/')
+  }
 
   // 移除末尾的斜杠（除非是根路径）
   if (path.length > 1 && path.endsWith('/')) {

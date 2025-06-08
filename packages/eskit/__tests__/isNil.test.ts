@@ -1,4 +1,4 @@
-import isNil from '../src/is-nil'
+import isNil from '../src/isNil'
 
 describe('isNil', () => {
   test('should return true for null and undefined', () => {

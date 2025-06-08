@@ -22,19 +22,22 @@ const toWin32 = (path: string): string => {
   // 将正斜杠转换为反斜杠
   let result = path.replace(/\//g, '\\')
 
-  // 处理 UNC 路径
-  if (result.startsWith('\\\\')) {
-    return result
-  }
+  // 检查是否是真正的 UNC 路径
+  const isUNC = result.startsWith('\\\\') && result.length > 2 && !result.startsWith('\\\\\\')
 
-  // 处理驱动器路径
-  if (/^\\[a-z]\\/.test(result.toLowerCase())) {
-    // 转换为驱动器格式
-    result = `${result.charAt(1).toUpperCase()}:${result.slice(2)}`
-  }
+  if (isUNC) {
+    // 保持 UNC 路径的双反斜杠，但规范化其余部分
+    result = `\\\\${result.substring(2).replace(/\\+/g, '\\')}`
+  } else {
+    // 处理驱动器路径
+    if (/^\\[a-z]\\/.test(result.toLowerCase())) {
+      // 转换为驱动器格式
+      result = `${result.charAt(1).toUpperCase()}:${result.slice(2)}`
+    }
 
-  // 规范化多个反斜杠
-  result = result.replace(/\\+/g, '\\')
+    // 规范化多个反斜杠
+    result = result.replace(/\\+/g, '\\')
+  }
 
   // 移除末尾的反斜杠（除非是根路径或驱动器根路径）
   if (result.length > 1 && result.endsWith('\\') && !result.endsWith(':\\')) {

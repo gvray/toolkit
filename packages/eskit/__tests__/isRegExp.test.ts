@@ -1,4 +1,4 @@
-import isRegExp from '../src/is-reg-exp'
+import isRegExp from '../src/isRegExp'
 
 describe('isRegExp', () => {
   test('should return true for RegExp literals', () => {
@@ -53,9 +53,9 @@ describe('isRegExp', () => {
     expect(isRegExp(regexp)).toBe(true)
   })
 
-  test('should handle invalid regexp patterns', () => {
-    expect(() => {
-      isRegExp(new RegExp('[', 'g'))
-    }).not.toThrow()
+  test('should handle valid regexp with special characters', () => {
+    expect(isRegExp(new RegExp('\\[', 'g'))).toBe(true)
+    expect(isRegExp(/\[/)).toBe(true)
+    expect(isRegExp(/\(/)).toBe(true)
   })
 })

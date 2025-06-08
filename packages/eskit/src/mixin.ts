@@ -1,26 +1,73 @@
-import copyProperties from './copy-properties'
+import copyProperties from './copyProperties'
 /**
- * Creates a new class by combining multiple classes.
- * @param mixins The classes to combine.
+ * Creates a new class by combining multiple classes (mixin pattern).
+ * 通过组合多个类创建新类（混入模式）。
+ *
+ * @param mixins - The classes to combine / 要组合的类
+ * @returns A new class with combined functionality / 具有组合功能的新类
+ *
  * @example
- * // Define some classes
- * class Foo {
- *   foo() {}
+ * ```typescript
+ * // Define base classes
+ * class Walkable {
+ *   walk() {
+ *     console.log('Walking...')
+ *   }
  * }
  *
- * class Bar {
- *   bar() {}
+ * class Swimmable {
+ *   swim() {
+ *     console.log('Swimming...')
+ *   }
  * }
  *
- * // Create a new class by combining Foo and Bar
- * const Baz = mixin(Foo, Bar);
+ * class Flyable {
+ *   fly() {
+ *     console.log('Flying...')
+ *   }
+ * }
  *
- * // Create an instance of Baz
- * const baz = new Baz();
+ * // Create combined classes
+ * const Duck = mixin(Walkable, Swimmable, Flyable)
+ * const Fish = mixin(Swimmable)
+ * const Bird = mixin(Walkable, Flyable)
  *
- * // Call methods from both Foo and Bar
- * baz.foo();
- * baz.bar();
+ * // Use the mixed classes
+ * const duck = new Duck()
+ * duck.walk() // 'Walking...'
+ * duck.swim() // 'Swimming...'
+ * duck.fly() // 'Flying...'
+ *
+ * const fish = new Fish()
+ * fish.swim() // 'Swimming...'
+ * // fish.walk() // Error: walk is not a function
+ *
+ * // With properties and constructor logic
+ * class HasName {
+ *   constructor() {
+ *     this.name = 'Unknown'
+ *   }
+ *   getName() {
+ *     return this.name
+ *   }
+ * }
+ *
+ * class HasAge {
+ *   constructor() {
+ *     this.age = 0
+ *   }
+ *   getAge() {
+ *     return this.age
+ *   }
+ * }
+ *
+ * const Person = mixin(HasName, HasAge)
+ * const person = new Person()
+ * console.log(person.getName()) // 'Unknown'
+ * console.log(person.getAge()) // 0
+ * ```
+ *
+ * @since 1.0.0
  */
 const mixin = (...mixins: any[]): any => {
   class Mixin {

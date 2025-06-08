@@ -25,7 +25,7 @@ const addEvent = <T extends HTMLElement | SVGElement>(
   if (!ele) return undefined
   let callback = eventHandle
   if (useThrottle) {
-    callback = throttle(eventHandle, 201)
+    callback = throttle(eventHandle, 201, { leading: true })
   }
   if (useDebounce) {
     callback = debounced(eventHandle, 201)

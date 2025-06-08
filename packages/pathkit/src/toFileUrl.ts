@@ -16,8 +16,18 @@ const toFileUrl = (path: string): string => {
     throw new TypeError('Path must be a string')
   }
 
+  // 处理空路径
+  if (!path) {
+    return 'file:///'
+  }
+
   // 规范化路径
   let normalizedPath = normalize(path)
+
+  // 处理当前目录
+  if (normalizedPath === '.') {
+    return 'file:///'
+  }
 
   // 处理 Windows 驱动器路径
   if (/^[A-Za-z]:/.test(normalizedPath)) {
@@ -35,10 +45,16 @@ const toFileUrl = (path: string): string => {
     normalizedPath = `/${normalizedPath}`
   }
 
-  // 编码特殊字符
+  // 编码特殊字符，但保留冒号（用于 Windows 驱动器）
   const encodedPath = normalizedPath
     .split('/')
-    .map((segment) => encodeURIComponent(segment))
+    .map((segment) => {
+      // 对于 Windows 驱动器段（如 C:），不编码冒号
+      if (/^[A-Za-z]:$/.test(segment)) {
+        return segment
+      }
+      return encodeURIComponent(segment)
+    })
     .join('/')
 
   return `file://${encodedPath}`

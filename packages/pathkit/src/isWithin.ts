@@ -22,6 +22,16 @@ const isWithin = (directory: string, path: string): boolean => {
   directory = normalize(directory)
   path = normalize(path)
 
+  // 处理空目录的情况（表示根目录）
+  if (directory === '' || directory === '.') {
+    return true
+  }
+
+  // 如果路径完全相同，也算是包含关系
+  if (directory === path) {
+    return true
+  }
+
   // 确保目录以斜杠结尾
   if (!directory.endsWith('/')) {
     directory += '/'

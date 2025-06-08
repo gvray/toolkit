@@ -1,0 +1,42 @@
+{
+  "name": "@gvray/mathkit",
+  "version": "1.0.0",
+  "description": "Professional mathematical utilities for JavaScript/TypeScript applications / 专业的JavaScript/TypeScript数学工具库",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "esm",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc -p tsconfig.json",
+    "build:esm": "tsc -p tsconfig.json --module esnext --outDir esm",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "docs": "typedoc --out docs src/index.ts"
+  },
+  "keywords": [
+    "math",
+    "mathematics",
+    "calculation",
+    "numbers",
+    "statistics",
+    "arithmetic",
+    "typescript",
+    "javascript"
+  ],
+  "author": {
+    "name": "GavinRay",
+    "email": "gavinraydev@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.4",
+    "ts-jest": "^27.0.3",
+    "typescript": "^5.8.3"
+  }
+}

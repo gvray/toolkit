@@ -16,11 +16,15 @@
  * isAbsolute('relative/path')  // false
  */
 function isAbsolute(path: string): boolean {
+  // 不把 URL 当作文件系统的绝对路径
+  if (/^[a-z0-9]+:\/\//i.test(path)) {
+    return false
+  }
+
   return (
     path.startsWith('/') || // Unix/Linux root directory absolute path
-    path.match(/^([a-zA-Z]:)?(\\|\/)/) !== null || // Windows drive letter absolute path
-    // eslint-disable-next-line no-useless-escape
-    /^[a-z0-9]+\:\/\//i.test(path) // URL absolute path regex
+    path.match(/^[a-zA-Z]:(\\|\/)/) !== null || // Windows drive letter absolute path
+    path.startsWith('\\\\') // UNC path
   )
 }
 export default isAbsolute

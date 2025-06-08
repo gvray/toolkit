@@ -1,32 +1,37 @@
 /**
- * Filters the elements of an array or object based on a callback function.
- * @param collection The array or object to filter.
- * @param callback The function to call for each element. Should return `true` to keep the element, `false` to remove it.
- * @returns A new array or object containing only the elements for which the callback function returned `true`.
+ * Filters elements of an array or object based on a callback function.
+ * 根据回调函数过滤数组或对象的元素。
+ *
+ * @param collection - The array or object to filter / 要过滤的数组或对象
+ * @param callback - The function to call for each element / 为每个元素调用的函数
+ * @returns A new array or object with filtered elements / 包含过滤元素的新数组或对象
+ *
  * @example
- * // Define an array of numbers
- * const numbers = [1, 2, 3, 4, 5];
+ * ```typescript
+ * // Array filtering
+ * const numbers = [1, 2, 3, 4, 5]
+ * const evenNumbers = filter(numbers, (num) => num % 2 === 0)
+ * console.log(evenNumbers) // [2, 4]
  *
- * // Define a callback function to filter even numbers
- * const isEven = (num: number) => num % 2 === 0;
+ * const users = [
+ *   { name: 'Alice', age: 25 },
+ *   { name: 'Bob', age: 17 },
+ *   { name: 'Charlie', age: 30 }
+ * ]
+ * const adults = filter(users, (user) => user.age >= 18)
+ * console.log(adults) // [{ name: 'Alice', age: 25 }, { name: 'Charlie', age: 30 }]
  *
- * // Filter the array using the callback function
- * const evenNumbers = filter(numbers, isEven);
+ * // Object filtering
+ * const obj = { a: 1, b: 2, c: 3, d: 4, e: 5 }
+ * const evenValues = filter(obj, (value) => value % 2 === 0)
+ * console.log(evenValues) // { b: 2, d: 4 }
  *
- * // The new array contains only even numbers
- * console.log(evenNumbers); // [2, 4]
+ * const config = { debug: true, timeout: 5000, retries: 3, verbose: false }
+ * const booleanSettings = filter(config, (value) => typeof value === 'boolean')
+ * console.log(booleanSettings) // { debug: true, verbose: false }
+ * ```
  *
- * // Define an object of key-value pairs
- * const obj = { a: 1, b: 2, c: 3, d: 4, e: 5 };
- *
- * // Define a callback function to filter even values
- * const isEvenValue = (val: number) => val % 2 === 0;
- *
- * // Filter the object using the callback function
- * const evenValuesObj = filter(obj, (_, value) => isEvenValue(value));
- *
- * // The new object contains only key-value pairs where the value is even
- * console.log(evenValuesObj); // { b: 2, d: 4 }
+ * @since 1.0.0
  */
 const filter = <T extends Array<unknown> | Record<string, unknown>>(
   collection: T,

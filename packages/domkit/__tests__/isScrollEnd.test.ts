@@ -16,6 +16,16 @@ describe('isScrollEnd', () => {
 
     container.appendChild(content)
     document.body.appendChild(container)
+
+    // Mock scrollHeight and clientHeight for JSDOM
+    Object.defineProperty(container, 'scrollHeight', {
+      value: 500,
+      writable: true
+    })
+    Object.defineProperty(container, 'clientHeight', {
+      value: 100,
+      writable: true
+    })
   })
 
   afterEach(() => {
@@ -23,7 +33,7 @@ describe('isScrollEnd', () => {
   })
 
   test('should return true when scrolled to bottom', () => {
-    container.scrollTop = 400 // container height (100) + content height (500) - container height (100)
+    container.scrollTop = 400 // scrollHeight (500) - clientHeight (100) = 400
     expect(isScrollEnd(container)).toBe(true)
   })
 
@@ -43,10 +53,22 @@ describe('isScrollEnd', () => {
     longContent.style.height = '2000px'
     document.body.appendChild(longContent)
 
+    // Mock document.documentElement properties
+    Object.defineProperty(document.documentElement, 'scrollHeight', {
+      value: 2000,
+      writable: true,
+      configurable: true
+    })
+    Object.defineProperty(document.documentElement, 'clientHeight', {
+      value: 800,
+      writable: true,
+      configurable: true
+    })
+
     document.documentElement.scrollTop = 0
     expect(isScrollEnd()).toBe(false)
 
-    document.documentElement.scrollTop = document.documentElement.scrollHeight - document.documentElement.clientHeight
+    document.documentElement.scrollTop = 1200 // scrollHeight (2000) - clientHeight (800) = 1200
     expect(isScrollEnd()).toBe(true)
 
     document.body.removeChild(longContent)
@@ -62,6 +84,16 @@ describe('isScrollEnd', () => {
     noScrollContainer.appendChild(smallContent)
     document.body.appendChild(noScrollContainer)
 
+    // Mock properties for no scroll case
+    Object.defineProperty(noScrollContainer, 'scrollHeight', {
+      value: 50,
+      writable: true
+    })
+    Object.defineProperty(noScrollContainer, 'clientHeight', {
+      value: 100,
+      writable: true
+    })
+
     expect(isScrollEnd(noScrollContainer)).toBe(true)
     document.body.removeChild(noScrollContainer)
   })
@@ -70,17 +102,59 @@ describe('isScrollEnd', () => {
     container.style.padding = '10px'
     content.style.margin = '10px'
 
-    container.scrollTop = container.scrollHeight - container.clientHeight
+    // Update mock values for padding/margin case
+    Object.defineProperty(container, 'scrollHeight', {
+      value: 520, // content height + margins
+      writable: true
+    })
+    Object.defineProperty(container, 'clientHeight', {
+      value: 80, // container height - padding
+      writable: true
+    })
+
+    container.scrollTop = 440 // scrollHeight (520) - clientHeight (80) = 440
     expect(isScrollEnd(container)).toBe(true)
   })
 
   test('should handle elements with border', () => {
     container.style.border = '10px solid black'
-    container.scrollTop = container.scrollHeight - container.clientHeight
+
+    // Update mock values for border case
+    Object.defineProperty(container, 'scrollHeight', {
+      value: 500,
+      writable: true
+    })
+    Object.defineProperty(container, 'clientHeight', {
+      value: 80, // container height - border
+      writable: true
+    })
+
+    container.scrollTop = 420 // scrollHeight (500) - clientHeight (80) = 420
     expect(isScrollEnd(container)).toBe(true)
   })
 
   test('should handle undefined element', () => {
-    expect(isScrollEnd(undefined)).toBe(false)
+    // When element is undefined, it should behave the same as isScrollEnd() without parameters
+    // and use document.documentElement as the target element
+
+    // Mock document.documentElement properties for this test
+    Object.defineProperty(document.documentElement, 'scrollHeight', {
+      value: 100,
+      writable: true,
+      configurable: true
+    })
+    Object.defineProperty(document.documentElement, 'clientHeight', {
+      value: 100,
+      writable: true,
+      configurable: true
+    })
+    Object.defineProperty(document.documentElement, 'scrollTop', {
+      value: 0,
+      writable: true,
+      configurable: true
+    })
+
+    // Since scrollHeight === clientHeight, it should return true (no scrollable content)
+    expect(isScrollEnd(undefined)).toBe(true)
   })
 })

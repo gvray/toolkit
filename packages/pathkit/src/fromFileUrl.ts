@@ -27,6 +27,11 @@ const fromFileUrl = (url: string): string => {
     return '/'
   }
 
+  // 检查是否有无效的 URL 编码格式
+  if (/%[0-9A-Fa-f][a-z]/.test(path)) {
+    throw new Error('Invalid URL encoding')
+  }
+
   // 解码 URL 编码的字符
   try {
     path = decodeURIComponent(path)
@@ -39,19 +44,26 @@ const fromFileUrl = (url: string): string => {
     return path.slice(1)
   }
 
-  // 处理 UNC 路径
-  if (path.startsWith('//')) {
-    return path
-  }
-
-  // 处理普通路径
-  // 如果路径不以斜杠开头，添加斜杠
+  // 检查是否是 UNC 路径 (file://host/share/file.txt)
+  // 如果 path 不以 / 开头，说明是 UNC 路径
+  let isUNCPath = false
   if (!path.startsWith('/')) {
-    path = `/${path}`
+    // 这是 UNC 路径，需要添加双斜杠前缀
+    path = `//${path}`
+    isUNCPath = true
   }
 
-  // 规范化多个斜杠
-  path = path.replace(/\/+/g, '/')
+  // 规范化多个斜杠，但保留 UNC 路径的双斜杠
+  if (isUNCPath) {
+    path = `//${path.slice(2).replace(/\/+/g, '/')}`
+  } else {
+    path = path.replace(/\/+/g, '/')
+  }
+
+  // 移除末尾的斜杠（除非是根路径）
+  if (path.length > 1 && path.endsWith('/')) {
+    path = path.slice(0, -1)
+  }
 
   return path
 }

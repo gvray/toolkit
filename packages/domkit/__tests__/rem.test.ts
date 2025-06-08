@@ -71,10 +71,10 @@ describe('rem', () => {
       writable: true
     })
     rem(750)
-    expect(mockDocumentElement.style.fontSize).toBe('133.33333333333334px')
+    expect(parseFloat(mockDocumentElement.style.fontSize)).toBeCloseTo(133.33333333333334, 10)
   })
 
-  test('should update on window resize', () => {
+  test('should update on window resize', (done) => {
     Object.defineProperty(mockDocumentElement, 'clientWidth', {
       value: 375,
       writable: true
@@ -88,7 +88,12 @@ describe('rem', () => {
       writable: true
     })
     window.dispatchEvent(new Event('resize'))
-    expect(mockDocumentElement.style.fontSize).toBe('55.2px')
+
+    // 等待 requestAnimationFrame 执行
+    requestAnimationFrame(() => {
+      expect(mockDocumentElement.style.fontSize).toBe('55.2px')
+      done()
+    })
   })
 
   test('should handle zero width', () => {

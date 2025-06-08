@@ -1,4 +1,4 @@
-import isArray from '../src/is-array'
+import isArray from '../src/isArray'
 
 describe('isArray', () => {
   test('should return true for arrays', () => {

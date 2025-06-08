@@ -1,4 +1,4 @@
-import isFunction from '../src/is-function'
+import isFunction from '../src/isFunction'
 
 describe('isFunction', () => {
   test('should return true for functions', () => {

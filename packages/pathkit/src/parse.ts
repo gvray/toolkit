@@ -58,16 +58,37 @@ const parse = (path: string): ParsedPath => {
     }
   }
 
+  // 检查是否是 UNC 路径
+  const isUNC = path.startsWith('\\\\')
+  const originalPath = path
+
   // 规范化路径分隔符
   path = path.replace(/\\/g, '/')
 
   // 获取根路径
-  const root = path.startsWith('/') ? '/' : /^[A-Za-z]:/.test(path) ? `${path.slice(0, 2)}/` : ''
+  let root = ''
+  if (isUNC || path.startsWith('//')) {
+    // UNC 路径
+    root = '//'
+  } else if (path.startsWith('/')) {
+    // Unix 绝对路径
+    root = '/'
+  } else if (/^[A-Za-z]:/.test(path)) {
+    // Windows 绝对路径
+    root = `${path.slice(0, 2)}/`
+  }
 
-  // 获取目录、基础名和扩展名
-  const dir = dirname(path)
-  const base = basename(path)
-  const ext = extname(path)
+  // 获取目录、基础名和扩展名，使用原始路径以保持 UNC 格式
+  const dir = dirname(originalPath)
+  let base = basename(path)
+  let ext = extname(path)
+
+  // 特殊处理根路径
+  if (path === '/' || path === '\\') {
+    base = ''
+    ext = ''
+  }
+
   const name = base.slice(0, base.length - ext.length)
 
   return {

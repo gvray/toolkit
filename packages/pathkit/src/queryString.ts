@@ -13,6 +13,11 @@
 
 const queryString = (query: Record<string, string | number> = {}, separator = '?'): string => {
   try {
+    // 处理 null 或 undefined 的情况
+    if (!query || typeof query !== 'object') {
+      return ''
+    }
+
     const queryString = Object.keys(query)
       .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(query[key])}`)
       .join('&')
