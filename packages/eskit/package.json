@@ -12,7 +12,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "npm run clean && npm run script:gen-index && run-p build:*",
+    "build": "run-p build:*",
     "build:esm": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir esm",
     "build:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
     "clean": "rimraf lib esm",

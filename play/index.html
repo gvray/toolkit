@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toolkit Playground - 工具包演示</title>
+</head>
+
+<body>
+  <div id="app">
+    <header class="header">
+      <h1>🧰 Toolkit Playground</h1>
+      <p>各种工具包的交互式演示</p>
+    </header>
+
+    <nav class="nav">
+      <button class="nav-btn active" data-kit="eskit">ESKit</button>
+      <button class="nav-btn" data-kit="mathkit">MathKit</button>
+      <button class="nav-btn" data-kit="datekit">DateKit</button>
+      <button class="nav-btn" data-kit="validationkit">ValidationKit</button>
+      <button class="nav-btn" data-kit="domkit">DOMKit</button>
+      <button class="nav-btn" data-kit="adminkit">AdminKit</button>
+      <button class="nav-btn" data-kit="pathkit">PathKit</button>
+    </nav>
+
+    <main class="main">
+      <div id="demo-area" class="demo-area">
+        <!-- 演示内容将在这里动态生成 -->
+      </div>
+
+      <div id="console-area" class="console-area">
+        <h3>📋 输出控制台</h3>
+        <div id="console-output" class="console-output"></div>
+        <button id="clear-console" class="clear-btn">清空控制台</button>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
