@@ -5,6 +5,11 @@
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "lib/index.d.ts",
+  "exports": {
+    "import": "./esm/index.js",
+    "require": "./lib/index.js",
+    "types": "./lib/index.d.ts"
+  },
   "files": [
     "lib",
     "esm",
@@ -14,9 +19,11 @@
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "tsc -p tsconfig.json",
     "build:esm": "tsc -p tsconfig.json --module esnext --outDir esm",
+    "clean": "rimraf lib esm",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "docs": "typedoc --out docs src/index.ts"
+    "docs": "typedoc --out docs src/index.ts",
+    "pub": "echo 'Use root-level changeset publish to release packages'"
   },
   "keywords": [
     "math",

@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "Professional date and time utilities for JavaScript/TypeScript applications / 专业的JavaScript/TypeScript日期时间工具库",
   "main": "lib/index.js",
-  "module": "esm/index.js",
   "types": "lib/index.d.ts",
+  "module": "esm/index.js",
+  "exports": {
+    "import": "./esm/index.js",
+    "require": "./lib/index.js",
+    "types": "./lib/index.d.ts"
+  },
   "files": [
     "lib",
     "esm",
@@ -14,11 +19,12 @@
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "tsc -p tsconfig.json",
     "build:esm": "tsc -p tsconfig.json --module esnext --outDir esm",
+    "clean": "rimraf lib esm",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "docs": "typedoc --out docs src/index.ts",
     "update:readme": "ts-node scripts/update-readme.ts",
-    "script:gen-index": "ts-node scripts/gen-index.ts"
+    "pub": "echo 'Use root-level changeset publish to release packages'"
   },
   "keywords": [
     "date",

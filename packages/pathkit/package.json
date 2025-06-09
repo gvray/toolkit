@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "A rich and colorful toolkit about Path.",
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "module": "esm/index.js",
-  "exports": "./lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    "import": "./esm/index.js",
+    "require": "./lib/index.js",
+    "types": "./lib/index.d.ts"
+  },
   "files": [
     "esm",
     "lib",
@@ -15,11 +19,10 @@
     "build": "run-p build:*",
     "build:esm": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir esm",
     "build:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
-    "clean": "rm -rf lib && rm -rf esm",
+    "clean": "rimraf lib esm",
     "tsc": "tsc --noEmit",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "script:gen-index": "node ./scripts/generate-index.js",
     "update:readme": "npm run doc && node ./scripts/update-docs.js",
     "doc:gen": "typedoc",
     "doc": "pnpm run doc:gen && pnpm -C ../../ append-api ./packages/pathkit docs",

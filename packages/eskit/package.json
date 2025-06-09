@@ -5,7 +5,11 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "module": "esm/index.js",
-  "exports": "./lib/index.js",
+  "exports": {
+    "import": "./esm/index.js",
+    "require": "./lib/index.js",
+    "types": "./lib/index.d.ts"
+  },
   "files": [
     "esm",
     "lib",
@@ -19,7 +23,6 @@
     "tsc": "tsc --noEmit",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "script:gen-index": "node ./scripts/generate-index.js",
     "docs": "npm run build:esm && jsdoc -c jsdoc.json",
     "md": "node ./scripts/jsdoc2md.js",
     "doc": "typedoc --tsconfig ./tsconfig.json",

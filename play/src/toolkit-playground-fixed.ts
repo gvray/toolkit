@@ -220,34 +220,38 @@ class DemoManager {
     const result = parent.querySelector('.result')!
 
     switch (demo) {
-      case 'clamp':
+      case 'clamp': {
         const value = 15
         const clamped = mathkit.clamp(value, 5, 10)
         result.innerHTML = `clamp(${value}, 5, 10) = ${clamped}`
         logger.log(`数值限制: ${value} 被限制在 [5, 10] 范围内，结果: ${clamped}`, 'success')
         break
+      }
 
-      case 'randomInt':
+      case 'randomInt': {
         const randomNum = mathkit.randomInt(1, 100)
         result.innerHTML = `随机整数 (1-100): ${randomNum}`
         logger.log(`生成随机整数: ${randomNum}`, 'success')
         break
+      }
 
-      case 'add':
-        const a = 0.1,
-          b = 0.2
+      case 'add': {
+        const a = 0.1
+        const b = 0.2
         const sum = mathkit.add(a, b)
         result.innerHTML = `高精度加法: ${a} + ${b} = ${sum}`
         logger.log(`高精度计算: ${a} + ${b} = ${sum}`, 'success')
         break
+      }
 
-      case 'multiply':
-        const x = 0.1,
-          y = 0.2
+      case 'multiply': {
+        const x = 0.1
+        const y = 0.2
         const product = mathkit.multiply(x, y)
         result.innerHTML = `高精度乘法: ${x} × ${y} = ${product}`
         logger.log(`高精度计算: ${x} × ${y} = ${product}`, 'success')
         break
+      }
     }
   }
 
@@ -256,26 +260,29 @@ class DemoManager {
     const result = parent.querySelector('.result')!
 
     switch (demo) {
-      case 'format':
+      case 'format': {
         const now = new Date()
         const formatted = datekit.format(now, 'YYYY-MM-DD HH:mm:ss')
         result.innerHTML = `当前时间: ${formatted}`
         logger.log(`格式化日期: ${formatted}`, 'success')
         break
+      }
 
-      case 'parse':
+      case 'parse': {
         const dateStr = '2024-12-08 15:30:00'
         const parsed = datekit.parse(dateStr, 'YYYY-MM-DD HH:mm:ss')
         result.innerHTML = `解析日期: ${dateStr} → ${parsed.toLocaleString()}`
         logger.log(`解析日期字符串: ${dateStr}`, 'success')
         break
+      }
 
-      case 'addDays':
+      case 'addDays': {
         const baseDate = new Date()
         const futureDate = datekit.add(baseDate, 30, 'days')
         result.innerHTML = `30天后: ${datekit.format(futureDate, 'YYYY-MM-DD')}`
         logger.log(`添加30天后的日期`, 'success')
         break
+      }
     }
   }
 
@@ -287,26 +294,29 @@ class DemoManager {
     const value = input?.value || ''
 
     switch (demo) {
-      case 'email':
+      case 'email': {
         const isValid = validationkit.email.isValid(value)
         result.innerHTML = `"${value}" ${isValid ? '是' : '不是'} 有效邮箱`
         result.className = `result ${isValid ? 'success' : 'error'}`
         logger.log(`邮箱验证: "${value}" → ${isValid}`, isValid ? 'success' : 'error')
         break
+      }
 
-      case 'phone':
+      case 'phone': {
         const isValidPhone = validationkit.phone.isValid(value)
         result.innerHTML = `"${value}" ${isValidPhone ? '是' : '不是'} 有效手机号`
         result.className = `result ${isValidPhone ? 'success' : 'error'}`
         logger.log(`手机号验证: "${value}" → ${isValidPhone}`, isValidPhone ? 'success' : 'error')
         break
+      }
 
-      case 'required':
+      case 'required': {
         const isRequired = validationkit.required.isValid(value)
         result.innerHTML = `"${value}" ${isRequired ? '非空' : '为空'}`
         result.className = `result ${isRequired ? 'success' : 'error'}`
         logger.log(`必填验证: "${value}" → ${isRequired}`, isRequired ? 'success' : 'error')
         break
+      }
     }
   }
 
@@ -315,7 +325,7 @@ class DemoManager {
     const result = parent.querySelector('.result')!
 
     switch (demo) {
-      case 'addClass':
+      case 'addClass': {
         const testEl = document.createElement('div')
         testEl.textContent = '测试元素'
         domkit.addClass(testEl, 'test-class')
@@ -323,18 +333,21 @@ class DemoManager {
         result.innerHTML = `添加类名后: ${testEl.className}`
         logger.log(`添加CSS类: ${testEl.className}`, 'success')
         break
+      }
 
-      case 'getScrollPosition':
+      case 'getScrollPosition': {
         const scrollPos = domkit.getScrollPosition(window)
         result.innerHTML = `当前滚动位置: left=${scrollPos.left}, top=${scrollPos.top}`
         logger.log(`获取滚动位置: (${scrollPos.left}, ${scrollPos.top})`, 'success')
         break
+      }
 
-      case 'isScrollEnd':
+      case 'isScrollEnd': {
         const isAtEnd = domkit.isScrollEnd(window)
         result.innerHTML = `是否滚动到底部: ${isAtEnd}`
         logger.log(`滚动到底部检测: ${isAtEnd}`, 'success')
         break
+      }
     }
   }
 
@@ -343,7 +356,7 @@ class DemoManager {
     const result = parent.querySelector('.result')!
 
     switch (demo) {
-      case 'copyText':
+      case 'copyText': {
         const textToCopy = '这是要复制的文本'
         adminkit
           .copyText(textToCopy)
@@ -356,13 +369,15 @@ class DemoManager {
             logger.log(`复制失败: ${err.message}`, 'error')
           })
         break
+      }
 
-      case 'downloadText':
+      case 'downloadText': {
         const content = '这是下载的文本内容'
         adminkit.downloadText(content, 'test.txt')
         result.innerHTML = '已触发文件下载'
         logger.log('文件下载已开始', 'success')
         break
+      }
     }
   }
 
@@ -371,33 +386,37 @@ class DemoManager {
     const result = parent.querySelector('.result')!
 
     switch (demo) {
-      case 'join':
+      case 'join': {
         const parts = ['usr', 'local', 'bin', 'node']
         const joined = pathkit.join(...parts)
         result.innerHTML = `路径拼接: [${parts.join(', ')}] → "${joined}"`
         logger.log(`路径拼接: ${joined}`, 'success')
         break
+      }
 
-      case 'dirname':
+      case 'dirname': {
         const fullPath = '/usr/local/bin/node'
         const dir = pathkit.dirname(fullPath)
         result.innerHTML = `获取目录: "${fullPath}" → "${dir}"`
         logger.log(`获取目录名: ${dir}`, 'success')
         break
+      }
 
-      case 'extname':
+      case 'extname': {
         const filename = 'document.pdf'
         const ext = pathkit.extname(filename)
         result.innerHTML = `获取扩展名: "${filename}" → "${ext}"`
         logger.log(`获取扩展名: ${ext}`, 'success')
         break
+      }
 
-      case 'basename':
+      case 'basename': {
         const path = '/home/user/documents/file.txt'
         const base = pathkit.basename(path)
         result.innerHTML = `获取文件名: "${path}" → "${base}"`
         logger.log(`获取文件名: ${base}`, 'success')
         break
+      }
     }
   }
 }
