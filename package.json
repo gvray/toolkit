@@ -1,20 +1,16 @@
 {
   "name": "toolkit",
-  "private": "true",
   "description": "Store more front-end related tool Libraries",
   "scripts": {
     "clean": "rimraf --glob '**/{node_modules,dist,esm,lib,.turbo,.next}'",
     "build": "pnpm -r --workspace-concurrency=1 run build",
     "test": "pnpm -r --workspace-concurrency=1 run test",
-    "test:coverage": "pnpm -r run test:coverage",
+    "test:coverage": "pnpm -r --workspace-concurrency=1 run test:coverage",
     "docs": "pnpm -r run docs",
-    "readme": "pnpm -r run update:readme",
+    "doc": "pnpm -r run doc",
     "eslint": "eslint --ext .js,.ts --fix ./packages/**/src",
-    "script:gen-index": "pnpm -r run script:gen-index",
-    "gen": "pnpm run script:gen-index",
     "dev": "pnpm -r run dev",
     "dev:play": "pnpm -F play dev",
-    "append-api": "ts-node --transpile-only scripts/append-api-to-readme.ts",
     "version-packages": "changeset version",
     "release": "changeset publish"
   },

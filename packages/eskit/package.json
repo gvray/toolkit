@@ -23,10 +23,9 @@
     "tsc": "tsc --noEmit",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "docs": "npm run build:esm && jsdoc -c jsdoc.json",
     "md": "node ./scripts/jsdoc2md.js",
-    "doc": "typedoc --tsconfig ./tsconfig.json",
-    "update:readme": "npm run doc && node ./scripts/update-docs.js",
+    "docs": "typedoc",
+    "doc": "pnpm run doc:gen && pnpm -C ../../ append-api ./packages/eskit docs",
     "pub": "echo 'Use root-level changeset publish to release packages'"
   },
   "keywords": [

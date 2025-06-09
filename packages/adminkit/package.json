@@ -23,9 +23,8 @@
     "tsc": "tsc --noEmit",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "update:readme": "npm run doc && node ./scripts/update-docs.js",
-    "doc:gen": "typedoc",
-    "doc": "pnpm run doc:gen && pnpm -C ../../ append-api ./packages/pathkit docs",
+    "docs": "typedoc",
+    "doc": "pnpm run doc:gen && pnpm -C ../../ append-api ./packages/adminkit docs",
     "pub": "echo 'Use root-level changeset publish to release packages'"
   },
   "keywords": [

@@ -22,7 +22,8 @@
     "clean": "rimraf lib esm",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "docs": "typedoc --out docs src/index.ts",
+    "docs": "typedoc",
+    "doc": "pnpm run doc:gen && pnpm -C ../../ append-api ./packages/mathkit docs",
     "pub": "echo 'Use root-level changeset publish to release packages'"
   },
   "keywords": [
