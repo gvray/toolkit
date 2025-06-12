@@ -80,6 +80,8 @@ npm i @gvray/eskit
 - [noop](README.md#noop)
 - [pick](README.md#pick)
 - [range](README.md#range)
+- [tryRun](README.md#tryrun)
+- [tryRunSync](README.md#tryrunsync)
 - [shuffle](README.md#shuffle)
 - [sleep](README.md#sleep)
 - [subtract](README.md#subtract)
@@ -2280,6 +2282,142 @@ Returns the range of numbers.
 #### Defined in
 
 [packages/eskit/src/range.ts:15](https://github.com/gvray/toolkit/blob/7fa8b86/packages/eskit/src/range.ts#L15)
+
+---
+
+### tryRun
+
+▸ **tryRun**<`T`\>(`fn`): `Promise`<`T` \| `null`\>
+
+Safely executes a function (sync or async) and returns its result, or null if an error occurs.
+
+**`Since`**
+
+1.0.0
+
+**`Example`**
+
+```typescript
+// Synchronous function success case
+const result = await tryRun(() => JSON.parse('{"name": "test"}'))
+console.log(result) // { name: "test" }
+
+// Synchronous function error case
+const errorResult = await tryRun(() => JSON.parse('invalid json'))
+console.log(errorResult) // null
+
+// Asynchronous function success case
+const asyncResult = await tryRun(async () => {
+  await new Promise((resolve) => setTimeout(resolve, 100))
+  return { data: 'async test' }
+})
+console.log(asyncResult) // { data: 'async test' }
+
+// Asynchronous function error case
+const asyncError = await tryRun(async () => {
+  throw new Error('async error')
+})
+console.log(asyncError) // null
+
+// With calculation
+const calc = await tryRun(() => 10 / 2)
+console.log(calc) // 5
+```
+
+#### Type parameters
+
+| Name |
+| :--- |
+| `T`  |
+
+#### Parameters
+
+| Name | Type                         | Description                     |
+| :--- | :--------------------------- | :------------------------------ |
+| `fn` | () => `T` \| `Promise`<`T`\> | The function to execute safely. |
+
+#### Returns
+
+`Promise`<`T` \| `null`\>
+
+A Promise that resolves to the function result or null if an error occurs.
+
+#### Defined in
+
+[packages/eskit/src/tryRun.ts](https://github.com/gvray/toolkit/blob/main/packages/eskit/src/tryRun.ts)
+
+---
+
+### tryRunSync
+
+▸ **tryRunSync**<`T`\>(`fn`): `T` \| `null`
+
+Safely executes a synchronous function and returns its result, or null if an error occurs.
+
+This function provides a safe way to execute functions that might throw errors,
+returning null instead of letting the error propagate.
+
+**`Since`**
+
+1.0.0
+
+**`Example`**
+
+```typescript
+// Success case
+const result = tryRunSync(() => {
+  return JSON.parse('{"name": "test"}')
+})
+console.log(result) // { name: "test" }
+
+// Error case
+const errorResult = tryRunSync(() => {
+  return JSON.parse('invalid json')
+})
+console.log(errorResult) // null
+
+// Complex operations
+const complexResult = tryRunSync(() => {
+  const data = JSON.parse('{"values": [1, 2, 3]}')
+  return data.values.reduce((sum, val) => sum + val, 0)
+})
+console.log(complexResult) // 6
+
+// Error in complex operations
+const complexError = tryRunSync(() => {
+  const data = JSON.parse('invalid json')
+  return data.values.reduce((sum, val) => sum + val, 0)
+})
+console.log(complexError) // null
+
+// Working with different return types
+const numberResult = tryRunSync(() => 42)
+const stringResult = tryRunSync(() => 'hello')
+const booleanResult = tryRunSync(() => true)
+const objectResult = tryRunSync(() => ({ id: 1, name: 'test' }))
+```
+
+#### Type parameters
+
+| Name |
+| :--- |
+| `T`  |
+
+#### Parameters
+
+| Name | Type      | Description                                 |
+| :--- | :-------- | :------------------------------------------ |
+| `fn` | () => `T` | The synchronous function to execute safely. |
+
+#### Returns
+
+`T` \| `null`
+
+The result of the function or null if an error occurs.
+
+#### Defined in
+
+[packages/eskit/src/tryRunSync.ts](https://github.com/gvray/toolkit/blob/main/packages/eskit/src/tryRunSync.ts)
 
 ---
 

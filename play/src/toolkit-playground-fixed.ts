@@ -212,6 +212,79 @@ class DemoManager {
         logger.log(`数组展平: ${JSON.stringify(flattenedArr)}`, 'success')
         break
       }
+
+      case 'tryRun': {
+        // 演示同步函数成功的情况
+        eskit
+          .tryRun(() => JSON.parse('{"name": "test"}'))
+          .then((syncResult) => {
+            result.innerHTML = `同步成功: ${JSON.stringify(syncResult)}<br>`
+            logger.log(`tryRun 同步成功: ${JSON.stringify(syncResult)}`, 'success')
+
+            // 演示同步函数失败的情况
+            return eskit.tryRun(() => JSON.parse('invalid json'))
+          })
+          .then((syncError) => {
+            result.innerHTML += `同步失败: ${syncError}<br>`
+            logger.log(`tryRun 同步失败: ${syncError}`, 'info')
+
+            // 演示异步函数成功的情况
+            return eskit.tryRun(async () => {
+              await new Promise((resolve) => setTimeout(resolve, 100))
+              return { async: 'success', data: 42 }
+            })
+          })
+          .then((asyncResult) => {
+            result.innerHTML += `异步成功: ${JSON.stringify(asyncResult)}<br>`
+            logger.log(`tryRun 异步成功: ${JSON.stringify(asyncResult)}`, 'success')
+
+            // 演示异步函数失败的情况
+            return eskit.tryRun(async () => {
+              await new Promise((resolve) => setTimeout(resolve, 50))
+              throw new Error('Async error')
+            })
+          })
+          .then((asyncError) => {
+            result.innerHTML += `异步失败: ${asyncError}`
+            logger.log(`tryRun 异步失败: ${asyncError}`, 'info')
+          })
+          .catch((error) => {
+            result.innerHTML = `演示出错: ${error.message}`
+            logger.log(`tryRun 演示出错: ${error.message}`, 'error')
+          })
+        break
+      }
+
+      case 'tryRunSync': {
+        // 演示成功情况
+        const successResult = eskit.tryRunSync(() => {
+          return JSON.parse(`{"data": "sync success", "timestamp": ${Date.now()}}`)
+        })
+
+        result.innerHTML = `同步成功: ${JSON.stringify(successResult)}<br>`
+        logger.log(`tryRunSync 同步成功: ${JSON.stringify(successResult)}`, 'success')
+
+        // 演示错误情况
+        const errorResult = eskit.tryRunSync(() => {
+          return JSON.parse('invalid json')
+        })
+
+        result.innerHTML += `同步失败: ${errorResult}<br>`
+        logger.log(`tryRunSync 同步失败: ${errorResult}`, 'info')
+
+        // 演示复杂操作
+        const complexResult = eskit.tryRunSync(() => {
+          const data = JSON.parse('{"values": [1, 2, 3, 4, 5]}')
+          return data.values
+            .filter((n: number) => n % 2 === 0)
+            .map((n: number) => n * 2)
+            .reduce((sum: number, n: number) => sum + n, 0)
+        })
+
+        result.innerHTML += `复杂操作: ${complexResult}`
+        logger.log(`tryRunSync 复杂操作: ${complexResult}`, 'success')
+        break
+      }
     }
   }
 

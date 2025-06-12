@@ -44,6 +44,8 @@ export { default as curry } from './curry'
 export { default as memoize } from './memoize'
 export { default as noop } from './noop'
 export { default as constantize } from './constantize'
+export { default as tryRun } from './tryRun'
+export { default as tryRunSync } from './tryRunSync'
 
 // Performance utilities / 性能工具
 export { default as debounce } from './debounced'

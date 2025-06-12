@@ -1,9 +1,9 @@
 export function createEskitDemos(): string {
   return `
     <div class="demo-card">
-      <h3>🔧 数组分块 (chunk)</h3>
-      <p>将数组分割成指定大小的块</p>
-      <button class="btn btn-primary" data-demo="chunk">运行演示</button>
+      <h3>🔍 数组包含 (contains)</h3>
+      <p>检查数组是否包含指定元素</p>
+      <button class="btn btn-primary" data-demo="contains">运行演示</button>
       <div class="result">点击按钮查看结果</div>
     </div>
 
@@ -29,9 +29,23 @@ export function createEskitDemos(): string {
     </div>
 
     <div class="demo-card">
-      <h3>🔄 数组去重 (unique)</h3>
-      <p>移除数组中的重复元素</p>
-      <button class="btn btn-primary" data-demo="unique">运行演示</button>
+      <h3>📐 数组展平 (flatten)</h3>
+      <p>将嵌套数组展平为一维数组</p>
+      <button class="btn btn-primary" data-demo="flatten">运行演示</button>
+      <div class="result">点击按钮查看结果</div>
+    </div>
+
+    <div class="demo-card">
+      <h3>🛡️ 安全执行 (tryRun)</h3>
+      <p>安全执行函数，捕获错误并返回 null</p>
+      <button class="btn btn-primary" data-demo="tryRun">运行演示</button>
+      <div class="result">点击按钮查看结果</div>
+    </div>
+
+    <div class="demo-card">
+      <h3>⚡ 安全同步执行 (tryRunSync)</h3>
+      <p>安全地执行同步函数，捕获错误并返回 null</p>
+      <button class="btn btn-primary" data-demo="tryRunSync">运行演示</button>
       <div class="result">点击按钮查看结果</div>
     </div>
   `
