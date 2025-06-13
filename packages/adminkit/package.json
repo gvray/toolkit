@@ -24,7 +24,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "docs": "typedoc",
-    "doc": "pnpm run doc:gen && pnpm -C ../../ append-api ./packages/adminkit docs",
+    "doc": "pnpm run docs && pnpm -C ../../ append-api ./packages/adminkit docs",
     "pub": "echo 'Use root-level changeset publish to release packages'"
   },
   "keywords": [

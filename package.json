@@ -8,6 +8,7 @@
     "test:coverage": "pnpm -r --workspace-concurrency=1 run test:coverage",
     "docs": "pnpm -r run docs",
     "doc": "pnpm -r run doc",
+    "append-api": "node scripts/append-api-to-readme.ts",
     "eslint": "eslint --ext .js,.ts --fix ./packages/**/src",
     "dev": "pnpm -r run dev",
     "dev:play": "pnpm -F play dev",

@@ -25,7 +25,7 @@
     "test:coverage": "jest --coverage",
     "md": "node ./scripts/jsdoc2md.js",
     "docs": "typedoc",
-    "doc": "pnpm run doc:gen && pnpm -C ../../ append-api ./packages/eskit docs",
+    "doc": "pnpm run docs && pnpm -C ../../ append-api ./packages/eskit docs",
     "pub": "echo 'Use root-level changeset publish to release packages'"
   },
   "keywords": [
