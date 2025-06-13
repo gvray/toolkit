@@ -16,7 +16,9 @@
     "build:esm": "tsc -p tsconfig.json --module esnext --outDir esm",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "docs": "typedoc --out docs src/index.ts"
+    "docs": "typedoc",
+    "doc": "pnpm run docs && pnpm -C ../../ append-api ./packages/datekit docs",
+    "pub": "echo 'Use root-level changeset publish to release packages'"
   },
   "keywords": [
     "validation",
