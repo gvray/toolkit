@@ -17,7 +17,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "docs": "typedoc",
-    "doc": "pnpm run docs && pnpm -C ../../ append-api ./packages/datekit docs",
+    "doc": "pnpm run docs && pnpm -C ../../ append-api ./packages/validationkit docs",
     "pub": "echo 'Use root-level changeset publish to release packages'"
   },
   "keywords": [
@@ -33,11 +33,5 @@
     "name": "GavinRay",
     "email": "gavinraydev@gmail.com"
   },
-  "license": "MIT",
-  "devDependencies": {
-    "@types/jest": "^26.0.23",
-    "jest": "^27.0.4",
-    "ts-jest": "^27.0.3",
-    "typescript": "^5.8.3"
-  }
+  "license": "MIT"
 }

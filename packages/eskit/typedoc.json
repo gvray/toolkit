@@ -1,11 +1,9 @@
 {
   "entryPoints": ["src/index.ts"],
-  "out": "docs",
-  "plugin": ["typedoc-plugin-markdown"],
-  "theme": "markdown",
-  "excludePrivate": true,
-  "excludeProtected": true,
-  "excludeExternals": true,
+  "exclude": ["**/*.test.ts"],
+  "out": "./docs", // 输出为 Markdown 文件夹
+  "readme": "none", // 不自动插入 README 内容
   "includeVersion": true,
-  "hideGenerator": true
+  "disableSources": false,
+  "plugin": ["typedoc-plugin-markdown"]
 }

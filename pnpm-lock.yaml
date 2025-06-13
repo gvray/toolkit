@@ -132,26 +132,7 @@ importers:
         specifier: workspace:*
         version: link:../eskit
 
-  packages/datekit:
-    devDependencies:
-      '@types/jest':
-        specifier: ^26.0.23
-        version: 26.0.24
-      jest:
-        specifier: ^27.0.4
-        version: 27.5.1(ts-node@10.9.2)
-      ts-jest:
-        specifier: ^27.0.3
-        version: 27.1.5(@babel/core@7.27.1)(@types/jest@26.0.24)(babel-jest@27.5.1)(jest@27.5.1)(typescript@5.8.3)
-      ts-node:
-        specifier: ^10.0.0
-        version: 10.9.2(@types/node@15.14.9)(typescript@5.8.3)
-      typedoc:
-        specifier: ^0.28.4
-        version: 0.28.4(typescript@5.8.3)
-      typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
+  packages/datekit: {}
 
   packages/domkit:
     dependencies:
@@ -161,20 +142,7 @@ importers:
 
   packages/eskit: {}
 
-  packages/mathkit:
-    devDependencies:
-      '@types/jest':
-        specifier: ^26.0.23
-        version: 26.0.24
-      jest:
-        specifier: ^27.0.4
-        version: 27.5.1(ts-node@10.9.2)
-      ts-jest:
-        specifier: ^27.0.3
-        version: 27.1.5(@babel/core@7.27.1)(@types/jest@26.0.24)(babel-jest@27.5.1)(jest@27.5.1)(typescript@5.8.3)
-      typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
+  packages/mathkit: {}
 
   packages/pathkit:
     dependencies:
@@ -182,20 +150,7 @@ importers:
         specifier: workspace:*
         version: link:../eskit
 
-  packages/validationkit:
-    devDependencies:
-      '@types/jest':
-        specifier: ^26.0.23
-        version: 26.0.24
-      jest:
-        specifier: ^27.0.4
-        version: 27.5.1(ts-node@10.9.2)
-      ts-jest:
-        specifier: ^27.0.3
-        version: 27.1.5(@babel/core@7.27.1)(@types/jest@26.0.24)(babel-jest@27.5.1)(jest@27.5.1)(typescript@5.8.3)
-      typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
+  packages/validationkit: {}
 
   play:
     dependencies:

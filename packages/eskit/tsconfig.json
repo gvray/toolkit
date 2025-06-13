@@ -3,16 +3,6 @@
   "compilerOptions": {
     "outDir": "lib"
   },
-  "include": ["src"],
+  "include": ["src"]
   // "exclude": ["**/__test__/**"]
-  "typedocOptions": {
-    "entryPoints": ["src/index.ts"],
-    "includes": ["src/*.ts"],
-    "exclude": ["**/*.test.ts"],
-    "out": "docs",
-    "readme": "none",
-    "includeVersion": true,
-    "disableSources": false,
-    "plugin": ["typedoc-plugin-markdown"]
-  }
 }
