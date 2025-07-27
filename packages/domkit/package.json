@@ -1,6 +1,6 @@
 {
   "name": "@gvray/domkit",
-  "version": "1.0.0-Beta",
+  "version": "1.0.1",
   "description": "A rich and colorful toolkit about DOM.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -51,5 +51,8 @@
   },
   "dependencies": {
     "@gvray/eskit": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

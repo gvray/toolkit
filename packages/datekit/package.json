@@ -1,6 +1,6 @@
 {
   "name": "@gvray/datekit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Professional date and time utilities for JavaScript/TypeScript applications / 专业的JavaScript/TypeScript日期时间工具库",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

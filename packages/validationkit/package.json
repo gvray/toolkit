@@ -1,6 +1,6 @@
 {
   "name": "@gvray/validationkit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Professional data validation utilities for JavaScript/TypeScript applications / 专业的JavaScript/TypeScript数据验证工具库",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -33,5 +33,8 @@
     "name": "GavinRay",
     "email": "gavinraydev@gmail.com"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }

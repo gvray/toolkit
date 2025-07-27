@@ -15,11 +15,11 @@ pnpm add @gvray/eskit
 
 ## API Reference
 
-**@gvray/eskit v1.0.0-Beta**
+**@gvray/eskit v1.0.1**
 
 ***
 
-# @gvray/eskit v1.0.0-Beta
+# @gvray/eskit v1.0.1
 
 ## Interfaces
 

@@ -15,11 +15,11 @@ pnpm add @gvray/validationkit
 
 ## API Reference
 
-**@gvray/validationkit v1.0.0**
+**@gvray/validationkit v1.0.1**
 
 ***
 
-# @gvray/validationkit v1.0.0
+# @gvray/validationkit v1.0.1
 
 ## Classes
 

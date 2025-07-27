@@ -15,11 +15,11 @@ pnpm add @gvray/datekit
 
 ## API Reference
 
-**@gvray/datekit v1.0.0**
+**@gvray/datekit v1.0.1**
 
 ***
 
-# @gvray/datekit v1.0.0
+# @gvray/datekit v1.0.1
 
 ## Interfaces
 

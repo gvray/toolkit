@@ -15,11 +15,11 @@ pnpm add @gvray/mathkit
 
 ## API Reference
 
-**@gvray/mathkit v1.0.0**
+**@gvray/mathkit v1.0.1**
 
 ***
 
-# @gvray/mathkit v1.0.0
+# @gvray/mathkit v1.0.1
 
 ## Functions
 
