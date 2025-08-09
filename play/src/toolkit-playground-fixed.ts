@@ -344,8 +344,13 @@ class DemoManager {
       case 'parse': {
         const dateStr = '2024-12-08 15:30:00'
         const parsed = datekit.parse(dateStr, 'YYYY-MM-DD HH:mm:ss')
-        result.innerHTML = `解析日期: ${dateStr} → ${parsed.toLocaleString()}`
-        logger.log(`解析日期字符串: ${dateStr}`, 'success')
+        if (parsed) {
+          result.innerHTML = `解析日期: ${dateStr} → ${parsed.toLocaleString()}`
+          logger.log(`解析日期字符串: ${dateStr}`, 'success')
+        } else {
+          result.innerHTML = `解析日期失败: ${dateStr}`
+          logger.log(`解析日期失败: ${dateStr}`, 'error')
+        }
         break
       }
 
@@ -368,7 +373,8 @@ class DemoManager {
 
     switch (demo) {
       case 'email': {
-        const isValid = validationkit.email.isValid(value)
+        const validationResult = validationkit.email(value)
+        const { isValid } = validationResult
         result.innerHTML = `"${value}" ${isValid ? '是' : '不是'} 有效邮箱`
         result.className = `result ${isValid ? 'success' : 'error'}`
         logger.log(`邮箱验证: "${value}" → ${isValid}`, isValid ? 'success' : 'error')
@@ -376,7 +382,8 @@ class DemoManager {
       }
 
       case 'phone': {
-        const isValidPhone = validationkit.phone.isValid(value)
+        const validationResult = validationkit.phone(value)
+        const isValidPhone = validationResult.isValid
         result.innerHTML = `"${value}" ${isValidPhone ? '是' : '不是'} 有效手机号`
         result.className = `result ${isValidPhone ? 'success' : 'error'}`
         logger.log(`手机号验证: "${value}" → ${isValidPhone}`, isValidPhone ? 'success' : 'error')
@@ -384,7 +391,8 @@ class DemoManager {
       }
 
       case 'required': {
-        const isRequired = validationkit.required.isValid(value)
+        const validationResult = validationkit.required(value)
+        const isRequired = validationResult.isValid
         result.innerHTML = `"${value}" ${isRequired ? '非空' : '为空'}`
         result.className = `result ${isRequired ? 'success' : 'error'}`
         logger.log(`必填验证: "${value}" → ${isRequired}`, isRequired ? 'success' : 'error')
@@ -416,7 +424,7 @@ class DemoManager {
       }
 
       case 'isScrollEnd': {
-        const isAtEnd = domkit.isScrollEnd(window)
+        const isAtEnd = domkit.isScrollEnd(document.documentElement)
         result.innerHTML = `是否滚动到底部: ${isAtEnd}`
         logger.log(`滚动到底部检测: ${isAtEnd}`, 'success')
         break
@@ -446,7 +454,16 @@ class DemoManager {
 
       case 'downloadText': {
         const content = '这是下载的文本内容'
-        adminkit.downloadText(content, 'test.txt')
+        // 使用原生的下载方法
+        const blob = new Blob([content], { type: 'text/plain' })
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = 'test.txt'
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+        URL.revokeObjectURL(url)
         result.innerHTML = '已触发文件下载'
         logger.log('文件下载已开始', 'success')
         break

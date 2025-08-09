@@ -61,6 +61,7 @@ export { default as lowerFirst } from './lowerFirst'
 // Data structure utilities / 数据结构工具
 export { default as treeToList } from './treeToList'
 export { default as listToTree } from './listToTree'
+export type { ListToTreeOptions, TreeToListOptions } from './types'
 
 // Comparison utilities / 比较工具
 export { default as isEqual } from './isEqual'
