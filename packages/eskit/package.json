@@ -1,6 +1,6 @@
 {
   "name": "@gvray/eskit",
-  "version": "1.0.2",
+  "version": "1.1.1",
   "description": "A rich and colorful toolkit about typescript and javascript.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

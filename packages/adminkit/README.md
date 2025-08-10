@@ -15,11 +15,11 @@ pnpm add @gvray/adminkit
 
 ## API Reference
 
-**@gvray/adminkit v1.0.1**
+**@gvray/adminkit v1.0.3**
 
 ***
 
-# @gvray/adminkit v1.0.1
+# @gvray/adminkit v1.0.3
 
 复制相关功能模块
 

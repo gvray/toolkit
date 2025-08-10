@@ -1,6 +1,6 @@
 {
   "name": "@gvray/adminkit",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "A rich and colorful toolkit about Path.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

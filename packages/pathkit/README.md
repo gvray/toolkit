@@ -15,11 +15,11 @@ pnpm add @gvray/pathkit
 
 ## API Reference
 
-**@gvray/pathkit v1.0.1**
+**@gvray/pathkit v1.0.3**
 
 ***
 
-# @gvray/pathkit v1.0.1
+# @gvray/pathkit v1.0.3
 
 ## Interfaces
 

@@ -15,16 +15,19 @@ pnpm add @gvray/eskit
 
 ## API Reference
 
-**@gvray/eskit v1.0.1**
+**@gvray/eskit v1.1.0**
 
 ***
 
-# @gvray/eskit v1.0.1
+# @gvray/eskit v1.1.0
 
 ## Interfaces
 
 - [DebouncedFunction](interfaces/DebouncedFunction.md)
+- [ListToTreeOptions](interfaces/ListToTreeOptions.md)
+- [MapTreeOptions](interfaces/MapTreeOptions.md)
 - [ThrottleOptions](interfaces/ThrottleOptions.md)
+- [TreeToListOptions](interfaces/TreeToListOptions.md)
 
 ## Variables
 
@@ -76,6 +79,7 @@ pnpm add @gvray/eskit
 - [isType](docs/functions/isType.md)
 - [listToTree](docs/functions/listToTree.md)
 - [lowerFirst](docs/functions/lowerFirst.md)
+- [mapTree](docs/functions/mapTree.md)
 - [memoize](docs/functions/memoize.md)
 - [mixin](docs/functions/mixin.md)
 - [noop](docs/functions/noop.md)

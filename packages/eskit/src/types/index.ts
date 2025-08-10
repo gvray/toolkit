@@ -21,3 +21,10 @@ export interface TreeToListOptions<T = any> {
   /** Function to transform each node before processing. Default: (node) => node */
   transformNode?: (node: T) => T
 }
+
+export interface MapTreeOptions<T = any> {
+  /** Key for children property / 子节点属性名 */
+  childrenKey?: string
+  /** Whether to keep empty children arrays / 是否保留空的子节点数组 */
+  keepEmptyChildren?: boolean
+}
