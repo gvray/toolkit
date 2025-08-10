@@ -1,5 +1,11 @@
 # @gvray/eskit
 
+## 1.2.0
+
+### Minor Changes
+
+- Add walkTree
+
 ## 1.1.1
 
 ### Patch Changes

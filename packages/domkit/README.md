@@ -15,11 +15,11 @@ pnpm add @gvray/domkit
 
 ## API Reference
 
-**@gvray/domkit v1.0.3**
+**@gvray/domkit v1.0.5**
 
 ***
 
-# @gvray/domkit v1.0.3
+# @gvray/domkit v1.0.5
 
 ## Variables
 

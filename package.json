@@ -15,7 +15,7 @@
     "version-packages": "changeset version",
     "version-packages:dry-run": "changeset version --dry-run",
     "prepublishOnly": "pnpm run build && pnpm run test && pnpm run eslint && pnpm run doc",
-    "release": "changeset publish"
+    "release": "pnpm run prepublishOnly && changeset publish"
   },
   "husky": {
     "hooks": {

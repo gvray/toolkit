@@ -15,11 +15,11 @@ pnpm add @gvray/eskit
 
 ## API Reference
 
-**@gvray/eskit v1.1.0**
+**@gvray/eskit v1.2.0**
 
 ***
 
-# @gvray/eskit v1.1.0
+# @gvray/eskit v1.2.0
 
 ## Interfaces
 
@@ -28,6 +28,7 @@ pnpm add @gvray/eskit
 - [MapTreeOptions](interfaces/MapTreeOptions.md)
 - [ThrottleOptions](interfaces/ThrottleOptions.md)
 - [TreeToListOptions](interfaces/TreeToListOptions.md)
+- [WalkTreeOptions](interfaces/WalkTreeOptions.md)
 
 ## Variables
 
@@ -91,5 +92,6 @@ pnpm add @gvray/eskit
 - [tryRun](docs/functions/tryRun.md)
 - [tryRunSync](docs/functions/tryRunSync.md)
 - [upperFirst](docs/functions/upperFirst.md)
+- [walkTree](docs/functions/walkTree.md)
 
 <!-- AUTO-API-END -->

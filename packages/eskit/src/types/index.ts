@@ -28,3 +28,12 @@ export interface MapTreeOptions<T = any> {
   /** Whether to keep empty children arrays / 是否保留空的子节点数组 */
   keepEmptyChildren?: boolean
 }
+
+export interface WalkTreeOptions<T = any> {
+  /** Key for children property / 子节点属性名 */
+  childrenKey?: string
+  /** Whether to traverse in depth-first order / 是否深度优先遍历 */
+  depthFirst?: boolean
+  /** Whether to stop traversal when visitor returns false / 访问者返回false时是否停止遍历 */
+  stopOnFalse?: boolean
+}
