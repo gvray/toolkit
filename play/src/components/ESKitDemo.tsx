@@ -9,7 +9,7 @@ const ESKitDemo: React.FC = () => {
       name: 'getType',
       description: '获取值的类型',
       execute: ({ value }) => eskit.getType(value),
-      paramSchema: [{ name: 'value', type: 'string', description: '要检查的值', defaultValue: '{"a":1}' }]
+      paramSchema: [{ name: 'value', type: 'object', description: '要检查的值', defaultValue: { a: 1 } }]
     },
     {
       name: 'isArray',
@@ -156,10 +156,12 @@ const ESKitDemo: React.FC = () => {
         // 将字符串转换为函数
         const actualFn = new Function(`return ${fn}`)()
         const debounced = eskit.debounce(actualFn, delay)
-        return debounced
+        // 执行防抖函数并返回结果
+        const result = debounced()
+        return { debouncedFunction: '防抖函数已创建', result }
       },
       paramSchema: [
-        { name: 'fn', type: 'string', description: '要防抖的函数', defaultValue: '() => console.log("debounced")' },
+        { name: 'fn', type: 'string', description: '要防抖的函数', defaultValue: '() => "debounced executed"' },
         { name: 'delay', type: 'number', description: '延迟时间(ms)', defaultValue: 300 }
       ]
     },
@@ -170,10 +172,12 @@ const ESKitDemo: React.FC = () => {
         // 将字符串转换为函数
         const actualFn = new Function(`return ${fn}`)()
         const throttled = eskit.throttle(actualFn, delay)
-        return throttled
+        // 执行节流函数并返回结果
+        const result = throttled()
+        return { throttledFunction: '节流函数已创建', result }
       },
       paramSchema: [
-        { name: 'fn', type: 'string', description: '要节流的函数', defaultValue: '() => console.log("throttled")' },
+        { name: 'fn', type: 'string', description: '要节流的函数', defaultValue: '() => "throttled executed"' },
         { name: 'delay', type: 'number', description: '延迟时间(ms)', defaultValue: 300 }
       ]
     },

@@ -57,8 +57,8 @@ const ValidationKitDemo: React.FC = () => {
       execute: ({ value, min, max }) => validationkit.isLength(value, min, max),
       paramSchema: [
         { name: 'value', type: 'string', description: '要验证的字符串', defaultValue: 'hello' },
-        { name: 'min', type: 'number', description: '最小长度', defaultValue: '3' },
-        { name: 'max', type: 'number', description: '最大长度', defaultValue: '10' }
+        { name: 'min', type: 'number', description: '最小长度', defaultValue: 3 },
+        { name: 'max', type: 'number', description: '最大长度', defaultValue: 10 }
       ]
     },
 
@@ -67,34 +67,34 @@ const ValidationKitDemo: React.FC = () => {
       name: 'isNumber',
       description: '验证是否为数字',
       execute: ({ value }) => validationkit.isNumber(value),
-      paramSchema: [{ name: 'value', type: 'string', description: '要验证的值', defaultValue: '123' }]
+      paramSchema: [{ name: 'value', type: 'number', description: '要验证的值', defaultValue: 123 }]
     },
     {
       name: 'isInteger',
       description: '验证是否为整数',
       execute: ({ value }) => validationkit.isInteger(value),
-      paramSchema: [{ name: 'value', type: 'string', description: '要验证的值', defaultValue: '123' }]
+      paramSchema: [{ name: 'value', type: 'number', description: '要验证的值', defaultValue: 123 }]
     },
     {
       name: 'isPositive',
       description: '验证是否为正数',
       execute: ({ value }) => validationkit.isPositive(value),
-      paramSchema: [{ name: 'value', type: 'string', description: '要验证的值', defaultValue: '123' }]
+      paramSchema: [{ name: 'value', type: 'number', description: '要验证的值', defaultValue: 123 }]
     },
     {
       name: 'isNegative',
       description: '验证是否为负数',
       execute: ({ value }) => validationkit.isNegative(value),
-      paramSchema: [{ name: 'value', type: 'string', description: '要验证的值', defaultValue: '-123' }]
+      paramSchema: [{ name: 'value', type: 'number', description: '要验证的值', defaultValue: -123 }]
     },
     {
       name: 'isRange',
       description: '验证数值是否在指定范围内',
       execute: ({ value, min, max }) => validationkit.isRange(value, min, max),
       paramSchema: [
-        { name: 'value', type: 'string', description: '要验证的值', defaultValue: '50' },
-        { name: 'min', type: 'number', description: '最小值', defaultValue: '0' },
-        { name: 'max', type: 'number', description: '最大值', defaultValue: '100' }
+        { name: 'value', type: 'number', description: '要验证的值', defaultValue: 50 },
+        { name: 'min', type: 'number', description: '最小值', defaultValue: 0 },
+        { name: 'max', type: 'number', description: '最大值', defaultValue: 100 }
       ]
     },
 

@@ -252,10 +252,10 @@ const DOMKitDemo: React.FC = () => {
         return `已滚动到位置: x=${x}, y=${y}`
       },
       paramSchema: [
-        { name: 'x', type: 'number', description: 'X坐标', defaultValue: '0' },
-        { name: 'y', type: 'number', description: 'Y坐标', defaultValue: '100' },
+        { name: 'x', type: 'number', description: 'X坐标', defaultValue: 0 },
+        { name: 'y', type: 'number', description: 'Y坐标', defaultValue: 100 },
         { name: 'element', type: 'string', description: '元素选择器(可选)', defaultValue: '' },
-        { name: 'smooth', type: 'boolean', description: '是否平滑滚动', defaultValue: 'true' }
+        { name: 'smooth', type: 'boolean', description: '是否平滑滚动', defaultValue: true }
       ]
     },
 
@@ -314,7 +314,7 @@ const DOMKitDemo: React.FC = () => {
         domkit.cancelAnimationFrame(id)
         return `已取消动画帧: ${id}`
       },
-      paramSchema: [{ name: 'id', type: 'number', description: '动画帧ID', defaultValue: '1' }]
+      paramSchema: [{ name: 'id', type: 'number', description: '动画帧ID', defaultValue: 1 }]
     },
 
     // 工具函数
@@ -322,7 +322,7 @@ const DOMKitDemo: React.FC = () => {
       name: 'rem',
       description: '将px转换为rem',
       execute: ({ px }) => domkit.rem(px),
-      paramSchema: [{ name: 'px', type: 'number', description: '像素值', defaultValue: '16' }]
+      paramSchema: [{ name: 'px', type: 'number', description: '像素值', defaultValue: 16 }]
     },
     {
       name: 'getTextPixelWidth',

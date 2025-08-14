@@ -50,7 +50,7 @@ const DateKitDemo: React.FC = () => {
       execute: ({ date, amount, unit }) => datekit.add(date, amount, unit),
       paramSchema: [
         { name: 'date', type: 'string', description: '基准日期', defaultValue: '2024-01-15' },
-        { name: 'amount', type: 'number', description: '数量', defaultValue: '7' },
+        { name: 'amount', type: 'number', description: '数量', defaultValue: 7 },
         { name: 'unit', type: 'string', description: '时间单位', defaultValue: 'days' }
       ]
     },
@@ -60,7 +60,7 @@ const DateKitDemo: React.FC = () => {
       execute: ({ date, amount, unit }) => datekit.subtract(date, amount, unit),
       paramSchema: [
         { name: 'date', type: 'string', description: '基准日期', defaultValue: '2024-01-15' },
-        { name: 'amount', type: 'number', description: '数量', defaultValue: '3' },
+        { name: 'amount', type: 'number', description: '数量', defaultValue: 3 },
         { name: 'unit', type: 'string', description: '时间单位', defaultValue: 'days' }
       ]
     },
@@ -124,7 +124,7 @@ const DateKitDemo: React.FC = () => {
       name: 'isLeapYear',
       description: '检查是否为闰年',
       execute: ({ year }) => datekit.isLeapYear(year),
-      paramSchema: [{ name: 'year', type: 'number', description: '年份', defaultValue: '2024' }]
+      paramSchema: [{ name: 'year', type: 'number', description: '年份', defaultValue: 2024 }]
     },
 
     // 时长
@@ -133,7 +133,7 @@ const DateKitDemo: React.FC = () => {
       description: '创建时长对象',
       execute: ({ amount, unit }) => datekit.duration(amount, unit),
       paramSchema: [
-        { name: 'amount', type: 'number', description: '数量', defaultValue: '7' },
+        { name: 'amount', type: 'number', description: '数量', defaultValue: 7 },
         { name: 'unit', type: 'string', description: '时间单位', defaultValue: 'days' }
       ]
     },

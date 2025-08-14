@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import CodeEditor from './CodeEditor'
-import { getDefaultParams } from '../utils'
 import { Listbox } from '@headlessui/react'
 
 interface FunctionDemoProps {
@@ -16,7 +15,7 @@ interface FunctionDemoProps {
       defaultValue?: any
     }>
   }>
-  totalFunctions?: number // 添加总方法数参数
+  totalFunctions?: number
 }
 
 const FunctionDemo: React.FC<FunctionDemoProps> = ({ title, functions, totalFunctions }) => {
@@ -24,6 +23,13 @@ const FunctionDemo: React.FC<FunctionDemoProps> = ({ title, functions, totalFunc
   const [params, setParams] = useState<Record<string, any>>({})
   const [result, setResult] = useState<any>(null)
   const [consoleLogs, setConsoleLogs] = useState<string[]>([])
+
+  // 当选择的函数改变时，自动更新参数为默认值
+  useEffect(() => {
+    const defaultParams = getDefaultParams()
+    setParams(defaultParams)
+    addConsoleLog(`切换到函数: ${selectedFunction.name}`)
+  }, [selectedFunction])
 
   const addConsoleLog = (message: string) => {
     setConsoleLogs((prev) => [...prev, `${new Date().toLocaleTimeString()}: ${message}`])
@@ -50,7 +56,8 @@ const FunctionDemo: React.FC<FunctionDemoProps> = ({ title, functions, totalFunc
   }
 
   const resetParams = () => {
-    setParams({})
+    const defaultParams = getDefaultParams()
+    setParams(defaultParams)
     addConsoleLog('参数已重置为默认值')
   }
 
@@ -60,23 +67,15 @@ const FunctionDemo: React.FC<FunctionDemoProps> = ({ title, functions, totalFunc
     const defaultParams: Record<string, any> = {}
     selectedFunction.paramSchema.forEach((param) => {
       if (param.defaultValue !== undefined) {
-        // 根据参数类型处理默认值
-        if (param.type === 'string') {
-          defaultParams[param.name] = param.defaultValue
-        } else if (param.type === 'number') {
-          defaultParams[param.name] = Number(param.defaultValue)
-        } else if (param.type === 'boolean') {
-          defaultParams[param.name] = Boolean(param.defaultValue)
-        } else {
-          // 对于object和array类型，保持原值
-          defaultParams[param.name] = param.defaultValue
-        }
+        // 直接使用默认值，不需要类型转换
+        defaultParams[param.name] = param.defaultValue
       }
     })
     return defaultParams
   }
 
   const getParamsJson = () => {
+    // 如果当前参数为空，使用默认参数
     const currentParams = Object.keys(params).length > 0 ? params : getDefaultParams()
     return JSON.stringify(currentParams, null, 2)
   }
