@@ -1,6 +1,6 @@
 import React from 'react'
-import FunctionDemo from './FunctionDemo'
 import * as eskit from '@gvray/eskit'
+import FunctionDemo from './FunctionDemo'
 
 const ESKitDemo: React.FC = () => {
   const functions = [
@@ -9,13 +9,13 @@ const ESKitDemo: React.FC = () => {
       name: 'getType',
       description: '获取值的类型',
       execute: ({ value }) => eskit.getType(value),
-      paramSchema: [{ name: 'value', type: 'string', description: '要检查的值', defaultValue: 'hello' }]
+      paramSchema: [{ name: 'value', type: 'string', description: '要检查的值', defaultValue: '{"a":1}' }]
     },
     {
       name: 'isArray',
       description: '检查是否为数组',
       execute: ({ value }) => eskit.isArray(value),
-      paramSchema: [{ name: 'value', type: 'string', description: '要检查的值', defaultValue: '[1,2,3]' }]
+      paramSchema: [{ name: 'value', type: 'array', description: '要检查的值', defaultValue: [1, 2, 3] }]
     },
     {
       name: 'isString',
@@ -27,17 +27,23 @@ const ESKitDemo: React.FC = () => {
       name: 'isNumber',
       description: '检查是否为数字',
       execute: ({ value }) => eskit.isNumber(value),
-      paramSchema: [{ name: 'value', type: 'string', description: '要检查的值', defaultValue: '123' }]
+      paramSchema: [{ name: 'value', type: 'number', description: '要检查的值', defaultValue: 123 }]
+    },
+    {
+      name: 'isBoolean',
+      description: '检查是否为布尔值',
+      execute: ({ value }) => eskit.isBoolean(value),
+      paramSchema: [{ name: 'value', type: 'boolean', description: '要检查的值', defaultValue: true }]
     },
     {
       name: 'isObject',
       description: '检查是否为对象',
       execute: ({ value }) => eskit.isObject(value),
-      paramSchema: [{ name: 'value', type: 'string', description: '要检查的值', defaultValue: '{"a":1}' }]
+      paramSchema: [{ name: 'value', type: 'object', description: '要检查的值', defaultValue: { a: 1, b: 2 } }]
     },
     {
       name: 'isEmpty',
-      description: '检查是否为空',
+      description: '检查是否为空值',
       execute: ({ value }) => eskit.isEmpty(value),
       paramSchema: [{ name: 'value', type: 'string', description: '要检查的值', defaultValue: '' }]
     },
@@ -73,8 +79,8 @@ const ESKitDemo: React.FC = () => {
       description: '检查数组是否包含指定元素',
       execute: ({ array, value }) => eskit.contains(array, value),
       paramSchema: [
-        { name: 'array', type: 'array', description: '要检查的数组', defaultValue: '[1,2,3,4,5]' },
-        { name: 'value', type: 'string', description: '要查找的值', defaultValue: '3' }
+        { name: 'array', type: 'array', description: '要检查的数组', defaultValue: [1, 2, 3, 4, 5] },
+        { name: 'value', type: 'number', description: '要查找的值', defaultValue: 3 }
       ]
     },
     {
@@ -82,8 +88,8 @@ const ESKitDemo: React.FC = () => {
       description: '获取两个数组的差集',
       execute: ({ array1, array2 }) => eskit.difference(array1, array2),
       paramSchema: [
-        { name: 'array1', type: 'array', description: '第一个数组', defaultValue: '[1,2,3,4]' },
-        { name: 'array2', type: 'array', description: '第二个数组', defaultValue: '[3,4,5,6]' }
+        { name: 'array1', type: 'array', description: '第一个数组', defaultValue: [1, 2, 3, 4] },
+        { name: 'array2', type: 'array', description: '第二个数组', defaultValue: [3, 4, 5, 6] }
       ]
     },
     {
@@ -91,7 +97,7 @@ const ESKitDemo: React.FC = () => {
       description: '扁平化数组',
       execute: ({ array }) => eskit.flatten(array),
       paramSchema: [
-        { name: 'array', type: 'array', description: '要扁平化的数组', defaultValue: '[1,[2,3],[4,[5,6]]]' }
+        { name: 'array', type: 'array', description: '要扁平化的数组', defaultValue: [1, [2, 3], [4, [5, 6]]] }
       ]
     },
 
@@ -199,7 +205,12 @@ const ESKitDemo: React.FC = () => {
     }
   ]
 
-  return <FunctionDemo title="ESKit - JavaScript/TypeScript 工具集" functions={functions} />
+  // 动态计算 ESKit 的实际方法数量
+  const totalFunctions = Object.keys(eskit).length
+
+  return (
+    <FunctionDemo title="ESKit - JavaScript/TypeScript 工具集" functions={functions} totalFunctions={totalFunctions} />
+  )
 }
 
 export default ESKitDemo

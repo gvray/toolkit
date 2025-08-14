@@ -145,7 +145,10 @@ const DateKitDemo: React.FC = () => {
     }
   ]
 
-  return <FunctionDemo title="DateKit - 日期时间工具集" functions={functions} />
+  // 动态计算 DateKit 的实际方法数量
+  const totalFunctions = Object.keys(datekit).length
+
+  return <FunctionDemo title="DateKit - 日期时间工具集" functions={functions} totalFunctions={totalFunctions} />
 }
 
 export default DateKitDemo

@@ -153,7 +153,10 @@ const PathKitDemo: React.FC = () => {
     }
   ]
 
-  return <FunctionDemo title="PathKit - 路径处理工具集" functions={functions} />
+  // 动态计算 PathKit 的实际方法数量
+  const totalFunctions = Object.keys(pathkit).length
+
+  return <FunctionDemo title="PathKit - 路径处理工具集" functions={functions} totalFunctions={totalFunctions} />
 }
 
 export default PathKitDemo

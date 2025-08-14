@@ -122,7 +122,10 @@ const AdminKitDemo: React.FC = () => {
     }
   ]
 
-  return <FunctionDemo title="AdminKit - 管理后台工具集" functions={functions} />
+  // 动态计算 AdminKit 的实际方法数量
+  const totalFunctions = Object.keys(adminkit).length
+
+  return <FunctionDemo title="AdminKit - 管理后台工具集" functions={functions} totalFunctions={totalFunctions} />
 }
 
 export default AdminKitDemo

@@ -335,7 +335,10 @@ const DOMKitDemo: React.FC = () => {
     }
   ]
 
-  return <FunctionDemo title="DOMKit - DOM操作工具集" functions={functions} />
+  // 动态计算 DOMKit 的实际方法数量
+  const totalFunctions = Object.keys(domkit).length
+
+  return <FunctionDemo title="DOMKit - DOM 操作工具集" functions={functions} totalFunctions={totalFunctions} />
 }
 
 export default DOMKitDemo

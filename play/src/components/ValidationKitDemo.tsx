@@ -103,22 +103,22 @@ const ValidationKitDemo: React.FC = () => {
       name: 'isArray',
       description: '验证是否为数组',
       execute: ({ value }) => validationkit.isArray(value),
-      paramSchema: [{ name: 'value', type: 'string', description: '要验证的值', defaultValue: '[1,2,3]' }]
+      paramSchema: [{ name: 'value', type: 'array', description: '要验证的值', defaultValue: [1, 2, 3] }]
     },
     {
       name: 'isNotEmptyArray',
       description: '验证数组是否非空',
       execute: ({ value }) => validationkit.isNotEmptyArray(value),
-      paramSchema: [{ name: 'value', type: 'string', description: '要验证的数组', defaultValue: '[1,2,3]' }]
+      paramSchema: [{ name: 'value', type: 'array', description: '要验证的数组', defaultValue: [1, 2, 3] }]
     },
     {
       name: 'isArrayLength',
       description: '验证数组长度',
       execute: ({ value, min, max }) => validationkit.isArrayLength(value, min, max),
       paramSchema: [
-        { name: 'value', type: 'string', description: '要验证的数组', defaultValue: '[1,2,3]' },
-        { name: 'min', type: 'number', description: '最小长度', defaultValue: '2' },
-        { name: 'max', type: 'number', description: '最大长度', defaultValue: '5' }
+        { name: 'value', type: 'array', description: '要验证的数组', defaultValue: [1, 2, 3] },
+        { name: 'min', type: 'number', description: '最小长度', defaultValue: 2 },
+        { name: 'max', type: 'number', description: '最大长度', defaultValue: 5 }
       ]
     },
 
@@ -127,15 +127,15 @@ const ValidationKitDemo: React.FC = () => {
       name: 'isObject',
       description: '验证是否为对象',
       execute: ({ value }) => validationkit.isObject(value),
-      paramSchema: [{ name: 'value', type: 'string', description: '要验证的值', defaultValue: '{"a":1}' }]
+      paramSchema: [{ name: 'value', type: 'object', description: '要验证的值', defaultValue: { a: 1 } }]
     },
     {
       name: 'hasKeys',
       description: '验证对象是否包含指定键',
       execute: ({ value, keys }) => validationkit.hasKeys(value, keys),
       paramSchema: [
-        { name: 'value', type: 'string', description: '要验证的对象', defaultValue: '{"name":"john","age":25}' },
-        { name: 'keys', type: 'array', description: '必需的键数组', defaultValue: '["name","age"]' }
+        { name: 'value', type: 'object', description: '要验证的对象', defaultValue: { name: 'john', age: 25 } },
+        { name: 'keys', type: 'array', description: '必需的键数组', defaultValue: ['name', 'age'] }
       ]
     },
 
@@ -181,12 +181,15 @@ const ValidationKitDemo: React.FC = () => {
       },
       paramSchema: [
         { name: 'value', type: 'string', description: '要验证的值', defaultValue: 'test@example.com' },
-        { name: 'rules', type: 'array', description: '验证规则数组', defaultValue: '["isEmail","isNotEmpty"]' }
+        { name: 'rules', type: 'array', description: '验证规则数组', defaultValue: ['isEmail', 'isNotEmpty'] }
       ]
     }
   ]
 
-  return <FunctionDemo title="ValidationKit - 数据验证工具集" functions={functions} />
+  // 动态计算 ValidationKit 的实际方法数量
+  const totalFunctions = Object.keys(validationkit).length
+
+  return <FunctionDemo title="ValidationKit - 数据验证工具集" functions={functions} totalFunctions={totalFunctions} />
 }
 
 export default ValidationKitDemo
