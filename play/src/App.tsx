@@ -8,6 +8,7 @@ import ValidationKitDemo from './components/ValidationKitDemo'
 import DOMKitDemo from './components/DOMKitDemo'
 import AdminKitDemo from './components/AdminKitDemo'
 import PathKitDemo from './components/PathKitDemo'
+import MarkdownApiDocs from './components/MarkdownApiDocs'
 
 const tabs = [
   { name: 'ESKit', component: ESKitDemo },
@@ -16,7 +17,8 @@ const tabs = [
   { name: 'ValidationKit', component: ValidationKitDemo },
   { name: 'DOMKit', component: DOMKitDemo },
   { name: 'AdminKit', component: AdminKitDemo },
-  { name: 'PathKit', component: PathKitDemo }
+  { name: 'PathKit', component: PathKitDemo },
+  { name: 'API文档', component: MarkdownApiDocs }
 ]
 
 function App() {

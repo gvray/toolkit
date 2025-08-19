@@ -2,127 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  }
-
-  /* 主题切换动画遮罩 */
-  .theme-mask {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
-    pointer-events: none;
-    transition: clip-path 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* 全局过渡效果 - 但排除动画遮罩 */
-  *:not(.theme-mask) {
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-  }
-
-  /* 排除一些不需要过渡的元素 */
-  img, svg, video, canvas, audio, iframe, embed, object {
-    transition: none;
-  }
+/* 自定义样式 */
+.tab {
+  @apply px-4 py-2 text-sm font-medium border-b-2 transition-colors duration-300;
 }
 
-@layer components {
-  .btn {
-    @apply px-4 py-2 rounded-lg font-medium transition-all duration-300 ease-in-out;
-  }
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
 
-  .btn-primary {
-    @apply bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800;
-  }
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
 
-  .btn-secondary {
-    @apply bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800;
-  }
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
 
-  .input {
-    @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 transition-all duration-300 ease-in-out;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
 
-  .select {
-    @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 transition-all duration-300 ease-in-out shadow-sm;
-  }
+/* 深色模式滚动条 */
+.dark ::-webkit-scrollbar-track {
+  background: #374151;
+}
 
-  .select:hover {
-    @apply border-blue-400 dark:border-blue-300 shadow-md;
-  }
+.dark ::-webkit-scrollbar-thumb {
+  background: #6b7280;
+}
 
-  .select:focus {
-    @apply ring-2 ring-blue-500 dark:ring-blue-400 border-blue-500 dark:border-blue-400 shadow-lg;
-  }
-
-  .tab {
-    @apply px-4 py-2 text-sm font-medium border-b-2 transition-all duration-300 ease-in-out;
-  }
-
-  .tab-active {
-    @apply border-blue-500 dark:border-blue-400 text-blue-600 dark:text-blue-400;
-  }
-
-  .tab-inactive {
-    @apply border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600;
-  }
-
-  /* 自定义选择框样式 */
-  .select option {
-    @apply py-2 px-3 hover:bg-blue-50 dark:hover:bg-blue-900/20;
-  }
-
-  /* 选择框下拉箭头动画 */
-  .select:focus + div svg {
-    @apply transform rotate-180 transition-transform duration-300 ease-in-out;
-  }
-
-  /* 主题切换按钮动画 */
-  .theme-toggle-btn {
-    @apply transition-all duration-300 ease-in-out transform hover:scale-110 active:scale-95;
-  }
-
-  /* 卡片过渡效果 */
-  .card {
-    @apply transition-all duration-300 ease-in-out;
-  }
-
-  /* 代码编辑器过渡 */
-  .code-editor {
-    @apply transition-all duration-300 ease-in-out;
-  }
-
-  /* Clone 动画效果 */
-  .clone-animation {
-    animation: cloneExpand 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-
-  @keyframes cloneExpand {
-    from {
-      clip-path: circle(0px at var(--center-x) var(--center-y));
-    }
-    to {
-      clip-path: circle(var(--max-radius) at var(--center-x) var(--center-y));
-    }
-  }
-
-  .clone-shrink {
-    animation: cloneShrink 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-
-  @keyframes cloneShrink {
-    from {
-      clip-path: circle(var(--max-radius) at var(--center-x) var(--center-y));
-    }
-    to {
-      clip-path: circle(0px at var(--center-x) var(--center-y));
-    }
-  }
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
 }
