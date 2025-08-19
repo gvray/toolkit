@@ -15,47 +15,95 @@ pnpm add @gvray/validationkit
 
 ## API Reference
 
-**@gvray/validationkit v1.0.1**
+## Functions
 
-***
+### max()
 
-# @gvray/validationkit v1.0.1
+Maximum value validation / 最大值验证
 
-## Classes
+### maxLength()
 
-- [FormValidator](classes/FormValidator.md)
+Maximum length validation / 最大长度验证
+
+### min()
+
+Minimum value validation / 最小值验证
+
+### minLength()
+
+Minimum length validation / 最小长度验证
+
+### pattern()
+
+Pattern validation / 正则表达式验证
+
+### validateSchema()
+
+Validates an object against a schema. 根据模式验证对象。
+
+**Parameters:**
+- `data: Record\<string, any\>` - The data to validate / 要验证的数据
+- `schema: [Schema](../interfaces/Schema.md)` - The validation schema / 验证模式
+
+**Returns:**
+- [SchemaValidationResult](../interfaces/SchemaValidationResult.md) - Validation result / 验证结果
+
+**Example:**
+```typescript
+const userSchema = {
+  email: { validators: [required, email], required: true },
+  age: { validators: [min(18), max(120)] }
+}
+
+const result = validateSchema({ email: 'test@example.com', age: 25 }, userSchema)
+```
+
 
 ## Interfaces
 
-- [FormField](interfaces/FormField.md)
-- [FormState](interfaces/FormState.md)
-- [FormValidationOptions](interfaces/FormValidationOptions.md)
-- [Schema](interfaces/Schema.md)
-- [SchemaField](interfaces/SchemaField.md)
-- [SchemaValidationResult](interfaces/SchemaValidationResult.md)
-- [ValidationResult](interfaces/ValidationResult.md)
+### 
 
-## Type Aliases
+### 
 
-- [Validator](type-aliases/Validator.md)
+### 
+
+### 
+
+### 
+
+### 
+
+### 
+
 
 ## Variables
 
-- [chineseIdCard](variables/chineseIdCard.md)
-- [chineseMobile](variables/chineseMobile.md)
-- [email](variables/email.md)
-- [isLetterOrDigit](variables/isLetterOrDigit.md)
-- [phone](variables/phone.md)
-- [required](variables/required.md)
-- [url](variables/url.md)
+### 
 
-## Functions
+Chinese ID card validation / 中国身份证验证
 
-- [max](docs/functions/max.md)
-- [maxLength](docs/functions/maxLength.md)
-- [min](docs/functions/min.md)
-- [minLength](docs/functions/minLength.md)
-- [pattern](docs/functions/pattern.md)
-- [validateSchema](docs/functions/validateSchema.md)
+### 
+
+Chinese mobile phone validation / 中国手机号验证
+
+### 
+
+Email validation / 邮箱验证
+
+### 
+
+Checks if a character is a letter or digit / 检查字符是否为字母或数字
+
+### 
+
+Phone number validation (supports multiple formats) / 手机号验证（支持多种格式）
+
+### 
+
+Required field validation / 必填字段验证
+
+### 
+
+URL validation / URL验证
 
 <!-- AUTO-API-END -->
