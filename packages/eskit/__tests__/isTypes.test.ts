@@ -1,24 +1,29 @@
 import {
   isArguments,
   isArrayBuffer,
-  isArrayLikeObject,
-  isArrayLike,
   isArray,
+  isArrayLike,
+  isArrayLikeObject,
   isBoolean,
   isDate,
   isDecimal,
   isEmpty,
   isError,
+  isFiniteNumber,
   isFunction,
+  isMap,
   isNil,
   isNumber,
   isObjectLike,
   isObject,
-  isPrototype,
+  isPlainObject,
   isRegExp,
+  isSet,
   isString,
+  isSymbol,
   isType
 } from '../src'
+
 describe('isTypes', () => {
   const arr = [0, 1, 3]
   const children = { 0: 1, 1: 1, 2: 2, length: 3 }
@@ -98,7 +103,16 @@ describe('isTypes', () => {
   })
   test('isNumber', () => {
     expect(isNumber(1)).toBeTruthy()
+    expect(isNumber(NaN)).toBeFalsy()
     expect(isNumber('1')).toBeFalsy()
+  })
+  test('isFiniteNumber', () => {
+    expect(isFiniteNumber(1)).toBeTruthy()
+    expect(isFiniteNumber(Infinity)).toBeFalsy()
+  })
+  test('isMap', () => {
+    expect(isMap(new Map())).toBeTruthy()
+    expect(isMap({})).toBeFalsy()
   })
   test('isObjectLike', () => {
     expect(isObjectLike({})).toBeTruthy()
@@ -111,14 +125,24 @@ describe('isTypes', () => {
     expect(isObject(arr)).toBeTruthy()
     expect(isObject(null)).toBeFalsy()
   })
-  test('isPrototype', () => {
-    expect(isPrototype(Reflect.getPrototypeOf({}))).toBeTruthy()
+  test('isPlainObject', () => {
+    expect(isPlainObject({})).toBeTruthy()
+    expect(isPlainObject(Object.create(null))).toBeTruthy()
+    expect(isPlainObject(new Date())).toBeFalsy()
   })
   test('isRegExp', () => {
     expect(isRegExp(/\d\D/)).toBeTruthy()
   })
+  test('isSet', () => {
+    expect(isSet(new Set())).toBeTruthy()
+    expect(isSet([])).toBeFalsy()
+  })
   test('isString', () => {
     expect(isString('')).toBeTruthy()
+  })
+  test('isSymbol', () => {
+    expect(isSymbol(Symbol('a'))).toBeTruthy()
+    expect(isSymbol('a')).toBeFalsy()
   })
   test('isType', () => {
     expect(isType('String', '')).toBeTruthy()

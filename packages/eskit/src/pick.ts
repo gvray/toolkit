@@ -1,4 +1,4 @@
-import each from './each'
+const normalizeKeys = <K extends PropertyKey>(keys: readonly K[] | K[]): readonly K[] => keys
 
 /**
  * Creates a new object with only the specified properties from the source object.
@@ -26,7 +26,7 @@ import each from './each'
  *   role: 'admin'
  * }
  *
- * const publicUser = pick(user, 'id', 'name', 'email')
+ * const publicUser = pick(user, ['id', 'name', 'email'])
  * // { id: 1, name: 'John', email: 'john@example.com' }
  *
  * // With different types / 不同类型
@@ -38,19 +38,22 @@ import each from './each'
  *   timeout: 5000
  * }
  *
- * const serverConfig = pick(config, 'host', 'port', 'timeout')
+ * const serverConfig = pick(config, ['host', 'port', 'timeout'])
  * // { host: 'localhost', port: 3000, timeout: 5000 }
  *
  * // Empty selection / 空选择
- * const empty = pick(user)
+ * const empty = pick(user, [])
  * // {}
  * ```
  *
  * @since 1.0.0
  */
-const pick = <T, K extends keyof T>(obj: T, ...keys: K[]): Pick<T, K> => {
+function pick<T, K extends keyof T>(obj: T, keys: readonly K[]): Pick<T, K>
+function pick<T, K extends keyof T>(obj: T, ...keys: K[]): Pick<T, K>
+function pick<T, K extends keyof T>(obj: T, ...restKeys: Array<readonly K[] | K>): Pick<T, K> {
+  const keys = Array.isArray(restKeys[0]) ? normalizeKeys(restKeys[0] as readonly K[]) : (restKeys as K[])
   const newObj = {} as Pick<T, K>
-  each(keys, (key) => {
+  keys.forEach((key: K) => {
     newObj[key] = obj[key]
   })
   return newObj

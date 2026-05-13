@@ -122,3 +122,5 @@ packages/**/**/esm
 **/docs
 
 lib
+
+DESIGN.md

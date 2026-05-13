@@ -17,6 +17,17 @@ pnpm add @gvray/eskit
 
 ## Functions
 
+### chunk()
+
+Splits an array into groups with a fixed maximum size. 按固定最大长度将数组切分为多个分组。
+
+**Parameters:**
+- `array: readonly T[]` - The source array / 源数组
+- `size: number` - The size of each chunk / 每组大小
+
+**Returns:**
+- T[][] - The chunked result / 分组后的结果
+
 ### clone()
 
 Creates a deep clone of an object using JSON serialization. 使用JSON序列化创建对象的深度克隆。
@@ -62,6 +73,16 @@ console.log(typeof clonedWithFunction.date) // 'string'
 ```
 
 **Since:** 1.0.0
+
+### compact()
+
+Removes all falsy values from an array. 移除数组中的所有假值。
+
+**Parameters:**
+- `array: readonly T[]` - The source array / 源数组
+
+**Returns:**
+- T[] - A new array without falsy values / 移除假值后的新数组
 
 ### compose()
 
@@ -372,6 +393,17 @@ difference([1, 2, 3], [4, 5, 6]) // [1, 2, 3]
 
 **Since:** 1.0.0
 
+### drop()
+
+Drops the first N items from an array. 丢弃数组前 N 个元素。
+
+**Parameters:**
+- `array: readonly T[]` - The source array / 源数组
+- `count: number` - The number of items to drop / 要丢弃的数量
+
+**Returns:**
+- T[] - A new array without the dropped items / 丢弃后的新数组
+
 ### each()
 
 Iterates over a collection and applies a function to each element. 遍历集合并对每个元素应用函数。 This function provides a unified interface for iterating over different types of collections including arrays, objects, Maps, Sets, and strings. The iteration can be stopped early by returning false from the callback. 此函数为遍历不同类型的集合提供统一接口，包括数组、对象、Map、Set和字符串。 可以通过从回调函数返回false来提前停止迭代。
@@ -501,36 +533,37 @@ console.log(booleanSettings) // { debug: true, verbose: false }
 
 **Since:** 1.0.0
 
-### flatten()
+### first()
 
-Flattens a nested array into a single-level array. 将嵌套数组展平为单级数组。 This function recursively flattens all nested arrays regardless of depth. It modifies the input array during processing, so pass a copy if you need to preserve the original array. 此函数递归展平所有嵌套数组，无论深度如何。 它在处理过程中会修改输入数组，如果需要保留原始数组，请传递副本。
+Returns the first item in an array, or a fallback when the array is empty. 返回数组中的第一个元素；若数组为空则返回兜底值。
 
 **Parameters:**
-- `array: (T \| T[])[]` - The array to flatten / 要展平的数组
+- `array: readonly T[]` - The source array / 源数组
+- `defaultValue?: D` - The fallback value / 兜底值
 
 **Returns:**
-- T[] - The flattened array / 展平后的数组
+- undefined \| T \| D - The first item or the fallback value / 第一个元素或兜底值
 
-**Example:**
-```typescript
-// Basic flattening / 基本展平
-const nested = [1, [2, 3], [4, [5, 6]]]
-flatten([...nested]) // [1, 2, 3, 4, 5, 6]
+### flatten()
 
-// Mixed types / 混合类型
-const mixed = ['a', ['b', 'c'], ['d', ['e', 'f']]]
-flatten([...mixed]) // ['a', 'b', 'c', 'd', 'e', 'f']
+Flattens nested array items up to the specified depth. 按指定深度展开数组中的嵌套元素。
 
-// Deep nesting / 深度嵌套
-const deep = [1, [2, [3, [4, [5]]]]]
-flatten([...deep]) // [1, 2, 3, 4, 5]
+**Parameters:**
+- `array: readonly T[]` - The source array / 源数组
+- `depth: number = 1` - The number of levels to flatten / 要展开的层级
 
-// Empty arrays / 空数组
-const withEmpty = [1, [], [2, []], 3]
-flatten([...withEmpty]) // [1, 2, 3]
-```
+**Returns:**
+- Flattened\<T\>[] - A new flattened array / 展开后的新数组
 
-**Since:** 1.0.0
+### flattenDeep()
+
+Recursively flattens a nested array into a single-level array. 递归地将嵌套数组完全展开为单层数组。
+
+**Parameters:**
+- `array: readonly T[]` - The source array / 源数组
+
+**Returns:**
+- DeepFlattened\<T\>[] - A fully flattened array / 完全展开后的数组
 
 ### getGlobal()
 
@@ -593,6 +626,17 @@ getType(new Set()) // "Set"
 ```
 
 **Since:** 1.0.0
+
+### groupBy()
+
+Groups array items by a derived key. 按派生键对数组元素分组。
+
+**Parameters:**
+- `array: readonly T[]` - The source array / 源数组
+- `iteratee: GroupByIteratee\<T, K\>` - The property name or function used to derive the group key / 用于生成分组键的属性名或函数
+
+**Returns:**
+- Record\<string, T[]\> - An object of grouped items / 分组结果对象
 
 ### hasOwnProperty()
 
@@ -1586,6 +1630,28 @@ isType('String', 123) // false
 
 **Since:** 1.0.0
 
+### keyBy()
+
+Creates an object that maps derived keys to items. 按派生键创建元素映射对象。
+
+**Parameters:**
+- `array: readonly T[]` - The source array / 源数组
+- `iteratee: KeyByIteratee\<T, K\>` - The property name or function used to derive the key / 用于生成键的属性名或函数
+
+**Returns:**
+- Record\<string, T\> - An object whose keys map to items / 键到元素的映射对象
+
+### last()
+
+Returns the last item in an array, or a fallback when the array is empty. 返回数组中的最后一个元素；若数组为空则返回兜底值。
+
+**Parameters:**
+- `array: readonly T[]` - The source array / 源数组
+- `defaultValue?: D` - The fallback value / 兜底值
+
+**Returns:**
+- undefined \| T \| D - The last item or the fallback value / 最后一个元素或兜底值
+
 ### listToTree()
 
 Converts a flat list of items to a hierarchical tree structure. 将扁平的项目列表转换为分层树结构。
@@ -1870,6 +1936,17 @@ someFunction(data, mockCallback)
 
 **Since:** 1.0.0
 
+### partition()
+
+Splits an array into matched and unmatched groups based on a predicate. 根据断言函数将数组拆分为命中组和未命中组。
+
+**Parameters:**
+- `array: readonly T[]` - The source array / 源数组
+- `predicate: (item, index, array) => boolean` - The predicate used to split items / 用于拆分元素的断言函数
+
+**Returns:**
+- \[T[], T[]\] - A tuple of matched and unmatched groups / 命中组与未命中组的元组
+
 ### pick()
 
 Creates a new object with only the specified properties from the source object. 从源对象中创建一个只包含指定属性的新对象。 This function is useful for extracting specific properties from an object, creating a subset with only the properties you need. 此函数对于从对象中提取特定属性很有用， 创建一个只包含所需属性的子集。
@@ -1950,6 +2027,17 @@ const fetchWithTimeout = async () => {
 ```
 
 **Since:** 1.0.0
+
+### take()
+
+Returns the first N items from an array. 返回数组前 N 个元素。
+
+**Parameters:**
+- `array: readonly T[]` - The source array / 源数组
+- `count: number` - The number of items to take / 要获取的数量
+
+**Returns:**
+- T[] - A new array containing the selected items / 选中元素组成的新数组
 
 ### throttle()
 
@@ -2163,6 +2251,27 @@ const stringResult = tryRunSync(() => "hello")
 const booleanResult = tryRunSync(() => true)
 const objectResult = tryRunSync(() => ({ id: 1, name: "test" }))
 ```
+
+### uniq()
+
+Removes duplicate values from an array while preserving order. 在保留顺序的前提下移除数组中的重复值。
+
+**Parameters:**
+- `array: readonly T[]` - The source array / 源数组
+
+**Returns:**
+- T[] - A new array with unique values / 去重后的新数组
+
+### uniqBy()
+
+Removes duplicate items from an array using a derived key. 按派生键对数组去重。
+
+**Parameters:**
+- `array: readonly T[]` - The source array / 源数组
+- `iteratee: UniqByIteratee\<T, K\>` - The property name or function used to derive the uniqueness key / 用于生成唯一键的属性名或函数
+
+**Returns:**
+- T[] - A new array containing the first item for each unique key / 每个唯一键保留首个元素的新数组
 
 ### upperFirst()
 

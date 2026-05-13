@@ -1,18 +1,18 @@
 import isType from './isType'
 /**
- * Checks if a value is a number (including NaN and Infinity).
- * 检查值是否为数字（包括NaN和Infinity）。
+ * Checks if a value is a finite number.
+ * 检查值是否为有限数字。
  *
  * @param value - The value to check / 要检查的值
- * @returns True if the value is a number / 如果值是数字则返回true
+ * @returns True if the value is a finite number / 如果值是有限数字则返回true
  *
  * @example
  * ```typescript
  * isNumber(42) // true
  * isNumber(3.14) // true
- * isNumber(NaN) // true (NaN is type 'number')
- * isNumber(Infinity) // true
- * isNumber(-Infinity) // true
+ * isNumber(NaN) // false
+ * isNumber(Infinity) // false
+ * isNumber(-Infinity) // false
  * isNumber('42') // false
  * isNumber(null) // false
  * isNumber(undefined) // false
@@ -22,5 +22,5 @@ import isType from './isType'
  *
  * @since 1.0.0
  */
-const isNumber = (value: unknown): value is number => isType('Number', value)
+const isNumber = (value: unknown): value is number => isType('Number', value) && Number.isFinite(value)
 export default isNumber

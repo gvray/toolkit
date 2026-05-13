@@ -1,52 +1,41 @@
+type Flattened<T> = T extends ReadonlyArray<infer U> ? U : T
+
 /**
- * Flattens a nested array into a single-level array.
- * 将嵌套数组展平为单级数组。
+ * Flattens nested array items up to the specified depth.
+ * 按指定深度展开数组中的嵌套元素。
  *
- * This function recursively flattens all nested arrays regardless of depth.
- * It modifies the input array during processing, so pass a copy if you need
- * to preserve the original array.
- * 此函数递归展平所有嵌套数组，无论深度如何。
- * 它在处理过程中会修改输入数组，如果需要保留原始数组，请传递副本。
- *
- * @template T - The type of the array elements / 数组元素的类型
- * @param array - The array to flatten / 要展平的数组
- * @returns The flattened array / 展平后的数组
- *
+ * @template T - The type of array items / 数组元素类型
+ * @param array - The source array / 源数组
+ * @param depth - The number of levels to flatten / 要展开的层级
+ * @returns A new flattened array / 展开后的新数组
  * @example
- * ```typescript
- * // Basic flattening / 基本展平
- * const nested = [1, [2, 3], [4, [5, 6]]]
- * flatten([...nested]) // [1, 2, 3, 4, 5, 6]
- *
- * // Mixed types / 混合类型
- * const mixed = ['a', ['b', 'c'], ['d', ['e', 'f']]]
- * flatten([...mixed]) // ['a', 'b', 'c', 'd', 'e', 'f']
- *
- * // Deep nesting / 深度嵌套
- * const deep = [1, [2, [3, [4, [5]]]]]
- * flatten([...deep]) // [1, 2, 3, 4, 5]
- *
- * // Empty arrays / 空数组
- * const withEmpty = [1, [], [2, []], 3]
- * flatten([...withEmpty]) // [1, 2, 3]
- * ```
- *
- * @since 1.0.0
+ * flatten([1, [2, [3]], 4], 1)
+ * // -> [1, 2, [3], 4]
  */
-const flatten = <T>(array: Array<T | T[]>): T[] => {
-  const result: T[] = []
+const flatten = <T>(array: readonly T[], depth: number = 1): Array<Flattened<T>> => {
+  if (!Number.isInteger(depth) || depth < 0) {
+    throw new TypeError('depth must be a non-negative integer')
+  }
 
-  while (array.length) {
-    const item = array.shift()
+  if (depth === 0) {
+    return array.slice() as Array<Flattened<T>>
+  }
 
+  const result: unknown[] = []
+
+  for (const item of array as readonly unknown[]) {
     if (Array.isArray(item)) {
-      array.unshift(...(item as T[]))
+      if (depth === 1) {
+        result.push(...item)
+      } else {
+        result.push(...flatten(item, depth - 1))
+      }
     } else {
-      result.push(item as T)
+      result.push(item)
     }
   }
 
-  return result
+  return result as Array<Flattened<T>>
 }
 
 export default flatten

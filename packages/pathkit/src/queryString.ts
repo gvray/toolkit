@@ -7,25 +7,23 @@
  *
  * @example
  * const query = { name: 'John', age: 30 };
- * const result = queryString(query);
- * // result will be '?name=John&age=30'
+ * const result = queryString(query)
+ * // -> '?name=John&age=30'
  */
+const queryString = (query: Record<string, string | number> | null | undefined = {}, separator: string = '?'): string => {
+  if (typeof separator !== 'string') {
+    throw new TypeError('separator must be a string')
+  }
 
-const queryString = (query: Record<string, string | number> = {}, separator = '?'): string => {
-  try {
-    // 处理 null 或 undefined 的情况
-    if (!query || typeof query !== 'object') {
-      return ''
-    }
-
-    const queryString = Object.keys(query)
-      .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(query[key])}`)
-      .join('&')
-    return queryString ? `${separator}${queryString}` : ''
-  } catch (error) {
-    console.error('Error while generating query string:', error)
+  if (!query) {
     return ''
   }
+
+  const content = Object.keys(query)
+    .map((key: string) => `${encodeURIComponent(key)}=${encodeURIComponent(String(query[key]))}`)
+    .join('&')
+
+  return content ? `${separator}${content}` : ''
 }
 
 export default queryString

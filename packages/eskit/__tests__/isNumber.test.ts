@@ -8,13 +8,13 @@ describe('isNumber', () => {
     expect(isNumber(3.14)).toBe(true)
     expect(isNumber(Number.MAX_VALUE)).toBe(true)
     expect(isNumber(Number.MIN_VALUE)).toBe(true)
-    expect(isNumber(new Number(123))).toBe(true)
+    expect(isNumber(new Number(123))).toBe(false)
   })
 
-  test('should return true for special number values', () => {
-    expect(isNumber(Infinity)).toBe(true)
-    expect(isNumber(-Infinity)).toBe(true)
-    expect(isNumber(NaN)).toBe(true)
+  test('should return false for non-finite number values', () => {
+    expect(isNumber(Infinity)).toBe(false)
+    expect(isNumber(-Infinity)).toBe(false)
+    expect(isNumber(NaN)).toBe(false)
   })
 
   test('should return false for non-numbers', () => {

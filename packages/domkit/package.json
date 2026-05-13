@@ -24,7 +24,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "docs": "typedoc",
-    "doc": "pnpm run docs && pnpm -C ../../ append-api ./packages/domkit docs",
+    "doc": "pnpm run docs && pnpm -C ../../ run append-api ./packages/domkit docs",
     "pub": "echo 'Use root-level changeset publish to release packages'"
   },
   "keywords": [

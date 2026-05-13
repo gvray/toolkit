@@ -1,5 +1,5 @@
 import filter from './filter'
-import contains from './contains'
+import includesValue from './includesValue'
 
 /**
  * Returns an array of values from the first array that are not present in the second array.
@@ -37,6 +37,6 @@ import contains from './contains'
  *
  * @since 1.0.0
  */
-const difference = <T>(arr: T[], values: T[] = []): T[] => filter(arr, (value: any) => !contains(values, value))
+const difference = <T>(arr: T[], values: T[] = []): T[] => filter(arr, (value: any) => !includesValue(values, value))
 
 export default difference
