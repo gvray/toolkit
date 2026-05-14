@@ -1,5 +1,13 @@
 import {
+  alphanumeric,
+  between,
+  chineseName,
   email,
+  creditCard,
+  custom,
+  hexColor,
+  integer,
+  ipv4,
   phone,
   url,
   required,
@@ -7,10 +15,16 @@ import {
   maxLength,
   min,
   max,
+  notIn,
   pattern,
+  numeric,
   isLetterOrDigit,
   chineseIdCard,
-  chineseMobile
+  chineseMobile,
+  slug,
+  strongPassword,
+  uuid,
+  in as inValidator
 } from '../src/validators'
 
 describe('validators', () => {
@@ -60,6 +74,11 @@ describe('validators', () => {
         expect(result.isValid).toBe(false)
         expect(result.message).toBe('Invalid phone number / 手机号格式无效')
       })
+    })
+
+    it('should validate strict CN locale mobile numbers', () => {
+      expect(phone('13812345678', 'CN').isValid).toBe(true)
+      expect(phone('12345678901', 'CN').isValid).toBe(false)
     })
   })
 
@@ -298,6 +317,171 @@ describe('validators', () => {
         expect(result.isValid).toBe(false)
         expect(result.message).toBe('Invalid Chinese mobile number / 手机号格式无效')
       })
+    })
+  })
+
+  describe('chineseName', () => {
+    it('should validate valid Chinese names', () => {
+      ;['张三', '欧阳娜娜', '李小龙'].forEach((name) => {
+        expect(chineseName(name).isValid).toBe(true)
+      })
+    })
+
+    it('should invalidate invalid Chinese names', () => {
+      ;['A三', '张', '张三李四王', '张 三'].forEach((name) => {
+        expect(chineseName(name).isValid).toBe(false)
+        expect(chineseName(name).message).toBe('Invalid Chinese name / 中文姓名格式无效')
+      })
+    })
+  })
+
+  describe('creditCard', () => {
+    it('should validate cards that pass the Luhn check', () => {
+      expect(creditCard('4111111111111111').isValid).toBe(true)
+      expect(creditCard('4012-8888-8888-1881').isValid).toBe(true)
+    })
+
+    it('should invalidate malformed or failed cards', () => {
+      expect(creditCard('4111111111111112').isValid).toBe(false)
+      expect(creditCard('abcd').isValid).toBe(false)
+    })
+  })
+
+  describe('ipv4', () => {
+    it('should validate valid ipv4 addresses', () => {
+      ;['192.168.1.1', '0.0.0.0', '255.255.255.255'].forEach((value) => {
+        expect(ipv4(value).isValid).toBe(true)
+      })
+    })
+
+    it('should invalidate invalid ipv4 addresses', () => {
+      ;['256.1.1.1', '192.168.1', '192.168.01.1', 'a.b.c.d'].forEach((value) => {
+        expect(ipv4(value).isValid).toBe(false)
+      })
+    })
+  })
+
+  describe('alphanumeric', () => {
+    it('should validate alphanumeric strings', () => {
+      expect(alphanumeric('abc123').isValid).toBe(true)
+    })
+
+    it('should invalidate non-alphanumeric strings', () => {
+      expect(alphanumeric('abc-123').isValid).toBe(false)
+    })
+  })
+
+  describe('numeric', () => {
+    it('should validate numeric strings', () => {
+      expect(numeric('12345').isValid).toBe(true)
+    })
+
+    it('should invalidate non-numeric strings', () => {
+      expect(numeric('12a45').isValid).toBe(false)
+    })
+  })
+
+  describe('integer', () => {
+    it('should validate integer strings', () => {
+      expect(integer('-42').isValid).toBe(true)
+      expect(integer('0').isValid).toBe(true)
+    })
+
+    it('should invalidate decimals and text', () => {
+      expect(integer('3.14').isValid).toBe(false)
+      expect(integer('abc').isValid).toBe(false)
+    })
+  })
+
+  describe('strongPassword', () => {
+    it('should validate strong passwords', () => {
+      expect(strongPassword('Abc@1234').isValid).toBe(true)
+    })
+
+    it('should invalidate weak passwords', () => {
+      expect(strongPassword('abcdefg').isValid).toBe(false)
+      expect(strongPassword('ABCDEFG1').isValid).toBe(false)
+    })
+  })
+
+  describe('hexColor', () => {
+    it('should validate short and long hex colors', () => {
+      expect(hexColor('#fff').isValid).toBe(true)
+      expect(hexColor('#ff0000').isValid).toBe(true)
+    })
+
+    it('should invalidate malformed hex colors', () => {
+      expect(hexColor('ff0000').isValid).toBe(false)
+      expect(hexColor('#ffff').isValid).toBe(false)
+    })
+  })
+
+  describe('uuid', () => {
+    it('should validate standard uuids', () => {
+      expect(uuid('550e8400-e29b-41d4-a716-446655440000').isValid).toBe(true)
+    })
+
+    it('should invalidate malformed uuids', () => {
+      expect(uuid('not-a-uuid').isValid).toBe(false)
+    })
+  })
+
+  describe('slug', () => {
+    it('should validate standard slugs', () => {
+      expect(slug('hello-world').isValid).toBe(true)
+      expect(slug('abc123').isValid).toBe(true)
+    })
+
+    it('should invalidate malformed slugs', () => {
+      expect(slug('Hello World').isValid).toBe(false)
+      expect(slug('-hello').isValid).toBe(false)
+    })
+  })
+
+  describe('between', () => {
+    it('should validate values inside the range', () => {
+      const validator = between(1, 10)
+      expect(validator(5).isValid).toBe(true)
+      expect(validator(1).isValid).toBe(true)
+      expect(validator(10).isValid).toBe(true)
+    })
+
+    it('should invalidate values outside the range', () => {
+      const validator = between(1, 10)
+      expect(validator(0).isValid).toBe(false)
+      expect(validator(11).isValid).toBe(false)
+    })
+  })
+
+  describe('in', () => {
+    it('should validate values inside the allowed list', () => {
+      const validator = inValidator(['admin', 'editor'] as const)
+      expect(validator('admin').isValid).toBe(true)
+    })
+
+    it('should invalidate values outside the allowed list', () => {
+      const validator = inValidator(['admin', 'editor'] as const)
+      expect(validator('guest' as 'admin').isValid).toBe(false)
+    })
+  })
+
+  describe('notIn', () => {
+    it('should validate values outside the blocked list', () => {
+      const validator = notIn(['admin', 'editor'] as const)
+      expect(validator('guest' as 'admin').isValid).toBe(true)
+    })
+
+    it('should invalidate values inside the blocked list', () => {
+      const validator = notIn(['admin', 'editor'] as const)
+      expect(validator('admin').isValid).toBe(false)
+    })
+  })
+
+  describe('custom', () => {
+    it('should validate values using a custom predicate', () => {
+      const validator = custom<number>((value) => value > 0, '必须大于0')
+      expect(validator(1)).toEqual({ isValid: true, message: undefined })
+      expect(validator(0)).toEqual({ isValid: false, message: '必须大于0' })
     })
   })
 })
