@@ -19,5 +19,11 @@ export * from './relative'
 // Duration / 时长
 export * from './duration'
 
+// Difference / 差值
+export * from './diff'
+
+// Calendar helpers / 日历辅助
+export * from './calendar'
+
 // Timezone utilities / 时区工具
 export * from './timezone'
