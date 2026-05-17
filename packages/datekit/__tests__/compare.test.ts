@@ -6,8 +6,11 @@ import {
   isSameDay,
   isSameMonth,
   isSameYear,
+  isToday,
+  isTomorrow,
   isWeekday,
-  isWeekend
+  isWeekend,
+  isYesterday
 } from '../src/compare'
 
 describe('isBetween', () => {
@@ -48,6 +51,25 @@ describe('isSameDay / Month / Year', () => {
   it('isSameYear', () => {
     expect(isSameYear(new Date(2026, 0, 1), new Date(2026, 11, 31))).toBe(true)
     expect(isSameYear(new Date(2026, 0, 1), new Date(2025, 11, 31))).toBe(false)
+  })
+
+  it('isToday', () => {
+    expect(isToday(new Date())).toBe(true)
+    expect(isToday(new Date(2000, 0, 1))).toBe(false)
+  })
+
+  it('isYesterday', () => {
+    const yesterday = new Date()
+    yesterday.setDate(yesterday.getDate() - 1)
+    expect(isYesterday(yesterday)).toBe(true)
+    expect(isYesterday(new Date())).toBe(false)
+  })
+
+  it('isTomorrow', () => {
+    const tomorrow = new Date()
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    expect(isTomorrow(tomorrow)).toBe(true)
+    expect(isTomorrow(new Date())).toBe(false)
   })
 })
 

@@ -1,4 +1,4 @@
-import { calendarMatrix, daysInMonth, quarter } from '../src/calendar'
+import { calendarMatrix, daysInMonth, quarter, isLeapYear } from '../src/calendar'
 
 describe('daysInMonth', () => {
   it('February non-leap', () => {
@@ -20,6 +20,20 @@ describe('quarter', () => {
     expect(quarter(new Date(2026, 4, 8))).toBe(2)
     expect(quarter(new Date(2026, 7, 1))).toBe(3)
     expect(quarter(new Date(2026, 11, 1))).toBe(4)
+  })
+})
+
+describe('isLeapYear', () => {
+  it('identifies leap years', () => {
+    expect(isLeapYear(2024)).toBe(true)
+    expect(isLeapYear(2000)).toBe(true)
+    expect(isLeapYear(2023)).toBe(false)
+    expect(isLeapYear(1900)).toBe(false)
+  })
+
+  it('accepts Date instance', () => {
+    expect(isLeapYear(new Date(2024, 0, 1))).toBe(true)
+    expect(isLeapYear(new Date(2023, 0, 1))).toBe(false)
   })
 })
 

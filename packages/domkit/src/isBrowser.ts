@@ -6,6 +6,7 @@
  * objects, and whether `document.createElement` function is available.
  *
  * @returns A boolean value indicating whether the code is running in a browser environment.
+ * @deprecated Use isBrowser from @gvray/envkit
  *
  * @example
  * ```typescript

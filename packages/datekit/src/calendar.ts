@@ -66,6 +66,22 @@ export function calendarMatrix(year: number, month: number): Date[][] {
 }
 
 /**
+ * Check if the given year or the year of the given date is a leap year.
+ * 检查给定年份或给定日期的年份是否为闰年。
+ *
+ * @param yearOrDate - Full year or Date instance / 四位年份或 Date 实例
+ * @returns True if leap year / 如果是闰年则返回 true
+ *
+ * @example
+ * isLeapYear(2024) // → true
+ * isLeapYear(2023) // → false
+ */
+export function isLeapYear(yearOrDate: number | Date): boolean {
+  const year = yearOrDate instanceof Date ? yearOrDate.getFullYear() : yearOrDate
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
+}
+
+/**
  * ISO week number (1–53) for a date in local time.
  * 本地时间下的 ISO 周序号（1–53）。
  *

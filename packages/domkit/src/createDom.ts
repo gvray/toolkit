@@ -1,4 +1,5 @@
-import { isElement, isString } from '@gvray/eskit'
+import { isString } from '@gvray/eskit'
+import isElement from './isElement'
 
 export interface DomAttrs<T> {
   tagName: T

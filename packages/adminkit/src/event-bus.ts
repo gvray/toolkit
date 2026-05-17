@@ -8,6 +8,7 @@ export interface EventBusOptions {
 /**
  * Simple event bus for component communication.
  * 简单的事件总线，用于组件间通信。
+ * @deprecated Use EventBus from @gvray/eventkit
  */
 export class EventBus {
   private events: Map<string, Set<EventHandler>> = new Map()

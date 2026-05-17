@@ -102,6 +102,43 @@ export function isSameYear(date1: Date, date2: Date): boolean {
 }
 
 /**
+ * Check if the given date is today in local time.
+ * 检查日期是否为今天（本地时间）。
+ *
+ * @param date - Date to check / 待检查的日期
+ * @returns True if today / 如果是今天则返回 true
+ */
+export function isToday(date: Date): boolean {
+  return isSameDay(date, new Date())
+}
+
+/**
+ * Check if the given date is yesterday in local time.
+ * 检查日期是否为昨天（本地时间）。
+ *
+ * @param date - Date to check / 待检查的日期
+ * @returns True if yesterday / 如果是昨天则返回 true
+ */
+export function isYesterday(date: Date): boolean {
+  const yesterday = new Date()
+  yesterday.setDate(yesterday.getDate() - 1)
+  return isSameDay(date, yesterday)
+}
+
+/**
+ * Check if the given date is tomorrow in local time.
+ * 检查日期是否为明天（本地时间）。
+ *
+ * @param date - Date to check / 待检查的日期
+ * @returns True if tomorrow / 如果是明天则返回 true
+ */
+export function isTomorrow(date: Date): boolean {
+  const tomorrow = new Date()
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  return isSameDay(date, tomorrow)
+}
+
+/**
  * Saturday or Sunday in local time.
  * 本地时间是否为周六或周日。
  *

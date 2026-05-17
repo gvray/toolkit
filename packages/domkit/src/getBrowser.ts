@@ -15,6 +15,7 @@ export enum BrowserName {
  * Gets the name of the current user's web browser.
  * @experimental
  * @returns {BrowserName} An enumerated value representing the current browser.
+ * @deprecated Use getBrowser from @gvray/envkit
  *
  * @example
  * const browser: BrowserName = getBrowser();

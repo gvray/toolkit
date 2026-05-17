@@ -64,5 +64,9 @@ export const validateImportRows = <T extends Record<string, unknown>>(
 }
 
 export const downloadImportTemplate = (columns: string[], filename = 'template.csv'): void => {
-  exportCSV([Object.fromEntries(columns.map((column) => [column, '']))], { filename: filename.replace(/\.csv$/, '') })
+  const templateRow = columns.reduce<Record<string, string>>((acc, column) => {
+    acc[column] = ''
+    return acc
+  }, {})
+  exportCSV([templateRow], { filename: filename.replace(/\.csv$/, '') })
 }

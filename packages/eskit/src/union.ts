@@ -10,7 +10,8 @@
  * // -> [1, 2, 3]
  */
 const union = <T>(...arrays: ReadonlyArray<readonly T[]>): T[] => {
-  return Array.from(new Set(arrays.flat()))
+  const flattened = arrays.reduce((acc, curr) => acc.concat(curr), [] as T[])
+  return Array.from(new Set(flattened))
 }
 
 export default union
