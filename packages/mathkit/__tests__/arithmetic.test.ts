@@ -1,4 +1,4 @@
-import { add, subtract, multiply, divide } from '../src/arithmetic'
+import { add, subtract, multiply, divide, mod } from '../src/arithmetic'
 
 describe('arithmetic', () => {
   describe('add', () => {
@@ -49,6 +49,16 @@ describe('arithmetic', () => {
 
     it('should throw error when dividing by zero', () => {
       expect(() => divide(5, 0)).toThrow('Division by zero is not allowed')
+    })
+  })
+
+  describe('mod', () => {
+    it('should compute remainder with precision', () => {
+      expect(mod(10.5, 3.1)).toBe(1.2)
+    })
+
+    it('should throw when divisor is zero', () => {
+      expect(() => mod(5, 0)).toThrow('Division by zero is not allowed')
     })
   })
 })

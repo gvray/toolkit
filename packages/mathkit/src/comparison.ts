@@ -100,3 +100,27 @@ export function isEven(value: number): boolean {
 export function isOdd(value: number): boolean {
   return value % 2 !== 0
 }
+
+/**
+ * Whether `value` lies in the closed interval between `start` and `end` (bounds may be reversed).
+ * 判断 `value` 是否在 `start` 与 `end` 构成的闭区间内（起止可颠倒）。
+ *
+ * @param value - Value to test / 待判断的值
+ * @param start - Interval bound / 区间一端
+ * @param end - Interval bound / 区间另一端
+ * @returns True if inside inclusive range / 在区间内为 true
+ *
+ * @example
+ * inRange(5, 1, 10) // → true
+ */
+export function inRange(value: number, start: number, end: number): boolean {
+  if (!Number.isFinite(value)) {
+    throw new RangeError('value must be a finite number')
+  }
+  if (!Number.isFinite(start) || !Number.isFinite(end)) {
+    throw new RangeError('start and end must be finite numbers')
+  }
+  const lo = Math.min(start, end)
+  const hi = Math.max(start, end)
+  return value >= lo && value <= hi
+}

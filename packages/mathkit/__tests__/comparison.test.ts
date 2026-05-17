@@ -1,4 +1,4 @@
-import { min, max, clamp, isEven, isOdd } from '../src/comparison'
+import { min, max, clamp, inRange, isEven, isOdd } from '../src/comparison'
 
 describe('comparison', () => {
   describe('min', () => {
@@ -78,6 +78,17 @@ describe('comparison', () => {
       expect(isEven(3)).toBe(false)
       expect(isEven(-1)).toBe(false)
       expect(isEven(99)).toBe(false)
+    })
+  })
+
+  describe('inRange', () => {
+    it('returns true inside inclusive range', () => {
+      expect(inRange(5, 1, 10)).toBe(true)
+      expect(inRange(5, 10, 1)).toBe(true)
+    })
+
+    it('false outside range', () => {
+      expect(inRange(11, 1, 10)).toBe(false)
     })
   })
 

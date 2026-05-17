@@ -1,17 +1,19 @@
-/**
- * 复制相关功能模块
- * @module copy
- */
+/** @deprecated Use @gvray/formatkit */
+export * from './formatting'
+/** @deprecated Use @gvray/domkit */
 export * from './copy'
-
-// Storage utilities / 存储工具
+/** @deprecated Use @gvray/eventkit */
+export * from './event-bus'
+/** @deprecated Use storetify instead */
 export * from './storage'
 
-// Event system / 事件系统
-export * from './event-bus'
-
-// Loading management / 加载管理
 export * from './loading'
-
-// Formatting utilities / 格式化工具
-export * from './formatting'
+export * from './table'
+export * from './dict'
+export * from './permission'
+export * from './crud'
+export * from './menu'
+export * from './tree'
+export * from './datePresets'
+export * from './exportData'
+export * from './ui'

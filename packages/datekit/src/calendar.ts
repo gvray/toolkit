@@ -64,3 +64,41 @@ export function calendarMatrix(year: number, month: number): Date[][] {
   }
   return rows
 }
+
+/**
+ * ISO week number (1–53) for a date in local time.
+ * 本地时间下的 ISO 周序号（1–53）。
+ *
+ * @param date - Input date / 输入日期
+ * @returns Week of year / 第几周
+ *
+ * @example
+ * weekOfYear(new Date(2026, 4, 8)) // -> 19
+ */
+export function weekOfYear(date: Date): number {
+  assertValidDate(date)
+  const target = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+  const day = (target.getDay() + 6) % 7
+  target.setDate(target.getDate() - day + 3)
+  const firstThursday = new Date(target.getFullYear(), 0, 4)
+  const firstDay = (firstThursday.getDay() + 6) % 7
+  firstThursday.setDate(firstThursday.getDate() - firstDay + 3)
+  return 1 + Math.round((target.getTime() - firstThursday.getTime()) / 604800000)
+}
+
+/**
+ * Day of year (1–366) in local time.
+ * 本地时间下的年内第几天（1–366）。
+ *
+ * @param date - Input date / 输入日期
+ * @returns Day index / 第几天
+ *
+ * @example
+ * dayOfYear(new Date(2026, 4, 8)) // -> 128
+ */
+export function dayOfYear(date: Date): number {
+  assertValidDate(date)
+  const start = new Date(date.getFullYear(), 0, 0)
+  const diff = date.getTime() - start.getTime()
+  return Math.floor(diff / 86400000)
+}

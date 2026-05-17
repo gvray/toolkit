@@ -5,9 +5,15 @@
  * @param num - A number to find the decimal places of / 要查找小数位数的数字
  * @returns The number of decimal places / 小数位数
  */
-function getDecimalPlaces(num: number): number {
+export function getDecimalPlaces(num: number): number {
   const decimalPart = String(num).split('.')[1]
   return decimalPart ? decimalPart.length : 0
+}
+
+function assertFiniteNumber(value: number, paramName: string): void {
+  if (!Number.isFinite(value)) {
+    throw new RangeError(`${paramName} must be a finite number`)
+  }
 }
 
 /**
@@ -101,4 +107,26 @@ export function divide(a: number, b: number): number {
   const intB = Math.round(b * Math.pow(10, decimalPlacesB))
 
   return (intA / intB) * Math.pow(10, decimalPlacesB - decimalPlacesA)
+}
+
+/**
+ * Remainder of `a` divided by `b` with fixed precision (sign follows dividend).
+ * 高精度取模（余数符号与被除数一致）。
+ *
+ * @param a - Dividend / 被除数
+ * @param b - Divisor / 除数
+ * @returns Remainder / 余数
+ * @throws Error if divisor is zero / 除数为零时抛出
+ *
+ * @example
+ * mod(10.5, 3.1) // → 1.2
+ */
+export function mod(a: number, b: number): number {
+  assertFiniteNumber(a, 'a')
+  assertFiniteNumber(b, 'b')
+  if (b === 0) {
+    throw new Error('Division by zero is not allowed / 除数不能为零')
+  }
+  const quotient = Math.trunc(divide(a, b))
+  return subtract(a, multiply(quotient, b))
 }

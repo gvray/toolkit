@@ -295,3 +295,52 @@ export const custom =
   (value: T): ValidationResult => {
     return createResult(predicate(value), message)
   }
+
+/**
+ * IPv6 validation / IPv6 验证
+ */
+export const ipv6: Validator<string> = (value: string): ValidationResult => {
+  const isValid =
+    /^(([0-9a-f]{1,4}:){7}[0-9a-f]{1,4})|(::1)$|(^::)|((^|:)([0-9a-f]{1,4}:){1,7}[0-9a-f]{0,4})$/i.test(value)
+  return createResult(isValid, 'Invalid IPv6 address / IPv6地址格式无效')
+}
+
+/**
+ * Semantic version validation / 语义化版本号验证
+ */
+export const semver: Validator<string> = (value: string): ValidationResult => {
+  return createResult(
+    /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-[\da-z.-]+)?(?:\+[\da-z.-]+)?$/i.test(value),
+    'Invalid semver / 语义化版本格式无效'
+  )
+}
+
+/**
+ * Chinese bank card validation / 中国银行卡号验证
+ */
+export const chineseBankCard: Validator<string> = (value: string): ValidationResult => {
+  const digits = value.replace(/\s/g, '')
+  return createResult(/^\d{16,19}$/.test(digits), 'Invalid Chinese bank card / 银行卡号格式无效')
+}
+
+/**
+ * Base64 validation / Base64 验证
+ */
+export const base64: Validator<string> = (value: string): ValidationResult => {
+  return createResult(
+    /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(value),
+    'Invalid base64 string / Base64格式无效'
+  )
+}
+
+/**
+ * JSON string validation / JSON 字符串验证
+ */
+export const json: Validator<string> = (value: string): ValidationResult => {
+  try {
+    JSON.parse(value)
+    return createResult(true)
+  } catch {
+    return createResult(false, 'Invalid JSON string / JSON格式无效')
+  }
+}

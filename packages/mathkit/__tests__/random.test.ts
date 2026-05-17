@@ -1,4 +1,4 @@
-import { randomInt, randomFloat, shuffle, randomBoolean, randomChoice } from '../src/random'
+import { randomInt, randomFloat, shuffle, randomBoolean, randomChoice, randomSample } from '../src/random'
 
 describe('random', () => {
   describe('randomInt', () => {
@@ -145,6 +145,20 @@ describe('random', () => {
 
     it('should throw error for empty array', () => {
       expect(() => randomChoice([])).toThrow('Array cannot be empty / 数组不能为空')
+    })
+  })
+
+  describe('randomSample', () => {
+    it('returns count unique items from source', () => {
+      const source = [1, 2, 3, 4, 5]
+      const sample = randomSample(source, 3)
+      expect(sample).toHaveLength(3)
+      sample.forEach(n => expect(source).toContain(n))
+      expect(new Set(sample).size).toBe(3)
+    })
+
+    it('throws when count exceeds length', () => {
+      expect(() => randomSample([1, 2], 3)).toThrow()
     })
   })
 })

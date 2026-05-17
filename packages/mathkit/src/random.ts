@@ -115,3 +115,71 @@ export function randomChoice<T>(array: T[]): T {
   const index = randomInt(0, array.length - 1)
   return array[index]
 }
+
+/**
+ * Draw `count` unique elements without replacement (new array).
+ * 无放回随机抽取 `count` 个不重复元素（新数组）。
+ *
+ * @param array - Source array / 源数组
+ * @param count - Sample size / 抽取数量
+ * @returns Sample / 样本
+ *
+ * @example
+ * randomSample([1, 2, 3, 4, 5], 3) // → e.g. [2, 5, 1]
+ */
+export function randomSample<T>(array: T[], count: number): T[] {
+  if (!Number.isInteger(count) || count < 0) {
+    throw new RangeError('count must be a non-negative integer')
+  }
+  if (count > array.length) {
+    throw new Error('count cannot be greater than array length')
+  }
+  const copy = [...array]
+  for (let i = 0; i < count; i++) {
+    const j = i + Math.floor(Math.random() * (copy.length - i))
+    ;[copy[i], copy[j]] = [copy[j], copy[i]]
+  }
+  return copy.slice(0, count)
+}
+
+export interface WeightedChoice<T> {
+  value: T
+  weight: number
+}
+
+/**
+ * Randomly picks a value by weight.
+ * 按权重随机选择值。
+ *
+ * @param items - Weighted values / 带权重的选项
+ * @returns Selected value / 选中的值
+ *
+ * @example
+ * randomWeighted([{ value: 'a', weight: 3 }, { value: 'b', weight: 1 }]) // -> often 'a'
+ */
+export function randomWeighted<T>(items: WeightedChoice<T>[]): T {
+  if (items.length === 0) {
+    throw new Error('items cannot be empty')
+  }
+
+  const total = items.reduce((sum, item) => {
+    if (!Number.isFinite(item.weight) || item.weight < 0) {
+      throw new RangeError('weight must be a non-negative finite number')
+    }
+    return sum + item.weight
+  }, 0)
+
+  if (total === 0) {
+    throw new Error('total weight cannot be zero')
+  }
+
+  let threshold = Math.random() * total
+  for (const item of items) {
+    threshold -= item.weight
+    if (threshold <= 0) {
+      return item.value
+    }
+  }
+
+  return items[items.length - 1].value
+}
