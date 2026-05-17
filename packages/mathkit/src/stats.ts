@@ -1,20 +1,14 @@
-import { add, divide, multiply, subtract } from './arithmetic'
-
-function assertFiniteNumber(value: number, paramName: string): void {
-  if (!Number.isFinite(value)) {
-    throw new RangeError(`${paramName} must be a finite number`)
-  }
-}
+import { add, divide, multiply, subtract } from './arithmetic';
 
 function assertNumberArray(values: number[], paramName: string): void {
   if (values.length === 0) {
-    throw new Error(`${paramName} cannot be empty`)
+    throw new Error(`${paramName} cannot be empty`);
   }
   values.forEach((v, i) => {
     if (!Number.isFinite(v)) {
-      throw new RangeError(`${paramName}[${i}] must be a finite number`)
+      throw new RangeError(`${paramName}[${i}] must be a finite number`);
     }
-  })
+  });
 }
 
 /**
@@ -29,14 +23,14 @@ function assertNumberArray(values: number[], paramName: string): void {
  */
 export function sum(values: number[]): number {
   if (values.length === 0) {
-    return 0
+    return 0;
   }
   values.forEach((v, i) => {
     if (!Number.isFinite(v)) {
-      throw new RangeError(`values[${i}] must be a finite number`)
+      throw new RangeError(`values[${i}] must be a finite number`);
     }
-  })
-  return values.reduce((acc, v) => add(acc, v), 0)
+  });
+  return values.reduce((acc, v) => add(acc, v), 0);
 }
 
 /**
@@ -50,8 +44,8 @@ export function sum(values: number[]): number {
  * average([1, 2, 3, 4]) // → 2.5
  */
 export function average(values: number[]): number {
-  assertNumberArray(values, 'values')
-  return divide(sum(values), values.length)
+  assertNumberArray(values, 'values');
+  return divide(sum(values), values.length);
 }
 
 /**
@@ -65,13 +59,13 @@ export function average(values: number[]): number {
  * median([1, 2, 3, 4, 5]) // → 3
  */
 export function median(values: number[]): number {
-  assertNumberArray(values, 'values')
-  const sorted = [...values].sort((a, b) => a - b)
-  const mid = Math.floor(sorted.length / 2)
+  assertNumberArray(values, 'values');
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
   if (sorted.length % 2 === 1) {
-    return sorted[mid]
+    return sorted[mid];
   }
-  return divide(add(sorted[mid - 1], sorted[mid]), 2)
+  return divide(add(sorted[mid - 1], sorted[mid]), 2);
 }
 
 /**
@@ -85,13 +79,13 @@ export function median(values: number[]): number {
  * variance([2, 4, 4, 4, 5, 5, 7, 9]) // → 4
  */
 export function variance(values: number[]): number {
-  assertNumberArray(values, 'values')
-  const mean = average(values)
-  const squaredDiffs = values.map(v => {
-    const d = subtract(v, mean)
-    return multiply(d, d)
-  })
-  return divide(sum(squaredDiffs), values.length)
+  assertNumberArray(values, 'values');
+  const mean = average(values);
+  const squaredDiffs = values.map((v) => {
+    const d = subtract(v, mean);
+    return multiply(d, d);
+  });
+  return divide(sum(squaredDiffs), values.length);
 }
 
 /**
@@ -105,7 +99,7 @@ export function variance(values: number[]): number {
  * stdDev([2, 4, 4, 4, 5, 5, 7, 9]) // → 2
  */
 export function stdDev(values: number[]): number {
-  return Math.sqrt(variance(values))
+  return Math.sqrt(variance(values));
 }
 
 /**
@@ -119,19 +113,19 @@ export function stdDev(values: number[]): number {
  * mode([1, 2, 2, 3, 3, 3]) // -> [3]
  */
 export function mode(values: number[]): number[] {
-  assertNumberArray(values, 'values')
-  const frequency = new Map<number, number>()
+  assertNumberArray(values, 'values');
+  const frequency = new Map<number, number>();
 
   for (const value of values) {
-    frequency.set(value, (frequency.get(value) ?? 0) + 1)
+    frequency.set(value, (frequency.get(value) ?? 0) + 1);
   }
 
-  let maxCount = 0
+  let maxCount = 0;
   for (const count of frequency.values()) {
-    maxCount = Math.max(maxCount, count)
+    maxCount = Math.max(maxCount, count);
   }
 
-  return [...frequency.entries()].filter(([, count]) => count === maxCount).map(([value]) => value)
+  return [...frequency.entries()].filter(([, count]) => count === maxCount).map(([value]) => value);
 }
 
 /**
@@ -146,12 +140,12 @@ export function mode(values: number[]): number[] {
  * percentile([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 90) // -> 9
  */
 export function percentile(values: number[], p: number): number {
-  assertNumberArray(values, 'values')
+  assertNumberArray(values, 'values');
   if (!Number.isFinite(p) || p < 0 || p > 100) {
-    throw new RangeError('p must be between 0 and 100')
+    throw new RangeError('p must be between 0 and 100');
   }
 
-  const sorted = [...values].sort((a, b) => a - b)
-  const index = Math.ceil((p / 100) * sorted.length) - 1
-  return sorted[Math.max(0, Math.min(sorted.length - 1, index))]
+  const sorted = [...values].sort((a, b) => a - b);
+  const index = Math.ceil((p / 100) * sorted.length) - 1;
+  return sorted[Math.max(0, Math.min(sorted.length - 1, index))];
 }

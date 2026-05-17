@@ -16,7 +16,15 @@
     "version-packages": "changeset version",
     "version-packages:dry-run": "changeset version --dry-run",
     "prepublishOnly": "pnpm run build && pnpm run test && pnpm run eslint && pnpm run doc",
-    "release": "pnpm run prepublishOnly && changeset publish"
+    "release": "pnpm run prepublishOnly && changeset publish",
+    "prepare": "husky install",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "type-check": "tsc --noEmit",
+    "commit:check": "lavy commit --test",
+    "commit:config": "lavy commit --config"
   },
   "husky": {
     "hooks": {
@@ -24,21 +32,31 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "npm run eslint",
-      "prettier .prettierrc.js --write"
+    "*.{ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
     ]
   },
   "keywords": [
     "util",
     "toolkit",
     "dom",
-    "dom-toolkit",
-    "es",
     "es-toolkit",
     "ts-toolkit",
-    "javascript",
-    "typescript"
+    "typescript",
+    "math",
+    "date",
+    "animation",
+    "color",
+    "crypto",
+    "request",
+    "validation",
+    "path",
+    "event",
+    "formatter"
   ],
   "author": {
     "name": "GavinRay",
@@ -52,36 +70,45 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.14.5",
     "@changesets/cli": "^2.29.4",
+    "@eslint/js": "^9.39.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@types/jest": "^26.0.23",
     "@types/jsdom": "^21.1.1",
     "@types/node": "^15.12.2",
+    "@typescript-eslint/eslint-plugin": "^8.59.3",
+    "@typescript-eslint/parser": "^8.59.3",
     "ajv": "^7.2.4",
     "babel-jest": "^27.0.2",
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "core-js": "^3.29.0",
     "docdash": "^1.2.0",
-    "eslint-config-lavy": "^1.0.1-Alpha.1",
+    "eslint": "^9.39.4",
+    "eslint-config-lavy": "^2.0.2",
+    "eslint-import-resolver-typescript": "^3.10.1",
+    "eslint-plugin-import": "^2.32.0",
+    "globals": "^15.15.0",
     "html-webpack-plugin": "^5.5.0",
-    "husky": "^6.0.0",
+    "husky": "^9.1.7",
     "jest": "^27.0.4",
     "jest-canvas-mock": "^2.5.0",
     "jest-html-reporter": "^3.4.1",
     "jsdoc": "^3.6.10",
     "jsdoc-to-markdown": "^7.1.1",
     "jsdom": "^16.7.0",
-    "lavy": "^1.0.1-Alpha.2",
-    "lint-staged": "^11.0.0",
+    "lavy": "^2.0.7",
+    "lint-staged": "^15.5.2",
     "markdown-toc": "^1.2.0",
     "npm-run-all": "^4.1.5",
+    "prettier": "^3.8.3",
     "rimraf": "^6.0.1",
     "ts-jest": "^27.0.3",
     "ts-loader": "^9.4.2",
     "ts-node": "^10.0.0",
+    "tsx": "^4.22.1",
     "typedoc": "^0.28.4",
     "typedoc-plugin-markdown": "^4.6.3",
-    "typescript": "^5.8.3",
+    "typescript": "^5.7.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1"

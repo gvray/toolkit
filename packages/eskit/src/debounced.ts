@@ -1,8 +1,8 @@
 export interface DebouncedFunction<TArgs extends any[]> {
-  (...args: TArgs): void
-  cancel(): void
-  flush(): void
-  pending(): boolean
+  (...args: TArgs): void;
+  cancel(): void;
+  flush(): void;
+  pending(): boolean;
 }
 
 /**
@@ -45,32 +45,31 @@ export function debounce<TArgs extends any[]>(
   delay: number,
   immediate?: boolean
 ): DebouncedFunction<TArgs> {
-  let timeout: ReturnType<typeof setTimeout> | null = null
-  let lastArgs: TArgs | undefined
-  let result: any
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+  let lastArgs: TArgs | undefined;
 
   const debounced = (...args: TArgs): void => {
-    lastArgs = args
+    lastArgs = args;
 
     const later = () => {
-      timeout = null
+      timeout = null;
       if (!immediate) {
-        result = fn(...args)
+        fn(...args);
       }
-    }
+    };
 
-    const shouldCallNow = immediate && timeout === null
+    const shouldCallNow = immediate && timeout === null;
 
     if (timeout !== null) {
-      clearTimeout(timeout)
+      clearTimeout(timeout);
     }
 
-    timeout = setTimeout(later, delay)
+    timeout = setTimeout(later, delay);
 
     if (shouldCallNow) {
-      result = fn(...args)
+      fn(...args);
     }
-  }
+  };
 
   /**
    * Cancels the debouncing, so that the debounced function no longer waits and does not execute.
@@ -78,10 +77,10 @@ export function debounce<TArgs extends any[]>(
    */
   debounced.cancel = (): void => {
     if (timeout !== null) {
-      clearTimeout(timeout)
-      timeout = null
+      clearTimeout(timeout);
+      timeout = null;
     }
-  }
+  };
 
   /**
    * Immediately executes the debounced function with the last arguments.
@@ -89,23 +88,23 @@ export function debounce<TArgs extends any[]>(
    */
   debounced.flush = (): void => {
     if (timeout !== null) {
-      clearTimeout(timeout)
-      timeout = null
+      clearTimeout(timeout);
+      timeout = null;
       if (lastArgs) {
-        result = fn(...lastArgs)
+        fn(...lastArgs);
       }
     }
-  }
+  };
 
   /**
    * Checks if the debounced function is pending execution.
    * 检查防抖函数是否正在等待执行。
    */
   debounced.pending = (): boolean => {
-    return timeout !== null
-  }
+    return timeout !== null;
+  };
 
-  return debounced as DebouncedFunction<TArgs>
+  return debounced as DebouncedFunction<TArgs>;
 }
 
-export default debounce
+export default debounce;

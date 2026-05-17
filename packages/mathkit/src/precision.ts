@@ -1,15 +1,13 @@
-import { divide, multiply } from './arithmetic'
-
 function assertFiniteNumber(value: number, paramName: string): void {
   if (!Number.isFinite(value)) {
-    throw new RangeError(`${paramName} must be a finite number`)
+    throw new RangeError(`${paramName} must be a finite number`);
   }
 }
 
 function assertNonNegativeInteger(value: number, paramName: string): void {
-  assertFiniteNumber(value, paramName)
+  assertFiniteNumber(value, paramName);
   if (!Number.isInteger(value) || value < 0) {
-    throw new RangeError(`${paramName} must be a non-negative integer`)
+    throw new RangeError(`${paramName} must be a non-negative integer`);
   }
 }
 
@@ -25,9 +23,9 @@ function assertNonNegativeInteger(value: number, paramName: string): void {
  * round(1.005, 2) // → 1.01
  */
 export function round(value: number, decimals = 0): number {
-  assertFiniteNumber(value, 'value')
-  assertNonNegativeInteger(decimals, 'decimals')
-  return Number(`${Math.round(Number(`${value}e${decimals}`))}e-${decimals}`)
+  assertFiniteNumber(value, 'value');
+  assertNonNegativeInteger(decimals, 'decimals');
+  return Number(`${Math.round(Number(`${value}e${decimals}`))}e-${decimals}`);
 }
 
 /**
@@ -42,9 +40,9 @@ export function round(value: number, decimals = 0): number {
  * ceil(1.001, 2) // → 1.01
  */
 export function ceil(value: number, decimals = 0): number {
-  assertFiniteNumber(value, 'value')
-  assertNonNegativeInteger(decimals, 'decimals')
-  return Number(`${Math.ceil(Number(`${value}e${decimals}`))}e-${decimals}`)
+  assertFiniteNumber(value, 'value');
+  assertNonNegativeInteger(decimals, 'decimals');
+  return Number(`${Math.ceil(Number(`${value}e${decimals}`))}e-${decimals}`);
 }
 
 /**
@@ -59,9 +57,9 @@ export function ceil(value: number, decimals = 0): number {
  * floor(1.999, 2) // → 1.99
  */
 export function floor(value: number, decimals = 0): number {
-  assertFiniteNumber(value, 'value')
-  assertNonNegativeInteger(decimals, 'decimals')
-  return Number(`${Math.floor(Number(`${value}e${decimals}`))}e-${decimals}`)
+  assertFiniteNumber(value, 'value');
+  assertNonNegativeInteger(decimals, 'decimals');
+  return Number(`${Math.floor(Number(`${value}e${decimals}`))}e-${decimals}`);
 }
 
 /**
@@ -76,13 +74,13 @@ export function floor(value: number, decimals = 0): number {
  * toFixed(0.000001, 8) // → '0.00000100'
  */
 export function toFixed(value: number, decimals: number): string {
-  assertFiniteNumber(value, 'value')
-  assertNonNegativeInteger(decimals, 'decimals')
-  const rounded = round(value, decimals)
-  const negative = rounded < 0
-  const abs = Math.abs(rounded)
-  const [intPart, fracPart = ''] = abs.toString().split('.')
-  const frac = (fracPart + '0'.repeat(decimals)).slice(0, decimals)
-  const body = decimals === 0 ? intPart : `${intPart}.${frac}`
-  return negative ? `-${body}` : body
+  assertFiniteNumber(value, 'value');
+  assertNonNegativeInteger(decimals, 'decimals');
+  const rounded = round(value, decimals);
+  const negative = rounded < 0;
+  const abs = Math.abs(rounded);
+  const [intPart, fracPart = ''] = abs.toString().split('.');
+  const frac = (fracPart + '0'.repeat(decimals)).slice(0, decimals);
+  const body = decimals === 0 ? intPart : `${intPart}.${frac}`;
+  return negative ? `-${body}` : body;
 }

@@ -1,4 +1,3 @@
-import isType from './isType'
 /**
  * Checks if a value is a function.
  * 检查值是否为函数。
@@ -24,7 +23,7 @@ import isType from './isType'
  * @since 1.0.0
  */
 const isFunction = (value: unknown): value is (...args: any[]) => any => {
-  return typeof value === 'function'
-}
+  return typeof value === 'function';
+};
 
-export default isFunction
+export default isFunction;

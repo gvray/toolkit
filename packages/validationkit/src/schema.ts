@@ -1,18 +1,18 @@
-import { ValidationResult, Validator } from './validators'
+import { Validator } from './validators';
 
 export interface SchemaField {
-  validators: Validator[]
-  required?: boolean
-  label?: string
+  validators: Validator[];
+  required?: boolean;
+  label?: string;
 }
 
 export interface Schema {
-  [key: string]: SchemaField
+  [key: string]: SchemaField;
 }
 
 export interface SchemaValidationResult {
-  isValid: boolean
-  errors: Record<string, string[]>
+  isValid: boolean;
+  errors: Record<string, string[]>;
 }
 
 /**
@@ -34,39 +34,39 @@ export interface SchemaValidationResult {
  * ```
  */
 export function validateSchema(data: Record<string, any>, schema: Schema): SchemaValidationResult {
-  const errors: Record<string, string[]> = {}
-  let isValid = true
+  const errors: Record<string, string[]> = {};
+  let isValid = true;
 
   for (const [field, config] of Object.entries(schema)) {
-    const value = data[field]
-    const fieldErrors: string[] = []
+    const value = data[field];
+    const fieldErrors: string[] = [];
 
     // Check if required field is missing
     if (config.required && (value === undefined || value === null || value === '')) {
-      fieldErrors.push(`${config.label || field} is required / ${config.label || field}为必填项`)
-      isValid = false
-      errors[field] = fieldErrors
-      continue
+      fieldErrors.push(`${config.label || field} is required / ${config.label || field}为必填项`);
+      isValid = false;
+      errors[field] = fieldErrors;
+      continue;
     }
 
     // Skip validation if field is not required and empty
     if (!config.required && (value === undefined || value === null || value === '')) {
-      continue
+      continue;
     }
 
     // Run validators
     for (const validator of config.validators) {
-      const result = validator(value)
+      const result = validator(value);
       if (!result.isValid && result.message) {
-        fieldErrors.push(result.message)
-        isValid = false
+        fieldErrors.push(result.message);
+        isValid = false;
       }
     }
 
     if (fieldErrors.length > 0) {
-      errors[field] = fieldErrors
+      errors[field] = fieldErrors;
     }
   }
 
-  return { isValid, errors }
+  return { isValid, errors };
 }

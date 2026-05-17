@@ -1,39 +1,39 @@
 export interface ObjectType<T> {
-  [key: string]: T
+  [key: string]: T;
 }
 
 export interface ListToTreeOptions<T = any> {
   /** The key to use as the unique identifier for each item. Default: 'id' */
-  idKey?: string
+  idKey?: string;
   /** The key to use as the parent identifier for each item. Default: 'parentId' */
-  parentKey?: string
+  parentKey?: string;
   /** The key to use for storing children. Default: 'children' */
-  childrenKey?: string
+  childrenKey?: string;
   /** Whether to keep empty children arrays. Default: true */
-  keepEmptyChildren?: boolean
+  keepEmptyChildren?: boolean;
   /** Function to transform each node before processing. Default: (node) => node */
-  transformNode?: (node: T) => T
+  transformNode?: (node: T) => T;
 }
 
 export interface TreeToListOptions<T = any> {
   /** The key to use for storing children. Default: 'children' */
-  childrenKey?: string
+  childrenKey?: string;
   /** Function to transform each node before processing. Default: (node) => node */
-  transformNode?: (node: T) => T
+  transformNode?: (node: T) => T;
 }
 
-export interface MapTreeOptions<T = any> {
+export interface MapTreeOptions {
   /** Key for children property / 子节点属性名 */
-  childrenKey?: string
+  childrenKey?: string;
   /** Whether to keep empty children arrays / 是否保留空的子节点数组 */
-  keepEmptyChildren?: boolean
+  keepEmptyChildren?: boolean;
 }
 
-export interface WalkTreeOptions<T = any> {
+export interface WalkTreeOptions {
   /** Key for children property / 子节点属性名 */
-  childrenKey?: string
+  childrenKey?: string;
   /** Whether to traverse in depth-first order / 是否深度优先遍历 */
-  depthFirst?: boolean
+  depthFirst?: boolean;
   /** Whether to stop traversal when visitor returns false / 访问者返回false时是否停止遍历 */
-  stopOnFalse?: boolean
+  stopOnFalse?: boolean;
 }

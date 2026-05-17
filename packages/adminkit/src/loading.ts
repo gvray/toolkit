@@ -1,19 +1,19 @@
 export interface LoadingState {
-  isLoading: boolean
-  message?: string
-  progress?: number
+  isLoading: boolean;
+  message?: string;
+  progress?: number;
 }
 
-export type LoadingListener = (state: LoadingState) => void
+export type LoadingListener = (state: LoadingState) => void;
 
 /**
  * Global loading state manager for admin applications.
  * 管理后台应用的全局加载状态管理器。
  */
 export class LoadingManager {
-  private state: LoadingState = { isLoading: false }
-  private listeners: Set<LoadingListener> = new Set()
-  private loadingStack: string[] = []
+  private state: LoadingState = { isLoading: false };
+  private listeners: Set<LoadingListener> = new Set();
+  private loadingStack: string[] = [];
 
   /**
    * Start loading with optional message and progress.
@@ -21,14 +21,14 @@ export class LoadingManager {
    */
   start(key = 'default', message?: string, progress?: number): void {
     if (!this.loadingStack.includes(key)) {
-      this.loadingStack.push(key)
+      this.loadingStack.push(key);
     }
 
-    const state: LoadingState = { isLoading: true }
-    if (message !== undefined) state.message = message
-    if (progress !== undefined) state.progress = progress
+    const state: LoadingState = { isLoading: true };
+    if (message !== undefined) state.message = message;
+    if (progress !== undefined) state.progress = progress;
 
-    this.updateState(state)
+    this.updateState(state);
   }
 
   /**
@@ -36,10 +36,10 @@ export class LoadingManager {
    * 完成特定键的加载。
    */
   finish(key = 'default'): void {
-    this.loadingStack = this.loadingStack.filter((k) => k !== key)
+    this.loadingStack = this.loadingStack.filter((k) => k !== key);
 
     if (this.loadingStack.length === 0) {
-      this.updateState({ isLoading: false })
+      this.updateState({ isLoading: false });
     }
   }
 
@@ -52,8 +52,8 @@ export class LoadingManager {
       this.updateState({
         ...this.state,
         progress,
-        ...(message && { message })
-      })
+        ...(message && { message }),
+      });
     }
   }
 
@@ -65,8 +65,8 @@ export class LoadingManager {
     if (this.state.isLoading) {
       this.updateState({
         ...this.state,
-        message
-      })
+        message,
+      });
     }
   }
 
@@ -75,7 +75,7 @@ export class LoadingManager {
    * 获取当前加载状态。
    */
   getState(): LoadingState {
-    return { ...this.state }
+    return { ...this.state };
   }
 
   /**
@@ -83,7 +83,7 @@ export class LoadingManager {
    * 检查是否正在加载。
    */
   isLoading(): boolean {
-    return this.state.isLoading
+    return this.state.isLoading;
   }
 
   /**
@@ -91,15 +91,15 @@ export class LoadingManager {
    * 订阅加载状态变化。
    */
   subscribe(listener: LoadingListener): () => void {
-    this.listeners.add(listener)
+    this.listeners.add(listener);
 
     // Immediately call with current state
-    listener(this.getState())
+    listener(this.getState());
 
     // Return unsubscribe function
     return () => {
-      this.listeners.delete(listener)
-    }
+      this.listeners.delete(listener);
+    };
   }
 
   /**
@@ -107,19 +107,19 @@ export class LoadingManager {
    * 清除所有加载状态。
    */
   clear(): void {
-    this.loadingStack = []
-    this.updateState({ isLoading: false })
+    this.loadingStack = [];
+    this.updateState({ isLoading: false });
   }
 
   private updateState(newState: LoadingState): void {
-    this.state = { ...newState }
+    this.state = { ...newState };
     this.listeners.forEach((listener) => {
       try {
-        listener(this.getState())
+        listener(this.getState());
       } catch (error) {
-        console.error('LoadingManager: Error in listener:', error)
+        console.error('LoadingManager: Error in listener:', error);
       }
-    })
+    });
   }
 }
 
@@ -130,19 +130,19 @@ export class LoadingManager {
 export async function withLoading<T>(
   promise: Promise<T>,
   options: {
-    key?: string
-    message?: string
-    manager?: LoadingManager
+    key?: string;
+    message?: string;
+    manager?: LoadingManager;
   } = {}
 ): Promise<T> {
-  const { key = 'default', message, manager = loadingManager } = options
+  const { key = 'default', message, manager = loadingManager } = options;
 
   try {
-    manager.start(key, message)
-    const result = await promise
-    return result
+    manager.start(key, message);
+    const result = await promise;
+    return result;
   } finally {
-    manager.finish(key)
+    manager.finish(key);
   }
 }
 
@@ -151,19 +151,19 @@ export async function withLoading<T>(
  * 类方法装饰器，自动管理加载状态。
  */
 export function loading(options: { key?: string; message?: string } = {}) {
-  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-    const originalMethod = descriptor.value
+  return function (_target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    const originalMethod = descriptor.value;
 
     descriptor.value = async function (...args: any[]) {
-      const { key = propertyKey, message } = options
-      const loadingOptions: { key: string; message?: string; manager?: LoadingManager } = { key }
-      if (message !== undefined) loadingOptions.message = message
-      return withLoading(originalMethod.apply(this, args), loadingOptions)
-    }
+      const { key = propertyKey, message } = options;
+      const loadingOptions: { key: string; message?: string; manager?: LoadingManager } = { key };
+      if (message !== undefined) loadingOptions.message = message;
+      return withLoading(originalMethod.apply(this, args), loadingOptions);
+    };
 
-    return descriptor
-  }
+    return descriptor;
+  };
 }
 
 // Global loading manager instance / 全局加载管理器实例
-export const loadingManager = new LoadingManager()
+export const loadingManager = new LoadingManager();

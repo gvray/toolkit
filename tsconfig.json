@@ -1,27 +1,19 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "lavy/tsconfig.base.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ES2020",
+    "baseUrl": ".",
     "outDir": "dist",
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["packages/*"]
-    },
-    // "outFile": "./",
-    // "allowJs": true,
-    // "checkJs": true,
-    // "jsx": "react-jsxdev",
-    // "declaration": false,
-    // "declarationMap": false,
-    // "sourceMap": false,
-    "downlevelIteration": true
-    // "importHelpers": true,
-    // "lib": [],
-    // "rootDirs": [],
-    // "typeRoots": [],
-    // "types": [],
+    "moduleResolution": "node",
+    "downlevelIteration": true,
+    "skipLibCheck": true,
+    "lib": ["DOM", "ES2015", "ES2017", "ESNext"]
   },
-  // "include": [""],
-  "exclude": ["node_modules", "**/node_modules/*"]
+  "include": [
+    "packages/*/src/**/*.ts",
+    "packages/*/src/**/*.tsx",
+    "packages/*/src/**/*.d.ts",
+    "examples/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist", "build", "coverage", "**/*.spec.ts", "**/*.test.ts"]
 }

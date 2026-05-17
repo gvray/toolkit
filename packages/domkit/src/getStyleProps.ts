@@ -1,16 +1,4 @@
-type StylePropsKeys = Omit<
-  CSSStyleDeclaration,
-  | 'getPropertyPriority'
-  | 'getPropertyValue'
-  | 'item'
-  | 'removeProperty'
-  | 'setProperty'
-  | 'parentRule'
-  | 'length'
-  | number
->
-
-type StyleProps = Record<string, string>
+type StyleProps = Record<string, string>;
 /**
  * Get the style properties of an element.
  *
@@ -36,22 +24,22 @@ type StyleProps = Record<string, string>
  * @since 1.0.0
  */
 const getStyleProps = (element: HTMLElement, propName?: string): StyleProps | string => {
-  const styleProps: StyleProps = {}
-  const style = window.getComputedStyle(element)
+  const styleProps: StyleProps = {};
+  const style = window.getComputedStyle(element);
 
   if (!style) {
-    return {}
+    return {};
   }
 
   if (propName) {
-    return style.getPropertyValue(propName)
+    return style.getPropertyValue(propName);
   }
 
   for (let i = 0; i < style.length; i++) {
-    const prop = style[i]
-    styleProps[prop] = style.getPropertyValue(prop)
+    const prop = style[i];
+    styleProps[prop] = style.getPropertyValue(prop);
   }
 
-  return styleProps
-}
-export default getStyleProps
+  return styleProps;
+};
+export default getStyleProps;

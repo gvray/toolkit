@@ -2,17 +2,17 @@
  * TreeNode type definition for tree structures
  * 树节点类型定义
  */
-type TreeNode<T> = T & { children?: TreeNode<T>[] }
+type TreeNode<T> = T & { children?: TreeNode<T>[] };
 
 /**
  * Options for mapTree function
  * mapTree函数的配置选项
  */
-interface MapTreeOptions<T> {
+interface MapTreeOptions {
   /** Key for children property / 子节点属性名 */
-  childrenKey?: string
+  childrenKey?: string;
   /** Whether to keep empty children arrays / 是否保留空的子节点数组 */
-  keepEmptyChildren?: boolean
+  keepEmptyChildren?: boolean;
 }
 
 /**
@@ -69,32 +69,32 @@ interface MapTreeOptions<T> {
 const mapTree = <T extends { [key: string]: any }, R extends { [key: string]: any }>(
   trees: TreeNode<T>[],
   mapper: (node: TreeNode<T>, level: number, index: number) => R,
-  { childrenKey = 'children', keepEmptyChildren = true }: MapTreeOptions<T> = {}
+  { childrenKey = 'children', keepEmptyChildren = true }: MapTreeOptions = {}
 ): TreeNode<R>[] => {
   const mapNode = (node: TreeNode<T>, level: number, index: number): TreeNode<R> => {
-    const mapped = mapper(node, level, index)
-    const children = (node as any)[childrenKey]
+    const mapped = mapper(node, level, index);
+    const children = (node as any)[childrenKey];
 
-    const result: TreeNode<R> = { ...mapped }
+    const result: TreeNode<R> = { ...mapped };
 
     // Remove the original children property from the mapped result
-    delete (result as any)[childrenKey]
+    delete (result as any)[childrenKey];
 
     if (children && Array.isArray(children) && children.length > 0) {
       // Recursively map children with incremented level
-      ;(result as any)[childrenKey] = children.map((childNode: TreeNode<T>, childIndex: number) =>
+      (result as any)[childrenKey] = children.map((childNode: TreeNode<T>, childIndex: number) =>
         mapNode(childNode, level + 1, childIndex)
-      )
+      );
     } else if (keepEmptyChildren && children && Array.isArray(children) && children.length === 0) {
       // Keep empty children array if specified and it's actually an empty array
-      ;(result as any)[childrenKey] = []
+      (result as any)[childrenKey] = [];
     }
     // If children is null, undefined, not an array, or empty array with keepEmptyChildren=false, don't add children property
 
-    return result
-  }
+    return result;
+  };
 
-  return trees.map((node, index) => mapNode(node, 0, index))
-}
+  return trees.map((node, index) => mapNode(node, 0, index));
+};
 
-export default mapTree
+export default mapTree;
