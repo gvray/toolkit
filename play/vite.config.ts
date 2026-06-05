@@ -1,19 +1,19 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import path from 'path';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { kitManifestPlugin } from './plugins/plugin-kit-manifest';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), kitManifestPlugin(path.resolve(__dirname, '../packages'))],
   server: {
-    port: 3000,
-    open: true
+    port: 7000,
+    open: true,
   },
   resolve: {
-    alias: {
-      '@': '/src'
-    }
+    alias: { '@': '/src' },
   },
   build: {
     outDir: 'dist',
-    sourcemap: true
-  }
-})
+    sourcemap: true,
+  },
+});
