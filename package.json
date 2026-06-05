@@ -7,19 +7,19 @@
     "build:play": "pnpm --filter play run build",
     "test": "pnpm -r --filter './packages/*' --workspace-concurrency=1 run test",
     "test:coverage": "pnpm -r --filter './packages/*' --workspace-concurrency=1 run test:coverage",
-    "docs": "pnpm -r --filter './packages/*' run docs",
-    "doc": "pnpm -r --filter './packages/*' run doc",
-    "append-api": "node scripts/append-api-to-readme.js",
-    "eslint": "eslint --ext .js,.ts --fix ./packages/**/src",
-    "dev": "pnpm --filter play run dev",
+    "docs:generate": "typedoc && tsx scripts/gen-docs-index.ts",
+    "docs:dev": "pnpm docs:generate && vitepress dev docs",
+    "docs:build": "pnpm docs:generate && vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "eslint": "eslint packages/ --fix",
+    "dev": "pnpm --parallel --filter './packages/*' --filter play run dev",
     "dev:play": "pnpm -F play dev",
     "version-packages": "changeset version",
     "version-packages:dry-run": "changeset version --dry-run",
-    "prepublishOnly": "pnpm run build && pnpm run test && pnpm run eslint && pnpm run doc",
+    "prepublishOnly": "pnpm run build && pnpm run test && pnpm run eslint",
     "release": "pnpm run prepublishOnly && changeset publish",
     "prepare": "husky install",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "lint": "eslint packages/",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "type-check": "tsc --noEmit",
@@ -32,11 +32,11 @@
     }
   },
   "lint-staged": {
-    "*.{ts}": [
-      "eslint --fix",
+    "packages/**/*.ts": [
+      "eslint --fix --no-warn-ignored",
       "prettier --write"
     ],
-    "*.{json,md,yml,yaml}": [
+    "**/*.{json,md,yml,yaml}": [
       "prettier --write"
     ]
   },
@@ -49,13 +49,10 @@
     "typescript",
     "math",
     "date",
-    "animation",
     "color",
-    "crypto",
     "request",
     "validation",
     "path",
-    "event",
     "formatter"
   ],
   "author": {
@@ -109,6 +106,7 @@
     "typedoc": "^0.28.4",
     "typedoc-plugin-markdown": "^4.6.3",
     "typescript": "^5.7.0",
+    "vitepress": "^1.6.4",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1"

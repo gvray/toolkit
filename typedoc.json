@@ -1,0 +1,28 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [
+    "packages/adminkit",
+    "packages/colorkit",
+    "packages/datekit",
+    "packages/domkit",
+    "packages/eskit",
+    "packages/formatkit",
+    "packages/mathkit",
+    "packages/pathkit",
+    "packages/requestkit",
+    "packages/validationkit"
+  ],
+  "entryPointStrategy": "packages",
+  "plugin": ["typedoc-plugin-markdown"],
+  "out": "docs/api",
+  "cleanOutputDir": true,
+  "readme": "none",
+  "parametersFormat": "table",
+  "propertiesFormat": "table",
+  "enumMembersFormat": "table",
+  "useCodeBlocks": true,
+  "disableSources": true,
+  "expandObjects": true,
+  "hidePageHeader": true,
+  "hideBreadcrumbs": true
+}

@@ -5,9 +5,15 @@ export default defineConfig([
   // Global ignores
   {
     ignores: [
+      'play/**',
+      '**/__tests__/**',
+      '**/*.test.{ts,tsx,js}',
+      '**/*.spec.{ts,tsx,js}',
       '**/node_modules/**',
       '**/dist/**',
       '**/build/**',
+      '**/esm/**',
+      '**/lib/**',
       '**/coverage/**',
       '**/.next/**',
       '**/.nuxt/**',
@@ -29,12 +35,4 @@ export default defineConfig([
     }
   },
 
-  // Test files - relaxed rules
-  {
-    files: ['**/*.test.{js,ts,tsx}', '**/*.spec.{js,ts,tsx}', '**/tests/**', '**/__tests__/**'],
-    rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
-      'no-console': 'off'
-    }
-  }
 ])
