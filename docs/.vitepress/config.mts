@@ -54,7 +54,7 @@ function buildNav() {
 export default defineConfig({
   title: 'Gvray Toolkit',
   description: 'Utility packages for TypeScript & JavaScript',
-  base: '/',
+  base: '/toolkit/',
 
   head: [['link', { rel: 'icon', href: '/logo.svg' }]],
 
