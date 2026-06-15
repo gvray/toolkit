@@ -1,6 +1,6 @@
 {
   "name": "@gvray/requestkit",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Async request utilities: retry, polling, timeout, memoize, rate limiting, deferred, and abort groups.",
   "main": "lib/index.js",
   "module": "esm/index.js",

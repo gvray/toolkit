@@ -1,5 +1,11 @@
 # @gvray/eskit
 
+## 1.3.0
+
+### Minor Changes
+
+- Add funtions
+
 ## 1.2.0
 
 ### Minor Changes

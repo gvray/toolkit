@@ -1,5 +1,11 @@
 # @gvray/mathkit
 
+## 1.1.0
+
+### Minor Changes
+
+- Add funtions
+
 ## 1.0.1
 
 ### Patch Changes

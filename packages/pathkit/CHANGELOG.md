@@ -1,5 +1,16 @@
 # @gvray/pathkit
 
+## 1.1.0
+
+### Minor Changes
+
+- Add funtions
+
+### Patch Changes
+
+- Updated dependencies
+  - @gvray/eskit@1.3.0
+
 ## 1.0.5
 
 ### Patch Changes

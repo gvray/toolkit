@@ -1,6 +1,6 @@
 {
   "name": "@gvray/mathkit",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Mathematical utilities: arithmetic precision, statistics, geometry, random number generation, and number checks.",
   "main": "lib/index.js",
   "module": "esm/index.js",

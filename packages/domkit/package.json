@@ -1,6 +1,6 @@
 {
   "name": "@gvray/domkit",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "DOM manipulation utilities: events, class toggling, bounds, scroll, fullscreen, download, clipboard, and more.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@gvray/eskit",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Core JavaScript/TypeScript utilities: collections, deep clone, debounce, curry, compose, tree operations, and type checks.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
