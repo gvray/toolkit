@@ -8,16 +8,18 @@
  * @returns Remaining slice / 剩余元素
  * @example
  * dropWhile([1, 2, 3, 4], (n) => n < 3)
- * // -> [3, 4]
+ * // => [3, 4]
+ *
+ * @since 1.2.0
  */
 const dropWhile = <T>(array: readonly T[], predicate: (item: T, index: number) => boolean): T[] => {
-  let start = 0
+  let start = 0;
 
   while (start < array.length && predicate(array[start], start)) {
-    start += 1
+    start += 1;
   }
 
-  return array.slice(start)
-}
+  return array.slice(start);
+};
 
-export default dropWhile
+export default dropWhile;

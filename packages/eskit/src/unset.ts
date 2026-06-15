@@ -1,4 +1,6 @@
-import { toPath } from './_internal/path'
+import { toPath } from './_internal/path';
+
+const UNSAFE_KEYS = new Set<PropertyKey>(['__proto__', 'prototype', 'constructor']);
 
 /**
  * Removes a nested property from an object by path.
@@ -9,41 +11,50 @@ import { toPath } from './_internal/path'
  * @returns `true` when the property existed and was removed / 属性存在并被删除时返回 `true`
  * @example
  * unset({ a: { b: 1 } }, 'a.b')
- * // -> true
+ * // => true
+ *
+ * @since 1.2.0
  */
-const unset = (object: Record<PropertyKey, unknown>, path: string | readonly PropertyKey[]): boolean => {
-  const segments = toPath(path)
+const unset = (
+  object: Record<PropertyKey, unknown>,
+  path: string | readonly PropertyKey[]
+): boolean => {
+  const segments = toPath(path);
 
   if (segments.length === 0) {
-    return false
+    return false;
   }
 
-  let current: Record<PropertyKey, unknown> = object
+  if (segments.some((segment) => UNSAFE_KEYS.has(segment))) {
+    return false;
+  }
+
+  let current: Record<PropertyKey, unknown> = object;
 
   for (let index = 0; index < segments.length - 1; index += 1) {
-    const segment = segments[index]
-    const next = current[segment]
+    const segment = segments[index];
+    const next = current[segment];
 
     if (typeof next !== 'object' || next === null) {
-      return false
+      return false;
     }
 
-    current = next as Record<PropertyKey, unknown>
+    current = next as Record<PropertyKey, unknown>;
   }
 
-  const lastSegment = segments[segments.length - 1]
+  const lastSegment = segments[segments.length - 1];
 
   if (!(lastSegment in current)) {
-    return false
+    return false;
   }
 
   if (Array.isArray(current) && typeof lastSegment === 'number') {
-    current.splice(lastSegment, 1)
-    return true
+    current.splice(lastSegment, 1);
+    return true;
   }
 
-  delete current[lastSegment]
-  return true
-}
+  delete current[lastSegment];
+  return true;
+};
 
-export default unset
+export default unset;

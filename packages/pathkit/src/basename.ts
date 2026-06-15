@@ -6,39 +6,41 @@
  * @returns 路径的最后一部分（文件名）
  *
  * @example
- * basename('/foo/bar/baz.html')         // 返回: 'baz.html'
- * basename('/foo/bar/baz.html', '.html') // 返回: 'baz'
- * basename('/foo/bar/baz')              // 返回: 'baz'
- * basename('/foo/bar/')                 // 返回: 'bar'
+ * basename('/foo/bar/baz.html')         // => 'baz.html'
+ * basename('/foo/bar/baz.html', '.html') // => 'baz'
+ * basename('/foo/bar/baz')              // => 'baz'
+ * basename('/foo/bar/')                 // => 'bar'
+ *
+ * @since 1.0.0
  */
 const basename = (path: string, ext?: string): string => {
   if (typeof path !== 'string') {
-    throw new TypeError('Path must be a string')
+    throw new TypeError('Path must be a string');
   }
 
   // 处理空路径
   if (!path) {
-    return ''
+    return '';
   }
 
   // 移除开头和结尾的斜杠
-  path = path.replace(/^\/+|\/+$/g, '')
+  path = path.replace(/^\/+|\/+$/g, '');
 
   // 如果路径为空，返回 '/'
   if (!path) {
-    return '/'
+    return '/';
   }
 
   // 获取最后一个斜杠后的部分
-  const parts = path.split(/[/\\]/)
-  let base = parts[parts.length - 1]
+  const parts = path.split(/[/\\]/);
+  let base = parts[parts.length - 1];
 
   // 如果指定了扩展名，移除它
   if (ext && base.endsWith(ext)) {
-    base = base.slice(0, -ext.length)
+    base = base.slice(0, -ext.length);
   }
 
-  return base
-}
+  return base;
+};
 
-export default basename
+export default basename;

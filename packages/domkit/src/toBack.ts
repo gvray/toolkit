@@ -3,15 +3,19 @@
  *
  * @param el - The element to move to the back.
  * @example
+ * const parent = document.createElement('div')
+ * const a = document.createElement('span')
+ * const b = document.createElement('span')
+ * parent.appendChild(a)
+ * parent.appendChild(b)
+ * toBack(a)
+ * console.log(parent.lastElementChild === a)
  *
- * // Move the first div to the back of its parent container
- * const container = document.querySelector('.container');
- * const firstDiv = container.firstElementChild;
- * toBack(firstDiv);
+ * @since 1.0.0
  */
 const toBack = (el: HTMLElement): void => {
-  const parent = el.parentNode
-  parent?.appendChild(el)
-}
+  const parent = el.parentNode;
+  parent?.appendChild(el);
+};
 
-export default toBack
+export default toBack;

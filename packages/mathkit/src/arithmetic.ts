@@ -4,15 +4,26 @@
  *
  * @param num - A number to find the decimal places of / 要查找小数位数的数字
  * @returns The number of decimal places / 小数位数
+ *
+ * @example
+ * getDecimalPlaces(1.005) // => 3
+ * getDecimalPlaces(5) // => 0
+ *
+ * @since 1.0.0
  */
 export function getDecimalPlaces(num: number): number {
-  const decimalPart = String(num).split('.')[1]
-  return decimalPart ? decimalPart.length : 0
+  const [, decimalPart = ''] = String(num).toLowerCase().split('.');
+  const [fraction = '', exponent = '0'] = decimalPart.split('e');
+  if (fraction) {
+    return Math.max(0, fraction.length - Number(exponent));
+  }
+  const scientificExponent = String(num).toLowerCase().split('e-')[1];
+  return scientificExponent ? Number(scientificExponent) : 0;
 }
 
 function assertFiniteNumber(value: number, paramName: string): void {
   if (!Number.isFinite(value)) {
-    throw new RangeError(`${paramName} must be a finite number`)
+    throw new RangeError(`${paramName} must be a finite number`);
   }
 }
 
@@ -26,13 +37,15 @@ function assertFiniteNumber(value: number, paramName: string): void {
  *
  * @example
  * ```typescript
- * add(0.1, 0.2) // returns 0.3 (not 0.30000000000000004)
- * add(123.456, 78.9) // returns 202.356
+ * add(0.1, 0.2) // => 0.3 (not 0.30000000000000004)
+ * add(123.456, 78.9) // => 202.356
  * ```
+ *
+ * @since 1.0.0
  */
 export function add(a: number, b: number): number {
-  const m = Math.pow(10, Math.max(getDecimalPlaces(a), getDecimalPlaces(b)))
-  return Math.round(((a * m + b * m) / m) * 1000000) / 1000000
+  const m = Math.pow(10, Math.max(getDecimalPlaces(a), getDecimalPlaces(b)));
+  return (Math.round(a * m) + Math.round(b * m)) / m;
 }
 
 /**
@@ -45,13 +58,15 @@ export function add(a: number, b: number): number {
  *
  * @example
  * ```typescript
- * subtract(0.3, 0.1) // returns 0.2 (not 0.19999999999999998)
- * subtract(123.456, 23.45) // returns 100.006
+ * subtract(0.3, 0.1) // => 0.2 (not 0.19999999999999998)
+ * subtract(123.456, 23.45) // => 100.006
  * ```
+ *
+ * @since 1.0.0
  */
 export function subtract(a: number, b: number): number {
-  const m = Math.pow(10, Math.max(getDecimalPlaces(a), getDecimalPlaces(b)))
-  return Math.round(((a * m - b * m) / m) * 1000000) / 1000000
+  const m = Math.pow(10, Math.max(getDecimalPlaces(a), getDecimalPlaces(b)));
+  return (Math.round(a * m) - Math.round(b * m)) / m;
 }
 
 /**
@@ -64,19 +79,21 @@ export function subtract(a: number, b: number): number {
  *
  * @example
  * ```typescript
- * multiply(0.1, 0.2) // returns 0.02 (not 0.020000000000000004)
- * multiply(1.23, 4.56) // returns 5.6088
+ * multiply(0.1, 0.2) // => 0.02 (not 0.020000000000000004)
+ * multiply(1.23, 4.56) // => 5.6088
  * ```
+ *
+ * @since 1.0.0
  */
 export function multiply(a: number, b: number): number {
-  const decimalPlacesA = getDecimalPlaces(a)
-  const decimalPlacesB = getDecimalPlaces(b)
-  const totalDecimalPlaces = decimalPlacesA + decimalPlacesB
+  const decimalPlacesA = getDecimalPlaces(a);
+  const decimalPlacesB = getDecimalPlaces(b);
+  const totalDecimalPlaces = decimalPlacesA + decimalPlacesB;
 
-  const intA = Math.round(a * Math.pow(10, decimalPlacesA))
-  const intB = Math.round(b * Math.pow(10, decimalPlacesB))
+  const intA = Math.round(a * Math.pow(10, decimalPlacesA));
+  const intB = Math.round(b * Math.pow(10, decimalPlacesB));
 
-  return (intA * intB) / Math.pow(10, totalDecimalPlaces)
+  return (intA * intB) / Math.pow(10, totalDecimalPlaces);
 }
 
 /**
@@ -90,23 +107,25 @@ export function multiply(a: number, b: number): number {
  *
  * @example
  * ```typescript
- * divide(0.3, 0.1) // returns 3 (not 2.9999999999999996)
- * divide(123.456, 12.3) // returns 10.037073170731707
+ * divide(0.3, 0.1) // => 3 (not 2.9999999999999996)
+ * divide(123.456, 12.3) // => 10.037073170731707
  * divide(5, 0) // throws Error
  * ```
+ *
+ * @since 1.0.0
  */
 export function divide(a: number, b: number): number {
   if (b === 0) {
-    throw new Error('Division by zero is not allowed / 除数不能为零')
+    throw new Error('Division by zero is not allowed / 除数不能为零');
   }
 
-  const decimalPlacesA = getDecimalPlaces(a)
-  const decimalPlacesB = getDecimalPlaces(b)
+  const decimalPlacesA = getDecimalPlaces(a);
+  const decimalPlacesB = getDecimalPlaces(b);
 
-  const intA = Math.round(a * Math.pow(10, decimalPlacesA))
-  const intB = Math.round(b * Math.pow(10, decimalPlacesB))
+  const intA = Math.round(a * Math.pow(10, decimalPlacesA));
+  const intB = Math.round(b * Math.pow(10, decimalPlacesB));
 
-  return (intA / intB) * Math.pow(10, decimalPlacesB - decimalPlacesA)
+  return (intA / intB) * Math.pow(10, decimalPlacesB - decimalPlacesA);
 }
 
 /**
@@ -119,14 +138,16 @@ export function divide(a: number, b: number): number {
  * @throws Error if divisor is zero / 除数为零时抛出
  *
  * @example
- * mod(10.5, 3.1) // → 1.2
+ * mod(10.5, 3.1) // => 1.2
+ *
+ * @since 1.0.0
  */
 export function mod(a: number, b: number): number {
-  assertFiniteNumber(a, 'a')
-  assertFiniteNumber(b, 'b')
+  assertFiniteNumber(a, 'a');
+  assertFiniteNumber(b, 'b');
   if (b === 0) {
-    throw new Error('Division by zero is not allowed / 除数不能为零')
+    throw new Error('Division by zero is not allowed / 除数不能为零');
   }
-  const quotient = Math.trunc(divide(a, b))
-  return subtract(a, multiply(quotient, b))
+  const quotient = Math.trunc(divide(a, b));
+  return subtract(a, multiply(quotient, b));
 }

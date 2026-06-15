@@ -1,4 +1,4 @@
-import { splitWords } from './_internal/words'
+import { splitWords } from './_internal/words';
 
 /**
  * Converts a string to PascalCase.
@@ -8,12 +8,14 @@ import { splitWords } from './_internal/words'
  * @returns The Pascal-cased string / 转换后的 PascalCase 字符串
  * @example
  * pascalCase('foo-bar')
- * // -> 'FooBar'
+ * // => 'FooBar'
+ *
+ * @since 1.2.0
  */
 const pascalCase = (value: string): string => {
   return splitWords(value)
     .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join('')
-}
+    .join('');
+};
 
-export default pascalCase
+export default pascalCase;

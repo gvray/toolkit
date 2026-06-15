@@ -8,21 +8,26 @@
  * @returns A tuple of matched and unmatched groups / 命中组与未命中组的元组
  * @example
  * partition([1, 2, 3, 4], (value) => value % 2 === 0)
- * // -> [[2, 4], [1, 3]]
+ * // => [[2, 4], [1, 3]]
+ *
+ * @since 1.2.0
  */
-const partition = <T>(array: readonly T[], predicate: (item: T, index: number, array: readonly T[]) => boolean): [T[], T[]] => {
-  const matched: T[] = []
-  const unmatched: T[] = []
+const partition = <T>(
+  array: readonly T[],
+  predicate: (item: T, index: number, array: readonly T[]) => boolean
+): [T[], T[]] => {
+  const matched: T[] = [];
+  const unmatched: T[] = [];
 
   array.forEach((item: T, index: number) => {
     if (predicate(item, index, array)) {
-      matched.push(item)
+      matched.push(item);
     } else {
-      unmatched.push(item)
+      unmatched.push(item);
     }
-  })
+  });
 
-  return [matched, unmatched]
-}
+  return [matched, unmatched];
+};
 
-export default partition
+export default partition;

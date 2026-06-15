@@ -10,31 +10,13 @@
  * @returns undefined
  *
  * @example
- * ```typescript
- * // As a default callback / 作为默认回调
- * function processData(data: any[], callback = noop) {
- *   // Process data...
- *   callback()
- * }
- *
- * // As a placeholder in event handlers / 作为事件处理程序中的占位符
- * const button = {
- *   onClick: noop, // Default empty handler
- *   onHover: noop
- * }
- *
- * // In conditional assignments / 在条件赋值中
- * const handler = shouldHandle ? actualHandler : noop
- *
- * // For testing / 用于测试
- * const mockCallback = noop
- * someFunction(data, mockCallback)
- * ```
+ * typeof noop // => 'function'
+ * noop() // => undefined
+ * noop(1, 2, 3) // => undefined
  *
  * @since 1.0.0
  */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/no-empty-function */
-const noop = () => {}
 
-export default noop
+const noop = () => {};
+
+export default noop;

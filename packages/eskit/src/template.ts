@@ -7,13 +7,15 @@
  * @returns The interpolated string / 插值后的字符串
  * @example
  * template('Hi, {name}', { name: 'Tom' })
- * // -> 'Hi, Tom'
+ * // => 'Hi, Tom'
+ *
+ * @since 1.2.0
  */
 const template = (value: string, data: Record<string, unknown>): string => {
   return value.replace(/\{([^}]+)\}/g, (_match: string, key: string) => {
-    const replacement = data[key]
-    return replacement === undefined ? '' : String(replacement)
-  })
-}
+    const replacement = data[key];
+    return replacement === undefined ? '' : String(replacement);
+  });
+};
 
-export default template
+export default template;

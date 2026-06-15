@@ -7,10 +7,12 @@
  * @returns A new array without falsy values / 移除假值后的新数组
  * @example
  * compact([0, 1, false, '', 2, null, undefined])
- * // -> [1, 2]
+ * // => [1, 2]
+ *
+ * @since 1.2.0
  */
 const compact = <T>(array: readonly T[]): T[] => {
-  return array.filter((item: T): boolean => Boolean(item))
-}
+  return array.filter((item: T): boolean => Boolean(item));
+};
 
-export default compact
+export default compact;

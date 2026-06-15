@@ -1,5 +1,3 @@
-import queryString from './queryString'
-
 /**
  * Builds a URL from a base URL, path, and optional query object.
  *
@@ -10,17 +8,26 @@ import queryString from './queryString'
  *
  * @example
  * buildUrl('https://api.com', '/users', { page: 1 })
- * // -> 'https://api.com/users?page=1'
+ * // => 'https://api.com/users?page=1'
+ *
+ * @since 1.0.0
  */
-const buildUrl = (base: string, path: string = '', query: Record<string, string | number> = {}): string => {
+const buildUrl = (
+  base: string,
+  path: string = '',
+  query: Record<string, string | number> = {}
+): string => {
   if (typeof base !== 'string' || typeof path !== 'string') {
-    throw new TypeError('base and path must be strings')
+    throw new TypeError('base and path must be strings');
   }
 
-  const url = new URL(path, base)
-  const search = queryString(query, '')
+  const url = new URL(path, base);
 
-  return `${url.toString()}${search ? `?${search}` : ''}`
-}
+  Object.keys(query).forEach((key) => {
+    url.searchParams.append(key, String(query[key]));
+  });
 
-export default buildUrl
+  return url.toString();
+};
+
+export default buildUrl;

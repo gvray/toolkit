@@ -6,10 +6,12 @@
  * @returns `true` when the value is a `Map` / 值是 `Map` 时返回 `true`
  * @example
  * isMap(new Map())
- * // -> true
+ * // => true
+ *
+ * @since 1.2.0
  */
 const isMap = (value: unknown): value is Map<unknown, unknown> => {
-  return value instanceof Map
-}
+  return value instanceof Map;
+};
 
-export default isMap
+export default isMap;

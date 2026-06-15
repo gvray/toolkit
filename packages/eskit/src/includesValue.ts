@@ -9,14 +9,20 @@
  * @returns `true` when the value is found / 找到目标值时返回 `true`
  * @example
  * includesValue([1, 2, 3], 2)
- * // -> true
+ * // => true
+ *
+ * @since 1.2.0
  */
-const includesValue = <T>(collection: readonly T[] | string, value: T | string, position: number = 0): boolean => {
+const includesValue = <T>(
+  collection: readonly T[] | string,
+  value: T | string,
+  position: number = 0
+): boolean => {
   if (typeof collection === 'string') {
-    return collection.includes(String(value), position)
+    return collection.includes(String(value), position);
   }
 
-  return collection.includes(value as T, position)
-}
+  return collection.includes(value as T, position);
+};
 
-export default includesValue
+export default includesValue;

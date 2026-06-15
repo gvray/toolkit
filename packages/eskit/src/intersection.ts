@@ -7,16 +7,20 @@
  * @returns A new array containing shared items / 包含共有元素的新数组
  * @example
  * intersection([1, 2, 3], [2, 3, 4])
- * // -> [2, 3]
+ * // => [2, 3]
+ *
+ * @since 1.2.0
  */
 const intersection = <T>(...arrays: ReadonlyArray<readonly T[]>): T[] => {
   if (arrays.length === 0) {
-    return []
+    return [];
   }
 
-  const [firstArray, ...restArrays] = arrays
+  const [firstArray, ...restArrays] = arrays;
 
-  return Array.from(new Set(firstArray)).filter((item: T) => restArrays.every((array: readonly T[]) => array.includes(item)))
-}
+  return Array.from(new Set(firstArray)).filter((item: T) =>
+    restArrays.every((array: readonly T[]) => array.includes(item))
+  );
+};
 
-export default intersection
+export default intersection;

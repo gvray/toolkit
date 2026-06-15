@@ -1,4 +1,4 @@
-import { splitWords } from './_internal/words'
+import { splitWords } from './_internal/words';
 
 /**
  * Converts a string to snake_case.
@@ -8,12 +8,14 @@ import { splitWords } from './_internal/words'
  * @returns The snake-cased string / 转换后的 snake_case 字符串
  * @example
  * snakeCase('fooBar')
- * // -> 'foo_bar'
+ * // => 'foo_bar'
+ *
+ * @since 1.2.0
  */
 const snakeCase = (value: string): string => {
   return splitWords(value)
     .map((word: string) => word.toLowerCase())
-    .join('_')
-}
+    .join('_');
+};
 
-export default snakeCase
+export default snakeCase;

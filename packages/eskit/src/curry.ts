@@ -13,44 +13,29 @@
  *
  * @example
  * ```typescript
- * // Basic currying / 基本柯里化
- * const add = (a: number, b: number, c: number) => a + b + c
+ * const add = (a, b, c) => a + b + c
  * const curriedAdd = curry(add)
  *
- * // Partial application / 部分应用
- * const add5 = curriedAdd(5)
- * const add5And3 = add5(3)
- * console.log(add5And3(2)) // 10
+ * curriedAdd(5)(3)(2) // => 10
+ * curriedAdd(1)(2)(3) // => 6
+ * curriedAdd(1, 2, 3) // => 6
  *
- * // Or call with all arguments at once / 或一次性传入所有参数
- * console.log(curriedAdd(1)(2)(3)) // 6
- * console.log(curriedAdd(1, 2, 3)) // 6
+ * const multiply = (a, b, c) => a * b * c
+ * const double = curry(multiply)(2)
+ * double(3)(4) // => 24
  *
- * // Practical example: creating specialized functions / 实际示例：创建专用函数
- * const multiply = (a: number, b: number, c: number) => a * b * c
- * const curriedMultiply = curry(multiply)
- *
- * const double = curriedMultiply(2)
- * const doubleAndTriple = double(3)
- * console.log(doubleAndTriple(4)) // 24
- *
- * // Function composition / 函数组合
- * const formatMessage = curry((prefix: string, type: string, message: string) =>
- *   `[${prefix}] ${type}: ${message}`
- * )
- *
+ * const formatMessage = curry((prefix, type, message) => `[${prefix}] ${type}: ${message}`)
  * const logError = formatMessage('APP')('ERROR')
- * const logWarning = formatMessage('APP')('WARNING')
- *
- * console.log(logError('Something went wrong')) // "[APP] ERROR: Something went wrong"
- * console.log(logWarning('This is a warning')) // "[APP] WARNING: This is a warning"
+ * logError('Something went wrong') // => "[APP] ERROR: Something went wrong"
  * ```
  *
  * @since 1.0.0
  */
 function curry(fn: (...args: any[]) => any) {
   return function curried(...args: any[]): (...args: any[]) => any {
-    return args.length >= fn.length ? fn(...args) : (...moreArgs: any[]) => curried(...args, ...moreArgs)
-  }
+    return args.length >= fn.length
+      ? fn(...args)
+      : (...moreArgs: any[]) => curried(...args, ...moreArgs);
+  };
 }
-export default curry
+export default curry;

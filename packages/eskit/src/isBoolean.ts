@@ -1,4 +1,4 @@
-import isType from './isType'
+import isType from './isType';
 /**
  * Checks if a value is a boolean.
  * 检查值是否为布尔值。
@@ -8,19 +8,20 @@ import isType from './isType'
  *
  * @example
  * ```typescript
- * isBoolean(true) // true
- * isBoolean(false) // true
- * isBoolean(Boolean(1)) // true
- * isBoolean(new Boolean(false)) // true
- * isBoolean(0) // false
- * isBoolean(1) // false
- * isBoolean('true') // false
- * isBoolean('false') // false
- * isBoolean(null) // false
- * isBoolean(undefined) // false
+ * isBoolean(true) // => true
+ * isBoolean(false) // => true
+ * isBoolean(Boolean(1)) // => true
+ * isBoolean(new Boolean(false)) // => true
+ * isBoolean(0) // => false
+ * isBoolean(1) // => false
+ * isBoolean('true') // => false
+ * isBoolean('false') // => false
+ * isBoolean(null) // => false
+ * isBoolean(undefined) // => false
  * ```
  *
  * @since 1.0.0
  */
-const isBoolean = (value: unknown): value is boolean => value === true || value === false || isType('Boolean', value)
-export default isBoolean
+const isBoolean = (value: unknown): value is boolean =>
+  value === true || value === false || isType('Boolean', value);
+export default isBoolean;

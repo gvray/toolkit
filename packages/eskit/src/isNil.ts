@@ -7,22 +7,22 @@
  *
  * @example
  * ```typescript
- * isNil(null) // true
- * isNil(undefined) // true
- * isNil(void 0) // true (void 0 is undefined)
- * isNil('') // false
- * isNil(0) // false
- * isNil(false) // false
- * isNil([]) // false
- * isNil({}) // false
- * isNil(NaN) // false
+ * isNil(null) // => true
+ * isNil(undefined) // => true
+ * isNil(void 0) // => true (void 0 is undefined)
+ * isNil('') // => false
+ * isNil(0) // => false
+ * isNil(false) // => false
+ * isNil([]) // => false
+ * isNil({}) // => false
+ * isNil(NaN) // => false
  *
  * // Useful for optional chaining checks
  * const obj = { a: null, b: undefined, c: 'value' }
- * Object.keys(obj).filter(key => !isNil(obj[key])) // ['c']
+ * Object.keys(obj).filter(key => !isNil(obj[key])) // => ['c']
  * ```
  *
  * @since 1.0.0
  */
-const isNil = (value: unknown): value is null | undefined => value === null || value === undefined
-export default isNil
+const isNil = (value: unknown): value is null | undefined => value === null || value === undefined;
+export default isNil;

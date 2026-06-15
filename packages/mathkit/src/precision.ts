@@ -20,12 +20,15 @@ function assertNonNegativeInteger(value: number, paramName: string): void {
  * @returns Rounded number / 舍入结果
  *
  * @example
- * round(1.005, 2) // → 1.01
+ * round(1.005, 2) // => 1.01
+ *
+ * @since 1.0.0
  */
 export function round(value: number, decimals = 0): number {
   assertFiniteNumber(value, 'value');
   assertNonNegativeInteger(decimals, 'decimals');
-  return Number(`${Math.round(Number(`${value}e${decimals}`))}e-${decimals}`);
+  const factor = 10 ** decimals;
+  return Math.round((value + Number.EPSILON) * factor) / factor;
 }
 
 /**
@@ -37,12 +40,15 @@ export function round(value: number, decimals = 0): number {
  * @returns Ceiled number / 向上取整结果
  *
  * @example
- * ceil(1.001, 2) // → 1.01
+ * ceil(1.001, 2) // => 1.01
+ *
+ * @since 1.0.0
  */
 export function ceil(value: number, decimals = 0): number {
   assertFiniteNumber(value, 'value');
   assertNonNegativeInteger(decimals, 'decimals');
-  return Number(`${Math.ceil(Number(`${value}e${decimals}`))}e-${decimals}`);
+  const factor = 10 ** decimals;
+  return Math.ceil(value * factor) / factor;
 }
 
 /**
@@ -54,12 +60,15 @@ export function ceil(value: number, decimals = 0): number {
  * @returns Floored number / 向下取整结果
  *
  * @example
- * floor(1.999, 2) // → 1.99
+ * floor(1.999, 2) // => 1.99
+ *
+ * @since 1.0.0
  */
 export function floor(value: number, decimals = 0): number {
   assertFiniteNumber(value, 'value');
   assertNonNegativeInteger(decimals, 'decimals');
-  return Number(`${Math.floor(Number(`${value}e${decimals}`))}e-${decimals}`);
+  const factor = 10 ** decimals;
+  return Math.floor(value * factor) / factor;
 }
 
 /**
@@ -71,16 +80,16 @@ export function floor(value: number, decimals = 0): number {
  * @returns Fixed-point string / 定点数字符串
  *
  * @example
- * toFixed(0.000001, 8) // → '0.00000100'
+ * toFixed(0.000001, 8) // => '0.00000100'
+ *
+ * @since 1.0.0
  */
 export function toFixed(value: number, decimals: number): string {
   assertFiniteNumber(value, 'value');
   assertNonNegativeInteger(decimals, 'decimals');
-  const rounded = round(value, decimals);
-  const negative = rounded < 0;
-  const abs = Math.abs(rounded);
-  const [intPart, fracPart = ''] = abs.toString().split('.');
-  const frac = (fracPart + '0'.repeat(decimals)).slice(0, decimals);
-  const body = decimals === 0 ? intPart : `${intPart}.${frac}`;
-  return negative ? `-${body}` : body;
+  return round(value, decimals).toLocaleString('en-US', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+    useGrouping: false,
+  });
 }

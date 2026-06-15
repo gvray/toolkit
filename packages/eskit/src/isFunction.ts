@@ -7,17 +7,17 @@
  *
  * @example
  * ```typescript
- * isFunction(() => {}) // true
- * isFunction(function() {}) // true
- * isFunction(async function() {}) // true
- * isFunction(function* generator() {}) // true
- * isFunction(class MyClass {}) // true
- * isFunction(Array.isArray) // true
- * isFunction(console.log) // true
- * isFunction(42) // false
- * isFunction('function') // false
- * isFunction({}) // false
- * isFunction([]) // false
+ * isFunction(() => {}) // => true
+ * isFunction(function() {}) // => true
+ * isFunction(async function() {}) // => true
+ * isFunction(function* generator() {}) // => true
+ * isFunction(class MyClass {}) // => true
+ * isFunction(Array.isArray) // => true
+ * isFunction(console.log) // => true
+ * isFunction(42) // => false
+ * isFunction('function') // => false
+ * isFunction({}) // => false
+ * isFunction([]) // => false
  * ```
  *
  * @since 1.0.0

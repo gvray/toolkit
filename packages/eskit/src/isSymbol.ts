@@ -6,10 +6,12 @@
  * @returns `true` when the value is a symbol / 值是 symbol 时返回 `true`
  * @example
  * isSymbol(Symbol('s'))
- * // -> true
+ * // => true
+ *
+ * @since 1.2.0
  */
 const isSymbol = (value: unknown): value is symbol => {
-  return typeof value === 'symbol'
-}
+  return typeof value === 'symbol';
+};
 
-export default isSymbol
+export default isSymbol;

@@ -8,19 +8,20 @@
  *
  * @example
  * ```typescript
- * isType('String', 'hello') // true
- * isType('Number', 42) // true
- * isType('Array', [1, 2, 3]) // true
- * isType('Object', {}) // true
- * isType('RegExp', /test/) // true
- * isType('Date', new Date()) // true
- * isType('Function', () => {}) // true
- * isType('Array', {}) // false
- * isType('String', 123) // false
+ * isType('String', 'hello') // => true
+ * isType('Number', 42) // => true
+ * isType('Array', [1, 2, 3]) // => true
+ * isType('Object', {}) // => true
+ * isType('RegExp', /test/) // => true
+ * isType('Date', new Date()) // => true
+ * isType('Function', () => {}) // => true
+ * isType('Array', {}) // => false
+ * isType('String', 123) // => false
  * ```
  *
  * @since 1.0.0
  */
-const isType = (type: string, value: unknown): boolean => Object.prototype.toString.call(value) === `[object ${type}]`
+const isType = (type: string, value: unknown): boolean =>
+  Object.prototype.toString.call(value) === `[object ${type}]`;
 
-export default isType
+export default isType;

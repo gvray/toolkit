@@ -19,7 +19,9 @@ function assertNumberArray(values: number[], paramName: string): void {
  * @returns Sum / 总和
  *
  * @example
- * sum([1, 2, 3, 4]) // → 10
+ * sum([1, 2, 3, 4]) // => 10
+ *
+ * @since 1.0.0
  */
 export function sum(values: number[]): number {
   if (values.length === 0) {
@@ -41,7 +43,9 @@ export function sum(values: number[]): number {
  * @returns Mean / 平均值
  *
  * @example
- * average([1, 2, 3, 4]) // → 2.5
+ * average([1, 2, 3, 4]) // => 2.5
+ *
+ * @since 1.0.0
  */
 export function average(values: number[]): number {
   assertNumberArray(values, 'values');
@@ -56,7 +60,9 @@ export function average(values: number[]): number {
  * @returns Median / 中位数
  *
  * @example
- * median([1, 2, 3, 4, 5]) // → 3
+ * median([1, 2, 3, 4, 5]) // => 3
+ *
+ * @since 1.0.0
  */
 export function median(values: number[]): number {
   assertNumberArray(values, 'values');
@@ -76,7 +82,9 @@ export function median(values: number[]): number {
  * @returns Variance / 方差
  *
  * @example
- * variance([2, 4, 4, 4, 5, 5, 7, 9]) // → 4
+ * variance([2, 4, 4, 4, 5, 5, 7, 9]) // => 4
+ *
+ * @since 1.0.0
  */
 export function variance(values: number[]): number {
   assertNumberArray(values, 'values');
@@ -96,7 +104,9 @@ export function variance(values: number[]): number {
  * @returns Standard deviation / 标准差
  *
  * @example
- * stdDev([2, 4, 4, 4, 5, 5, 7, 9]) // → 2
+ * stdDev([2, 4, 4, 4, 5, 5, 7, 9]) // => 2
+ *
+ * @since 1.0.0
  */
 export function stdDev(values: number[]): number {
   return Math.sqrt(variance(values));
@@ -110,7 +120,9 @@ export function stdDev(values: number[]): number {
  * @returns Mode values / 众数列表
  *
  * @example
- * mode([1, 2, 2, 3, 3, 3]) // -> [3]
+ * mode([1, 2, 2, 3, 3, 3]) // => [3]
+ *
+ * @since 1.0.0
  */
 export function mode(values: number[]): number[] {
   assertNumberArray(values, 'values');
@@ -137,7 +149,9 @@ export function mode(values: number[]): number[] {
  * @returns Percentile value / 百分位对应值
  *
  * @example
- * percentile([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 90) // -> 9
+ * percentile([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 90) // => 9
+ *
+ * @since 1.0.0
  */
 export function percentile(values: number[], p: number): number {
   assertNumberArray(values, 'values');

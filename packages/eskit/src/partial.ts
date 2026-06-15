@@ -10,13 +10,15 @@
  * @returns A partially applied function / 部分应用后的函数
  * @example
  * partial(Math.max, 0)(5)
- * // -> 5
+ * // => 5
+ *
+ * @since 1.2.0
  */
 const partial = <TBound extends unknown[], TArgs extends unknown[], TResult>(
   fn: (...args: [...TBound, ...TArgs]) => TResult,
   ...boundArgs: TBound
 ): ((...args: TArgs) => TResult) => {
-  return (...args: TArgs): TResult => fn(...boundArgs, ...args)
-}
+  return (...args: TArgs): TResult => fn(...boundArgs, ...args);
+};
 
-export default partial
+export default partial;

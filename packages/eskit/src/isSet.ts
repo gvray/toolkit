@@ -6,10 +6,12 @@
  * @returns `true` when the value is a `Set` / 值是 `Set` 时返回 `true`
  * @example
  * isSet(new Set())
- * // -> true
+ * // => true
+ *
+ * @since 1.2.0
  */
 const isSet = (value: unknown): value is Set<unknown> => {
-  return value instanceof Set
-}
+  return value instanceof Set;
+};
 
-export default isSet
+export default isSet;

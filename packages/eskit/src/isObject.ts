@@ -7,22 +7,22 @@
  *
  * @example
  * ```typescript
- * isObject({}) // true
- * isObject({ name: 'John' }) // true
- * isObject([1, 2, 3]) // true
- * isObject(new Date()) // true
- * isObject(/regex/) // true
- * isObject(() => {}) // true
- * isObject(null) // false
- * isObject(undefined) // false
- * isObject('string') // false
- * isObject(123) // false
+ * isObject({}) // => true
+ * isObject({ name: 'John' }) // => true
+ * isObject([1, 2, 3]) // => true
+ * isObject(new Date()) // => true
+ * isObject(/regex/) // => true
+ * isObject(() => {}) // => true
+ * isObject(null) // => false
+ * isObject(undefined) // => false
+ * isObject('string') // => false
+ * isObject(123) // => false
  * ```
  *
  * @since 1.0.0
  */
 const isObject = (value: unknown): value is Record<string, unknown> => {
-  return (typeof value === 'object' && value !== null) || typeof value === 'function'
-}
+  return (typeof value === 'object' && value !== null) || typeof value === 'function';
+};
 
-export default isObject
+export default isObject;

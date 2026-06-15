@@ -1,8 +1,8 @@
-import isNil from './isNil'
-import isArrayLike from './isArrayLike'
-import getType from './getType'
-import isPrototype from './isPrototype'
-import hasOwnProperty from './hasOwnProperty'
+import isNil from './isNil';
+import isArrayLike from './isArrayLike';
+import getType from './getType';
+import isPrototype from './isPrototype';
+import hasOwnProperty from './hasOwnProperty';
 
 /**
  * Checks if a value is empty according to JavaScript's notion of emptiness.
@@ -26,52 +26,52 @@ import hasOwnProperty from './hasOwnProperty'
  * @example
  * ```typescript
  * // Primitive empty values / 原始空值
- * isEmpty(undefined) // true
- * isEmpty(null) // true
- * isEmpty('') // true
- * isEmpty(0) // false (zero is not empty)
- * isEmpty(false) // false (false is not empty)
+ * isEmpty(undefined) // => true
+ * isEmpty(null) // => true
+ * isEmpty('') // => true
+ * isEmpty(0) // => false (zero is not empty)
+ * isEmpty(false) // => false (false is not empty)
  *
  * // Collections / 集合
- * isEmpty([]) // true
- * isEmpty([1, 2, 3]) // false
- * isEmpty({}) // true
- * isEmpty({ key: 'value' }) // false
+ * isEmpty([]) // => true
+ * isEmpty([1, 2, 3]) // => false
+ * isEmpty({}) // => true
+ * isEmpty({ key: 'value' }) // => false
  *
  * // Built-in objects / 内置对象
- * isEmpty(new Map()) // true
- * isEmpty(new Map([['key', 'value']])) // false
- * isEmpty(new Set()) // true
- * isEmpty(new Set([1, 2, 3])) // false
+ * isEmpty(new Map()) // => true
+ * isEmpty(new Map([['key', 'value']])) // => false
+ * isEmpty(new Set()) // => true
+ * isEmpty(new Set([1, 2, 3])) // => false
  *
  * // Array-like objects / 类数组对象
- * isEmpty(arguments) // true (if arguments is empty)
- * isEmpty({ length: 0 }) // true
- * isEmpty({ length: 1, 0: 'item' }) // false
+ * isEmpty(arguments) // => true (if arguments is empty)
+ * isEmpty({ length: 0 }) // => true
+ * isEmpty({ length: 1, 0: 'item' }) // => false
  * ```
  *
  * @since 1.0.0
  */
 const isEmpty = (value: any): boolean => {
   if (isNil(value)) {
-    return true
+    return true;
   }
   if (isArrayLike(value)) {
-    return !value.length
+    return !value.length;
   }
-  const type = getType(value)
+  const type = getType(value);
   if (type === 'Map' || type === 'Set') {
-    return !value.size
+    return !value.size;
   }
   if (isPrototype(value)) {
-    return !Object.keys(value).length
+    return !Object.keys(value).length;
   }
   for (const key in value) {
     if (hasOwnProperty(value, key)) {
-      return false
+      return false;
     }
   }
-  return true
-}
+  return true;
+};
 
-export default isEmpty
+export default isEmpty;

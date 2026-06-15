@@ -1,14 +1,14 @@
-type DeepFlattened<T> = T extends ReadonlyArray<infer U> ? DeepFlattened<U> : T
+type DeepFlattened<T> = T extends ReadonlyArray<infer U> ? DeepFlattened<U> : T;
 
 const flattenDeepInternal = (array: readonly unknown[], result: unknown[]): void => {
   for (const item of array) {
     if (Array.isArray(item)) {
-      flattenDeepInternal(item, result)
+      flattenDeepInternal(item, result);
     } else {
-      result.push(item)
+      result.push(item);
     }
   }
-}
+};
 
 /**
  * Recursively flattens a nested array into a single-level array.
@@ -19,14 +19,16 @@ const flattenDeepInternal = (array: readonly unknown[], result: unknown[]): void
  * @returns A fully flattened array / 完全展开后的数组
  * @example
  * flattenDeep([1, [2, [3, [4]]]])
- * // -> [1, 2, 3, 4]
+ * // => [1, 2, 3, 4]
+ *
+ * @since 1.2.0
  */
 const flattenDeep = <T>(array: readonly T[]): Array<DeepFlattened<T>> => {
-  const result: unknown[] = []
+  const result: unknown[] = [];
 
-  flattenDeepInternal(array as readonly unknown[], result)
+  flattenDeepInternal(array as readonly unknown[], result);
 
-  return result as Array<DeepFlattened<T>>
-}
+  return result as Array<DeepFlattened<T>>;
+};
 
-export default flattenDeep
+export default flattenDeep;

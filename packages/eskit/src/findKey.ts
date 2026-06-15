@@ -8,15 +8,17 @@
  * @returns The first matching key, or `undefined` / 第一个匹配的键，或 `undefined`
  * @example
  * findKey({ a: 1, b: 2 }, (value) => value > 1)
- * // -> 'b'
+ * // => 'b'
+ *
+ * @since 1.2.0
  */
 const findKey = <T extends Record<string, unknown>>(
   object: T,
   predicate: (value: T[keyof T], key: keyof T) => boolean
 ): keyof T | undefined => {
-  const keys = Object.keys(object) as Array<keyof T>
+  const keys = Object.keys(object) as Array<keyof T>;
 
-  return keys.find((key: keyof T) => predicate(object[key], key))
-}
+  return keys.find((key: keyof T) => predicate(object[key], key));
+};
 
-export default findKey
+export default findKey;

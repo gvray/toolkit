@@ -7,16 +7,18 @@
  * @returns True when origins match / 同源则为 true
  *
  * @example
- * isSameOrigin('https://a.com/x', 'https://a.com/y') // -> true
+ * isSameOrigin('https://a.com/x', 'https://a.com/y') // => true
+ *
+ * @since 1.0.0
  */
 const isSameOrigin = (urlA: string, urlB: string): boolean => {
   if (typeof urlA !== 'string' || typeof urlB !== 'string') {
-    throw new TypeError('urlA and urlB must be strings')
+    throw new TypeError('urlA and urlB must be strings');
   }
 
-  const a = new URL(urlA, 'http://localhost')
-  const b = new URL(urlB, 'http://localhost')
-  return a.origin === b.origin
-}
+  const a = new URL(urlA, 'http://localhost');
+  const b = new URL(urlB, 'http://localhost');
+  return a.origin === b.origin;
+};
 
-export default isSameOrigin
+export default isSameOrigin;

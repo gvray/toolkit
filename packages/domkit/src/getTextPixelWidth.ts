@@ -1,5 +1,5 @@
 interface TextMetricsExtended extends TextMetrics {
-  readonly font: string
+  readonly font: string;
 }
 /**
  * Calculates the pixel width of the given text in the specified font.
@@ -13,36 +13,39 @@ interface TextMetricsExtended extends TextMetrics {
  * @returns The pixel width of the text in the specified font.
  *
  * @example
- * // Returns the pixel width of "Hello, World!" in the "20px Arial" font.
- * const width = getTextPixelWidth('Hello, World!', { fontFamily: 'Arial', fontSize: 20 })
+ * getTextPixelWidth('Hello, World!', { fontFamily: 'Arial', fontSize: 20 }) // => 123
  *
  * @since 1.0.0
  */
 const getTextPixelWidth = (
   text: string,
   options: {
-    font?: string
-    fontSize?: string | number
-    fontWeight?: string | number
-    fontFamily?: string
+    font?: string;
+    fontSize?: string | number;
+    fontWeight?: string | number;
+    fontFamily?: string;
   }
 ): number => {
-  const canvas = document.createElement('canvas')
-  const ctx = canvas.getContext('2d')
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
 
   if (!ctx) {
-    throw new Error('Failed to create 2D rendering context')
+    throw new Error('Failed to create 2D rendering context');
   }
 
-  const { font, fontSize, fontWeight, fontFamily } = options
+  const { font, fontSize, fontWeight, fontFamily } = options;
 
   ctx.font =
     font ??
-    [fontWeight ? `${fontWeight}` : '', fontSize ? `${fontSize}px` : '', fontFamily ? `${fontFamily}` : '']
+    [
+      fontWeight ? `${fontWeight}` : '',
+      fontSize ? (typeof fontSize === 'number' ? `${fontSize}px` : fontSize) : '',
+      fontFamily ? `${fontFamily}` : '',
+    ]
       .filter(Boolean)
-      .join(' ')
+      .join(' ');
 
-  const metrics = ctx.measureText(text) as TextMetricsExtended
-  return metrics.width
-}
-export default getTextPixelWidth
+  const metrics = ctx.measureText(text) as TextMetricsExtended;
+  return metrics.width;
+};
+export default getTextPixelWidth;

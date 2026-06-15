@@ -1,8 +1,8 @@
-import { multiply } from './arithmetic'
+import { multiply } from './arithmetic';
 
 function assertPositiveInteger(value: number, name: string): void {
   if (!Number.isInteger(value) || value < 0) {
-    throw new RangeError(`${name} must be a non-negative integer`)
+    throw new RangeError(`${name} must be a non-negative integer`);
   }
 }
 
@@ -15,20 +15,22 @@ function assertPositiveInteger(value: number, name: string): void {
  * @returns GCD / 最大公约数
  *
  * @example
- * gcd(12, 8) // -> 4
+ * gcd(12, 8) // => 4
+ *
+ * @since 1.0.0
  */
 export function gcd(a: number, b: number): number {
   if (!Number.isInteger(a) || !Number.isInteger(b)) {
-    throw new RangeError('gcd expects integers')
+    throw new RangeError('gcd expects integers');
   }
-  let x = Math.abs(a)
-  let y = Math.abs(b)
+  let x = Math.abs(a);
+  let y = Math.abs(b);
   while (y !== 0) {
-    const temp = y
-    y = x % y
-    x = temp
+    const temp = y;
+    y = x % y;
+    x = temp;
   }
-  return x
+  return x;
 }
 
 /**
@@ -40,13 +42,15 @@ export function gcd(a: number, b: number): number {
  * @returns LCM / 最小公倍数
  *
  * @example
- * lcm(4, 6) // -> 12
+ * lcm(4, 6) // => 12
+ *
+ * @since 1.0.0
  */
 export function lcm(a: number, b: number): number {
   if (a === 0 || b === 0) {
-    return 0
+    return 0;
   }
-  return Math.abs(multiply(a, b)) / gcd(a, b)
+  return Math.abs(multiply(a, b)) / gcd(a, b);
 }
 
 /**
@@ -57,24 +61,26 @@ export function lcm(a: number, b: number): number {
  * @returns True if prime / 是质数则为 true
  *
  * @example
- * isPrime(7) // -> true
+ * isPrime(7) // => true
+ *
+ * @since 1.0.0
  */
 export function isPrime(n: number): boolean {
   if (!Number.isInteger(n) || n < 2) {
-    return false
+    return false;
   }
   if (n === 2) {
-    return true
+    return true;
   }
   if (n % 2 === 0) {
-    return false
+    return false;
   }
   for (let i = 3; i * i <= n; i += 2) {
     if (n % i === 0) {
-      return false
+      return false;
     }
   }
-  return true
+  return true;
 }
 
 /**
@@ -85,13 +91,15 @@ export function isPrime(n: number): boolean {
  * @returns Factorial / 阶乘结果
  *
  * @example
- * factorial(5) // -> 120
+ * factorial(5) // => 120
+ *
+ * @since 1.0.0
  */
 export function factorial(n: number): number {
-  assertPositiveInteger(n, 'n')
-  let result = 1
+  assertPositiveInteger(n, 'n');
+  let result = 1;
   for (let i = 2; i <= n; i++) {
-    result *= i
+    result *= i;
   }
-  return result
+  return result;
 }

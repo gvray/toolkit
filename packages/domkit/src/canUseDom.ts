@@ -1,7 +1,12 @@
-/**
- * Returns a boolean indicating if the current environment is a browser environment.
- */
-const canUseDom = (): boolean =>
-  typeof window !== 'undefined' && typeof document !== 'undefined' && typeof document.createElement === 'function'
+import isBrowser from './isBrowser';
 
-export default canUseDom
+/**
+ * Returns `true` if the DOM is available (browser with a functional document).
+ *
+ * @example
+ * canUseDom() // true in browser environments
+ * @since 1.0.0
+ */
+const canUseDom = (): boolean => isBrowser() && typeof document.createElement === 'function';
+
+export default canUseDom;

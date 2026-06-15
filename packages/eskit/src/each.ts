@@ -1,6 +1,11 @@
-import isArray from './isArray'
-import isString from './isString'
-export type Collection<V, K extends string | number = number> = V | V[] | Set<V> | Record<K, V> | Map<K, V>
+import isArray from './isArray';
+import isString from './isString';
+export type Collection<V, K extends string | number = number> =
+  | V
+  | V[]
+  | Set<V>
+  | Record<K, V>
+  | Map<K, V>;
 /**
  * Iterates over a collection and applies a function to each element.
  * 遍历集合并对每个元素应用函数。
@@ -19,38 +24,25 @@ export type Collection<V, K extends string | number = number> = V | V[] | Set<V>
  *
  * @example
  * ```typescript
- * // Array iteration / 数组遍历
- * const numbers = [1, 2, 3, 4, 5]
- * each(numbers, (value, index) => {
- *   console.log(`numbers[${index}] = ${value}`)
- *   return value < 3 // Stop when value >= 3
+ * // Array — stop early by returning false
+ * each([1, 2, 3, 4, 5], (value, index) => {
+ *   console.log(index, value)
+ *   return value < 3
  * })
  *
- * // Object iteration / 对象遍历
- * const user = { name: 'John', age: 30, city: 'New York' }
- * each(user, (value, key) => {
- *   console.log(`${key}: ${value}`)
+ * // Object
+ * each({ name: 'John', age: 30 }, (value, key) => {
+ *   console.log(key, value)
  * })
  *
- * // Map iteration / Map遍历
- * const userMap = new Map([
- *   ['name', 'John'],
- *   ['age', 30],
- *   ['city', 'New York']
- * ])
- * each(userMap, (value, key) => {
- *   console.log(`${key} => ${value}`)
+ * // Map
+ * each(new Map([['a', 1], ['b', 2]]), (value, key) => {
+ *   console.log(key, value)
  * })
  *
- * // Set iteration / Set遍历
- * const uniqueNumbers = new Set([1, 2, 3, 4, 5])
- * each(uniqueNumbers, (value, index) => {
- *   console.log(`Item ${index}: ${value}`)
- * })
- *
- * // String iteration / 字符串遍历
- * each('hello', (char, index) => {
- *   console.log(`char[${index}] = ${char}`)
+ * // Set
+ * each(new Set([1, 2, 3]), (value) => {
+ *   console.log(value)
  * })
  * ```
  *
@@ -61,29 +53,29 @@ const each = <V, K extends string | number = number>(
   callbackfn: (value: V, key: K, collection: Collection<V, K>) => boolean | undefined | void
 ): boolean => {
   if (!collection) {
-    return false
+    return false;
   }
 
   if (isArray(collection) || isString(collection) || collection instanceof Set) {
-    let i = 0
+    let i = 0;
     for (const item of collection) {
-      const re = callbackfn(item as V, i as K, collection)
-      i++
-      if (re === false) return false
+      const re = callbackfn(item as V, i as K, collection);
+      i++;
+      if (re === false) return false;
     }
   } else if (collection instanceof Map) {
     for (const [key, value] of collection) {
-      const re = callbackfn(value, key, collection)
-      if (re === false) return false
+      const re = callbackfn(value, key, collection);
+      if (re === false) return false;
     }
   } else {
-    const entries = Object.entries<V>(collection)
+    const entries = Object.entries<V>(collection);
     for (const [key, value] of entries) {
-      const re = callbackfn(value, key as K, collection)
-      if (re === false) return false
+      const re = callbackfn(value, key as K, collection);
+      if (re === false) return false;
     }
   }
-  return true
-}
+  return true;
+};
 
-export default each
+export default each;

@@ -10,7 +10,9 @@
  * @returns The reduced result / 归约结果
  * @example
  * reduce({ a: 1, b: 2 }, (acc, value) => acc + value, 0)
- * // -> 3
+ * // => 3
+ *
+ * @since 1.2.0
  */
 const reduce = <T extends readonly unknown[] | Record<string, unknown>, R>(
   collection: T,
@@ -24,13 +26,13 @@ const reduce = <T extends readonly unknown[] | Record<string, unknown>, R>(
 ): R => {
   if (Array.isArray(collection)) {
     return collection.reduce((accumulator: R, value: unknown, index: number) => {
-      return iteratee(accumulator, value as never, index as never, collection)
-    }, initialValue)
+      return iteratee(accumulator, value as never, index as never, collection);
+    }, initialValue);
   }
 
   return Object.keys(collection).reduce((accumulator: R, key: string) => {
-    return iteratee(accumulator, collection[key as keyof T] as never, key as never, collection)
-  }, initialValue)
-}
+    return iteratee(accumulator, collection[key as keyof T] as never, key as never, collection);
+  }, initialValue);
+};
 
-export default reduce
+export default reduce;

@@ -10,37 +10,39 @@
  * ```typescript
  * // Synchronous function success case / 同步函数成功情况
  * const result = await tryRun(() => JSON.parse('{"name": "test"}'))
- * console.log(result) // { name: "test" }
+ * result // => { name: "test" }
  *
  * // Synchronous function error case / 同步函数错误情况
  * const errorResult = await tryRun(() => JSON.parse('invalid json'))
- * console.log(errorResult) // null
+ * errorResult // => null
  *
  * // Asynchronous function success case / 异步函数成功情况
  * const asyncResult = await tryRun(async () => {
  *   await new Promise(resolve => setTimeout(resolve, 100))
  *   return { data: 'async test' }
  * })
- * console.log(asyncResult) // { data: 'async test' }
+ * asyncResult // => { data: 'async test' }
  *
  * // Asynchronous function error case / 异步函数错误情况
  * const asyncError = await tryRun(async () => {
  *   throw new Error('async error')
  * })
- * console.log(asyncError) // null
+ * asyncError // => null
  *
  * // With calculation / 计算示例
  * const calc = await tryRun(() => 10 / 2)
- * console.log(calc) // 5
+ * calc // => 5
  * ```
+ *
+ * @since 1.2.0
  */
 function tryRun<T>(fn: () => T | Promise<T>): Promise<T | null> {
   try {
-    const result = fn()
-    return Promise.resolve(result).catch(() => null)
+    const result = fn();
+    return Promise.resolve(result).catch(() => null);
   } catch {
-    return Promise.resolve(null)
+    return Promise.resolve(null);
   }
 }
 
-export default tryRun
+export default tryRun;

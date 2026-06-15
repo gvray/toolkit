@@ -9,22 +9,24 @@
  * @returns A new object without the omitted keys / 移除指定键后的新对象
  * @example
  * omit({ a: 1, b: 2, c: 3 }, ['b'])
- * // -> { a: 1, c: 3 }
+ * // => { a: 1, c: 3 }
+ *
+ * @since 1.2.0
  */
 const omit = <T extends Record<PropertyKey, unknown>, K extends keyof T>(
   object: T,
   keys: readonly K[]
 ): Omit<T, K> => {
-  const keySet = new Set<PropertyKey>(keys)
-  const result = {} as Omit<T, K>
+  const keySet = new Set<PropertyKey>(keys);
+  const result = {} as Omit<T, K>;
 
   Object.keys(object).forEach((key: string) => {
     if (!keySet.has(key)) {
-      result[key as keyof Omit<T, K>] = object[key as keyof T] as Omit<T, K>[keyof Omit<T, K>]
+      result[key as keyof Omit<T, K>] = object[key as keyof T] as Omit<T, K>[keyof Omit<T, K>];
     }
-  })
+  });
 
-  return result
-}
+  return result;
+};
 
-export default omit
+export default omit;

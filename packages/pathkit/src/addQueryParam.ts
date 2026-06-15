@@ -8,16 +8,18 @@
  *
  * @example
  * addQueryParam('https://example.com', 'token', 'abc')
- * // -> 'https://example.com/?token=abc'
+ * // => 'https://example.com/?token=abc'
+ *
+ * @since 1.0.0
  */
 const addQueryParam = (url: string, key: string, value: string): string => {
   if (typeof url !== 'string' || typeof key !== 'string' || typeof value !== 'string') {
-    throw new TypeError('url, key and value must be strings')
+    throw new TypeError('url, key and value must be strings');
   }
 
-  const nextUrl = new URL(url)
-  nextUrl.searchParams.append(key, value)
-  return nextUrl.toString()
-}
+  const nextUrl = new URL(url);
+  nextUrl.searchParams.append(key, value);
+  return nextUrl.toString();
+};
 
-export default addQueryParam
+export default addQueryParam;

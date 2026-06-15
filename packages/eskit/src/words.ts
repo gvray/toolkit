@@ -1,4 +1,4 @@
-import { splitWords } from './_internal/words'
+import { splitWords } from './_internal/words';
 
 /**
  * Splits a string into normalized words.
@@ -8,10 +8,12 @@ import { splitWords } from './_internal/words'
  * @returns The split words / 拆分后的单词数组
  * @example
  * words('fooBar baz')
- * // -> ['foo', 'Bar', 'baz']
+ * // => ['foo', 'Bar', 'baz']
+ *
+ * @since 1.2.0
  */
 const words = (value: string): string[] => {
-  return splitWords(value)
-}
+  return splitWords(value);
+};
 
-export default words
+export default words;

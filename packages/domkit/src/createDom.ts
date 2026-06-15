@@ -1,10 +1,10 @@
-import { isString } from '@gvray/eskit'
-import isElement from './isElement'
+import { isString } from '@gvray/eskit';
+import isElement from './isElement';
 
 export interface DomAttrs<T> {
-  tagName: T
-  container?: HTMLElement
-  node?: HTMLElement | string
+  tagName: T;
+  container?: HTMLElement;
+  node?: HTMLElement | string;
 }
 /**
  * Creates a new DOM element based on the provided attributes.
@@ -12,34 +12,36 @@ export interface DomAttrs<T> {
  * @returns The newly created element.
  *
  * @example
- * // Creating a new div with some text content and adding it to the document body
  * const myDiv = createDom({
  *   tagName: 'div',
  *   node: 'Hello, world!',
  *   container: document.body
- * });
+ * })
+ * console.log(myDiv.textContent)
  *
  * @since 1.0.0
  *
  */
-const createDom = <K extends keyof HTMLElementTagNameMap>(domAttrs?: DomAttrs<K>): HTMLElementTagNameMap[K] => {
+const createDom = <K extends keyof HTMLElementTagNameMap>(
+  domAttrs?: DomAttrs<K>
+): HTMLElementTagNameMap[K] => {
   if (!domAttrs || isString(domAttrs)) {
-    return document.createElement((domAttrs ?? 'div') as K)
+    return document.createElement((domAttrs ?? 'div') as K);
   }
-  const { tagName, container, node } = domAttrs
-  const el = document.createElement(tagName ?? 'div')
+  const { tagName, container, node } = domAttrs;
+  const el = document.createElement(tagName ?? 'div');
   if (node) {
     if (isString(node)) {
-      const textNode = document.createTextNode(node as string)
-      el.appendChild(textNode)
+      const textNode = document.createTextNode(node as string);
+      el.appendChild(textNode);
     } else if (isElement(node)) {
-      el.appendChild(node as Node)
+      el.appendChild(node as Node);
     }
   }
   if (container) {
-    container.appendChild(el)
+    container.appendChild(el);
   }
-  return el
-}
+  return el;
+};
 
-export default createDom
+export default createDom;

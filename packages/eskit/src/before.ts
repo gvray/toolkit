@@ -8,26 +8,30 @@
  * @param fn - Target function / 目标函数
  * @returns Wrapped function / 包装函数
  * @example
- * const log = before(3, (x: number) => x)
- * log(1); log(2); log(3) // third call returns undefined
+ * const log = before(3, (x) => x)
+ * log(1) // => 1
+ * log(2) // => 2
+ * log(3) // => undefined
+ *
+ * @since 1.2.0
  */
 const before = <TArgs extends unknown[], TResult>(
   n: number,
   fn: (...args: TArgs) => TResult
 ): ((...args: TArgs) => TResult | undefined) => {
   if (!Number.isInteger(n) || n <= 0) {
-    throw new RangeError('n must be a positive integer')
+    throw new RangeError('n must be a positive integer');
   }
 
-  let count = 0
+  let count = 0;
 
   return (...args: TArgs): TResult | undefined => {
     if (count < n - 1) {
-      count += 1
-      return fn(...args)
+      count += 1;
+      return fn(...args);
     }
-    return undefined
-  }
-}
+    return undefined;
+  };
+};
 
-export default before
+export default before;

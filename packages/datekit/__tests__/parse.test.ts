@@ -1,128 +1,100 @@
-import { parse, parseISO, parseUnix, parseAny } from '../src/parse'
+import { parseDate, parseISO, parseUnix } from '../src/parse';
 
-describe('parse', () => {
-  describe('parse', () => {
-    it('should parse ISO date strings', () => {
-      const result = parse('2023-12-25')
-      expect(result).not.toBeNull()
-      expect(result!.getFullYear()).toBe(2023)
-      expect(result!.getMonth()).toBe(11) // December is month 11
-      expect(result!.getDate()).toBe(25)
-    })
+describe('parseDate', () => {
+  it('string — ISO date', () => {
+    const d = parseDate('2023-12-25');
+    expect(d).not.toBeNull();
+    expect(d!.getFullYear()).toBe(2023);
+    expect(d!.getMonth()).toBe(11);
+    expect(d!.getDate()).toBe(25);
+  });
 
-    it('should parse ISO datetime strings', () => {
-      const result = parse('2023-12-25T15:30:45')
-      expect(result).not.toBeNull()
-      expect(result!.getFullYear()).toBe(2023)
-      expect(result!.getHours()).toBe(15)
-      expect(result!.getMinutes()).toBe(30)
-      expect(result!.getSeconds()).toBe(45)
-    })
+  it('string — with explicit format', () => {
+    const d = parseDate('25/12/2023', 'DD/MM/YYYY');
+    expect(d).not.toBeNull();
+    expect(d!.getFullYear()).toBe(2023);
+    expect(d!.getMonth()).toBe(11);
+  });
 
-    it('should parse custom format strings', () => {
-      const result = parse('25/12/2023', 'DD/MM/YYYY')
-      expect(result).not.toBeNull()
-      expect(result!.getFullYear()).toBe(2023)
-      expect(result!.getMonth()).toBe(11)
-      expect(result!.getDate()).toBe(25)
-    })
+  it('string — datetime with HH:mm:ss', () => {
+    const d = parseDate('2023-12-25 15:30:45', 'YYYY-MM-DD HH:mm:ss');
+    expect(d).not.toBeNull();
+    expect(d!.getHours()).toBe(15);
+    expect(d!.getMinutes()).toBe(30);
+    expect(d!.getSeconds()).toBe(45);
+  });
 
-    it('should return null for invalid date strings', () => {
-      const result = parse('invalid-date')
-      expect(result).toBeNull()
-    })
+  it('string — fallback common formats', () => {
+    expect(parseDate('2023/12/25')!.getFullYear()).toBe(2023);
+    expect(parseDate('25-12-2023', 'DD-MM-YYYY')!.getMonth()).toBe(11);
+  });
 
-    it('should parse with different separators', () => {
-      const result = parse('2023.12.25', 'YYYY.MM.DD')
-      expect(result).not.toBeNull()
-      expect(result!.getFullYear()).toBe(2023)
-    })
+  it('string — invalid returns null', () => {
+    expect(parseDate('not-a-date')).toBeNull();
+    expect(parseDate('')).toBeNull();
+    expect(parseDate('2024-01-01 00:60:00', 'YYYY-MM-DD HH:mm:ss')).toBeNull();
+    expect(parseDate('2024-01-01 24:00:00', 'YYYY-MM-DD HH:mm:ss')).toBeNull();
+  });
 
-    it('should return null for empty string', () => {
-      const result = parse('')
-      expect(result).toBeNull()
-    })
-  })
+  it('number — milliseconds', () => {
+    const ms = new Date(2023, 11, 25).getTime();
+    const d = parseDate(ms);
+    expect(d).not.toBeNull();
+    expect(d!.getFullYear()).toBe(2023);
+  });
 
-  describe('parseISO', () => {
-    it('should parse ISO 8601 date strings', () => {
-      const result = parseISO('2023-12-25T15:30:45.123Z')
-      expect(result).not.toBeNull()
-      expect(result!.getUTCFullYear()).toBe(2023)
-      expect(result!.getUTCMonth()).toBe(11)
-      expect(result!.getUTCDate()).toBe(25)
-    })
+  it('number — non-finite returns null', () => {
+    expect(parseDate(NaN)).toBeNull();
+    expect(parseDate(Infinity)).toBeNull();
+  });
 
-    it('should handle timezone offsets', () => {
-      const result = parseISO('2023-12-25T15:30:45+08:00')
-      expect(result).not.toBeNull()
-      expect(result).toBeInstanceOf(Date)
-    })
+  it('Date — returns clone', () => {
+    const original = new Date(2023, 11, 25);
+    const cloned = parseDate(original);
+    expect(cloned).not.toBe(original);
+    expect(cloned!.getTime()).toBe(original.getTime());
+  });
 
-    it('should return null for invalid ISO strings', () => {
-      const result = parseISO('invalid-iso')
-      expect(result).toBeNull()
-    })
+  it('Date — invalid returns null', () => {
+    expect(parseDate(new Date('invalid'))).toBeNull();
+  });
+});
 
-    it('should return null for empty string', () => {
-      const result = parseISO('')
-      expect(result).toBeNull()
-    })
-  })
+describe('parseISO', () => {
+  it('ISO datetime with Z', () => {
+    const d = parseISO('2023-12-25T15:30:45.123Z');
+    expect(d).not.toBeNull();
+    expect(d!.getUTCFullYear()).toBe(2023);
+    expect(d!.getUTCMonth()).toBe(11);
+  });
 
-  describe('parseUnix', () => {
-    it('should parse Unix timestamps in seconds', () => {
-      const timestamp = 1703520645 // 2023-12-25T15:30:45Z
-      const result = parseUnix(timestamp)
-      expect(result).not.toBeNull()
-      expect(result!.getUTCFullYear()).toBe(2023)
-    })
+  it('with timezone offset', () => {
+    const d = parseISO('2023-12-25T15:30:45+08:00');
+    expect(d).toBeInstanceOf(Date);
+  });
 
-    it('should parse Unix timestamps in milliseconds', () => {
-      const timestamp = 1703520645123 // 2023-12-25T15:30:45.123Z
-      const result = parseUnix(timestamp, 'milliseconds')
-      expect(result).not.toBeNull()
-      expect(result!.getUTCFullYear()).toBe(2023)
-      expect(result!.getUTCMilliseconds()).toBe(123)
-    })
+  it('invalid returns null', () => {
+    expect(parseISO('invalid-iso')).toBeNull();
+    expect(parseISO('')).toBeNull();
+  });
+});
 
-    it('should handle negative timestamps', () => {
-      const timestamp = -86400 // 1969-12-31
-      const result = parseUnix(timestamp)
-      expect(result).not.toBeNull()
-      expect(result!.getUTCFullYear()).toBe(1969)
-    })
+describe('parseUnix', () => {
+  it('seconds (default)', () => {
+    const d = parseUnix(1703520645);
+    expect(d!.getUTCFullYear()).toBe(2023);
+  });
 
-    it('should return null for invalid timestamps', () => {
-      const result = parseUnix(NaN)
-      expect(result).toBeNull()
-    })
-  })
+  it('milliseconds', () => {
+    const d = parseUnix(1703520645123, 'milliseconds');
+    expect(d!.getUTCMilliseconds()).toBe(123);
+  });
 
-  describe('parseAny', () => {
-    it('should handle Date objects', () => {
-      const inputDate = new Date('2023-12-25')
-      const result = parseAny(inputDate)
-      expect(result).toBe(inputDate)
-    })
+  it('negative timestamp', () => {
+    expect(parseUnix(-86400)!.getUTCFullYear()).toBe(1969);
+  });
 
-    it('should handle Unix timestamps', () => {
-      const timestamp = 1703520645
-      const result = parseAny(timestamp)
-      expect(result).not.toBeNull()
-      expect(result!.getUTCFullYear()).toBe(2023)
-    })
-
-    it('should handle date strings', () => {
-      const result = parseAny('2023-12-25')
-      expect(result).not.toBeNull()
-      expect(result!.getFullYear()).toBe(2023)
-    })
-
-    it('should return null for invalid Date objects', () => {
-      const invalidDate = new Date('invalid')
-      const result = parseAny(invalidDate)
-      expect(result).toBeNull()
-    })
-  })
-})
+  it('NaN returns null', () => {
+    expect(parseUnix(NaN)).toBeNull();
+  });
+});

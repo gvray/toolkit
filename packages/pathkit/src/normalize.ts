@@ -5,11 +5,7 @@
  * @returns {string} The normalized path.
  *
  * @example
- *
- * ```ts
- * const path = '/users/john/../jane/./documents/';
- * const normalizedPath = normalize(path); // "/users/jane/documents/"
- * ```
+ * normalize('/users/john/../jane/./docs/') // => '/users/jane/docs/'
  * @since 1.0.0
  */
 const normalize = (path: string): string => {

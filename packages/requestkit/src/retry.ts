@@ -1,29 +1,40 @@
 export interface RetryOptions {
-  times?: number
-  delay?: number
-  backoff?: number
-  shouldRetry?: (error: unknown, attempt: number) => boolean
+  times?: number;
+  delay?: number;
+  backoff?: number;
+  shouldRetry?: (error: unknown, attempt: number) => boolean;
 }
 
-const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms))
+const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * Retries an async factory on failure.
+ *
+ * @example
+ * let attempts = 0
+ * const result = await retry(async () => {
+ *   attempts++
+ *   if (attempts < 3) throw new Error('not yet')
+ *   return 'success'
+ * }, { times: 3, delay: 0 })
+ * result // => 'success'
+ * attempts // => 3
+ * @since 1.0.0
  */
 export async function retry<T>(factory: () => Promise<T>, options: RetryOptions = {}): Promise<T> {
-  const { times = 3, delay = 0, backoff = 1, shouldRetry = () => true } = options
-  let attempt = 0
-  let wait = delay
+  const { times = 3, delay = 0, backoff = 1, shouldRetry = () => true } = options;
+  let attempt = 0;
+  let wait = delay;
   while (true) {
     try {
-      return await factory()
+      return await factory();
     } catch (error) {
-      attempt += 1
+      attempt += 1;
       if (attempt >= times || !shouldRetry(error, attempt)) {
-        throw error
+        throw error;
       }
-      if (wait > 0) await sleep(wait)
-      wait *= backoff
+      if (wait > 0) await sleep(wait);
+      wait *= backoff;
     }
   }
 }

@@ -9,7 +9,9 @@
  * @returns A filtered tree / 过滤后的树
  * @example
  * filterTree([{ id: 1, visible: true }], (node) => Boolean(node.visible))
- * // -> [{ id: 1, visible: true }]
+ * // => [{ id: 1, visible: true }]
+ *
+ * @since 1.2.0
  */
 const filterTree = <T extends Record<string, unknown>>(
   trees: readonly T[],
@@ -17,18 +19,20 @@ const filterTree = <T extends Record<string, unknown>>(
   childrenKey: keyof T = 'children' as keyof T
 ): T[] => {
   return trees.reduce<T[]>((result: T[], node: T) => {
-    const children = node[childrenKey]
-    const filteredChildren = Array.isArray(children) ? filterTree(children as T[], predicate, childrenKey) : []
+    const children = node[childrenKey];
+    const filteredChildren = Array.isArray(children)
+      ? filterTree(children as T[], predicate, childrenKey)
+      : [];
 
     if (predicate(node) || filteredChildren.length > 0) {
       result.push({
         ...node,
-        ...(Array.isArray(children) ? { [childrenKey]: filteredChildren } : {})
-      })
+        ...(Array.isArray(children) ? { [childrenKey]: filteredChildren } : {}),
+      });
     }
 
-    return result
-  }, [])
-}
+    return result;
+  }, []);
+};
 
-export default filterTree
+export default filterTree;

@@ -1,7 +1,7 @@
 {
   "name": "@gvray/requestkit",
   "version": "1.0.1",
-  "description": "requestkit utilities",
+  "description": "Async request utilities: retry, polling, timeout, memoize, rate limiting, deferred, and abort groups.",
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "lib/index.d.ts",
@@ -22,9 +22,7 @@
     "clean": "rimraf lib esm",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "docs": "typedoc",
-    "doc": "pnpm run docs && pnpm -C ../../ run append-api ./packages/mathkit docs",
-    "pub": "echo 'Use root-level changeset publish to release packages'"
+    "dev": "tsc -p tsconfig.json --module esnext --outDir esm --watch"
   },
   "keywords": [
     "math",

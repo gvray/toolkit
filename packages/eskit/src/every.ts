@@ -8,7 +8,9 @@
  * @returns `true` when all items match / 全部匹配时返回 `true`
  * @example
  * every({ a: 1, b: 2 }, (value) => value > 0)
- * // -> true
+ * // => true
+ *
+ * @since 1.2.0
  */
 const every = <T extends readonly unknown[] | Record<string, unknown>>(
   collection: T,
@@ -19,10 +21,14 @@ const every = <T extends readonly unknown[] | Record<string, unknown>>(
   ) => boolean
 ): boolean => {
   if (Array.isArray(collection)) {
-    return collection.every((value: unknown, index: number) => predicate(value as never, index as never, collection))
+    return collection.every((value: unknown, index: number) =>
+      predicate(value as never, index as never, collection)
+    );
   }
 
-  return Object.keys(collection).every((key: string) => predicate(collection[key as keyof T] as never, key as never, collection))
-}
+  return Object.keys(collection).every((key: string) =>
+    predicate(collection[key as keyof T] as never, key as never, collection)
+  );
+};
 
-export default every
+export default every;

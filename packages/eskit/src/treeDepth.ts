@@ -8,19 +8,27 @@
  * @returns The maximum tree depth / 最大树深度
  * @example
  * treeDepth([{ id: 1, children: [{ id: 2 }] }])
- * // -> 2
+ * // => 2
+ *
+ * @since 1.2.0
  */
-const treeDepth = <T extends Record<string, unknown>>(trees: readonly T[], childrenKey: keyof T = 'children' as keyof T): number => {
+const treeDepth = <T extends Record<string, unknown>>(
+  trees: readonly T[],
+  childrenKey: keyof T = 'children' as keyof T
+): number => {
   if (trees.length === 0) {
-    return 0
+    return 0;
   }
 
-  return 1 + Math.max(
-    ...trees.map((node: T) => {
-      const children = node[childrenKey]
-      return Array.isArray(children) ? treeDepth(children as T[], childrenKey) : 0
-    })
-  )
-}
+  return (
+    1 +
+    Math.max(
+      ...trees.map((node: T) => {
+        const children = node[childrenKey];
+        return Array.isArray(children) ? treeDepth(children as T[], childrenKey) : 0;
+      })
+    )
+  );
+};
 
-export default treeDepth
+export default treeDepth;

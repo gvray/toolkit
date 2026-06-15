@@ -9,11 +9,13 @@
  *
  * // Set a CSS variable on a specific element
  * const element = document.querySelector('.my-element');
- * setCssVariable('--main-bg-color', '#ffffff', element);
+ * setCssVariable('--main-bg-color', '#ffffff', element)
+ *
+ * @since 1.0.0
  */
 const setCssVariable = (key: string, val: string, ele?: HTMLElement): void => {
-  const element = ele ?? document.documentElement
-  element.style.setProperty(key, val)
-}
+  const element = ele ?? document.documentElement;
+  element.style.setProperty(key, val);
+};
 
-export default setCssVariable
+export default setCssVariable;

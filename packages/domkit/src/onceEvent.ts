@@ -7,7 +7,12 @@
  * @returns A cleanup function.
  *
  * @example
- * onceEvent(el, 'click', handler)
+ * const el = document.createElement('button')
+ * document.body.appendChild(el)
+ * onceEvent(el, 'click', () => console.log('clicked once'))
+ * el.click()
+ *
+ * @since 1.0.0
  */
 const onceEvent = <K extends keyof GlobalEventHandlersEventMap>(
   el: EventTarget,
@@ -15,15 +20,15 @@ const onceEvent = <K extends keyof GlobalEventHandlersEventMap>(
   handler: (event: GlobalEventHandlersEventMap[K]) => void
 ): (() => void) => {
   const wrappedHandler = (evt: Event): void => {
-    handler(evt as GlobalEventHandlersEventMap[K])
-    el.removeEventListener(event, wrappedHandler as EventListener)
-  }
+    handler(evt as GlobalEventHandlersEventMap[K]);
+    el.removeEventListener(event, wrappedHandler as EventListener);
+  };
 
-  el.addEventListener(event, wrappedHandler as EventListener)
+  el.addEventListener(event, wrappedHandler as EventListener);
 
   return (): void => {
-    el.removeEventListener(event, wrappedHandler as EventListener)
-  }
-}
+    el.removeEventListener(event, wrappedHandler as EventListener);
+  };
+};
 
-export default onceEvent
+export default onceEvent;

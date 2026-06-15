@@ -1,4 +1,4 @@
-import copyProperties from './copyProperties'
+import copyProperties from './copyProperties';
 /**
  * Creates a new class by combining multiple classes (mixin pattern).
  * 通过组合多个类创建新类（混入模式）。
@@ -34,12 +34,11 @@ import copyProperties from './copyProperties'
  *
  * // Use the mixed classes
  * const duck = new Duck()
- * duck.walk() // 'Walking...'
- * duck.swim() // 'Swimming...'
- * duck.fly() // 'Flying...'
- *
+ * duck.walk() // => 'Walking...'
+ * duck.swim() // => 'Swimming...'
+ * duck.fly() // => 'Flying...' *
  * const fish = new Fish()
- * fish.swim() // 'Swimming...'
+ * fish.swim() // => 'Swimming...'
  * // fish.walk() // Error: walk is not a function
  *
  * // With properties and constructor logic
@@ -63,8 +62,8 @@ import copyProperties from './copyProperties'
  *
  * const Person = mixin(HasName, HasAge)
  * const person = new Person()
- * console.log(person.getName()) // 'Unknown'
- * console.log(person.getAge()) // 0
+ * person.getName() // => 'Unknown'
+ * person.getAge() // => 0
  * ```
  *
  * @since 1.0.0
@@ -73,17 +72,17 @@ const mixin = (...mixins: any[]): any => {
   class Mixin {
     constructor() {
       for (const mixin of mixins) {
-        copyProperties(this, new mixin()) // Copy Instance Properties
+        Object.assign(this, new mixin()); // Copy Instance Properties
       }
     }
   }
 
   for (const mixin of mixins) {
-    copyProperties(Mixin, mixin) // Copy static properties
-    copyProperties(Mixin.prototype, mixin.prototype) // Copy prototype properties
+    copyProperties(Mixin, mixin); // Copy static properties
+    copyProperties(Mixin.prototype, mixin.prototype); // Copy prototype properties
   }
 
-  return Mixin
-}
+  return Mixin;
+};
 
-export default mixin
+export default mixin;

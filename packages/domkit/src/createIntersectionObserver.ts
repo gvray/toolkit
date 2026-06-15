@@ -7,19 +7,24 @@
  * @returns The created observer.
  *
  * @example
- * createIntersectionObserver(el, (entries) => console.log(entries))
+ * const el = document.createElement('div')
+ * document.body.appendChild(el)
+ * const obs = createIntersectionObserver(el, (entries) => console.log(entries))
+ * console.log(obs instanceof IntersectionObserver)
+ *
+ * @since 1.0.0
  */
 const createIntersectionObserver = (
   target: Element | readonly Element[],
   callback: IntersectionObserverCallback,
   options?: IntersectionObserverInit
 ): IntersectionObserver => {
-  const observer = new IntersectionObserver(callback, options)
-  const targets = Array.isArray(target) ? target : [target]
+  const observer = new IntersectionObserver(callback, options);
+  const targets = Array.isArray(target) ? target : [target];
 
-  targets.forEach((item: Element) => observer.observe(item))
+  targets.forEach((item: Element) => observer.observe(item));
 
-  return observer
-}
+  return observer;
+};
 
-export default createIntersectionObserver
+export default createIntersectionObserver;

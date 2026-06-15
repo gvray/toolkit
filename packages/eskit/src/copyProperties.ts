@@ -9,34 +9,16 @@
  * ```typescript
  * const source = { a: 1, b: 2 }
  * const target = { c: 3 }
- *
  * copyProperties(target, source)
- * console.log(target) // { c: 3, a: 1, b: 2 }
+ * target // => { c: 3, a: 1, b: 2 }
  *
  * // Copies non-enumerable properties too
- * const sourceWithHidden = {}
- * Object.defineProperty(sourceWithHidden, 'hidden', {
- *   value: 'secret',
- *   enumerable: false,
- *   writable: true,
- *   configurable: true
- * })
- *
- * const targetForHidden = {}
- * copyProperties(targetForHidden, sourceWithHidden)
- * console.log(Object.getOwnPropertyDescriptor(targetForHidden, 'hidden'))
- * // { value: 'secret', writable: true, enumerable: false, configurable: true }
- *
- * // Copies getters and setters
- * const sourceWithAccessor = {
- *   _value: 42,
- *   get value() { return this._value },
- *   set value(v) { this._value = v }
- * }
- *
- * const targetForAccessor = {}
- * copyProperties(targetForAccessor, sourceWithAccessor)
- * console.log((targetForAccessor as any).value) // 42
+ * const src = {}
+ * Object.defineProperty(src, 'hidden', { value: 'secret', enumerable: false, writable: true, configurable: true })
+ * const tgt = {}
+ * copyProperties(tgt, src)
+ * Object.getOwnPropertyDescriptor(tgt, 'hidden')
+ * // => { value: 'secret', writable: true, enumerable: false, configurable: true }
  * ```
  *
  * @since 1.0.0
@@ -44,10 +26,10 @@
 const copyProperties = <T, U extends Record<string, unknown>>(target: T, source: U): void => {
   for (const key of Reflect.ownKeys(source)) {
     if (key !== 'constructor' && key !== 'prototype' && key !== 'name') {
-      const desc = Object.getOwnPropertyDescriptor(source, key)
-      Object.defineProperty(target, key, desc ?? {})
+      const desc = Object.getOwnPropertyDescriptor(source, key);
+      Object.defineProperty(target, key, desc ?? {});
     }
   }
-}
+};
 
-export default copyProperties
+export default copyProperties;

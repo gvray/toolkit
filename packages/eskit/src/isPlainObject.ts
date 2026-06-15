@@ -6,15 +6,17 @@
  * @returns `true` when the value is a plain object / 值是普通对象时返回 `true`
  * @example
  * isPlainObject({})
- * // -> true
+ * // => true
+ *
+ * @since 1.2.0
  */
 const isPlainObject = (value: unknown): value is Record<PropertyKey, unknown> => {
   if (Object.prototype.toString.call(value) !== '[object Object]') {
-    return false
+    return false;
   }
 
-  const prototype = Object.getPrototypeOf(value)
-  return prototype === null || prototype === Object.prototype
-}
+  const prototype = Object.getPrototypeOf(value);
+  return prototype === null || prototype === Object.prototype;
+};
 
-export default isPlainObject
+export default isPlainObject;

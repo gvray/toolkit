@@ -7,14 +7,16 @@
  *
  * @example
  * getQueryParam('https://example.com?id=5', 'id')
- * // -> '5'
+ * // => '5'
+ *
+ * @since 1.0.0
  */
 const getQueryParam = (url: string, key: string): string | null => {
   if (typeof url !== 'string' || typeof key !== 'string') {
-    throw new TypeError('url and key must be strings')
+    throw new TypeError('url and key must be strings');
   }
 
-  return new URL(url).searchParams.get(key)
-}
+  return new URL(url).searchParams.get(key);
+};
 
-export default getQueryParam
+export default getQueryParam;

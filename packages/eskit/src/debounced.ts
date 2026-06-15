@@ -15,30 +15,14 @@ export interface DebouncedFunction<TArgs extends any[]> {
  * @returns The wrapped debounced function. / 包装后的防抖函数
  *
  * @example
- * ```typescript
- * // Basic debounce
- * const debouncedFn = debounce(() => {
- *   console.log('Called after delay!');
- * }, 1000);
+ * const log = debounce((msg) => console.log('debounced:', msg), 300)
+ * log('hello')
+ * log('world')
+ * log.flush() // => 'debounced: world'
+ * log.cancel()
+ * log.pending() // => false
  *
- * // With immediate execution
- * const immediateDebounced = debounce(() => {
- *   console.log('Called immediately!');
- * }, 1000, true);
- *
- * // Search input example
- * const searchDebounced = debounce((query: string) => {
- *   performSearch(query);
- * }, 300);
- *
- * // Cancel if needed
- * searchDebounced('hello');
- * searchDebounced.cancel(); // Cancels the pending call
- *
- * // Force execution
- * searchDebounced('world');
- * searchDebounced.flush(); // Executes immediately
- * ```
+ * @since 1.2.0
  */
 export function debounce<TArgs extends any[]>(
   fn: (...args: TArgs) => void,

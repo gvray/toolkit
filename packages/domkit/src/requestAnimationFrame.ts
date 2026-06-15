@@ -12,35 +12,26 @@
  * @returns A numeric ID which can be passed to cancelAnimationFrame() to cancel the requested animation.
  *
  * @example
- * ```typescript
- * const animate = () => {
- *   const element = document.getElementById('myElement')
- *   let position = 0
- *   const moveDown = () => {
- *     position += 2
- *     element.style.top = `${position}px`
- *     requestAnimationFrame(moveDown)
- *   }
- *   moveDown()
- * }
- * animate()
- * ```
+ * const el = document.createElement('div')
+ * document.body.appendChild(el)
+ * const id = requestAnimationFrame(() => { el.style.top = '2px' })
+ * console.log(typeof id)
  *
  * @since 1.0.0
  */
 const requestAnimationFrame = (fn: FrameRequestCallback): number => {
   const method =
     window.requestAnimationFrame ||
-    // @ts-ignore
+    // @ts-expect-error vendor prefix not in TS types
     window.webkitRequestAnimationFrame ||
-    // @ts-ignore
+    // @ts-expect-error vendor prefix not in TS types
     window.mozRequestAnimationFrame ||
-    // @ts-ignore
+    // @ts-expect-error vendor prefix not in TS types
     window.msRequestAnimationFrame ||
     function (f) {
-      return setTimeout(f, 16)
-    }
+      return setTimeout(f, 16);
+    };
 
-  return method(fn)
-}
-export default requestAnimationFrame
+  return method(fn);
+};
+export default requestAnimationFrame;

@@ -8,19 +8,21 @@
  *
  * @example
  * ```typescript
- * randomInt(1, 10) // returns a number between 1 and 10
- * randomInt(0, 100) // returns a number between 0 and 100
- * randomInt(-5, 5) // returns a number between -5 and 5
+ * randomInt(1, 10) // => a number between 1 and 10
+ * randomInt(0, 100) // => a number between 0 and 100
+ * randomInt(-5, 5) // => a number between -5 and 5
  * ```
+ *
+ * @since 1.0.0
  */
 export function randomInt(min: number, max: number): number {
   if (min > max) {
-    throw new Error('Min value cannot be greater than max value / 最小值不能大于最大值')
+    throw new Error('Min value cannot be greater than max value / 最小值不能大于最大值');
   }
 
-  min = Math.ceil(min)
-  max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min + 1)) + min
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 /**
@@ -34,17 +36,19 @@ export function randomInt(min: number, max: number): number {
  *
  * @example
  * ```typescript
- * randomFloat(0, 1) // returns a number like 0.42
- * randomFloat(1.5, 10.7, 3) // returns a number like 7.394
+ * randomFloat(0, 1) // => a number like 0.42
+ * randomFloat(1.5, 10.7, 3) // => a number like 7.394
  * ```
+ *
+ * @since 1.0.0
  */
 export function randomFloat(min: number, max: number, precision = 2): number {
   if (min > max) {
-    throw new Error('Min value cannot be greater than max value / 最小值不能大于最大值')
+    throw new Error('Min value cannot be greater than max value / 最小值不能大于最大值');
   }
 
-  const random = Math.random() * (max - min) + min
-  return Number(random.toFixed(precision))
+  const random = Math.random() * (max - min) + min;
+  return Number(random.toFixed(precision));
 }
 
 /**
@@ -56,19 +60,21 @@ export function randomFloat(min: number, max: number, precision = 2): number {
  *
  * @example
  * ```typescript
- * shuffle([1, 2, 3, 4, 5]) // returns something like [3, 1, 5, 2, 4]
- * shuffle(['a', 'b', 'c']) // returns something like ['c', 'a', 'b']
+ * shuffle([1, 2, 3, 4, 5]) // => something like [3, 1, 5, 2, 4]
+ * shuffle(['a', 'b', 'c']) // => something like ['c', 'a', 'b']
  * ```
+ *
+ * @since 1.0.0
  */
 export function shuffle<T>(array: T[]): T[] {
-  const result = [...array]
+  const result = [...array];
 
   for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[result[i], result[j]] = [result[j], result[i]]
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
   }
 
-  return result
+  return result;
 }
 
 /**
@@ -84,13 +90,15 @@ export function shuffle<T>(array: T[]): T[] {
  * randomBoolean(0.7) // 70% chance of true
  * randomBoolean(0.1) // 10% chance of true
  * ```
+ *
+ * @since 1.0.0
  */
 export function randomBoolean(probability = 0.5): boolean {
   if (probability < 0 || probability > 1) {
-    throw new Error('Probability must be between 0 and 1 / 概率必须在0和1之间')
+    throw new Error('Probability must be between 0 and 1 / 概率必须在0和1之间');
   }
 
-  return Math.random() < probability
+  return Math.random() < probability;
 }
 
 /**
@@ -103,17 +111,19 @@ export function randomBoolean(probability = 0.5): boolean {
  *
  * @example
  * ```typescript
- * randomChoice([1, 2, 3, 4, 5]) // returns one of the numbers
- * randomChoice(['apple', 'banana', 'orange']) // returns one of the fruits
+ * randomChoice([1, 2, 3, 4, 5]) // => one of the numbers
+ * randomChoice(['apple', 'banana', 'orange']) // => one of the fruits
  * ```
+ *
+ * @since 1.0.0
  */
 export function randomChoice<T>(array: T[]): T {
   if (array.length === 0) {
-    throw new Error('Array cannot be empty / 数组不能为空')
+    throw new Error('Array cannot be empty / 数组不能为空');
   }
 
-  const index = randomInt(0, array.length - 1)
-  return array[index]
+  const index = randomInt(0, array.length - 1);
+  return array[index];
 }
 
 /**
@@ -125,26 +135,28 @@ export function randomChoice<T>(array: T[]): T {
  * @returns Sample / 样本
  *
  * @example
- * randomSample([1, 2, 3, 4, 5], 3) // → e.g. [2, 5, 1]
+ * randomSample([1, 2, 3, 4, 5], 3) // => e.g. [2, 5, 1]
+ *
+ * @since 1.0.0
  */
 export function randomSample<T>(array: T[], count: number): T[] {
   if (!Number.isInteger(count) || count < 0) {
-    throw new RangeError('count must be a non-negative integer')
+    throw new RangeError('count must be a non-negative integer');
   }
   if (count > array.length) {
-    throw new Error('count cannot be greater than array length')
+    throw new Error('count cannot be greater than array length');
   }
-  const copy = [...array]
+  const copy = [...array];
   for (let i = 0; i < count; i++) {
-    const j = i + Math.floor(Math.random() * (copy.length - i))
-    ;[copy[i], copy[j]] = [copy[j], copy[i]]
+    const j = i + Math.floor(Math.random() * (copy.length - i));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
   }
-  return copy.slice(0, count)
+  return copy.slice(0, count);
 }
 
 export interface WeightedChoice<T> {
-  value: T
-  weight: number
+  value: T;
+  weight: number;
 }
 
 /**
@@ -155,31 +167,33 @@ export interface WeightedChoice<T> {
  * @returns Selected value / 选中的值
  *
  * @example
- * randomWeighted([{ value: 'a', weight: 3 }, { value: 'b', weight: 1 }]) // -> often 'a'
+ * randomWeighted([{ value: 'a', weight: 3 }, { value: 'b', weight: 1 }]) // => often 'a'
+ *
+ * @since 1.0.0
  */
 export function randomWeighted<T>(items: WeightedChoice<T>[]): T {
   if (items.length === 0) {
-    throw new Error('items cannot be empty')
+    throw new Error('items cannot be empty');
   }
 
   const total = items.reduce((sum, item) => {
     if (!Number.isFinite(item.weight) || item.weight < 0) {
-      throw new RangeError('weight must be a non-negative finite number')
+      throw new RangeError('weight must be a non-negative finite number');
     }
-    return sum + item.weight
-  }, 0)
+    return sum + item.weight;
+  }, 0);
 
   if (total === 0) {
-    throw new Error('total weight cannot be zero')
+    throw new Error('total weight cannot be zero');
   }
 
-  let threshold = Math.random() * total
+  let threshold = Math.random() * total;
   for (const item of items) {
-    threshold -= item.weight
+    threshold -= item.weight;
     if (threshold <= 0) {
-      return item.value
+      return item.value;
     }
   }
 
-  return items[items.length - 1].value
+  return items[items.length - 1].value;
 }

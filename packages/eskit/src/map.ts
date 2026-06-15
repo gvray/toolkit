@@ -9,7 +9,9 @@
  * @returns The mapped collection / 映射后的集合
  * @example
  * map({ a: 1, b: 2 }, (value) => value * 2)
- * // -> { a: 2, b: 4 }
+ * // => { a: 2, b: 4 }
+ *
+ * @since 1.2.0
  */
 const map = <T extends readonly unknown[] | Record<string, unknown>, R>(
   collection: T,
@@ -20,18 +22,18 @@ const map = <T extends readonly unknown[] | Record<string, unknown>, R>(
   ) => R
 ): T extends readonly unknown[] ? R[] : Record<string, R> => {
   if (Array.isArray(collection)) {
-    return collection.map((value: unknown, index: number) => iteratee(value as never, index as never, collection)) as T extends readonly unknown[]
-      ? R[]
-      : Record<string, R>
+    return collection.map((value: unknown, index: number) =>
+      iteratee(value as never, index as never, collection)
+    ) as T extends readonly unknown[] ? R[] : Record<string, R>;
   }
 
-  const result: Record<string, R> = {}
+  const result: Record<string, R> = {};
 
   Object.keys(collection).forEach((key: string) => {
-    result[key] = iteratee(collection[key as keyof T] as never, key as never, collection)
-  })
+    result[key] = iteratee(collection[key as keyof T] as never, key as never, collection);
+  });
 
-  return result as T extends readonly unknown[] ? R[] : Record<string, R>
-}
+  return result as T extends readonly unknown[] ? R[] : Record<string, R>;
+};
 
-export default map
+export default map;

@@ -8,7 +8,9 @@
  * @returns The first matching value, or `undefined` / 第一个匹配的值，或 `undefined`
  * @example
  * find({ a: 1, b: 2 }, (value) => value > 1)
- * // -> 2
+ * // => 2
+ *
+ * @since 1.2.0
  */
 const find = <T extends readonly unknown[] | Record<string, unknown>>(
   collection: T,
@@ -19,14 +21,18 @@ const find = <T extends readonly unknown[] | Record<string, unknown>>(
   ) => boolean
 ): (T extends readonly (infer U)[] ? U : T[keyof T]) | undefined => {
   if (Array.isArray(collection)) {
-    return collection.find((value: unknown, index: number) => predicate(value as never, index as never, collection)) as
-      | (T extends readonly (infer U)[] ? U : T[keyof T])
-      | undefined
+    return collection.find((value: unknown, index: number) =>
+      predicate(value as never, index as never, collection)
+    ) as (T extends readonly (infer U)[] ? U : T[keyof T]) | undefined;
   }
 
-  const key = Object.keys(collection).find((itemKey: string) => predicate(collection[itemKey as keyof T] as never, itemKey as never, collection))
+  const key = Object.keys(collection).find((itemKey: string) =>
+    predicate(collection[itemKey as keyof T] as never, itemKey as never, collection)
+  );
 
-  return key === undefined ? undefined : (collection[key as keyof T] as T extends readonly (infer U)[] ? U : T[keyof T])
-}
+  return key === undefined
+    ? undefined
+    : (collection[key as keyof T] as T extends readonly (infer U)[] ? U : T[keyof T]);
+};
 
-export default find
+export default find;

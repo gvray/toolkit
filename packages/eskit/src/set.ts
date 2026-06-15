@@ -1,4 +1,6 @@
-import { toPath } from './_internal/path'
+import { toPath } from './_internal/path';
+
+const UNSAFE_KEYS = new Set<PropertyKey>(['__proto__', 'prototype', 'constructor']);
 
 /**
  * Sets a nested value on an object by path.
@@ -11,34 +13,44 @@ import { toPath } from './_internal/path'
  * @returns The same object after mutation / 设置后的原对象
  * @example
  * set({ a: 1 }, 'b.c', 3)
- * // -> { a: 1, b: { c: 3 } }
+ * // => { a: 1, b: { c: 3 } }
+ *
+ * @since 1.2.0
  */
-const set = <T extends Record<PropertyKey, unknown>>(object: T, path: string | readonly PropertyKey[], value: unknown): T => {
-  const segments = toPath(path)
+const set = <T extends Record<PropertyKey, unknown>>(
+  object: T,
+  path: string | readonly PropertyKey[],
+  value: unknown
+): T => {
+  const segments = toPath(path);
 
   if (segments.length === 0) {
-    throw new TypeError('path must not be empty')
+    throw new TypeError('path must not be empty');
   }
 
-  let current: Record<PropertyKey, unknown> = object
+  if (segments.some((segment) => UNSAFE_KEYS.has(segment))) {
+    throw new TypeError('path contains unsafe key');
+  }
+
+  let current: Record<PropertyKey, unknown> = object;
 
   segments.forEach((segment: PropertyKey, index: number) => {
     if (index === segments.length - 1) {
-      current[segment] = value
-      return
+      current[segment] = value;
+      return;
     }
 
-    const nextSegment = segments[index + 1]
-    const nextValue = current[segment]
+    const nextSegment = segments[index + 1];
+    const nextValue = current[segment];
 
     if (typeof nextValue !== 'object' || nextValue === null) {
-      current[segment] = typeof nextSegment === 'number' ? [] : {}
+      current[segment] = typeof nextSegment === 'number' ? [] : {};
     }
 
-    current = current[segment] as Record<PropertyKey, unknown>
-  })
+    current = current[segment] as Record<PropertyKey, unknown>;
+  });
 
-  return object
-}
+  return object;
+};
 
-export default set
+export default set;

@@ -1,4 +1,4 @@
-import { splitWords } from './_internal/words'
+import { splitWords } from './_internal/words';
 
 /**
  * Converts a string to Title Case.
@@ -8,12 +8,14 @@ import { splitWords } from './_internal/words'
  * @returns The title-cased string / 转换后的 Title Case 字符串
  * @example
  * titleCase('hello world')
- * // -> 'Hello World'
+ * // => 'Hello World'
+ *
+ * @since 1.2.0
  */
 const titleCase = (value: string): string => {
   return splitWords(value)
     .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(' ')
-}
+    .join(' ');
+};
 
-export default titleCase
+export default titleCase;

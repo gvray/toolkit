@@ -6,15 +6,23 @@
  * @returns The created observer.
  *
  * @example
- * createResizeObserver(el, (entries) => console.log(entries))
+ * const el = document.createElement('div')
+ * document.body.appendChild(el)
+ * const obs = createResizeObserver(el, (entries) => console.log(entries))
+ * console.log(obs instanceof ResizeObserver)
+ *
+ * @since 1.0.0
  */
-const createResizeObserver = (target: Element | readonly Element[], callback: ResizeObserverCallback): ResizeObserver => {
-  const observer = new ResizeObserver(callback)
-  const targets = Array.isArray(target) ? target : [target]
+const createResizeObserver = (
+  target: Element | readonly Element[],
+  callback: ResizeObserverCallback
+): ResizeObserver => {
+  const observer = new ResizeObserver(callback);
+  const targets = Array.isArray(target) ? target : [target];
 
-  targets.forEach((item: Element) => observer.observe(item))
+  targets.forEach((item: Element) => observer.observe(item));
 
-  return observer
-}
+  return observer;
+};
 
-export default createResizeObserver
+export default createResizeObserver;

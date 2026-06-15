@@ -8,20 +8,22 @@
  * @returns Prefix slice / 满足条件的前缀
  * @example
  * takeWhile([1, 2, 3, 4], (n) => n < 3)
- * // -> [1, 2]
+ * // => [1, 2]
+ *
+ * @since 1.2.0
  */
 const takeWhile = <T>(array: readonly T[], predicate: (item: T, index: number) => boolean): T[] => {
-  const result: T[] = []
+  const result: T[] = [];
 
   for (let index = 0; index < array.length; index++) {
-    const item = array[index]
+    const item = array[index];
     if (!predicate(item, index)) {
-      break
+      break;
     }
-    result.push(item)
+    result.push(item);
   }
 
-  return result
-}
+  return result;
+};
 
-export default takeWhile
+export default takeWhile;

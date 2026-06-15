@@ -1,4 +1,4 @@
-import { toPath } from './_internal/path'
+import { toPath } from './_internal/path';
 
 /**
  * Checks whether an object has a property at the given path.
@@ -9,26 +9,28 @@ import { toPath } from './_internal/path'
  * @returns True when the path exists / 路径存在则为 true
  * @example
  * has({ a: { b: 1 } }, 'a.b')
- * // -> true
+ * // => true
+ *
+ * @since 1.2.0
  */
 const has = (object: unknown, path: string | readonly PropertyKey[]): boolean => {
-  const segments = toPath(path)
-  let current: unknown = object
+  const segments = toPath(path);
+  let current: unknown = object;
 
   for (let index = 0; index < segments.length; index++) {
     if (current === null || current === undefined) {
-      return false
+      return false;
     }
 
-    const segment = segments[index]
+    const segment = segments[index];
     if (index === segments.length - 1) {
-      return Object.prototype.hasOwnProperty.call(current, segment)
+      return Object.prototype.hasOwnProperty.call(current, segment);
     }
 
-    current = (current as Record<PropertyKey, unknown>)[segment]
+    current = (current as Record<PropertyKey, unknown>)[segment];
   }
 
-  return false
-}
+  return false;
+};
 
-export default has
+export default has;

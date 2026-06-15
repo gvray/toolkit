@@ -7,10 +7,12 @@
  * @returns A new array with unique values / 去重后的新数组
  * @example
  * uniq([1, 2, 2, 3, 3])
- * // -> [1, 2, 3]
+ * // => [1, 2, 3]
+ *
+ * @since 1.2.0
  */
 const uniq = <T>(array: readonly T[]): T[] => {
-  return Array.from(new Set(array))
-}
+  return Array.from(new Set(array));
+};
 
-export default uniq
+export default uniq;

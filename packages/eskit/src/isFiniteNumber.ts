@@ -1,4 +1,4 @@
-import isNumber from './isNumber'
+import isNumber from './isNumber';
 
 /**
  * Checks whether a value is a finite number.
@@ -8,10 +8,12 @@ import isNumber from './isNumber'
  * @returns `true` when the value is a finite number / 值是有限数字时返回 `true`
  * @example
  * isFiniteNumber(NaN)
- * // -> false
+ * // => false
+ *
+ * @since 1.2.0
  */
 const isFiniteNumber = (value: unknown): value is number => {
-  return isNumber(value)
-}
+  return isNumber(value);
+};
 
-export default isFiniteNumber
+export default isFiniteNumber;

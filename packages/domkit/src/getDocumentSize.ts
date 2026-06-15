@@ -5,15 +5,27 @@
  *
  * @example
  * getDocumentSize()
- * // -> { width: 1440, height: 3200 }
+ * // => { width: 1440, height: 3200 }
+ *
+ * @since 1.0.0
  */
 const getDocumentSize = (): { width: number; height: number } => {
-  const { body, documentElement } = document
+  const { body, documentElement } = document;
 
   return {
-    width: Math.max(body.scrollWidth, documentElement.scrollWidth, body.offsetWidth, documentElement.offsetWidth),
-    height: Math.max(body.scrollHeight, documentElement.scrollHeight, body.offsetHeight, documentElement.offsetHeight)
-  }
-}
+    width: Math.max(
+      body.scrollWidth,
+      documentElement.scrollWidth,
+      body.offsetWidth,
+      documentElement.offsetWidth
+    ),
+    height: Math.max(
+      body.scrollHeight,
+      documentElement.scrollHeight,
+      body.offsetHeight,
+      documentElement.offsetHeight
+    ),
+  };
+};
 
-export default getDocumentSize
+export default getDocumentSize;

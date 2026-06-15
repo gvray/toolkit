@@ -9,14 +9,16 @@
  * @returns The first item or the fallback value / 第一个元素或兜底值
  * @example
  * first([1, 2, 3])
- * // -> 1
+ * // => 1
+ *
+ * @since 1.2.0
  */
 const first = <T, D = undefined>(array: readonly T[], defaultValue?: D): T | D | undefined => {
   if (array.length === 0) {
-    return defaultValue
+    return defaultValue;
   }
 
-  return array[0]
-}
+  return array[0];
+};
 
-export default first
+export default first;

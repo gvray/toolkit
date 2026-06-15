@@ -7,10 +7,13 @@
  * @returns A composed function / 组合后的函数
  * @example
  * pipe((value) => value + 1, (value) => value * 2)(3)
- * // -> 8
+ * // => 8
+ *
+ * @since 1.2.0
  */
 const pipe = <T>(...funcs: Array<(arg: T) => T>): ((arg: T) => T) => {
-  return (arg: T): T => funcs.reduce((accumulator: T, func: (arg: T) => T) => func(accumulator), arg)
-}
+  return (arg: T): T =>
+    funcs.reduce((accumulator: T, func: (arg: T) => T) => func(accumulator), arg);
+};
 
-export default pipe
+export default pipe;

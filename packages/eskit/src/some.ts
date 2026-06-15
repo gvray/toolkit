@@ -8,7 +8,9 @@
  * @returns `true` when some items match / 存在匹配项时返回 `true`
  * @example
  * some({ a: 1, b: 2 }, (value) => value > 1)
- * // -> true
+ * // => true
+ *
+ * @since 1.2.0
  */
 const some = <T extends readonly unknown[] | Record<string, unknown>>(
   collection: T,
@@ -19,10 +21,14 @@ const some = <T extends readonly unknown[] | Record<string, unknown>>(
   ) => boolean
 ): boolean => {
   if (Array.isArray(collection)) {
-    return collection.some((value: unknown, index: number) => predicate(value as never, index as never, collection))
+    return collection.some((value: unknown, index: number) =>
+      predicate(value as never, index as never, collection)
+    );
   }
 
-  return Object.keys(collection).some((key: string) => predicate(collection[key as keyof T] as never, key as never, collection))
-}
+  return Object.keys(collection).some((key: string) =>
+    predicate(collection[key as keyof T] as never, key as never, collection)
+  );
+};
 
-export default some
+export default some;

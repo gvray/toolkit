@@ -1,4 +1,4 @@
-const objectProto = Object.prototype
+const objectProto = Object.prototype;
 /**
  * Checks if a value is likely a prototype object.
  * 检查值是否可能是原型对象。
@@ -10,31 +10,31 @@ const objectProto = Object.prototype
  * ```typescript
  * // Constructor function prototypes
  * function MyClass() {}
- * isPrototype(MyClass.prototype) // true
+ * isPrototype(MyClass.prototype) // => true
  *
  * class MyModernClass {}
- * isPrototype(MyModernClass.prototype) // true
+ * isPrototype(MyModernClass.prototype) // => true
  *
  * // Built-in prototypes
- * isPrototype(Object.prototype) // true
- * isPrototype(Array.prototype) // true
- * isPrototype(String.prototype) // true
- * isPrototype(Function.prototype) // true
+ * isPrototype(Object.prototype) // => true
+ * isPrototype(Array.prototype) // => true
+ * isPrototype(String.prototype) // => true
+ * isPrototype(Function.prototype) // => true
  *
  * // Regular objects and instances
- * isPrototype({}) // false (plain object)
- * isPrototype(new MyClass()) // false (instance, not prototype)
- * isPrototype([]) // false (array instance)
- * isPrototype('hello') // false (string primitive)
+ * isPrototype({}) // => false (plain object)
+ * isPrototype(new MyClass()) // => false (instance, not prototype)
+ * isPrototype([]) // => false (array instance)
+ * isPrototype('hello') // => false (string primitive)
  *
  * // Edge cases
- * isPrototype(null) // false
- * isPrototype(undefined) // false
+ * isPrototype(null) // => false
+ * isPrototype(undefined) // => false
  *
  * // Custom objects that look like prototypes
  * const customProto = { constructor: MyClass }
  * MyClass.prototype = customProto
- * isPrototype(customProto) // true
+ * isPrototype(customProto) // => true
  *
  * // Practical usage - checking if object is a prototype
  * function isCustomPrototype(obj: unknown) {
@@ -54,8 +54,8 @@ const objectProto = Object.prototype
  * @since 1.0.0
  */
 const isPrototype = (value: unknown): boolean => {
-  const Ctor = value && value.constructor
-  const proto = (typeof Ctor === 'function' && Ctor.prototype) || objectProto
-  return value === proto
-}
-export default isPrototype
+  const Ctor = value && value.constructor;
+  const proto = (typeof Ctor === 'function' && Ctor.prototype) || objectProto;
+  return value === proto;
+};
+export default isPrototype;

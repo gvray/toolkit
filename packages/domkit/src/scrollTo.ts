@@ -22,46 +22,59 @@
  * const element = document.getElementById("my-element");
  * scrollTo({ x: 100, y: 100, target: element });
  * ```
+ *
+ * @since 1.0.0
  */
-type TargetType = HTMLElement | Element | Window | null | undefined
+type TargetType = HTMLElement | Element | Window | null | undefined;
 type ScrollToOptions = {
-  x: number
-  y: number
-  target?: TargetType
-  behavior?: 'auto' | 'smooth'
-}
+  x: number;
+  y: number;
+  target?: TargetType;
+  behavior?: 'auto' | 'smooth';
+};
 
-export const scrollTo = ({ x = 0, y = 0, target = window, behavior = 'auto' }: ScrollToOptions): void => {
+export const scrollTo = ({
+  x = 0,
+  y = 0,
+  target = window,
+  behavior = 'auto',
+}: ScrollToOptions): void => {
   // 处理负值
-  const scrollX = Math.max(0, x)
-  const scrollY = Math.max(0, y)
+  const scrollX = Math.max(0, x);
+  const scrollY = Math.max(0, y);
 
   // 如果没有提供 target 或者 target 是 null/undefined，使用 window
   if (!target || target === window) {
-    if ('scrollBehavior' in document.documentElement.style && typeof window.scrollTo === 'function') {
+    if (
+      'scrollBehavior' in document.documentElement.style &&
+      typeof window.scrollTo === 'function'
+    ) {
       window.scrollTo({
         top: scrollY,
         left: scrollX,
-        behavior
-      })
+        behavior,
+      });
     } else if (typeof window.scroll === 'function') {
-      window.scroll(scrollX, scrollY)
+      window.scroll(scrollX, scrollY);
     }
-    return
+    return;
   }
 
   // 检查是否是 Window 对象
   if (target instanceof Window) {
-    if ('scrollBehavior' in document.documentElement.style && typeof target.scrollTo === 'function') {
+    if (
+      'scrollBehavior' in document.documentElement.style &&
+      typeof target.scrollTo === 'function'
+    ) {
       target.scrollTo({
         top: scrollY,
         left: scrollX,
-        behavior
-      })
+        behavior,
+      });
     } else if (typeof target.scroll === 'function') {
-      target.scroll(scrollX, scrollY)
+      target.scroll(scrollX, scrollY);
     }
-    return
+    return;
   }
 
   // 处理 HTMLElement 或 Element
@@ -70,16 +83,16 @@ export const scrollTo = ({ x = 0, y = 0, target = window, behavior = 'auto' }: S
       target.scrollTo({
         top: scrollY,
         left: scrollX,
-        behavior
-      })
+        behavior,
+      });
     } else {
-      ;(target as HTMLElement).scrollTop = scrollY
-      ;(target as HTMLElement).scrollLeft = scrollX
+      (target as HTMLElement).scrollTop = scrollY;
+      (target as HTMLElement).scrollLeft = scrollX;
     }
-    return
+    return;
   }
 
-  throw new Error('Invalid target element type. Must be Window or HTMLElement.')
-}
+  throw new Error('Invalid target element type. Must be Window or HTMLElement.');
+};
 
-export default scrollTo
+export default scrollTo;

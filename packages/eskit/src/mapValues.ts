@@ -9,20 +9,22 @@
  * @returns A new object with transformed values / 值转换后的新对象
  * @example
  * mapValues({ a: 1, b: 2 }, (value) => value * 2)
- * // -> { a: 2, b: 4 }
+ * // => { a: 2, b: 4 }
+ *
+ * @since 1.2.0
  */
 const mapValues = <T extends Record<string, unknown>, R>(
   object: T,
   iteratee: (value: T[keyof T], key: keyof T) => R
 ): Record<string, R> => {
-  const result: Record<string, R> = {}
+  const result: Record<string, R> = {};
 
   Object.keys(object).forEach((key: string) => {
-    const typedKey = key as keyof T
-    result[key] = iteratee(object[typedKey], typedKey)
-  })
+    const typedKey = key as keyof T;
+    result[key] = iteratee(object[typedKey], typedKey);
+  });
 
-  return result
-}
+  return result;
+};
 
-export default mapValues
+export default mapValues;

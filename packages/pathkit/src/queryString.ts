@@ -6,24 +6,28 @@
  * @returns The generated query string.
  *
  * @example
- * const query = { name: 'John', age: 30 };
- * const result = queryString(query)
- * // -> '?name=John&age=30'
+ * queryString({ name: 'John', age: 30 }) // => '?name=John&age=30'
+ * queryString({ q: 'hello' }, '#') // => '#q=hello'
+ *
+ * @since 1.0.0
  */
-const queryString = (query: Record<string, string | number> | null | undefined = {}, separator: string = '?'): string => {
+const queryString = (
+  query: Record<string, string | number> | null | undefined = {},
+  separator: string = '?'
+): string => {
   if (typeof separator !== 'string') {
-    throw new TypeError('separator must be a string')
+    throw new TypeError('separator must be a string');
   }
 
   if (!query) {
-    return ''
+    return '';
   }
 
   const content = Object.keys(query)
     .map((key: string) => `${encodeURIComponent(key)}=${encodeURIComponent(String(query[key]))}`)
-    .join('&')
+    .join('&');
 
-  return content ? `${separator}${content}` : ''
-}
+  return content ? `${separator}${content}` : '';
+};
 
-export default queryString
+export default queryString;

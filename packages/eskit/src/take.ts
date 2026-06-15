@@ -8,14 +8,16 @@
  * @returns A new array containing the selected items / 选中元素组成的新数组
  * @example
  * take([1, 2, 3, 4], 2)
- * // -> [1, 2]
+ * // => [1, 2]
+ *
+ * @since 1.2.0
  */
 const take = <T>(array: readonly T[], count: number): T[] => {
   if (!Number.isInteger(count) || count < 0) {
-    throw new TypeError('count must be a non-negative integer')
+    throw new TypeError('count must be a non-negative integer');
   }
 
-  return array.slice(0, count)
-}
+  return array.slice(0, count);
+};
 
-export default take
+export default take;

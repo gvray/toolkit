@@ -1,4 +1,4 @@
-import { splitWords } from './_internal/words'
+import { splitWords } from './_internal/words';
 
 /**
  * Converts a string to camelCase.
@@ -8,14 +8,18 @@ import { splitWords } from './_internal/words'
  * @returns The camel-cased string / 转换后的 camelCase 字符串
  * @example
  * camelCase('foo-bar')
- * // -> 'fooBar'
+ * // => 'fooBar'
+ *
+ * @since 1.2.0
  */
 const camelCase = (value: string): string => {
-  const wordList = splitWords(value.toLowerCase())
+  const wordList = splitWords(value.toLowerCase());
 
   return wordList
-    .map((word: string, index: number) => (index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)))
-    .join('')
-}
+    .map((word: string, index: number) =>
+      index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
+    )
+    .join('');
+};
 
-export default camelCase
+export default camelCase;

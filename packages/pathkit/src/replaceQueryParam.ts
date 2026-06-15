@@ -8,16 +8,18 @@
  *
  * @example
  * replaceQueryParam('https://example.com?page=1', 'page', '2')
- * // -> 'https://example.com/?page=2'
+ * // => 'https://example.com/?page=2'
+ *
+ * @since 1.0.0
  */
 const replaceQueryParam = (url: string, key: string, value: string): string => {
   if (typeof url !== 'string' || typeof key !== 'string' || typeof value !== 'string') {
-    throw new TypeError('url, key and value must be strings')
+    throw new TypeError('url, key and value must be strings');
   }
 
-  const nextUrl = new URL(url)
-  nextUrl.searchParams.set(key, value)
-  return nextUrl.toString()
-}
+  const nextUrl = new URL(url);
+  nextUrl.searchParams.set(key, value);
+  return nextUrl.toString();
+};
 
-export default replaceQueryParam
+export default replaceQueryParam;

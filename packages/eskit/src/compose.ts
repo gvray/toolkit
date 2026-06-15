@@ -12,28 +12,25 @@
  *
  * @example
  * ```typescript
- * const add1 = (x: number) => x + 1
- * const multiply2 = (x: number) => x * 2
- * const square = (x: number) => x * x
+ * const add1 = (x) => x + 1
+ * const multiply2 = (x) => x * 2
+ * const square = (x) => x * x
  *
- * // Compose functions: square(multiply2(add1(x)))
+ * // square(multiply2(add1(3))) = square(multiply2(4)) = square(8) = 64
  * const composed = compose(square, multiply2, add1)
+ * composed(3) // => 64
  *
- * console.log(composed(3)) // ((3 + 1) * 2)² = (4 * 2)² = 8² = 64
- *
- * // String transformations
- * const addExclamation = (s: string) => s + '!'
- * const toUpperCase = (s: string) => s.toUpperCase()
- * const addPrefix = (s: string) => 'RESULT: ' + s
- *
+ * const addExclamation = (s) => s + '!'
+ * const toUpperCase = (s) => s.toUpperCase()
+ * const addPrefix = (s) => 'RESULT: ' + s
  * const transform = compose(addPrefix, toUpperCase, addExclamation)
- * console.log(transform('hello')) // "RESULT: HELLO!"
+ * transform('hello') // => "RESULT: HELLO!"
  * ```
  *
  * @since 1.0.0
  */
 const compose = <T>(...funcs: Array<(arg: T) => T>): ((arg: T) => T) => {
-  return (arg: T): T => funcs.reduceRight((acc, func) => func(acc), arg)
-}
+  return (arg: T): T => funcs.reduceRight((acc, func) => func(acc), arg);
+};
 
-export default compose
+export default compose;

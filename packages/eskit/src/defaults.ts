@@ -9,23 +9,25 @@
  * @returns A new object with defaults applied / 应用默认值后的新对象
  * @example
  * defaults({ a: 1 }, { a: 9, b: 2 })
- * // -> { a: 1, b: 2 }
+ * // => { a: 1, b: 2 }
+ *
+ * @since 1.2.0
  */
 const defaults = <T extends Record<PropertyKey, unknown>, D extends Record<PropertyKey, unknown>>(
   object: T,
   source: D
 ): T & D => {
-  const result = { ...object } as T & D
+  const result = { ...object } as T & D;
 
   Object.keys(source).forEach((key: string) => {
-    const typedKey = key as keyof D
+    const typedKey = key as keyof D;
 
     if (result[typedKey] === undefined) {
-      result[typedKey] = source[typedKey] as (T & D)[keyof (T & D)]
+      result[typedKey] = source[typedKey] as (T & D)[keyof (T & D)];
     }
-  })
+  });
 
-  return result
-}
+  return result;
+};
 
-export default defaults
+export default defaults;

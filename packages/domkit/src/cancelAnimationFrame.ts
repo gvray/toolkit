@@ -3,22 +3,24 @@
  * @param {number} handler The return that requestAnimationFrame back
  * @since 1.0.0
  * @example
- * let animation = requestAnimationFrame(changeHeight)
- * setTimeout(() => clearAnimationFrame(animation), 3000)
+ * const tick = () => {}
+ * const id = requestAnimationFrame(tick)
+ * cancelAnimationFrame(id)
+ * console.log(typeof id)
  * @todo jest
  */
 const cancelAnimationFrame = (handler: number): void => {
   const method =
     window.cancelAnimationFrame ||
-    // @ts-ignore
+    // @ts-expect-error vendor prefix not in TS types
     window.webkitCancelAnimationFrame ||
-    // @ts-ignore
+    // @ts-expect-error vendor prefix not in TS types
     window.mozCancelAnimationFrame ||
-    // @ts-ignore
+    // @ts-expect-error vendor prefix not in TS types
     window.msCancelAnimationFrame ||
-    clearTimeout
+    clearTimeout;
 
-  method(handler)
-}
+  method(handler);
+};
 
-export default cancelAnimationFrame
+export default cancelAnimationFrame;

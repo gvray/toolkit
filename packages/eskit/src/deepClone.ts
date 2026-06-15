@@ -1,9 +1,12 @@
-import hasOwnProperty from './hasOwnProperty'
-import isArray from './isArray'
-import isDate from './isDate'
-import isFunction from './isFunction'
-import isObject from './isObject'
-import isRegExp from './isRegExp'
+import hasOwnProperty from './hasOwnProperty';
+import isArray from './isArray';
+import isDate from './isDate';
+import isError from './isError';
+import isFunction from './isFunction';
+import isMap from './isMap';
+import isObject from './isObject';
+import isRegExp from './isRegExp';
+import isSet from './isSet';
 
 /**
  * Creates a deep clone of the given value, handling circular references.
@@ -21,21 +24,13 @@ import isRegExp from './isRegExp'
  *
  * @example
  * ```typescript
- * const original = {
- *   name: 'John',
- *   age: 30,
- *   hobbies: ['reading', 'gaming'],
- *   address: { city: 'New York', zip: '10001' },
- *   createdAt: new Date(),
- *   pattern: /test/gi
- * }
- *
+ * const original = { name: 'John', hobbies: ['reading', 'gaming'], address: { city: 'New York' } }
  * const cloned = deepClone(original)
- * cloned.hobbies.push('swimming') // doesn't affect original
- * console.log(original.hobbies) // ['reading', 'gaming']
+ * console.log(cloned.hobbies.push('swimming')) // 3 — push returns new length
+ * original.hobbies // => ['reading', 'gaming'] — original unchanged
  *
  * // Handles circular references
- * const circular: any = { name: 'test' }
+ * const circular = { name: 'test' }
  * circular.self = circular
  * const clonedCircular = deepClone(circular) // works without infinite recursion
  * ```
@@ -43,50 +38,93 @@ import isRegExp from './isRegExp'
  * @since 1.0.0
  */
 function deepClone<T>(obj: T): T {
-  const clonedMap = new Map<any, any>()
+  const clonedMap = new Map<any, any>();
 
   const cloneValue = (value: any): any => {
     if (!isObject(value)) {
-      return value
+      return value;
     }
 
     if (clonedMap.has(value)) {
-      return clonedMap.get(value)
+      return clonedMap.get(value);
     }
 
-    let clonedObj: any
+    let clonedObj: any;
 
     if (isFunction(value)) {
       // Functions are returned as-is since they are immutable
-      return value
+      return value;
     } else if (isArray(value)) {
-      clonedObj = []
-      clonedMap.set(value, clonedObj)
+      clonedObj = [];
+      clonedMap.set(value, clonedObj);
 
       for (let i = 0; i < value.length; i++) {
-        clonedObj[i] = cloneValue(value[i])
+        clonedObj[i] = cloneValue(value[i]);
       }
     } else if (isDate(value)) {
-      clonedObj = new Date(value.getTime())
-      clonedMap.set(value, clonedObj)
+      clonedObj = new Date(value.getTime());
+      clonedMap.set(value, clonedObj);
     } else if (isRegExp(value)) {
-      clonedObj = new RegExp(value.source, value.flags)
-      clonedMap.set(value, clonedObj)
-    } else {
-      clonedObj = Object.create(null)
-      clonedMap.set(value, clonedObj)
+      clonedObj = new RegExp(value.source, value.flags);
+      clonedMap.set(value, clonedObj);
+    } else if (isMap(value)) {
+      clonedObj = new Map();
+      clonedMap.set(value, clonedObj);
+      value.forEach((v, k) => {
+        clonedObj.set(cloneValue(k), cloneValue(v));
+      });
+    } else if (isSet(value)) {
+      clonedObj = new Set();
+      clonedMap.set(value, clonedObj);
+      value.forEach((v) => {
+        clonedObj.add(cloneValue(v));
+      });
+    } else if (isError(value)) {
+      if (value instanceof TypeError) {
+        clonedObj = new TypeError(value.message);
+      } else if (value instanceof RangeError) {
+        clonedObj = new RangeError(value.message);
+      } else if (value instanceof ReferenceError) {
+        clonedObj = new ReferenceError(value.message);
+      } else if (value instanceof SyntaxError) {
+        clonedObj = new SyntaxError(value.message);
+      } else if (value instanceof URIError) {
+        clonedObj = new URIError(value.message);
+      } else if (value instanceof EvalError) {
+        clonedObj = new EvalError(value.message);
+      } else {
+        clonedObj = new Error(value.message);
+      }
+      clonedObj.name = value.name;
+      clonedObj.stack = value.stack;
+      clonedMap.set(value, clonedObj);
 
       for (const key in value) {
         if (hasOwnProperty(value, key)) {
-          clonedObj[key] = cloneValue(value[key])
+          clonedObj[key] = cloneValue(value[key]);
         }
+      }
+      for (const sym of Object.getOwnPropertySymbols(value)) {
+        clonedObj[sym] = cloneValue((value as any)[sym]);
+      }
+    } else {
+      clonedObj = Object.create(null);
+      clonedMap.set(value, clonedObj);
+
+      for (const key in value) {
+        if (hasOwnProperty(value, key)) {
+          clonedObj[key] = cloneValue(value[key]);
+        }
+      }
+      for (const sym of Object.getOwnPropertySymbols(value)) {
+        clonedObj[sym] = cloneValue((value as any)[sym]);
       }
     }
 
-    return clonedObj
-  }
+    return clonedObj;
+  };
 
-  return cloneValue(obj)
+  return cloneValue(obj);
 }
 
-export default deepClone
+export default deepClone;

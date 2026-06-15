@@ -9,29 +9,31 @@
  *
  * @example
  * ```typescript
- * range(0, 5) // returns [0, 1, 2, 3, 4]
- * range(1, 10, 2) // returns [1, 3, 5, 7, 9]
- * range(10, 0, -2) // returns [10, 8, 6, 4, 2]
+ * range(0, 5) // => [0, 1, 2, 3, 4]
+ * range(1, 10, 2) // => [1, 3, 5, 7, 9]
+ * range(10, 0, -2) // => [10, 8, 6, 4, 2]
  * ```
+ *
+ * @since 1.0.0
  */
 export function range(start: number, end: number, step = 1): number[] {
   if (step === 0) {
-    throw new Error('Step cannot be zero / 步长不能为零')
+    throw new Error('Step cannot be zero / 步长不能为零');
   }
 
-  const result: number[] = []
+  const result: number[] = [];
 
   if (step > 0) {
     for (let i = start; i < end; i += step) {
-      result.push(i)
+      result.push(i);
     }
   } else {
     for (let i = start; i > end; i += step) {
-      result.push(i)
+      result.push(i);
     }
   }
 
-  return result
+  return result;
 }
 
 /**
@@ -44,17 +46,19 @@ export function range(start: number, end: number, step = 1): number[] {
  *
  * @example
  * ```typescript
- * repeat(0, 5) // returns [0, 0, 0, 0, 0]
- * repeat('hello', 3) // returns ['hello', 'hello', 'hello']
- * repeat(true, 2) // returns [true, true]
+ * repeat(0, 5) // => [0, 0, 0, 0, 0]
+ * repeat('hello', 3) // => ['hello', 'hello', 'hello']
+ * repeat(true, 2) // => [true, true]
  * ```
+ *
+ * @since 1.0.0
  */
 export function repeat<T>(value: T, count: number): T[] {
   if (count < 0) {
-    throw new Error('Count cannot be negative / 计数不能为负数')
+    throw new Error('Count cannot be negative / 计数不能为负数');
   }
 
-  return Array(count).fill(value)
+  return Array(count).fill(value);
 }
 
 /**
@@ -66,27 +70,29 @@ export function repeat<T>(value: T, count: number): T[] {
  *
  * @example
  * ```typescript
- * fibonacci(10) // returns [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
- * fibonacci(5) // returns [0, 1, 1, 2, 3]
- * fibonacci(0) // returns []
+ * fibonacci(10) // => [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+ * fibonacci(5) // => [0, 1, 1, 2, 3]
+ * fibonacci(0) // => []
  * ```
+ *
+ * @since 1.0.0
  */
 export function fibonacci(n: number): number[] {
   if (n < 0) {
-    throw new Error('Number of terms cannot be negative / 项数不能为负数')
+    throw new Error('Number of terms cannot be negative / 项数不能为负数');
   }
 
-  if (n === 0) return []
-  if (n === 1) return [0]
-  if (n === 2) return [0, 1]
+  if (n === 0) return [];
+  if (n === 1) return [0];
+  if (n === 2) return [0, 1];
 
-  const result = [0, 1]
+  const result = [0, 1];
 
   for (let i = 2; i < n; i++) {
-    result.push(result[i - 1] + result[i - 2])
+    result.push(result[i - 1] + result[i - 2]);
   }
 
-  return result
+  return result;
 }
 
 /**
@@ -100,22 +106,28 @@ export function fibonacci(n: number): number[] {
  *
  * @example
  * ```typescript
- * arithmeticSequence(2, 3, 5) // returns [2, 5, 8, 11, 14]
- * arithmeticSequence(10, -2, 6) // returns [10, 8, 6, 4, 2, 0]
+ * arithmeticSequence(2, 3, 5) // => [2, 5, 8, 11, 14]
+ * arithmeticSequence(10, -2, 6) // => [10, 8, 6, 4, 2, 0]
  * ```
+ *
+ * @since 1.0.0
  */
-export function arithmeticSequence(firstTerm: number, commonDifference: number, numberOfTerms: number): number[] {
+export function arithmeticSequence(
+  firstTerm: number,
+  commonDifference: number,
+  numberOfTerms: number
+): number[] {
   if (numberOfTerms < 0) {
-    throw new Error('Number of terms cannot be negative / 项数不能为负数')
+    throw new Error('Number of terms cannot be negative / 项数不能为负数');
   }
 
-  const result: number[] = []
+  const result: number[] = [];
 
   for (let i = 0; i < numberOfTerms; i++) {
-    result.push(firstTerm + i * commonDifference)
+    result.push(firstTerm + i * commonDifference);
   }
 
-  return result
+  return result;
 }
 
 /**
@@ -129,20 +141,26 @@ export function arithmeticSequence(firstTerm: number, commonDifference: number, 
  *
  * @example
  * ```typescript
- * geometricSequence(2, 3, 5) // returns [2, 6, 18, 54, 162]
- * geometricSequence(1, 0.5, 4) // returns [1, 0.5, 0.25, 0.125]
+ * geometricSequence(2, 3, 5) // => [2, 6, 18, 54, 162]
+ * geometricSequence(1, 0.5, 4) // => [1, 0.5, 0.25, 0.125]
  * ```
+ *
+ * @since 1.0.0
  */
-export function geometricSequence(firstTerm: number, commonRatio: number, numberOfTerms: number): number[] {
+export function geometricSequence(
+  firstTerm: number,
+  commonRatio: number,
+  numberOfTerms: number
+): number[] {
   if (numberOfTerms < 0) {
-    throw new Error('Number of terms cannot be negative / 项数不能为负数')
+    throw new Error('Number of terms cannot be negative / 项数不能为负数');
   }
 
-  const result: number[] = []
+  const result: number[] = [];
 
   for (let i = 0; i < numberOfTerms; i++) {
-    result.push(firstTerm * Math.pow(commonRatio, i))
+    result.push(firstTerm * Math.pow(commonRatio, i));
   }
 
-  return result
+  return result;
 }

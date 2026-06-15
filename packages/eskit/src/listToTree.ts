@@ -3,15 +3,15 @@
  */
 interface ListToTreeOptions<T = any> {
   /** The key to use as the unique identifier for each item. Default: 'id' */
-  idKey?: string
+  idKey?: string;
   /** The key to use as the parent identifier for each item. Default: 'parentId' */
-  parentKey?: string
+  parentKey?: string;
   /** The key to use for storing children. Default: 'children' */
-  childrenKey?: string
+  childrenKey?: string;
   /** Whether to keep empty children arrays. Default: true */
-  keepEmptyChildren?: boolean
+  keepEmptyChildren?: boolean;
   /** Function to transform each node before processing. Default: (node) => node */
-  transformNode?: (node: T) => T
+  transformNode?: (node: T) => T;
 }
 
 /**
@@ -24,62 +24,11 @@ interface ListToTreeOptions<T = any> {
  * @returns The hierarchical tree structure / 分层树结构
  *
  * @example
- * ```typescript
- * interface MenuItem {
- *   id: number
- *   parentId: number | null
- *   name: string
- *   children?: MenuItem[]
- * }
+ * const list = [{ id: 1, parentId: null }, { id: 2, parentId: 1 }]
+ * listToTree(list)
+ * // => [{ id: 1, parentId: null, children: [{ id: 2, parentId: 1, children: [] }] }]
  *
- * const flatList: MenuItem[] = [
- *   { id: 1, parentId: null, name: 'Home' },
- *   { id: 2, parentId: null, name: 'Products' },
- *   { id: 3, parentId: 2, name: 'Electronics' },
- *   { id: 4, parentId: 2, name: 'Clothing' },
- *   { id: 5, parentId: 3, name: 'Phones' },
- *   { id: 6, parentId: 3, name: 'Laptops' }
- * ]
- *
- * // Basic usage
- * const tree = listToTree(flatList)
- * console.log(tree)
- * // [
- * //   { id: 1, parentId: null, name: 'Home', children: [] },
- * //   {
- * //     id: 2, parentId: null, name: 'Products',
- * //     children: [
- * //       {
- * //         id: 3, parentId: 2, name: 'Electronics',
- * //         children: [
- * //           { id: 5, parentId: 3, name: 'Phones', children: [] },
- * //           { id: 6, parentId: 3, name: 'Laptops', children: [] }
- * //         ]
- * //       },
- * //       { id: 4, parentId: 2, name: 'Clothing', children: [] }
- * //     ]
- * //   }
- * // ]
- *
- * // With custom keys
- * const treeWithCustomKeys = listToTree(flatList, {
- *   idKey: 'id',
- *   parentKey: 'parentId',
- *   childrenKey: 'subItems',
- *   keepEmptyChildren: false
- * })
- *
- * // With node transformation
- * const treeWithTransform = listToTree(flatList, {
- *   transformNode: (node) => ({
- *     ...node,
- *     label: node.name,
- *     value: node.id
- *   })
- * })
- * ```
- *
- * @since 1.0.0
+ * @since 1.2.0
  */
 const listToTree = <T extends { [key: string]: any }>(
   items: T[],
@@ -88,55 +37,55 @@ const listToTree = <T extends { [key: string]: any }>(
     parentKey = 'parentId',
     childrenKey = 'children',
     keepEmptyChildren = true,
-    transformNode = (node: T) => node
+    transformNode = (node: T) => node,
   }: ListToTreeOptions<T> = {}
 ): T[] => {
-  const map = new Map<string | number, T>()
-  const roots: T[] = []
+  const map = new Map<string | number, T>();
+  const roots: T[] = [];
 
   // 先复制一份并转换节点
   items.forEach((item) => {
-    const newNode = transformNode({ ...item })
-    map.set((newNode as any)[idKey] as string | number, newNode)
-  })
+    const newNode = transformNode({ ...item });
+    map.set((newNode as any)[idKey] as string | number, newNode);
+  });
 
   map.forEach((item) => {
-    const parentId = (item as any)[parentKey] as string | number | null
+    const parentId = (item as any)[parentKey] as string | number | null;
     if (parentId != null && map.has(parentId)) {
-      const parent = map.get(parentId)!
+      const parent = map.get(parentId)!;
       if (!(parent as any)[childrenKey]) {
-        ;(parent as any)[childrenKey] = [] as T[]
+        (parent as any)[childrenKey] = [] as T[];
       }
-      ;((parent as any)[childrenKey] as T[]).push(item)
+      ((parent as any)[childrenKey] as T[]).push(item);
     } else {
-      roots.push(item)
+      roots.push(item);
     }
-  })
+  });
 
   if (!keepEmptyChildren) {
     const clean = (nodes: T[]): void => {
       for (const node of nodes) {
         if ((node as any)[childrenKey]) {
-          const children = (node as any)[childrenKey] as T[]
+          const children = (node as any)[childrenKey] as T[];
           if (children.length === 0) {
-            delete (node as any)[childrenKey]
+            delete (node as any)[childrenKey];
           } else {
-            clean(children)
+            clean(children);
           }
         }
       }
-    }
-    clean(roots)
+    };
+    clean(roots);
   } else {
     // 为所有节点添加空的children数组（如果keepEmptyChildren为true）
     map.forEach((item) => {
       if (!(item as any)[childrenKey]) {
-        ;(item as any)[childrenKey] = [] as T[]
+        (item as any)[childrenKey] = [] as T[];
       }
-    })
+    });
   }
 
-  return roots
-}
+  return roots;
+};
 
-export default listToTree
+export default listToTree;

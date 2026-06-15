@@ -7,41 +7,24 @@
  *
  * @example
  * ```typescript
- * // Array-like values
- * isArrayLike('abc') // true (strings are array-like)
- * isArrayLike([1, 2, 3]) // true (arrays are array-like)
- * isArrayLike({ 0: 'a', 1: 'b', 2: 'c', length: 3 }) // true (object with length)
- *
- * // In browser environment
- * isArrayLike(document.querySelectorAll('div')) // true (NodeList)
- * isArrayLike(document.getElementsByTagName('p')) // true (HTMLCollection)
- *
- * // Function arguments object
- * function testArgs() {
- *   console.log(isArrayLike(arguments)) // true
- * }
- *
- * // Typed arrays
- * isArrayLike(new Uint8Array([1, 2, 3])) // true
- * isArrayLike(new Int32Array(5)) // true
- *
- * // Non-array-like values
- * isArrayLike(function() {}) // false (functions)
- * isArrayLike({}) // false (no length property)
- * isArrayLike({ length: 'not a number' }) // false (length not finite)
- * isArrayLike(null) // false
- * isArrayLike(undefined) // false
- * isArrayLike(42) // false
- *
- * // Edge cases
- * isArrayLike({ length: -1 }) // false (negative length)
- * isArrayLike({ length: Infinity }) // false (infinite length)
+ * isArrayLike('abc') // => true
+ * isArrayLike([1, 2, 3]) // => true
+ * isArrayLike({ 0: 'a', 1: 'b', 2: 'c', length: 3 }) // => true
+ * isArrayLike(new Uint8Array([1, 2, 3])) // => true
+ * isArrayLike(new Int32Array(5)) // => true
+ * isArrayLike({}) // => false
+ * isArrayLike(null) // => false
+ * isArrayLike(42) // => false
+ * isArrayLike({ length: -1 }) // => false
+ * isArrayLike({ length: Infinity }) // => false
  * ```
  *
  * @since 1.0.0
  */
 const isArrayLike = (value: any): boolean => {
-  return value !== null && typeof value !== 'function' && isFinite(value.length)
-}
+  if (value === null || value === undefined || typeof value === 'function') return false;
+  const length = value.length;
+  return Number.isInteger(length) && length >= 0 && length <= Number.MAX_SAFE_INTEGER;
+};
 
-export default isArrayLike
+export default isArrayLike;

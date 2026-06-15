@@ -1,5 +1,5 @@
 export interface TreeNode<T> {
-  children?: T[]
+  children?: T[];
 }
 
 /**
@@ -7,9 +7,9 @@ export interface TreeNode<T> {
  */
 interface TreeToListOptions<T = any> {
   /** The key to use for storing children. Default: 'children' */
-  childrenKey?: string
+  childrenKey?: string;
   /** Function to transform each node before processing. Default: (node) => node */
-  transformNode?: (node: T) => T
+  transformNode?: (node: T) => T;
 }
 
 /**
@@ -28,86 +28,31 @@ interface TreeToListOptions<T = any> {
  * @returns Flat array of all nodes without children properties / 不包含children属性的所有节点的平面数组
  *
  * @example
- * ```typescript
- * interface MenuItem extends TreeNode<MenuItem> {
- *   id: number
- *   name: string
- *   url?: string
- * }
+ * const tree = [{ id: 1, children: [{ id: 2 }] }]
+ * treeToList(tree)
+ * // => [{ id: 1 }, { id: 2 }]
  *
- * const menuTree: MenuItem[] = [
- *   {
- *     id: 1,
- *     name: "Dashboard",
- *     url: "/dashboard",
- *     children: [
- *       { id: 2, name: "Analytics", url: "/dashboard/analytics" },
- *       { id: 3, name: "Reports", url: "/dashboard/reports" }
- *     ]
- *   },
- *   {
- *     id: 4,
- *     name: "Settings",
- *     children: [
- *       {
- *         id: 5,
- *         name: "User Management",
- *         children: [
- *           { id: 6, name: "Add User", url: "/settings/users/add" }
- *         ]
- *       }
- *     ]
- *   }
- * ]
- *
- * // Basic usage
- * const flatMenu = treeToList(menuTree)
- * // Result (breadth-first order):
- * // [
- * //   { id: 1, name: "Dashboard", url: "/dashboard" },
- * //   { id: 4, name: "Settings" },
- * //   { id: 2, name: "Analytics", url: "/dashboard/analytics" },
- * //   { id: 3, name: "Reports", url: "/dashboard/reports" },
- * //   { id: 5, name: "User Management" },
- * //   { id: 6, name: "Add User", url: "/settings/users/add" }
- * // ]
- *
- * // With custom children key
- * const flatMenuWithCustomKey = treeToList(menuTree, {
- *   childrenKey: 'subItems'
- * })
- *
- * // With node transformation
- * const flatMenuWithTransform = treeToList(menuTree, {
- *   transformNode: (node) => ({
- *     ...node,
- *     label: node.name,
- *     value: node.id
- *   })
- * })
- * ```
- *
- * @since 1.0.0
+ * @since 1.2.0
  */
 const treeToList = <T extends { [key: string]: any }>(
   trees: T[],
   { childrenKey = 'children', transformNode = (node: T) => node }: TreeToListOptions<T> = {}
 ): T[] => {
-  const result: T[] = []
-  const queue: T[] = [...trees] // 队列，FIFO
+  const result: T[] = [];
+  const queue: T[] = [...trees]; // 队列，FIFO
 
   while (queue.length) {
-    const node = queue.shift()!
-    const newNode = { ...transformNode(node) }
-    delete (newNode as any)[childrenKey]
-    result.push(newNode)
+    const node = queue.shift()!;
+    const newNode = { ...transformNode(node) };
+    delete (newNode as any)[childrenKey];
+    result.push(newNode);
 
     if ((node as any)[childrenKey] && (node as any)[childrenKey].length) {
-      queue.push(...(node as any)[childrenKey])
+      queue.push(...(node as any)[childrenKey]);
     }
   }
 
-  return result
-}
+  return result;
+};
 
-export default treeToList
+export default treeToList;

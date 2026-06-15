@@ -1,10 +1,12 @@
-import { throttle, debounce } from '@gvray/eskit'
+import { throttle, debounce } from '@gvray/eskit';
 /**
  * Adds an event listener to a given element.
  *
  * @example
- * const button = document.querySelector('button');
- * addEvent(button, 'click', () => console.log('Button clicked!'));
+ * const button = document.createElement('button')
+ * document.body.appendChild(button)
+ * addEvent(button, 'click', () => console.log('Button clicked!'))
+ * button.click()
  *
  * @param ele - The element to which the event listener should be added.
  * @param type - The type of event to listen for.
@@ -22,22 +24,22 @@ const addEvent = <T extends HTMLElement | SVGElement>(
   eventHandle: (ev: HTMLElementEventMap[keyof HTMLElementEventMap]) => void,
   { useCapture = false, useThrottle = false, useDebounce = false } = {}
 ): (() => void) | undefined => {
-  if (!ele) return undefined
-  let callback = eventHandle
+  if (!ele) return undefined;
+  let callback = eventHandle;
   if (useThrottle) {
-    callback = throttle(eventHandle, 201, { leading: true })
+    callback = throttle(eventHandle, 201, { leading: true });
   }
   if (useDebounce) {
-    callback = debounce(eventHandle, 201)
+    callback = debounce(eventHandle, 201);
   }
 
   if (ele.addEventListener) {
-    ele.addEventListener(type, callback, useCapture)
-    return () => ele.removeEventListener(type, callback, useCapture)
+    ele.addEventListener(type, callback, useCapture);
+    return () => ele.removeEventListener(type, callback, useCapture);
   } else {
-    console.warn('addEventListener is not supported in this browser')
-    return undefined
+    console.warn('addEventListener is not supported in this browser');
+    return undefined;
   }
-}
+};
 
-export default addEvent
+export default addEvent;

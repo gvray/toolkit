@@ -7,16 +7,21 @@
  * @returns The created observer.
  *
  * @example
- * createMutationObserver(el, (mutations) => console.log(mutations))
+ * const el = document.createElement('div')
+ * document.body.appendChild(el)
+ * const obs = createMutationObserver(el, (mutations) => console.log(mutations))
+ * console.log(obs instanceof MutationObserver)
+ *
+ * @since 1.0.0
  */
 const createMutationObserver = (
   target: Node,
   callback: MutationCallback,
   options: MutationObserverInit = { childList: true, subtree: true }
 ): MutationObserver => {
-  const observer = new MutationObserver(callback)
-  observer.observe(target, options)
-  return observer
-}
+  const observer = new MutationObserver(callback);
+  observer.observe(target, options);
+  return observer;
+};
 
-export default createMutationObserver
+export default createMutationObserver;

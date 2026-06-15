@@ -8,16 +8,18 @@
  *
  * @example
  * ```typescript
- * min([1, 2, 3, 4, 5]) // returns 1
- * min([-10, 0, 10]) // returns -10
+ * min([1, 2, 3, 4, 5]) // => 1
+ * min([-10, 0, 10]) // => -10
  * min([]) // throws Error
  * ```
+ *
+ * @since 1.0.0
  */
 export function min(values: number[]): number {
   if (values.length === 0) {
-    throw new Error('Array cannot be empty / 数组不能为空')
+    throw new Error('Array cannot be empty / 数组不能为空');
   }
-  return Math.min(...values)
+  return Math.min(...values);
 }
 
 /**
@@ -30,16 +32,18 @@ export function min(values: number[]): number {
  *
  * @example
  * ```typescript
- * max([1, 2, 3, 4, 5]) // returns 5
- * max([-10, 0, 10]) // returns 10
+ * max([1, 2, 3, 4, 5]) // => 5
+ * max([-10, 0, 10]) // => 10
  * max([]) // throws Error
  * ```
+ *
+ * @since 1.0.0
  */
 export function max(values: number[]): number {
   if (values.length === 0) {
-    throw new Error('Array cannot be empty / 数组不能为空')
+    throw new Error('Array cannot be empty / 数组不能为空');
   }
-  return Math.max(...values)
+  return Math.max(...values);
 }
 
 /**
@@ -53,16 +57,18 @@ export function max(values: number[]): number {
  *
  * @example
  * ```typescript
- * clamp(10, 0, 5) // returns 5
- * clamp(-10, 0, 5) // returns 0
- * clamp(3, 0, 5) // returns 3
+ * clamp(10, 0, 5) // => 5
+ * clamp(-10, 0, 5) // => 0
+ * clamp(3, 0, 5) // => 3
  * ```
+ *
+ * @since 1.0.0
  */
 export function clamp(value: number, lower: number, upper: number): number {
   if (lower > upper) {
-    throw new Error('Lower bound cannot be greater than upper bound / 下边界不能大于上边界')
+    throw new Error('Lower bound cannot be greater than upper bound / 下边界不能大于上边界');
   }
-  return Math.min(Math.max(value, lower), upper)
+  return Math.min(Math.max(value, lower), upper);
 }
 
 /**
@@ -74,13 +80,15 @@ export function clamp(value: number, lower: number, upper: number): number {
  *
  * @example
  * ```typescript
- * isEven(2) // returns true
- * isEven(3) // returns false
- * isEven(0) // returns true
+ * isEven(2) // => true
+ * isEven(3) // => false
+ * isEven(0) // => true
  * ```
+ *
+ * @since 1.0.0
  */
 export function isEven(value: number): boolean {
-  return value % 2 === 0
+  return value % 2 === 0;
 }
 
 /**
@@ -92,13 +100,15 @@ export function isEven(value: number): boolean {
  *
  * @example
  * ```typescript
- * isOdd(3) // returns true
- * isOdd(2) // returns false
- * isOdd(1) // returns true
+ * isOdd(3) // => true
+ * isOdd(2) // => false
+ * isOdd(1) // => true
  * ```
+ *
+ * @since 1.0.0
  */
 export function isOdd(value: number): boolean {
-  return value % 2 !== 0
+  return value % 2 !== 0;
 }
 
 /**
@@ -111,16 +121,18 @@ export function isOdd(value: number): boolean {
  * @returns True if inside inclusive range / 在区间内为 true
  *
  * @example
- * inRange(5, 1, 10) // → true
+ * inRange(5, 1, 10) // => true
+ *
+ * @since 1.0.0
  */
 export function inRange(value: number, start: number, end: number): boolean {
   if (!Number.isFinite(value)) {
-    throw new RangeError('value must be a finite number')
+    throw new RangeError('value must be a finite number');
   }
   if (!Number.isFinite(start) || !Number.isFinite(end)) {
-    throw new RangeError('start and end must be finite numbers')
+    throw new RangeError('start and end must be finite numbers');
   }
-  const lo = Math.min(start, end)
-  const hi = Math.max(start, end)
-  return value >= lo && value <= hi
+  const lo = Math.min(start, end);
+  const hi = Math.max(start, end);
+  return value >= lo && value <= hi;
 }

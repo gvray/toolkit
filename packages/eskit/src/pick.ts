@@ -1,4 +1,4 @@
-const normalizeKeys = <K extends PropertyKey>(keys: readonly K[] | K[]): readonly K[] => keys
+const normalizeKeys = <K extends PropertyKey>(keys: readonly K[] | K[]): readonly K[] => keys;
 
 /**
  * Creates a new object with only the specified properties from the source object.
@@ -17,46 +17,27 @@ const normalizeKeys = <K extends PropertyKey>(keys: readonly K[] | K[]): readonl
  *
  * @example
  * ```typescript
- * // Basic usage / 基本用法
- * const user = {
- *   id: 1,
- *   name: 'John',
- *   email: 'john@example.com',
- *   password: 'secret',
- *   role: 'admin'
- * }
+ * const user = { id: 1, name: 'John', email: 'john@example.com', password: 'secret' }
+ * pick(user, ['id', 'name', 'email'])
+ * // => { id: 1, name: 'John', email: 'john@example.com' }
  *
- * const publicUser = pick(user, ['id', 'name', 'email'])
- * // { id: 1, name: 'John', email: 'john@example.com' }
- *
- * // With different types / 不同类型
- * const config = {
- *   host: 'localhost',
- *   port: 3000,
- *   debug: true,
- *   secret: 'my-secret',
- *   timeout: 5000
- * }
- *
- * const serverConfig = pick(config, ['host', 'port', 'timeout'])
- * // { host: 'localhost', port: 3000, timeout: 5000 }
- *
- * // Empty selection / 空选择
- * const empty = pick(user, [])
- * // {}
+ * pick(user, [])
+ * // => {}
  * ```
  *
  * @since 1.0.0
  */
-function pick<T, K extends keyof T>(obj: T, keys: readonly K[]): Pick<T, K>
-function pick<T, K extends keyof T>(obj: T, ...keys: K[]): Pick<T, K>
+function pick<T, K extends keyof T>(obj: T, keys: readonly K[]): Pick<T, K>;
+function pick<T, K extends keyof T>(obj: T, ...keys: K[]): Pick<T, K>;
 function pick<T, K extends keyof T>(obj: T, ...restKeys: Array<readonly K[] | K>): Pick<T, K> {
-  const keys = Array.isArray(restKeys[0]) ? normalizeKeys(restKeys[0] as readonly K[]) : (restKeys as K[])
-  const newObj = {} as Pick<T, K>
+  const keys = Array.isArray(restKeys[0])
+    ? normalizeKeys(restKeys[0] as readonly K[])
+    : (restKeys as K[]);
+  const newObj = {} as Pick<T, K>;
   keys.forEach((key: K) => {
-    newObj[key] = obj[key]
-  })
-  return newObj
+    newObj[key] = obj[key];
+  });
+  return newObj;
 }
 
-export default pick
+export default pick;

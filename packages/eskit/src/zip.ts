@@ -6,21 +6,23 @@
  * @returns Zipped tuples / zip 后的元组数组
  * @example
  * zip([1, 2], ['a', 'b'])
- * // -> [[1, 'a'], [2, 'b']]
+ * // => [[1, 'a'], [2, 'b']]
+ *
+ * @since 1.2.0
  */
 const zip = <T extends readonly unknown[][]>(...arrays: T): unknown[][] => {
   if (arrays.length === 0) {
-    return []
+    return [];
   }
 
-  const length = Math.min(...arrays.map((array) => array.length))
-  const result: unknown[][] = []
+  const length = Math.min(...arrays.map((array) => array.length));
+  const result: unknown[][] = [];
 
   for (let index = 0; index < length; index++) {
-    result.push(arrays.map((array) => array[index]))
+    result.push(arrays.map((array) => array[index]));
   }
 
-  return result
-}
+  return result;
+};
 
-export default zip
+export default zip;

@@ -1,4 +1,4 @@
-import extname from './extname'
+import extname from './extname';
 
 /**
  * Replaces the extension of a path.
@@ -9,21 +9,23 @@ import extname from './extname'
  *
  * @example
  * changeExt('foo.ts', '.js')
- * // -> 'foo.js'
+ * // => 'foo.js'
+ *
+ * @since 1.0.0
  */
 const changeExt = (path: string, extension: string): string => {
   if (typeof path !== 'string' || typeof extension !== 'string') {
-    throw new TypeError('path and extension must be strings')
+    throw new TypeError('path and extension must be strings');
   }
 
-  const normalizedExtension = extension.startsWith('.') ? extension : `.${extension}`
-  const currentExtension = extname(path)
+  const normalizedExtension = extension.startsWith('.') ? extension : `.${extension}`;
+  const currentExtension = extname(path);
 
   if (!currentExtension) {
-    return `${path}${normalizedExtension}`
+    return `${path}${normalizedExtension}`;
   }
 
-  return path.slice(0, -currentExtension.length) + normalizedExtension
-}
+  return path.slice(0, -currentExtension.length) + normalizedExtension;
+};
 
-export default changeExt
+export default changeExt;

@@ -1,7 +1,7 @@
 {
   "name": "@gvray/datekit",
   "version": "1.0.1",
-  "description": "Professional date and time utilities for JavaScript/TypeScript applications / 专业的JavaScript/TypeScript日期时间工具库",
+  "description": "Date and time utilities: formatting, duration, timezone, comparison, and validation.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "module": "esm/index.js",
@@ -22,9 +22,7 @@
     "clean": "rimraf lib esm",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "docs": "typedoc",
-    "doc": "pnpm run docs && pnpm -C ../../ run append-api ./packages/datekit docs",
-    "pub": "echo 'Use root-level changeset publish to release packages'"
+    "dev": "tsc -p tsconfig.json --module esnext --outDir esm --watch"
   },
   "keywords": [
     "date",

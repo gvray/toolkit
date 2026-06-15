@@ -1,12 +1,12 @@
-type UniqByIteratee<T, K> = ((item: T) => K) | keyof T
+type UniqByIteratee<T, K> = ((item: T) => K) | keyof T;
 
 const getUniqKey = <T, K>(item: T, iteratee: UniqByIteratee<T, K>): K => {
   if (typeof iteratee === 'function') {
-    return iteratee(item)
+    return iteratee(item);
   }
 
-  return item[iteratee] as unknown as K
-}
+  return item[iteratee] as unknown as K;
+};
 
 /**
  * Removes duplicate items from an array using a derived key.
@@ -19,22 +19,24 @@ const getUniqKey = <T, K>(item: T, iteratee: UniqByIteratee<T, K>): K => {
  * @returns A new array containing the first item for each unique key / 每个唯一键保留首个元素的新数组
  * @example
  * uniqBy([{ id: 1 }, { id: 1 }, { id: 2 }], 'id')
- * // -> [{ id: 1 }, { id: 2 }]
+ * // => [{ id: 1 }, { id: 2 }]
+ *
+ * @since 1.2.0
  */
 const uniqBy = <T, K>(array: readonly T[], iteratee: UniqByIteratee<T, K>): T[] => {
-  const seen = new Set<K>()
-  const result: T[] = []
+  const seen = new Set<K>();
+  const result: T[] = [];
 
   for (const item of array) {
-    const key = getUniqKey(item, iteratee)
+    const key = getUniqKey(item, iteratee);
 
     if (!seen.has(key)) {
-      seen.add(key)
-      result.push(item)
+      seen.add(key);
+      result.push(item);
     }
   }
 
-  return result
-}
+  return result;
+};
 
-export default uniqBy
+export default uniqBy;

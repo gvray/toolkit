@@ -11,46 +11,25 @@
  * @returns The result of the function or null if an error occurs / 函数的结果，或在发生错误时返回 null
  *
  * @example
- * ```typescript
- * // Success case / 成功情况
- * const result = tryRunSync(() => {
- *   return JSON.parse('{"name": "test"}')
- * })
- * console.log(result) // { name: "test" }
+ * // Success case
+ * tryRunSync(() => JSON.parse('{"name":"test"}')) // => { name: 'test' }
  *
- * // Error case / 错误情况
- * const errorResult = tryRunSync(() => {
- *   return JSON.parse('invalid json')
- * })
- * console.log(errorResult) // null
+ * // Error case
+ * tryRunSync(() => JSON.parse('invalid json')) // => null
  *
- * // With complex operations / 复杂操作示例
- * const complexResult = tryRunSync(() => {
- *   const data = JSON.parse('{"values": [1, 2, 3]}')
+ * // Complex operation
+ * console.log(tryRunSync(() => {
+ *   const data = JSON.parse('{"values":[1,2,3]}')
  *   return data.values.reduce((sum, val) => sum + val, 0)
- * })
- * console.log(complexResult) // 6
- *
- * // Error in complex operations / 复杂操作中的错误
- * const complexError = tryRunSync(() => {
- *   const data = JSON.parse('invalid json')
- *   return data.values.reduce((sum, val) => sum + val, 0)
- * })
- * console.log(complexError) // null
- *
- * // Working with different return types / 处理不同返回类型
- * const numberResult = tryRunSync(() => 42)
- * const stringResult = tryRunSync(() => "hello")
- * const booleanResult = tryRunSync(() => true)
- * const objectResult = tryRunSync(() => ({ id: 1, name: "test" }))
- * ```
+ * })) // => 6 *
+ * @since 1.2.0
  */
 function tryRunSync<T>(fn: () => T): T | null {
   try {
-    return fn()
+    return fn();
   } catch {
-    return null
+    return null;
   }
 }
 
-export default tryRunSync
+export default tryRunSync;

@@ -9,25 +9,29 @@
  * @returns Wrapped function / 包装函数
  * @example
  * const run = after(3, () => 'ok')
- * run(); run(); run() // -> 'ok'
+ * run()
+ * run()
+ * run() // => 'ok'
+ *
+ * @since 1.2.0
  */
 const after = <TArgs extends unknown[], TResult>(
   n: number,
   fn: (...args: TArgs) => TResult
 ): ((...args: TArgs) => TResult | undefined) => {
   if (!Number.isInteger(n) || n <= 0) {
-    throw new RangeError('n must be a positive integer')
+    throw new RangeError('n must be a positive integer');
   }
 
-  let count = 0
+  let count = 0;
 
   return (...args: TArgs): TResult | undefined => {
-    count += 1
+    count += 1;
     if (count >= n) {
-      return fn(...args)
+      return fn(...args);
     }
-    return undefined
-  }
-}
+    return undefined;
+  };
+};
 
-export default after
+export default after;

@@ -6,10 +6,18 @@
  * @returns `true` when the value is a DOM element / 值是 DOM 元素时返回 `true`
  * @example
  * isElement(document.body)
- * // -> true
+ * // => true
+ *
+ * @since 1.0.0
  */
 const isElement = (value: unknown): value is Element | HTMLDocument => {
-  return value instanceof Element || value instanceof HTMLDocument
-}
+  const ElementCtor = typeof Element === 'undefined' ? undefined : Element;
+  const HTMLDocumentCtor = typeof HTMLDocument === 'undefined' ? undefined : HTMLDocument;
 
-export default isElement
+  return (
+    (ElementCtor !== undefined && value instanceof ElementCtor) ||
+    (HTMLDocumentCtor !== undefined && value instanceof HTMLDocumentCtor)
+  );
+};
+
+export default isElement;

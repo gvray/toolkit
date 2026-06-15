@@ -7,11 +7,13 @@
  * @returns A deduplicated merged array / 去重后的合并数组
  * @example
  * union([1, 2], [2, 3])
- * // -> [1, 2, 3]
+ * // => [1, 2, 3]
+ *
+ * @since 1.2.0
  */
 const union = <T>(...arrays: ReadonlyArray<readonly T[]>): T[] => {
-  const flattened = arrays.reduce((acc, curr) => acc.concat(curr), [] as T[])
-  return Array.from(new Set(flattened))
-}
+  const flattened = arrays.reduce((acc, curr) => acc.concat(curr), [] as T[]);
+  return Array.from(new Set(flattened));
+};
 
-export default union
+export default union;

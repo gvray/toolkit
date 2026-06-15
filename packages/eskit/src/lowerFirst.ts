@@ -1,4 +1,4 @@
-import toString from './toString'
+import toString from './toString';
 /**
  * Converts the first character of a string to lowercase.
  * 将字符串的第一个字符转换为小写。
@@ -8,20 +8,20 @@ import toString from './toString'
  *
  * @example
  * ```typescript
- * lowerFirst('Apple') // "apple"
- * lowerFirst('HELLO WORLD') // "hELLO WORLD"
- * lowerFirst('Hello') // "hello"
- * lowerFirst('') // ""
- * lowerFirst('A') // "a"
- * lowerFirst('123ABC') // "123ABC"
+ * lowerFirst('Apple') // => "apple"
+ * lowerFirst('HELLO WORLD') // => "hELLO WORLD"
+ * lowerFirst('Hello') // => "hello"
+ * lowerFirst('') // => ""
+ * lowerFirst('A') // => "a"
+ * lowerFirst('123ABC') // => "123ABC"
  * lowerFirst('Åpple') // "åpple" (works with Unicode)
  * ```
  *
  * @since 1.0.0
  */
 const lowerFirst = (value: string): string => {
-  const str = toString(value)
-  return str.charAt(0).toLowerCase() + str.substring(1)
-}
+  const str = toString(value);
+  return str.charAt(0).toLowerCase() + str.substring(1);
+};
 
-export default lowerFirst
+export default lowerFirst;

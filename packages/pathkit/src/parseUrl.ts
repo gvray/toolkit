@@ -6,55 +6,57 @@
  *
  * @example
  * parseUrl('https://example.com/path')
- * // 返回: { protocol: 'https:', hostname: 'example.com', pathname: '/path', search: '', hash: '' }
+ * // => { protocol: 'https:', hostname: 'example.com', pathname: '/path', search: '', hash: '' }
+ *
+ * @since 1.0.0
  */
 const parseUrl = (
   url: string
 ): {
-  protocol?: string
-  hostname?: string
-  port?: string
-  pathname?: string
-  search?: string
-  hash?: string
-  username?: string
-  password?: string
+  protocol?: string;
+  hostname?: string;
+  port?: string;
+  pathname?: string;
+  search?: string;
+  hash?: string;
+  username?: string;
+  password?: string;
 } => {
   if (typeof url !== 'string') {
-    throw new TypeError('URL must be a string')
+    throw new TypeError('URL must be a string');
   }
 
   if (!url || url === 'not a url' || url === 'http://') {
-    throw new Error('Invalid URL')
+    throw new Error('Invalid URL');
   }
 
   try {
-    const urlObj = new URL(url)
+    const urlObj = new URL(url);
 
     const result: any = {
       protocol: urlObj.protocol,
       hostname: urlObj.hostname,
       pathname: decodeURIComponent(urlObj.pathname),
       search: decodeURIComponent(urlObj.search),
-      hash: urlObj.hash
-    }
+      hash: urlObj.hash,
+    };
 
     if (urlObj.port) {
-      result.port = urlObj.port
+      result.port = urlObj.port;
     }
 
     if (urlObj.username) {
-      result.username = urlObj.username
+      result.username = urlObj.username;
     }
 
     if (urlObj.password) {
-      result.password = urlObj.password
+      result.password = urlObj.password;
     }
 
-    return result
+    return result;
   } catch (error) {
-    throw new Error('Invalid URL')
+    throw new Error('Invalid URL');
   }
-}
+};
 
-export default parseUrl
+export default parseUrl;

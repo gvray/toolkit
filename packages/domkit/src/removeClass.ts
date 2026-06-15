@@ -7,26 +7,30 @@
  * @example
  * // Removes the class "active" from an element with the "target" ID.
  * const target = document.getElementById('target');
- * removeClass(target, 'active');
+ * removeClass(target, 'active')
+ *
+ * @since 1.0.0
  */
+const escapeRegExp = (value: string): string => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 const removeClass = (el: HTMLElement, className: string): void => {
   if (!el || !className) {
-    return
+    return;
   }
 
   // 处理多个类名的字符串，用空格分割
-  const classesToRemove = className.split(/\s+/).filter(Boolean)
+  const classesToRemove = className.split(/\s+/).filter(Boolean);
 
   if (el.classList && el.classList.remove) {
-    classesToRemove.forEach((cls) => el.classList.remove(cls))
+    classesToRemove.forEach((cls) => el.classList.remove(cls));
   } else {
-    let currentClassName = el.className
+    let currentClassName = el.className;
     classesToRemove.forEach((cls) => {
-      const reg = new RegExp(`(^|\\s)${cls}(\\s|$)`, 'g')
-      currentClassName = currentClassName.replace(reg, ' ')
-    })
-    el.className = currentClassName.replace(/\s+/g, ' ').trim()
+      const reg = new RegExp(`(^|\\s)${escapeRegExp(cls)}(\\s|$)`, 'g');
+      currentClassName = currentClassName.replace(reg, ' ');
+    });
+    el.className = currentClassName.replace(/\s+/g, ' ').trim();
   }
-}
+};
 
-export default removeClass
+export default removeClass;

@@ -9,14 +9,16 @@
  * @returns The last item or the fallback value / 最后一个元素或兜底值
  * @example
  * last([1, 2, 3])
- * // -> 3
+ * // => 3
+ *
+ * @since 1.2.0
  */
 const last = <T, D = undefined>(array: readonly T[], defaultValue?: D): T | D | undefined => {
   if (array.length === 0) {
-    return defaultValue
+    return defaultValue;
   }
 
-  return array[array.length - 1]
-}
+  return array[array.length - 1];
+};
 
-export default last
+export default last;

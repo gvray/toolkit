@@ -3,8 +3,8 @@ const unescapeMap: Record<string, string> = {
   '&lt;': '<',
   '&gt;': '>',
   '&quot;': '"',
-  '&#39;': "'"
-}
+  '&#39;': "'",
+};
 
 /**
  * Unescapes common HTML entities in a string.
@@ -13,11 +13,13 @@ const unescapeMap: Record<string, string> = {
  * @param value - The source string / 源字符串
  * @returns The unescaped string / 反转义后的字符串
  * @example
- * unescape('&lt;script&gt;')
- * // -> '<script>'
+ * unescape('&lt;script&gt;') // => '<script>'
+ * unescape('&amp;') // => '&'
+ *
+ * @since 1.2.0
  */
 const unescape = (value: string): string => {
-  return value.replace(/&(amp|lt|gt|quot|#39);/g, (entity: string) => unescapeMap[entity])
-}
+  return value.replace(/&(amp|lt|gt|quot|#39);/g, (entity: string) => unescapeMap[entity]);
+};
 
-export default unescape
+export default unescape;

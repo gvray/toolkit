@@ -8,25 +8,25 @@
  *
  * @example
  * ```typescript
- * isDefined(1) // true
- * isDefined('hello') // true
- * isDefined(false) // true
- * isDefined(0) // true
- * isDefined('') // true
- * isDefined([]) // true
- * isDefined({}) // true
- * isDefined(null) // false
- * isDefined(undefined) // false
- * isDefined(void 0) // false
+ * isDefined(1) // => true
+ * isDefined('hello') // => true
+ * isDefined(false) // => true
+ * isDefined(0) // => true
+ * isDefined('') // => true
+ * isDefined([]) // => true
+ * isDefined({}) // => true
+ * isDefined(null) // => false
+ * isDefined(undefined) // => false
+ * isDefined(void 0) // => false
  *
  * // Useful for filtering arrays
  * const arr = [1, null, 'test', undefined, 0]
- * const filtered = arr.filter(isDefined) // [1, 'test', 0]
+ * const filtered = arr.filter(isDefined) // => [1, 'test', 0]
  * ```
  *
  * @since 1.0.0
  */
 const isDefined = <T>(val: T | undefined | null): val is T => {
-  return val !== undefined && val !== null
-}
-export default isDefined
+  return val !== undefined && val !== null;
+};
+export default isDefined;

@@ -1,43 +1,21 @@
-/**
- * Enumerated type representing browser names.
- * Each value corresponds to a specific browser.
- */
-export enum BrowserName {
-  CHROME = 'Chrome',
-  FIREFOX = 'Firefox',
-  EDGE = 'Edge',
-  SAFARI = 'Safari',
-  OPERA = 'Opera',
-  UNKNOWN = 'Unknown'
-}
+import isBrowser from './isBrowser';
 
 /**
- * Gets the name of the current user's web browser.
- * @experimental
- * @returns {BrowserName} An enumerated value representing the current browser.
- * @deprecated Use getBrowser from @gvray/envkit
+ * Returns the name of the current browser, or `'Unknown'` outside a browser environment.
  *
  * @example
- * const browser: BrowserName = getBrowser();
- * console.log(`Your browser is: ${browser}`);
- *
+ * getBrowser() // => 'Chrome'
+ * @since 1.0.0
  */
-const getBrowser = (): BrowserName => {
-  const ua = window.navigator.userAgent.toLowerCase()
-  switch (true) {
-    case ua.includes('edg'):
-      return BrowserName.EDGE
-    case ua.includes('opera') || ua.includes('opr'):
-      return BrowserName.OPERA
-    case ua.includes('chrome'):
-      return BrowserName.CHROME
-    case ua.includes('firefox'):
-      return BrowserName.FIREFOX
-    case ua.includes('safari'):
-      return BrowserName.SAFARI
-    default:
-      return BrowserName.UNKNOWN
-  }
-}
+const getBrowser = (): string => {
+  if (!isBrowser()) return 'Unknown';
+  const ua = navigator.userAgent;
+  if (ua.includes('Edg/')) return 'Edge';
+  if (ua.includes('OPR/') || ua.includes('Opera/')) return 'Opera';
+  if (ua.includes('Chrome/')) return 'Chrome';
+  if (ua.includes('Firefox/')) return 'Firefox';
+  if (ua.includes('Safari/') && !ua.includes('Chrome/')) return 'Safari';
+  return 'Unknown';
+};
 
-export default getBrowser
+export default getBrowser;

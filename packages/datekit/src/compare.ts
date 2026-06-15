@@ -1,170 +1,51 @@
-import { assertValidDate } from './validate'
-
 /**
- * Check if two dates are equal.
- * 检查两个日期是否相等。
+ * Check if two dates represent the same moment.
+ * 检查两个日期是否表示同一时刻。
+ *
+ * @example
+ * isEqual(new Date('2024-01-15'), new Date('2024-01-15')) // => true
+ * @since 1.0.0
  */
 export function isEqual(date1: Date, date2: Date): boolean {
-  return date1.getTime() === date2.getTime()
+  return date1.getTime() === date2.getTime();
 }
 
 /**
- * Check if first date is before second date.
- * 检查第一个日期是否在第二个日期之前。
+ * Check if `date1` is strictly before `date2`.
+ * 检查 `date1` 是否严格早于 `date2`。
+ *
+ * @example
+ * isBefore(new Date('2024-01-01'), new Date('2024-06-01')) // => true
+ * @since 1.0.0
  */
 export function isBefore(date1: Date, date2: Date): boolean {
-  return date1.getTime() < date2.getTime()
+  return date1.getTime() < date2.getTime();
 }
 
 /**
- * Check if first date is after second date.
- * 检查第一个日期是否在第二个日期之后。
+ * Check if `date1` is strictly after `date2`.
+ * 检查 `date1` 是否严格晚于 `date2`。
+ *
+ * @example
+ * isAfter(new Date('2024-06-01'), new Date('2024-01-01')) // => true
+ * @since 1.0.0
  */
 export function isAfter(date1: Date, date2: Date): boolean {
-  return date1.getTime() > date2.getTime()
+  return date1.getTime() > date2.getTime();
 }
 
 /**
  * Whether a date falls within a closed interval [min(start,end), max(start,end)] (inclusive).
- * 判断日期是否在闭区间 [较小端, 较大端] 内（含端点）。
- *
- * @param date - Date to test / 待判断的日期
- * @param start - Interval bound / 区间一端
- * @param end - Interval bound / 区间另一端
- * @returns True if inside / 在区间内为 true
+ * Order-insensitive: automatically normalises which bound is lower.
+ * 判断日期是否在闭区间内（含端点），自动处理 start/end 的大小顺序。
  *
  * @example
- * isBetween(new Date('2026-05-10'), new Date('2026-05-01'), new Date('2026-05-31')) // → true
+ * isBetween(new Date('2026-05-10'), new Date('2026-05-01'), new Date('2026-05-31')) // => true
+ * @since 1.0.0
  */
 export function isBetween(date: Date, start: Date, end: Date): boolean {
-  assertValidDate(date)
-  assertValidDate(start, 'start')
-  assertValidDate(end, 'end')
-  const lo = start.getTime() <= end.getTime() ? start : end
-  const hi = start.getTime() <= end.getTime() ? end : start
-  const t = date.getTime()
-  return t >= lo.getTime() && t <= hi.getTime()
-}
-
-/**
- * Same calendar day in local time.
- * 本地时间是否同一自然日。
- *
- * @param date1 - First date / 第一个日期
- * @param date2 - Second date / 第二个日期
- * @returns True if same local calendar day / 同一自然日则为 true
- *
- * @example
- * isSameDay(new Date(2026, 4, 8, 1), new Date(2026, 4, 8, 23)) // → true
- */
-export function isSameDay(date1: Date, date2: Date): boolean {
-  assertValidDate(date1, 'date1')
-  assertValidDate(date2, 'date2')
-  return (
-    date1.getFullYear() === date2.getFullYear() &&
-    date1.getMonth() === date2.getMonth() &&
-    date1.getDate() === date2.getDate()
-  )
-}
-
-/**
- * Same calendar month in local time.
- * 本地时间是否同一自然月。
- *
- * @param date1 - First date / 第一个日期
- * @param date2 - Second date / 第二个日期
- * @returns True if same year-month / 同年同月则为 true
- *
- * @example
- * isSameMonth(new Date(2026, 4, 1), new Date(2026, 4, 31)) // → true
- */
-export function isSameMonth(date1: Date, date2: Date): boolean {
-  assertValidDate(date1, 'date1')
-  assertValidDate(date2, 'date2')
-  return date1.getFullYear() === date2.getFullYear() && date1.getMonth() === date2.getMonth()
-}
-
-/**
- * Same calendar year in local time.
- * 本地时间是否同一年。
- *
- * @param date1 - First date / 第一个日期
- * @param date2 - Second date / 第二个日期
- * @returns True if same year / 同年则为 true
- *
- * @example
- * isSameYear(new Date(2026, 0, 1), new Date(2026, 11, 31)) // → true
- */
-export function isSameYear(date1: Date, date2: Date): boolean {
-  assertValidDate(date1, 'date1')
-  assertValidDate(date2, 'date2')
-  return date1.getFullYear() === date2.getFullYear()
-}
-
-/**
- * Check if the given date is today in local time.
- * 检查日期是否为今天（本地时间）。
- *
- * @param date - Date to check / 待检查的日期
- * @returns True if today / 如果是今天则返回 true
- */
-export function isToday(date: Date): boolean {
-  return isSameDay(date, new Date())
-}
-
-/**
- * Check if the given date is yesterday in local time.
- * 检查日期是否为昨天（本地时间）。
- *
- * @param date - Date to check / 待检查的日期
- * @returns True if yesterday / 如果是昨天则返回 true
- */
-export function isYesterday(date: Date): boolean {
-  const yesterday = new Date()
-  yesterday.setDate(yesterday.getDate() - 1)
-  return isSameDay(date, yesterday)
-}
-
-/**
- * Check if the given date is tomorrow in local time.
- * 检查日期是否为明天（本地时间）。
- *
- * @param date - Date to check / 待检查的日期
- * @returns True if tomorrow / 如果是明天则返回 true
- */
-export function isTomorrow(date: Date): boolean {
-  const tomorrow = new Date()
-  tomorrow.setDate(tomorrow.getDate() + 1)
-  return isSameDay(date, tomorrow)
-}
-
-/**
- * Saturday or Sunday in local time.
- * 本地时间是否为周六或周日。
- *
- * @param date - Date to check / 待检查的日期
- * @returns True if weekend / 周末则为 true
- *
- * @example
- * isWeekend(new Date(2026, 4, 9)) // 2026-05-09 为周六 → true
- */
-export function isWeekend(date: Date): boolean {
-  assertValidDate(date)
-  const day = date.getDay()
-  return day === 0 || day === 6
-}
-
-/**
- * Monday–Friday in local time.
- * 本地时间是否为周一至周五。
- *
- * @param date - Date to check / 待检查的日期
- * @returns True if weekday / 工作日则为 true
- *
- * @example
- * isWeekday(new Date(2026, 4, 8)) // 2026-05-08 为周五 → true
- */
-export function isWeekday(date: Date): boolean {
-  assertValidDate(date)
-  return !isWeekend(date)
+  const lo = start.getTime() <= end.getTime() ? start.getTime() : end.getTime();
+  const hi = start.getTime() <= end.getTime() ? end.getTime() : start.getTime();
+  const t = date.getTime();
+  return t >= lo && t <= hi;
 }

@@ -8,20 +8,22 @@
  * @returns The chunked result / 分组后的结果
  * @example
  * chunk([1, 2, 3, 4, 5], 2)
- * // -> [[1, 2], [3, 4], [5]]
+ * // => [[1, 2], [3, 4], [5]]
+ *
+ * @since 1.2.0
  */
 const chunk = <T>(array: readonly T[], size: number): T[][] => {
   if (!Number.isInteger(size) || size <= 0) {
-    throw new TypeError('size must be a positive integer')
+    throw new TypeError('size must be a positive integer');
   }
 
-  const result: T[][] = []
+  const result: T[][] = [];
 
   for (let index = 0; index < array.length; index += size) {
-    result.push(array.slice(index, index + size))
+    result.push(array.slice(index, index + size));
   }
 
-  return result
-}
+  return result;
+};
 
-export default chunk
+export default chunk;

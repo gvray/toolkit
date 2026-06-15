@@ -9,20 +9,24 @@
  * @example
  * const init = once(() => 1)
  * init()
- * // -> 1
+ * // => 1
+ *
+ * @since 1.2.0
  */
-const once = <TArgs extends unknown[], TResult>(fn: (...args: TArgs) => TResult): ((...args: TArgs) => TResult) => {
-  let called = false
-  let result: TResult
+const once = <TArgs extends unknown[], TResult>(
+  fn: (...args: TArgs) => TResult
+): ((...args: TArgs) => TResult) => {
+  let called = false;
+  let result: TResult;
 
   return (...args: TArgs): TResult => {
     if (!called) {
-      called = true
-      result = fn(...args)
+      called = true;
+      result = fn(...args);
     }
 
-    return result
-  }
-}
+    return result;
+  };
+};
 
-export default once
+export default once;

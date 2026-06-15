@@ -8,21 +8,24 @@
  * @returns Key to count map / 分组计数对象
  * @example
  * countBy([{ type: 'a' }, { type: 'b' }, { type: 'a' }], 'type')
- * // -> { a: 2, b: 1 }
+ * // => { a: 2, b: 1 }
+ *
+ * @since 1.2.0
  */
 const countBy = <T>(
   collection: readonly T[],
   iteratee: keyof T | ((item: T) => PropertyKey)
 ): Record<string, number> => {
-  const getKey = typeof iteratee === 'function' ? iteratee : (item: T) => item[iteratee] as PropertyKey
-  const result: Record<string, number> = {}
+  const getKey =
+    typeof iteratee === 'function' ? iteratee : (item: T) => item[iteratee] as PropertyKey;
+  const result = Object.create(null) as Record<string, number>;
 
   for (const item of collection) {
-    const key = String(getKey(item))
-    result[key] = (result[key] ?? 0) + 1
+    const key = String(getKey(item));
+    result[key] = (result[key] ?? 0) + 1;
   }
 
-  return result
-}
+  return result;
+};
 
-export default countBy
+export default countBy;

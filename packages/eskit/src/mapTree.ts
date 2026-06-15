@@ -27,44 +27,11 @@ interface MapTreeOptions {
  * @returns A new tree with transformed nodes / 转换后的新树
  *
  * @example
- * ```typescript
- * // Basic usage - 基本用法
- * const tree = [
- *   { id: 1, name: 'Root', children: [
- *     { id: 2, name: 'Child 1' },
- *     { id: 3, name: 'Child 2' }
- *   ]}
- * ]
+ * const tree = [{ id: 1, children: [{ id: 2 }] }]
+ * mapTree(tree, (node) => ({ ...node, label: node.id }))
+ * // => [{ id: 1, label: 1, children: [{ id: 2, label: 2 }] }]
  *
- * const mapped = mapTree(tree, (node) => ({
- *   ...node,
- *   name: node.name.toUpperCase()
- * }))
- * // Result: [{ id: 1, name: 'ROOT', children: [
- * //   { id: 2, name: 'CHILD 1' },
- * //   { id: 3, name: 'CHILD 2' }
- * // ]}]
- *
- * // With level and index - 使用层级和索引
- * const mappedWithLevel = mapTree(tree, (node, level, index) => ({
- *   ...node,
- *   path: `${level}-${index}`,
- *   name: `${node.name} (Level ${level})`
- * }))
- *
- * // Custom children key - 自定义子节点键名
- * const customTree = [
- *   { id: 1, name: 'Root', items: [
- *     { id: 2, name: 'Child 1' }
- *   ]}
- * ]
- *
- * const mappedCustom = mapTree(customTree, (node) => node, {
- *   childrenKey: 'items'
- * })
- * ```
- *
- * @since 1.1.0
+ * @since 1.2.0
  */
 const mapTree = <T extends { [key: string]: any }, R extends { [key: string]: any }>(
   trees: TreeNode<T>[],

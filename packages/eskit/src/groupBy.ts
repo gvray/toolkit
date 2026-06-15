@@ -1,12 +1,12 @@
-type GroupByIteratee<T, K extends PropertyKey> = ((item: T) => K) | keyof T
+type GroupByIteratee<T, K extends PropertyKey> = ((item: T) => K) | keyof T;
 
 const getGroupKey = <T, K extends PropertyKey>(item: T, iteratee: GroupByIteratee<T, K>): K => {
   if (typeof iteratee === 'function') {
-    return iteratee(item)
+    return iteratee(item);
   }
 
-  return item[iteratee] as unknown as K
-}
+  return item[iteratee] as unknown as K;
+};
 
 /**
  * Groups array items by a derived key.
@@ -19,22 +19,27 @@ const getGroupKey = <T, K extends PropertyKey>(item: T, iteratee: GroupByIterate
  * @returns An object of grouped items / 分组结果对象
  * @example
  * groupBy([{ type: 'a' }, { type: 'b' }, { type: 'a' }], 'type')
- * // -> { a: [{ type: 'a' }, { type: 'a' }], b: [{ type: 'b' }] }
+ * // => { a: [{ type: 'a' }, { type: 'a' }], b: [{ type: 'b' }] }
+ *
+ * @since 1.2.0
  */
-const groupBy = <T, K extends PropertyKey>(array: readonly T[], iteratee: GroupByIteratee<T, K>): Record<string, T[]> => {
-  const result: Record<string, T[]> = {}
+const groupBy = <T, K extends PropertyKey>(
+  array: readonly T[],
+  iteratee: GroupByIteratee<T, K>
+): Record<string, T[]> => {
+  const result = Object.create(null) as Record<string, T[]>;
 
   for (const item of array) {
-    const key = String(getGroupKey(item, iteratee))
+    const key = String(getGroupKey(item, iteratee));
 
     if (!result[key]) {
-      result[key] = []
+      result[key] = [];
     }
 
-    result[key].push(item)
+    result[key].push(item);
   }
 
-  return result
-}
+  return result;
+};
 
-export default groupBy
+export default groupBy;

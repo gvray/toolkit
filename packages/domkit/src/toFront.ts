@@ -9,14 +9,16 @@
  * document.body.appendChild(newDiv);
  *
  * // Move the new element to the front of the body
- * toFront(newDiv);
+ * toFront(newDiv)
+ *
+ * @since 1.0.0
  */
 const toFront = (el: HTMLElement): void => {
-  const parent = el.parentNode!
-  const firstChild = parent.firstElementChild
-  if (firstChild !== el && !parent.contains(el)) {
-    parent.insertBefore(el, firstChild)
+  const parent = el.parentNode!;
+  const firstChild = parent.firstElementChild;
+  if (firstChild !== el) {
+    parent.insertBefore(el, firstChild);
   }
-}
+};
 
-export default toFront
+export default toFront;

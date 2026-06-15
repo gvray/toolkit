@@ -7,20 +7,10 @@ type StyleProps = Record<string, string>;
  * @returns If `propName` is specified, returns the value of that property. Otherwise, returns an object containing all style properties and their values.
  *
  * @example
- *
- * Get all style properties of a specified element:
- * ```typescript
- * const element = document.getElementById('my-element');
- * const styleProps = getStyleProps(element);
- * console.log(styleProps);
- * ```
- *
- * Get the `color` property of a specified element:
- * ```typescript
- * const element = document.getElementById('my-element');
- * const color = getStyleProps(element, 'color');
- * console.log(color);
- * ```
+ * const element = document.createElement('div')
+ * element.style.color = 'red'
+ * document.body.appendChild(element)
+ * console.log(getStyleProps(element, 'color'))
  * @since 1.0.0
  */
 const getStyleProps = (element: HTMLElement, propName?: string): StyleProps | string => {

@@ -8,18 +8,20 @@
  *
  * const el = document.querySelector('.example-class')!;
  * const classes = getClass(el);
- * console.log(classes); // 'example-class'
+ * classes // => 'example-class'
  *
  * @since 1.0.0
  */
 const getClass = (el: HTMLElement | SVGElement | null | undefined): string => {
   if (!el) {
-    return ''
+    return '';
   }
   if (el instanceof SVGElement) {
-    return el.getAttribute('class') || ''
+    return el.getAttribute('class') || '';
   }
-  return 'className' in el ? el.className : (el as HTMLElement | SVGElement).getAttribute('class') || ''
-}
+  return 'className' in el
+    ? el.className
+    : (el as HTMLElement | SVGElement).getAttribute('class') || '';
+};
 
-export default getClass
+export default getClass;

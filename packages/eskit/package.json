@@ -1,7 +1,7 @@
 {
   "name": "@gvray/eskit",
   "version": "1.2.0",
-  "description": "A rich and colorful toolkit about typescript and javascript.",
+  "description": "Core JavaScript/TypeScript utilities: collections, deep clone, debounce, curry, compose, tree operations, and type checks.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "module": "esm/index.js",
@@ -23,10 +23,7 @@
     "tsc": "tsc --noEmit",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "md": "node ./scripts/jsdoc2md.js",
-    "docs": "typedoc",
-    "doc": "pnpm run docs && pnpm -C ../../ run append-api ./packages/eskit docs",
-    "pub": "echo 'Use root-level changeset publish to release packages'"
+    "dev": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir esm --watch"
   },
   "keywords": [
     "util",

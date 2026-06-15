@@ -1,12 +1,12 @@
-type KeyByIteratee<T, K extends PropertyKey> = ((item: T) => K) | keyof T
+type KeyByIteratee<T, K extends PropertyKey> = ((item: T) => K) | keyof T;
 
 const getKeyByValue = <T, K extends PropertyKey>(item: T, iteratee: KeyByIteratee<T, K>): K => {
   if (typeof iteratee === 'function') {
-    return iteratee(item)
+    return iteratee(item);
   }
 
-  return item[iteratee] as unknown as K
-}
+  return item[iteratee] as unknown as K;
+};
 
 /**
  * Creates an object that maps derived keys to items.
@@ -19,16 +19,21 @@ const getKeyByValue = <T, K extends PropertyKey>(item: T, iteratee: KeyByIterate
  * @returns An object whose keys map to items / 键到元素的映射对象
  * @example
  * keyBy([{ id: 1, name: 'A' }], 'id')
- * // -> { '1': { id: 1, name: 'A' } }
+ * // => { '1': { id: 1, name: 'A' } }
+ *
+ * @since 1.2.0
  */
-const keyBy = <T, K extends PropertyKey>(array: readonly T[], iteratee: KeyByIteratee<T, K>): Record<string, T> => {
-  const result: Record<string, T> = {}
+const keyBy = <T, K extends PropertyKey>(
+  array: readonly T[],
+  iteratee: KeyByIteratee<T, K>
+): Record<string, T> => {
+  const result: Record<string, T> = {};
 
   for (const item of array) {
-    result[String(getKeyByValue(item, iteratee))] = item
+    result[String(getKeyByValue(item, iteratee))] = item;
   }
 
-  return result
-}
+  return result;
+};
 
-export default keyBy
+export default keyBy;

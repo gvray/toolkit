@@ -1,5 +1,5 @@
-import basename from './basename'
-import extname from './extname'
+import basename from './basename';
+import extname from './extname';
 
 /**
  * Returns the file name without its final extension.
@@ -9,17 +9,19 @@ import extname from './extname'
  *
  * @example
  * nameWithoutExt('foo.min.js')
- * // -> 'foo.min'
+ * // => 'foo.min'
+ *
+ * @since 1.0.0
  */
 const nameWithoutExt = (path: string): string => {
   if (typeof path !== 'string') {
-    throw new TypeError('path must be a string')
+    throw new TypeError('path must be a string');
   }
 
-  const fileName = basename(path)
-  const extension = extname(fileName)
+  const fileName = basename(path);
+  const extension = extname(fileName);
 
-  return extension ? fileName.slice(0, -extension.length) : fileName
-}
+  return extension ? fileName.slice(0, -extension.length) : fileName;
+};
 
-export default nameWithoutExt
+export default nameWithoutExt;

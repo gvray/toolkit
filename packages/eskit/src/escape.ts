@@ -3,8 +3,8 @@ const escapeMap: Record<string, string> = {
   '<': '&lt;',
   '>': '&gt;',
   '"': '&quot;',
-  "'": '&#39;'
-}
+  "'": '&#39;',
+};
 
 /**
  * Escapes HTML-sensitive characters in a string.
@@ -14,10 +14,12 @@ const escapeMap: Record<string, string> = {
  * @returns The escaped string / 转义后的字符串
  * @example
  * escape('<script>')
- * // -> '&lt;script&gt;'
+ * // => '&lt;script&gt;'
+ *
+ * @since 1.2.0
  */
 const escape = (value: string): string => {
-  return value.replace(/[&<>"']/g, (character: string) => escapeMap[character])
-}
+  return value.replace(/[&<>"']/g, (character: string) => escapeMap[character]);
+};
 
-export default escape
+export default escape;

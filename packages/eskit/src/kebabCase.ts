@@ -1,4 +1,4 @@
-import { splitWords } from './_internal/words'
+import { splitWords } from './_internal/words';
 
 /**
  * Converts a string to kebab-case.
@@ -8,12 +8,14 @@ import { splitWords } from './_internal/words'
  * @returns The kebab-cased string / 转换后的 kebab-case 字符串
  * @example
  * kebabCase('fooBar')
- * // -> 'foo-bar'
+ * // => 'foo-bar'
+ *
+ * @since 1.2.0
  */
 const kebabCase = (value: string): string => {
   return splitWords(value)
     .map((word: string) => word.toLowerCase())
-    .join('-')
-}
+    .join('-');
+};
 
-export default kebabCase
+export default kebabCase;

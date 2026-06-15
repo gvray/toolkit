@@ -7,22 +7,26 @@
  * @param fn - The target function / 目标函数
  * @returns A memoized function / 记忆化后的函数
  * @example
- * const fn = memoizeWeak((obj: object) => Object.keys(obj).length)
+ * const fn = memoizeWeak((obj) => Object.keys(obj).length)
  * fn({})
- * // -> 0
+ * // => 0
+ *
+ * @since 1.2.0
  */
-const memoizeWeak = <TKey extends object, TResult>(fn: (key: TKey) => TResult): ((key: TKey) => TResult) => {
-  const cache = new WeakMap<TKey, TResult>()
+const memoizeWeak = <TKey extends object, TResult>(
+  fn: (key: TKey) => TResult
+): ((key: TKey) => TResult) => {
+  const cache = new WeakMap<TKey, TResult>();
 
   return (key: TKey): TResult => {
     if (cache.has(key)) {
-      return cache.get(key) as TResult
+      return cache.get(key) as TResult;
     }
 
-    const result = fn(key)
-    cache.set(key, result)
-    return result
-  }
-}
+    const result = fn(key);
+    cache.set(key, result);
+    return result;
+  };
+};
 
-export default memoizeWeak
+export default memoizeWeak;

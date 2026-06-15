@@ -9,7 +9,9 @@
  * @returns The first matching node, or `undefined` / 第一个匹配的节点，或 `undefined`
  * @example
  * findTreeNode([{ id: 1, children: [{ id: 2 }] }], (node) => node.id === 2)
- * // -> { id: 2 }
+ * // => { id: 2 }
+ *
+ * @since 1.2.0
  */
 const findTreeNode = <T extends Record<string, unknown>>(
   trees: readonly T[],
@@ -18,21 +20,21 @@ const findTreeNode = <T extends Record<string, unknown>>(
 ): T | undefined => {
   for (const node of trees) {
     if (predicate(node)) {
-      return node
+      return node;
     }
 
-    const children = node[childrenKey]
+    const children = node[childrenKey];
 
     if (Array.isArray(children)) {
-      const result = findTreeNode(children as T[], predicate, childrenKey)
+      const result = findTreeNode(children as T[], predicate, childrenKey);
 
       if (result) {
-        return result
+        return result;
       }
     }
   }
 
-  return undefined
-}
+  return undefined;
+};
 
-export default findTreeNode
+export default findTreeNode;

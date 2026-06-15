@@ -5,10 +5,10 @@ module.exports = {
   },
   testRegex: '(/__test__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  // collectCoverageFrom: ['src/**/!(*.d).{js,ts}'],
-  // collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/*.d.ts', '!src/**/index.ts'],
+  coverageDirectory: 'coverage',
+  coverageReporters: ['text', 'lcov', 'html'],
   testEnvironment: 'jsdom'
-  // coverageDirectory: './coverage',
   // reporters: [
   //   'default',
   //   [

@@ -5,13 +5,15 @@
  *
  * @example
  * getViewportSize()
- * // -> { width: 1440, height: 900 }
+ * // => { width: 1440, height: 900 }
+ *
+ * @since 1.0.0
  */
 const getViewportSize = (): { width: number; height: number } => {
   return {
     width: window.innerWidth,
-    height: window.innerHeight
-  }
-}
+    height: window.innerHeight,
+  };
+};
 
-export default getViewportSize
+export default getViewportSize;

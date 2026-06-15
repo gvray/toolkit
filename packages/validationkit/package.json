@@ -1,7 +1,7 @@
 {
   "name": "@gvray/validationkit",
   "version": "1.0.1",
-  "description": "Professional data validation utilities for JavaScript/TypeScript applications / 专业的JavaScript/TypeScript数据验证工具库",
+  "description": "Data and form validation utilities: type validators, schema validation, async validation, and form helpers.",
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "lib/index.d.ts",
@@ -16,9 +16,7 @@
     "build:esm": "tsc -p tsconfig.json --module esnext --outDir esm",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "docs": "typedoc",
-    "doc": "pnpm run docs && pnpm -C ../../ run append-api ./packages/validationkit docs",
-    "pub": "echo 'Use root-level changeset publish to release packages'"
+    "dev": "tsc -p tsconfig.json --module esnext --outDir esm --watch"
   },
   "keywords": [
     "validation",

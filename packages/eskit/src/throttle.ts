@@ -1,6 +1,6 @@
 export interface ThrottleOptions {
-  leading?: boolean
-  trailing?: boolean
+  leading?: boolean;
+  trailing?: boolean;
 }
 
 /**
@@ -17,78 +17,70 @@ export interface ThrottleOptions {
  * @returns Throttled function / 节流函数
  *
  * @example
- * ```typescript
- * // Basic throttle
- * const throttledFn = throttle(() => {
- *   console.log('Called!');
- * }, 1000);
+ * const results = []
+ * const push = throttle((x) => results.push(x), 100, { leading: true })
+ * push(1)
+ * push(2)
+ * push(3)
+ * results // => [1] — only leading edge fires immediately
  *
- * // With leading edge
- * const throttledWithLeading = throttle(() => {
- *   console.log('Called immediately!');
- * }, 1000, { leading: true });
- *
- * // Search input example
- * const searchThrottled = throttle((query: string) => {
- *   performSearch(query);
- * }, 300);
- * ```
+ * @since 1.2.0
  */
 export function throttle<TArgs extends any[]>(
   fn: (...args: TArgs) => void,
   delay: number,
   options: ThrottleOptions = {}
 ): (...args: TArgs) => void {
-  let timerId: ReturnType<typeof setTimeout> | null = null
-  let lastInvokeTime = 0
-  let lastArgs: TArgs | undefined
-  let leadingInvoked = false
+  let timerId: ReturnType<typeof setTimeout> | null = null;
+  let lastInvokeTime = 0;
+  let lastArgs: TArgs | undefined;
+  let leadingInvoked = false;
 
-  const { leading = false, trailing = true } = options
+  const { leading = false, trailing = true } = options;
 
   return (...args: TArgs) => {
-    const now = Date.now()
-    const timeSinceLastInvoke = now - lastInvokeTime
-    lastArgs = args
+    const now = Date.now();
+    const timeSinceLastInvoke = now - lastInvokeTime;
+    lastArgs = args;
 
     // Clear existing timer
     if (timerId !== null) {
-      clearTimeout(timerId)
-      timerId = null
+      clearTimeout(timerId);
+      timerId = null;
     }
 
     // Leading edge
     if (leading && timeSinceLastInvoke >= delay) {
-      lastInvokeTime = now
-      leadingInvoked = true
-      fn(...args)
+      lastInvokeTime = now;
+      leadingInvoked = true;
+      fn(...args);
 
       // If only leading is enabled, don't set trailing timer
       if (!trailing) {
-        return
+        return;
       }
     } else {
-      leadingInvoked = false
+      leadingInvoked = false;
     }
 
     // Trailing edge
     if (trailing) {
-      const remainingDelay = delay - timeSinceLastInvoke
-      const timeToWait = remainingDelay > 0 ? remainingDelay : 0
+      const remainingDelay = delay - timeSinceLastInvoke;
+      const timeToWait = remainingDelay > 0 ? remainingDelay : 0;
 
       timerId = setTimeout(() => {
         // Only invoke trailing if we didn't just invoke leading
         if (!leadingInvoked) {
-          lastInvokeTime = Date.now()
+          lastInvokeTime = Date.now();
           if (lastArgs) {
-            fn(...lastArgs)
+            fn(...lastArgs);
           }
         }
-        timerId = null
-        leadingInvoked = false
-      }, timeToWait)
+        timerId = null;
+        leadingInvoked = false;
+      }, timeToWait);
     }
-  }
+  };
 }
 
-export default throttle
+export default throttle;

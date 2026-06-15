@@ -1,8 +1,8 @@
-import { add, multiply, subtract } from './arithmetic'
+import { add, multiply, subtract } from './arithmetic';
 
 function assertFiniteNumber(value: number, paramName: string): void {
   if (!Number.isFinite(value)) {
-    throw new RangeError(`${paramName} must be a finite number`)
+    throw new RangeError(`${paramName} must be a finite number`);
   }
 }
 
@@ -16,13 +16,15 @@ function assertFiniteNumber(value: number, paramName: string): void {
  * @returns Interpolated value / 插值结果
  *
  * @example
- * lerp(0, 100, 0.5) // → 50
+ * lerp(0, 100, 0.5) // => 50
+ *
+ * @since 1.0.0
  */
 export function lerp(start: number, end: number, t: number): number {
-  assertFiniteNumber(start, 'start')
-  assertFiniteNumber(end, 'end')
-  assertFiniteNumber(t, 't')
-  return add(start, multiply(subtract(end, start), t))
+  assertFiniteNumber(start, 'start');
+  assertFiniteNumber(end, 'end');
+  assertFiniteNumber(t, 't');
+  return add(start, multiply(subtract(end, start), t));
 }
 
 /**
@@ -34,24 +36,26 @@ export function lerp(start: number, end: number, t: number): number {
  * @returns Distance / 距离
  *
  * @example
- * distance([0, 0], [3, 4]) // → 5
+ * distance([0, 0], [3, 4]) // => 5
+ *
+ * @since 1.0.0
  */
 export function distance(a: number[], b: number[]): number {
   if (a.length === 0 || b.length === 0) {
-    throw new Error('coordinate arrays cannot be empty')
+    throw new Error('coordinate arrays cannot be empty');
   }
   if (a.length !== b.length) {
-    throw new Error('coordinate arrays must have the same length')
+    throw new Error('coordinate arrays must have the same length');
   }
-  let sumSquares = 0
+  let sumSquares = 0;
   for (let i = 0; i < a.length; i++) {
     if (!Number.isFinite(a[i]) || !Number.isFinite(b[i])) {
-      throw new RangeError(`coordinates[${i}] must be finite numbers`)
+      throw new RangeError(`coordinates[${i}] must be finite numbers`);
     }
-    const d = subtract(a[i], b[i])
-    sumSquares = add(sumSquares, multiply(d, d))
+    const d = subtract(a[i], b[i]);
+    sumSquares = add(sumSquares, multiply(d, d));
   }
-  return Math.sqrt(sumSquares)
+  return Math.sqrt(sumSquares);
 }
 
 /**
@@ -62,11 +66,13 @@ export function distance(a: number[], b: number[]): number {
  * @returns Radians / 弧度
  *
  * @example
- * degToRad(180) // → Math.PI
+ * degToRad(180) // => Math.PI
+ *
+ * @since 1.0.0
  */
 export function degToRad(degrees: number): number {
-  assertFiniteNumber(degrees, 'degrees')
-  return multiply(degrees, Math.PI / 180)
+  assertFiniteNumber(degrees, 'degrees');
+  return multiply(degrees, Math.PI / 180);
 }
 
 /**
@@ -77,9 +83,11 @@ export function degToRad(degrees: number): number {
  * @returns Degrees / 角度（度）
  *
  * @example
- * radToDeg(Math.PI) // → 180
+ * radToDeg(Math.PI) // => 180
+ *
+ * @since 1.0.0
  */
 export function radToDeg(radians: number): number {
-  assertFiniteNumber(radians, 'radians')
-  return multiply(radians, 180 / Math.PI)
+  assertFiniteNumber(radians, 'radians');
+  return multiply(radians, 180 / Math.PI);
 }

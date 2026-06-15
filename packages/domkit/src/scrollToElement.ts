@@ -1,4 +1,4 @@
-import scrollTo from './scrollTo'
+import scrollTo from './scrollTo';
 
 /**
  * Scrolls the page so the target element enters the viewport.
@@ -8,28 +8,31 @@ import scrollTo from './scrollTo'
  * @returns `true` when the element could be scrolled into view.
  *
  * @example
- * scrollToElement(targetEl)
- * // -> true
+ * const el = document.createElement('div')
+ * document.body.appendChild(el)
+ * scrollToElement(el) // => true
+ *
+ * @since 1.0.0
  */
 const scrollToElement = (
   target: Element | null | undefined,
   options: { behavior?: 'auto' | 'smooth'; offsetTop?: number } = {}
 ): boolean => {
   if (!target) {
-    return false
+    return false;
   }
 
-  const { behavior = 'smooth', offsetTop = 0 } = options
-  const rect = target.getBoundingClientRect()
-  const top = rect.top + window.pageYOffset - offsetTop
+  const { behavior = 'smooth', offsetTop = 0 } = options;
+  const rect = target.getBoundingClientRect();
+  const top = rect.top + window.pageYOffset - offsetTop;
 
   scrollTo({
     x: window.pageXOffset,
     y: top,
-    behavior
-  })
+    behavior,
+  });
 
-  return true
-}
+  return true;
+};
 
-export default scrollToElement
+export default scrollToElement;

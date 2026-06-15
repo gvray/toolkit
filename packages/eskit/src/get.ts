@@ -1,4 +1,4 @@
-import { toPath } from './_internal/path'
+import { toPath } from './_internal/path';
 
 /**
  * Safely gets a nested value from an object by path.
@@ -11,21 +11,27 @@ import { toPath } from './_internal/path'
  * @returns The found value or the fallback value / 找到的值或兜底值
  * @example
  * get({ a: { b: 2 } }, 'a.b')
- * // -> 2
+ * // => 2
+ *
+ * @since 1.2.0
  */
-const get = <T = undefined>(object: unknown, path: string | readonly PropertyKey[], defaultValue?: T): unknown | T => {
-  const segments = toPath(path)
-  let current: unknown = object
+const get = <T = undefined>(
+  object: unknown,
+  path: string | readonly PropertyKey[],
+  defaultValue?: T
+): unknown | T => {
+  const segments = toPath(path);
+  let current: unknown = object;
 
   for (const segment of segments) {
     if (current === null || current === undefined) {
-      return defaultValue
+      return defaultValue;
     }
 
-    current = (current as Record<PropertyKey, unknown>)[segment]
+    current = (current as Record<PropertyKey, unknown>)[segment];
   }
 
-  return current === undefined ? defaultValue : current
-}
+  return current === undefined ? defaultValue : current;
+};
 
-export default get
+export default get;

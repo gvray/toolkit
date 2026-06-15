@@ -7,26 +7,28 @@
  * @returns Occurrence count / 出现次数
  * @example
  * count('abcabc', 'a')
- * // -> 2
+ * // => 2
+ *
+ * @since 1.2.0
  */
 const count = (text: string, substring: string): number => {
   if (substring === '') {
-    throw new RangeError('substring cannot be empty')
+    throw new RangeError('substring cannot be empty');
   }
 
-  let total = 0
-  let position = 0
+  let total = 0;
+  let position = 0;
 
   while (position <= text.length) {
-    const index = text.indexOf(substring, position)
+    const index = text.indexOf(substring, position);
     if (index === -1) {
-      break
+      break;
     }
-    total += 1
-    position = index + substring.length
+    total += 1;
+    position = index + substring.length;
   }
 
-  return total
-}
+  return total;
+};
 
-export default count
+export default count;

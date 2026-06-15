@@ -1,4 +1,4 @@
-import isNumber from './isNumber'
+import isNumber from './isNumber';
 /**
  * Checks if a value is an integer.
  * 检查值是否为整数。
@@ -8,19 +8,19 @@ import isNumber from './isNumber'
  *
  * @example
  * ```typescript
- * isInteger(0) // true
- * isInteger(5) // true
- * isInteger(-10) // true
- * isInteger(42) // true
- * isInteger(Number.MAX_SAFE_INTEGER) // true
- * isInteger(2.5) // false
- * isInteger(3.14) // false
- * isInteger(NaN) // false
- * isInteger(Infinity) // false
- * isInteger(-Infinity) // false
- * isInteger('42') // false
- * isInteger(null) // false
- * isInteger(undefined) // false
+ * isInteger(0) // => true
+ * isInteger(5) // => true
+ * isInteger(-10) // => true
+ * isInteger(42) // => true
+ * isInteger(Number.MAX_SAFE_INTEGER) // => true
+ * isInteger(2.5) // => false
+ * isInteger(3.14) // => false
+ * isInteger(NaN) // => false
+ * isInteger(Infinity) // => false
+ * isInteger(-Infinity) // => false
+ * isInteger('42') // => false
+ * isInteger(null) // => false
+ * isInteger(undefined) // => false
  * ```
  *
  * @since 1.0.0
@@ -28,7 +28,7 @@ import isNumber from './isNumber'
 const isInteger = Number.isInteger
   ? Number.isInteger
   : (num: any): boolean => {
-      return isNumber(num) && num % 1 === 0
-    }
+      return isNumber(num) && num % 1 === 0;
+    };
 
-export default isInteger
+export default isInteger;

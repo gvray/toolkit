@@ -1,6 +1,6 @@
-import addClass from './addClass'
-import hasClass from './hasClass'
-import removeClass from './removeClass'
+import addClass from './addClass';
+import hasClass from './hasClass';
+import removeClass from './removeClass';
 
 /**
  * Toggles a class name on an element.
@@ -11,20 +11,25 @@ import removeClass from './removeClass'
  *
  * @example
  * toggleClass(el, 'active')
- * // -> true
+ * // => true
+ *
+ * @since 1.0.0
  */
-const toggleClass = (el: HTMLElement | SVGElement | null | undefined, className: string): boolean => {
+const toggleClass = (
+  el: HTMLElement | SVGElement | null | undefined,
+  className: string
+): boolean => {
   if (!el || !className.trim()) {
-    return false
+    return false;
   }
 
   if (hasClass(el, className)) {
-    removeClass(el as HTMLElement, className)
-    return false
+    removeClass(el as HTMLElement, className);
+    return false;
   }
 
-  addClass(el, className)
-  return true
-}
+  addClass(el, className);
+  return true;
+};
 
-export default toggleClass
+export default toggleClass;

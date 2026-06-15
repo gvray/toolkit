@@ -7,10 +7,12 @@
  * @returns A cloned value / 克隆后的值
  * @example
  * jsonClone({ a: 1, b: { c: 2 } })
- * // -> { a: 1, b: { c: 2 } }
+ * // => { a: 1, b: { c: 2 } }
+ *
+ * @since 1.2.0
  */
 const jsonClone = <T>(value: T): T => {
-  return JSON.parse(JSON.stringify(value))
-}
+  return JSON.parse(JSON.stringify(value));
+};
 
-export default jsonClone
+export default jsonClone;

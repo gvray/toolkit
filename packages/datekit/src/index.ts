@@ -1,29 +1,26 @@
 // Date formatting / 日期格式化
-export * from './format'
+export * from './format';
 
 // Date parsing / 日期解析
-export * from './parse'
+export * from './parse';
 
 // Date manipulation / 日期操作
-export * from './manipulate'
+export * from './manipulate';
 
 // Date comparison / 日期比较
-export * from './compare'
+export * from './compare';
 
-// Date validation / 日期验证
-export * from './validate'
-
-// Relative time / 相对时间
-export * from './relative'
-
-// Duration / 时长
-export * from './duration'
+// Date checks / 日期判断
+export * from './check';
 
 // Difference / 差值
-export * from './diff'
+export * from './diff';
 
-// Calendar helpers / 日历辅助
-export * from './calendar'
+// Relative time and duration / 相对时间与时长
+export * from './relative';
+
+// Calendar info / 日历信息
+export * from './info';
 
 // Timezone utilities / 时区工具
-export * from './timezone'
+export * from './timezone';

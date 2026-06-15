@@ -7,16 +7,18 @@
  *
  * @example
  * removeQueryParam('https://example.com?a=1&b=2', 'a')
- * // -> 'https://example.com/?b=2'
+ * // => 'https://example.com/?b=2'
+ *
+ * @since 1.0.0
  */
 const removeQueryParam = (url: string, key: string): string => {
   if (typeof url !== 'string' || typeof key !== 'string') {
-    throw new TypeError('url and key must be strings')
+    throw new TypeError('url and key must be strings');
   }
 
-  const nextUrl = new URL(url)
-  nextUrl.searchParams.delete(key)
-  return nextUrl.toString()
-}
+  const nextUrl = new URL(url);
+  nextUrl.searchParams.delete(key);
+  return nextUrl.toString();
+};
 
-export default removeQueryParam
+export default removeQueryParam;

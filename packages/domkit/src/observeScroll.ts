@@ -6,37 +6,38 @@
  * @returns A function to stop observing scroll events.
  *
  * @example
- * // Start observing scroll events on the element
- * const stopObserving = observeScroll(myElement, handleScroll, handleScrollStop);
+ * const el = document.createElement('div')
+ * document.body.appendChild(el)
+ * const stop = observeScroll(el, () => console.log('scrolled'))
+ * console.log(typeof stop)
  *
- * // Stop observing scroll events
- * stopObserving();
+ * @since 1.0.0
  */
 const observeScroll = (
   element: HTMLElement,
   onScroll: (event?: Event) => void,
   onScrollStop?: () => void
 ): (() => void) => {
-  let isScrolling = false
+  let isScrolling = false;
 
   const scrollHandler = (event: Event) => {
     if (!isScrolling) {
-      isScrolling = true
-      requestAnimationFrame(checkScrollStop)
-      onScroll(event)
+      isScrolling = true;
+      requestAnimationFrame(checkScrollStop);
+      onScroll(event);
     }
-  }
+  };
 
   const checkScrollStop = () => {
-    isScrolling = false
-    onScrollStop?.()
-  }
+    isScrolling = false;
+    onScrollStop?.();
+  };
 
-  element.addEventListener('scroll', scrollHandler)
+  element.addEventListener('scroll', scrollHandler);
 
   return () => {
-    element.removeEventListener('scroll', scrollHandler)
-  }
-}
+    element.removeEventListener('scroll', scrollHandler);
+  };
+};
 
-export default observeScroll
+export default observeScroll;

@@ -1,4 +1,4 @@
-import isType from './isType'
+import isType from './isType';
 /**
  * Checks if a value is an array.
  * 检查值是否为数组。
@@ -12,18 +12,19 @@ import isType from './isType'
  *
  * @example
  * ```typescript
- * isArray([1, 2, 3]) // true
- * isArray([]) // true
- * isArray(new Array(5)) // true
- * isArray('abc') // false
- * isArray({ 0: 'a', 1: 'b', length: 2 }) // false (array-like but not array)
- * isArray(null) // false
- * isArray(undefined) // false
- * isArray(arguments) // false (arguments object is not an array)
+ * isArray([1, 2, 3]) // => true
+ * isArray([]) // => true
+ * isArray(new Array(5)) // => true
+ * isArray('abc') // => false
+ * isArray({ 0: 'a', 1: 'b', length: 2 }) // => false (array-like but not array)
+ * isArray(null) // => false
+ * isArray(undefined) // => false
+ * isArray(arguments) // => false (arguments object is not an array)
  * ```
  *
  * @since 1.0.0
  */
-const isArray = (value: any): value is Array<any> => (Array.isArray ? Array.isArray(value) : isType('Array', value))
+const isArray = (value: any): value is Array<any> =>
+  Array.isArray ? Array.isArray(value) : isType('Array', value);
 
-export default isArray
+export default isArray;

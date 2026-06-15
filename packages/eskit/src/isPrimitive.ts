@@ -8,30 +8,30 @@
  * @example
  * ```typescript
  * // Primitive types
- * isPrimitive('') // true
- * isPrimitive('hello') // true
- * isPrimitive(0) // true
- * isPrimitive(42) // true
- * isPrimitive(true) // true
- * isPrimitive(false) // true
- * isPrimitive(null) // true
- * isPrimitive(undefined) // true
- * isPrimitive(Symbol()) // true
- * isPrimitive(BigInt(123)) // true
+ * isPrimitive('') // => true
+ * isPrimitive('hello') // => true
+ * isPrimitive(0) // => true
+ * isPrimitive(42) // => true
+ * isPrimitive(true) // => true
+ * isPrimitive(false) // => true
+ * isPrimitive(null) // => true
+ * isPrimitive(undefined) // => true
+ * isPrimitive(Symbol()) // => true
+ * isPrimitive(BigInt(123)) // => true
  *
  * // Non-primitive types (objects)
- * isPrimitive({}) // false
- * isPrimitive([]) // false
- * isPrimitive(function() {}) // false
- * isPrimitive(new Date()) // false
- * isPrimitive(new Error()) // false
- * isPrimitive(/regex/) // false
+ * isPrimitive({}) // => false
+ * isPrimitive([]) // => false
+ * isPrimitive(function() {}) // => false
+ * isPrimitive(new Date()) // => false
+ * isPrimitive(new Error()) // => false
+ * isPrimitive(/regex/) // => false
  * ```
  *
  * @since 1.0.0
  */
 const isPrimitive = (value: unknown): boolean => {
-  return value !== Object(value)
-}
+  return value !== Object(value);
+};
 
-export default isPrimitive
+export default isPrimitive;

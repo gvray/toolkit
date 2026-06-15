@@ -7,43 +7,24 @@
  *
  * @example
  * ```typescript
- * const globalObj = getGlobal()
- *
- * // Check runtime environment
- * if (typeof (globalObj as any).process === 'object') {
- *   console.log('Running in Node.js')
- * } else if (typeof (globalObj as any).window === 'object') {
- *   console.log('Running in browser')
- * } else if (typeof (globalObj as any).self === 'object') {
- *   console.log('Running in Web Worker')
- * }
- *
- * // Access global variables safely
- * const global = getGlobal() as any
- * if (global.localStorage) {
- *   global.localStorage.setItem('key', 'value')
- * }
- *
- * // Works in different environments:
- * // - Browser: returns window
- * // - Web Worker: returns self
- * // - Node.js: returns global
- * // - Modern environments: returns globalThis
+ * const g = getGlobal()
+ * typeof g // => 'object'
+ * g === globalThis // => true
  * ```
  *
  * @since 1.0.0
  */
 const getGlobal = (): unknown => {
   if (typeof self !== 'undefined') {
-    return self
+    return self;
   }
   if (typeof window !== 'undefined') {
-    return window
+    return window;
   }
   if (typeof global !== 'undefined') {
-    return global
+    return global;
   }
-  throw new Error('unable to locate global object')
-}
+  throw new Error('unable to locate global object');
+};
 
-export default getGlobal
+export default getGlobal;

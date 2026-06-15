@@ -8,11 +8,13 @@
  *
  * // Remove a CSS variable from a specific element
  * const element = document.querySelector('.my-element');
- * removeCssVariable('--main-bg-color', element);
+ * removeCssVariable('--main-bg-color', element)
+ *
+ * @since 1.0.0
  */
 const removeCssVariable = (key: string, ele?: HTMLElement): void => {
-  const element = ele ?? document.documentElement
-  element.style.removeProperty(key)
-}
+  const element = ele ?? document.documentElement;
+  element.style.removeProperty(key);
+};
 
-export default removeCssVariable
+export default removeCssVariable;

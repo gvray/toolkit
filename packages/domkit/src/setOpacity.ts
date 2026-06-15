@@ -5,20 +5,20 @@
  * @param opacity - The opacity value to set.
  *
  * @example
- *
- * const element = document.querySelector('.my-element');
- * setOpacity(element, 0.5);
+ * const el = document.createElement('div')
+ * setOpacity(el, 0.5)
+ * console.log(el.style.opacity)
  *
  * @since 1.0.0
  */
 const setOpacity = (elem: HTMLElement | any, opacity: number): void => {
   // Check for support of the `opacity` CSS property
   if ('opacity' in elem.style) {
-    elem.style.opacity = String(opacity)
+    elem.style.opacity = String(opacity);
   } else {
     // Fallback for browsers that don't support `opacity`
-    elem.style.filter = `alpha(opacity=${Math.round(opacity * 100)})`
+    elem.style.filter = `alpha(opacity=${Math.round(opacity * 100)})`;
   }
-}
+};
 
-export default setOpacity
+export default setOpacity;
