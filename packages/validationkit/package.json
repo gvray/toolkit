@@ -1,6 +1,6 @@
 {
   "name": "@gvray/validationkit",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Data and form validation utilities: type validators, schema validation, async validation, and form helpers.",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -11,9 +11,10 @@
     "README.md"
   ],
   "scripts": {
-    "build": "pnpm run build:cjs && pnpm run build:esm",
+    "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm",
     "build:cjs": "tsc -p tsconfig.json",
     "build:esm": "tsc -p tsconfig.json --module esnext --outDir esm",
+    "clean": "rimraf lib esm",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "dev": "tsc -p tsconfig.json --module esnext --outDir esm --watch"

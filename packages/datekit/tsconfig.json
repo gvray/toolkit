@@ -4,8 +4,8 @@
     "outDir": "lib",
     "rootDir": "src",
     "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true
+    "declarationMap": false,
+    "sourceMap": false
   },
   "include": ["src/**/*"],
   "exclude": ["**/*.test.ts", "**/*.spec.ts", "__tests__/**/*", "node_modules"]

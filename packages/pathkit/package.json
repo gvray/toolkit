@@ -1,6 +1,6 @@
 {
   "name": "@gvray/pathkit",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Path manipulation utilities: URL parsing, query string handling, path normalization, and joining.",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -16,7 +16,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "run-p build:*",
+    "build": "pnpm run clean && run-p build:*",
     "build:esm": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir esm",
     "build:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
     "clean": "rimraf lib esm",

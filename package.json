@@ -3,7 +3,7 @@
   "description": "Store more front-end related tool Libraries",
   "scripts": {
     "clean": "rimraf --glob '**/{node_modules,dist,esm,lib,.turbo,.next}'",
-    "build": "pnpm -r --filter './packages/*' --workspace-concurrency=1 run build",
+    "build": "pnpm -r --filter './packages/*' --workspace-concurrency=1 --no-bail run build",
     "build:play": "pnpm --filter play run build",
     "test": "pnpm -r --filter './packages/*' --workspace-concurrency=1 run test",
     "test:coverage": "pnpm -r --filter './packages/*' --workspace-concurrency=1 run test:coverage",

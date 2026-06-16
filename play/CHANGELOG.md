@@ -1,5 +1,21 @@
 # play
 
+## 0.0.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @gvray/validationkit@1.0.2
+  - @gvray/requestkit@1.1.1
+  - @gvray/formatkit@1.1.1
+  - @gvray/adminkit@1.1.1
+  - @gvray/colorkit@1.1.1
+  - @gvray/datekit@1.1.1
+  - @gvray/mathkit@1.1.1
+  - @gvray/pathkit@1.1.1
+  - @gvray/domkit@1.1.1
+  - @gvray/eskit@1.3.1
+
 ## 0.0.6
 
 ### Patch Changes

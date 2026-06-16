@@ -1,6 +1,6 @@
 {
   "name": "@gvray/requestkit",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Async request utilities: retry, polling, timeout, memoize, rate limiting, deferred, and abort groups.",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -16,7 +16,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "pnpm run build:cjs && pnpm run build:esm",
+    "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm",
     "build:cjs": "tsc -p tsconfig.json",
     "build:esm": "tsc -p tsconfig.json --module esnext --outDir esm",
     "clean": "rimraf lib esm",

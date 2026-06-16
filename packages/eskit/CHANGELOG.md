@@ -1,5 +1,11 @@
 # @gvray/eskit
 
+## 1.3.1
+
+### Patch Changes
+
+- build: auto clean before build and disable sourcemap
+
 ## 1.3.0
 
 ### Minor Changes
