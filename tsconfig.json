@@ -3,16 +3,17 @@
   "extends": "lavy/tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "dist",
     "moduleResolution": "node",
     "downlevelIteration": true,
     "skipLibCheck": true,
+    "importHelpers": false,
     "lib": ["DOM", "ES2015", "ES2017", "ESNext"]
   },
   "include": [
     "packages/*/src/**/*.ts",
     "packages/*/src/**/*.tsx",
     "packages/*/src/**/*.d.ts",
+    "packages/*/swiftlet.config.ts",
     "examples/**/*.ts"
   ],
   "exclude": ["node_modules", "dist", "build", "coverage", "**/*.spec.ts", "**/*.test.ts"]

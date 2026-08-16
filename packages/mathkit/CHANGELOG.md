@@ -1,5 +1,11 @@
 # @gvray/mathkit
 
+## 1.2.0
+
+### Minor Changes
+
+- refactor build with swiftlet
+
 ## 1.1.1
 
 ### Patch Changes

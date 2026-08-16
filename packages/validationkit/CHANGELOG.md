@@ -1,5 +1,11 @@
 # @gvray/validationkit
 
+## 1.1.0
+
+### Minor Changes
+
+- refactor build with swiftlet
+
 ## 1.0.2
 
 ### Patch Changes

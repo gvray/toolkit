@@ -1,42 +1,41 @@
 {
   "name": "@gvray/pathkit",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Path manipulation utilities: URL parsing, query string handling, path normalization, and joining.",
-  "main": "lib/index.js",
-  "module": "esm/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    "import": "./esm/index.js",
-    "require": "./lib/index.js",
-    "types": "./lib/index.d.ts"
+    "import": "./dist/esm/index.js",
+    "require": "./dist/cjs/index.js",
+    "types": "./dist/index.d.ts"
   },
   "files": [
-    "esm",
-    "lib",
+    "dist",
     "README.md"
   ],
   "scripts": {
-    "build": "pnpm run clean && run-p build:*",
-    "build:esm": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir esm",
-    "build:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
-    "clean": "rimraf lib esm",
-    "tsc": "tsc --noEmit",
+    "build": "swiftlet build",
+    "clean": "rimraf dist",
+    "dev": "swiftlet dev",
     "test": "jest",
-    "test:coverage": "jest --coverage",
-    "dev": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir esm --watch"
+    "test:coverage": "jest --coverage"
   },
   "keywords": [
     "path",
-    "domkit",
-    "jsdom",
-    "util",
-    "path-util",
-    "toolkit",
-    "tool"
+    "url",
+    "query-string",
+    "normalize",
+    "join",
+    "parse",
+    "filepath",
+    "utility",
+    "typescript",
+    "javascript"
   ],
   "author": {
     "name": "GavinRay",
-    "email": "gavinraydev@gmail.com"
+    "email": "gvray87@gmail.com"
   },
   "license": "MIT",
   "bugs": {

@@ -1,5 +1,16 @@
 # @gvray/pathkit
 
+## 1.2.0
+
+### Minor Changes
+
+- refactor build with swiftlet
+
+### Patch Changes
+
+- Updated dependencies
+  - @gvray/eskit@1.4.0
+
 ## 1.1.1
 
 ### Patch Changes

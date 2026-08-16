@@ -1,42 +1,42 @@
 {
   "name": "@gvray/colorkit",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Color manipulation utilities: parsing, hex/RGB conversion, HSL, lightening, darkening, and color mixing.",
-  "main": "lib/index.js",
-  "module": "esm/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    "import": "./esm/index.js",
-    "require": "./lib/index.js",
-    "types": "./lib/index.d.ts"
+    "import": "./dist/esm/index.js",
+    "require": "./dist/cjs/index.js",
+    "types": "./dist/index.d.ts"
   },
   "files": [
-    "lib",
-    "esm",
+    "dist",
     "README.md"
   ],
   "scripts": {
-    "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm",
-    "build:cjs": "tsc -p tsconfig.json",
-    "build:esm": "tsc -p tsconfig.json --module esnext --outDir esm",
-    "clean": "rimraf lib esm",
+    "build": "swiftlet build",
+    "clean": "rimraf dist",
+    "dev": "swiftlet dev",
     "test": "jest",
-    "test:coverage": "jest --coverage",
-    "dev": "tsc -p tsconfig.json --module esnext --outDir esm --watch"
+    "test:coverage": "jest --coverage"
   },
   "keywords": [
-    "math",
-    "mathematics",
-    "calculation",
-    "numbers",
-    "statistics",
-    "arithmetic",
+    "color",
+    "colour",
+    "hex",
+    "rgb",
+    "hsl",
+    "palette",
+    "conversion",
+    "manipulation",
+    "utility",
     "typescript",
     "javascript"
   ],
   "author": {
     "name": "GavinRay",
-    "email": "gavinraydev@gmail.com"
+    "email": "gvray87@gmail.com"
   },
   "license": "MIT",
   "publishConfig": {

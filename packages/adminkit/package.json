@@ -1,42 +1,41 @@
 {
   "name": "@gvray/adminkit",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Admin-focused utilities for building backend management systems.",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "module": "esm/index.js",
+  "main": "dist/cjs/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/esm/index.js",
   "exports": {
-    "import": "./esm/index.js",
-    "require": "./lib/index.js",
-    "types": "./lib/index.d.ts"
+    "import": "./dist/esm/index.js",
+    "require": "./dist/cjs/index.js",
+    "types": "./dist/index.d.ts"
   },
   "files": [
-    "esm",
-    "lib",
+    "dist",
     "README.md"
   ],
   "scripts": {
-    "build": "pnpm run clean && run-p build:*",
-    "build:esm": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir esm",
-    "build:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
-    "clean": "rimraf lib esm",
-    "tsc": "tsc --noEmit",
-    "test": "jest --passWithNoTests",
-    "test:coverage": "jest --coverage --passWithNoTests",
-    "dev": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir esm --watch"
+    "build": "swiftlet build",
+    "clean": "rimraf dist",
+    "dev": "swiftlet dev",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [
-    "path",
-    "domkit",
-    "jsdom",
-    "util",
-    "path-util",
+    "admin",
+    "backend",
+    "management",
+    "form",
+    "redirect",
+    "tree",
+    "utility",
     "toolkit",
-    "tool"
+    "typescript",
+    "javascript"
   ],
   "author": {
     "name": "GavinRay",
-    "email": "gavinraydev@gmail.com"
+    "email": "gvray87@gmail.com"
   },
   "license": "MIT",
   "bugs": {

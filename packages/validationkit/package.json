@@ -1,23 +1,20 @@
 {
   "name": "@gvray/validationkit",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Data and form validation utilities: type validators, schema validation, async validation, and form helpers.",
-  "main": "lib/index.js",
-  "module": "esm/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "lib",
-    "esm",
+    "dist",
     "README.md"
   ],
   "scripts": {
-    "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm",
-    "build:cjs": "tsc -p tsconfig.json",
-    "build:esm": "tsc -p tsconfig.json --module esnext --outDir esm",
-    "clean": "rimraf lib esm",
+    "build": "swiftlet build",
+    "clean": "rimraf dist",
+    "dev": "swiftlet dev",
     "test": "jest",
-    "test:coverage": "jest --coverage",
-    "dev": "tsc -p tsconfig.json --module esnext --outDir esm --watch"
+    "test:coverage": "jest --coverage"
   },
   "keywords": [
     "validation",
@@ -25,15 +22,23 @@
     "schema",
     "form",
     "data",
+    "type-check",
+    "async",
+    "utility",
     "typescript",
     "javascript"
   ],
   "author": {
     "name": "GavinRay",
-    "email": "gavinraydev@gmail.com"
+    "email": "gvray87@gmail.com"
   },
   "license": "MIT",
   "publishConfig": {
     "access": "public"
+  },
+  "exports": {
+    "import": "./dist/esm/index.js",
+    "require": "./dist/cjs/index.js",
+    "types": "./dist/index.d.ts"
   }
 }
