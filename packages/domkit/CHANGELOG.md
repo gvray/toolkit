@@ -1,5 +1,16 @@
 # @gvray/domkit
 
+## 1.3.0
+
+### Minor Changes
+
+- feat: add `injectStyle` and `removeStyle` for id-based `<style>` element management
+
+### Patch Changes
+
+- refactor: split `injectStyle` and `removeStyle` into separate modules for consistent style
+- feat: `injectStyle` now accepts a `{ media }` option and returns a dispose function
+
 ## 1.2.0
 
 ### Minor Changes
