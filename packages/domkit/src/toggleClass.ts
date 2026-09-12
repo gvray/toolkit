@@ -7,23 +7,45 @@ import removeClass from './removeClass';
  *
  * @param el - The target element.
  * @param className - The class name to toggle.
+ * @param force - If `true`, always add the class; if `false`, always remove it.
  * @returns `true` when the class is present after toggling.
  *
  * @example
  * toggleClass(el, 'active')
  * // => true
  *
+ * @example
+ * toggleClass(el, 'active', true)
+ * // => true
+ *
  * @since 1.0.0
  */
 const toggleClass = (
   el: HTMLElement | SVGElement | null | undefined,
-  className: string
+  className: string,
+  force?: boolean
 ): boolean => {
   if (!el || !className.trim()) {
     return false;
   }
 
-  if (hasClass(el, className)) {
+  const present = hasClass(el, className);
+
+  if (force === true) {
+    if (!present) {
+      addClass(el, className);
+    }
+    return true;
+  }
+
+  if (force === false) {
+    if (present) {
+      removeClass(el as HTMLElement, className);
+    }
+    return false;
+  }
+
+  if (present) {
     removeClass(el as HTMLElement, className);
     return false;
   }

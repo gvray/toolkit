@@ -24,6 +24,28 @@ export function formatPercent(
   return new Intl.NumberFormat(locale, { style: 'percent', ...options }).format(value);
 }
 
+export interface FormatPercentValueOptions {
+  /** 小数位数 / decimal places */
+  digits?: number;
+  /** 非有限数值时的回退文本 / fallback for non-finite values */
+  fallback?: string;
+}
+
+/**
+ * Formats a percent value that is already on the 0-100 scale.
+ * 格式化已经乘以 100 的百分数值。
+ *
+ * @example
+ * formatPercentValue(50.5) // => '51%'
+ * formatPercentValue(50.5, { digits: 1 }) // => '50.5%'
+ * @since 1.3.0
+ */
+export function formatPercentValue(value: number, options: FormatPercentValueOptions = {}): string {
+  const { digits = 0, fallback = '-' } = options;
+  if (!Number.isFinite(value)) return fallback;
+  return `${value.toFixed(digits)}%`;
+}
+
 /**
  * Compact number formatting.
  * 紧凑数字格式。

@@ -4,6 +4,24 @@
 
 ### Minor Changes
 
+- feat: add common admin and formatting utilities
+  - `@gvray/formatkit`: add `formatUptime`, `formatJson`, `getAvatarInitial`, `caseInsensitiveIncludes`, `formatPercentValue`
+  - `@gvray/eskit`: add `arraysEqual`, `arraysEqualIgnoreOrder`, `toggleArrayItem`, `excludeByKey`, `caseInsensitiveFilter`, `shallowMerge`
+  - `@gvray/datekit`: add `formatDateRange`
+  - `@gvray/adminkit`: add `normalizeListResponse`, `extractListData`, `parsePermissionCode`, `getPermissionAction`, `hasPermissions`, `createRoutePattern`, `matchRoutePath`, `getParentPaths`
+  - `@gvray/domkit`: `toggleClass` now accepts optional `force` parameter
+
+- 6e12443: feat: enhance `injectStyle` with `{ media }` option and a dispose return value; split `removeStyle` into its own module for consistent project style
+
+### Patch Changes
+
+- Updated dependencies
+  - @gvray/eskit@1.5.0
+
+## 1.3.0
+
+### Minor Changes
+
 - feat: add `injectStyle` and `removeStyle` for id-based `<style>` element management
 
 ### Patch Changes

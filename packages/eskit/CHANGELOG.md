@@ -1,5 +1,16 @@
 # @gvray/eskit
 
+## 1.5.0
+
+### Minor Changes
+
+- feat: add common admin and formatting utilities
+  - `@gvray/formatkit`: add `formatUptime`, `formatJson`, `getAvatarInitial`, `caseInsensitiveIncludes`, `formatPercentValue`
+  - `@gvray/eskit`: add `arraysEqual`, `arraysEqualIgnoreOrder`, `toggleArrayItem`, `excludeByKey`, `caseInsensitiveFilter`, `shallowMerge`
+  - `@gvray/datekit`: add `formatDateRange`
+  - `@gvray/adminkit`: add `normalizeListResponse`, `extractListData`, `parsePermissionCode`, `getPermissionAction`, `hasPermissions`, `createRoutePattern`, `matchRoutePath`, `getParentPaths`
+  - `@gvray/domkit`: `toggleClass` now accepts optional `force` parameter
+
 ## 1.4.0
 
 ### Minor Changes

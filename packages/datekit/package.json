@@ -1,6 +1,6 @@
 {
   "name": "@gvray/datekit",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Date and time utilities: formatting, duration, timezone, comparison, and validation.",
   "main": "dist/cjs/index.js",
   "types": "dist/index.d.ts",

@@ -133,6 +133,46 @@ export function format(date: Date, formatStr: string, options: FormatOptions = {
   return result;
 }
 
+export type DateRangeInput = Date | string | number;
+
+export interface FormatDateRangeResult {
+  start?: string;
+  end?: string;
+}
+
+/**
+ * Formats a date range into `{ start, end }` strings.
+ * 将日期区间格式化为开始/结束字符串。
+ *
+ * @param range - A tuple of start and end dates / 开始和结束日期二元组
+ * @param formatStr - Format string, same tokens as `format()` / 格式字符串，与 `format()` 一致
+ * @returns `{ start, end }` or `undefined` when range is incomplete / 区间不完整时返回 `undefined`
+ *
+ * @example
+ * formatDateRange([new Date('2024-01-01'), new Date('2024-01-31')], 'YYYY-MM-DD')
+ * // => { start: '2024-01-01', end: '2024-01-31' }
+ *
+ * @since 1.3.0
+ */
+export function formatDateRange(
+  range: readonly [DateRangeInput, DateRangeInput] | null | undefined,
+  formatStr = 'YYYY-MM-DD'
+): FormatDateRangeResult | undefined {
+  if (!range || !range[0] || !range[1]) return undefined;
+
+  const startDate = new Date(range[0]);
+  const endDate = new Date(range[1]);
+
+  if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) {
+    return undefined;
+  }
+
+  return {
+    start: format(startDate, formatStr),
+    end: format(endDate, formatStr),
+  };
+}
+
 /**
  * Common date format presets.
  * 常用日期格式预设，可直接传入 `format(date, DATE_FORMATS.ISO_DATE)`。
