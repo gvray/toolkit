@@ -1,6 +1,6 @@
 {
   "name": "@gvray/mathkit",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Mathematical utilities: arithmetic precision, statistics, geometry, random number generation, and number checks.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

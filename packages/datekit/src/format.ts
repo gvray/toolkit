@@ -198,3 +198,39 @@ export const DATE_FORMATS = {
   TIME_CN: 'HH时mm分ss秒',
   DATETIME_CN: 'YYYY年MM月DD日 HH时mm分ss秒',
 } as const;
+
+export interface FormatDateTimeOptions {
+  dateStyle?: 'full' | 'long' | 'medium' | 'short';
+  timeStyle?: 'full' | 'long' | 'medium' | 'short' | 'none';
+  fallback?: string;
+}
+
+/**
+ * Format a date using the browser's locale-aware `Intl` formatter.
+ * 使用浏览器本地化的 Intl 格式器格式化日期时间。
+ *
+ * Accepts strings, numbers (ms timestamps), `Date`, or nullish. Returns `fallback`
+ * (default `''`) when input is null/undefined or produces an invalid date.
+ *
+ * @param value - A `Date`, string, or ms timestamp; nullish returns `fallback` / 日期、字符串或毫秒时间戳；空值返回 fallback
+ * @param options - `dateStyle` (default `'short'`), `timeStyle` (default `'medium'`, `'none'` for date-only), `fallback` (default `''`)
+ * @returns The formatted date string, or `fallback` on invalid input / 格式化后的字符串，输入非法时返回 fallback
+ *
+ * @example
+ * formatDateTime(new Date('2024-01-15T10:30:00')) // => '1/15/24, 10:30:00 AM' (locale-dependent)
+ * formatDateTime('2024-01-15T10:30:00', { timeStyle: 'none' }) // => '1/15/24'
+ * formatDateTime(null, { fallback: '-' }) // => '-'
+ *
+ * @since 1.4.0
+ */
+export function formatDateTime(
+  value: DateRangeInput | null | undefined,
+  options?: FormatDateTimeOptions
+): string {
+  const { dateStyle = 'short', timeStyle = 'medium', fallback = '' } = options ?? {};
+  if (value === null || value === undefined) return fallback;
+  const d = new Date(value);
+  if (isNaN(d.getTime())) return fallback;
+  if (timeStyle === 'none') return d.toLocaleDateString(undefined, { dateStyle });
+  return d.toLocaleString(undefined, { dateStyle, timeStyle });
+}

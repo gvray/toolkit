@@ -40,6 +40,7 @@ export { default as get } from './get';
 export { default as hasOwnProperty } from './hasOwnProperty';
 export { default as invert } from './invert';
 export { default as jsonClone } from './jsonClone';
+export { default as safeJsonParse } from './safeJsonParse';
 export { default as mapKeys } from './mapKeys';
 export { default as mapValues } from './mapValues';
 export { default as omit } from './omit';

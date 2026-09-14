@@ -14,6 +14,7 @@
     "eslint": "eslint packages/ --fix",
     "dev": "pnpm --parallel --filter './packages/*' --filter play run dev",
     "dev:play": "pnpm -F play dev",
+    "changeset": "changeset",
     "version-packages:status": "changeset status --verbose",
     "version-packages": "changeset version",
     "prepublishOnly": "pnpm run build && pnpm run test && pnpm run eslint",

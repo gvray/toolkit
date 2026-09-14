@@ -30,6 +30,30 @@ export function percentage(part: number, total: number): number {
 }
 
 /**
+ * Safe variant of `percentage`: returns `fallback` (default `0`) instead of throwing
+ * when `total` is zero or inputs are non-finite.
+ * `percentage` 的安全版本：当 `total` 为零或输入非有限时返回 `fallback`（默认 `0`），而非抛错。
+ *
+ * @param part - Partial value / 部分值
+ * @param total - Whole value / 总值
+ * @param fallback - Returned when `total <= 0` or inputs are non-finite (default `0`) / total 为零或输入非有限时返回（默认 `0`）
+ * @returns Percentage, or `fallback` / 百分比，或 fallback
+ *
+ * @example
+ * safePercentage(30, 200) // => 15
+ * safePercentage(10, 0) // => 0
+ * safePercentage(10, 0, -1) // => -1
+ *
+ * @since 1.3.0
+ */
+export function safePercentage(part: number, total: number, fallback: number = 0): number {
+  if (!Number.isFinite(part) || !Number.isFinite(total) || total <= 0) {
+    return fallback;
+  }
+  return multiply(divide(part, total), 100);
+}
+
+/**
  * Percent change from `from` to `to` ((to - from) / from * 100).
  * 从 `from` 到 `to` 的涨跌幅百分比。
  *

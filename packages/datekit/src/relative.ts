@@ -1,6 +1,8 @@
 export interface RelativeOptions {
   now?: Date;
   locale?: string;
+  /** Returned when input is nullish or invalid (default `''`) / 输入为空或非法时返回（默认 `''`） */
+  fallback?: string;
 }
 
 export interface HumanizeDurationOptions {
@@ -8,6 +10,9 @@ export interface HumanizeDurationOptions {
   /** Max number of units to show, default 2 */
   largest?: number;
 }
+
+/** Accepted relative-time input: a `Date`, or a string/number parseable by `new Date()` / 相对时间输入：Date 或可被 new Date() 解析的字符串/数字 */
+export type RelativeDateInput = Date | string | number | null | undefined;
 
 const DURATION_UNITS = [
   { ms: 86400000, en: ['day', 'days'], zh: '天' },
@@ -38,39 +43,69 @@ function formatRelative(diffMs: number, locale: string): string {
   return locale.startsWith('zh') ? '刚刚' : 'just now';
 }
 
+/** Normalize input to a valid Date, or `null` if invalid/nullish. / 把输入归一为有效 Date，无效或空值返回 null。 */
+function toDate(value: RelativeDateInput): Date | null {
+  if (value === null || value === undefined || value === '') return null;
+  const d = new Date(value);
+  return isNaN(d.getTime()) ? null : d;
+}
+
+interface NormalizedRelativeOptions {
+  now: Date;
+  locale: string;
+  fallback: string;
+}
+
+const normalizeRelativeOptions = (
+  options: RelativeOptions | string = {}
+): NormalizedRelativeOptions => {
+  if (typeof options === 'string') {
+    return { now: new Date(), locale: options, fallback: '' };
+  }
+  return {
+    now: options.now ?? new Date(),
+    locale: options.locale ?? 'zh-CN',
+    fallback: options.fallback ?? '',
+  };
+};
+
 /**
  * Relative time from now to the past — e.g., "3 minutes ago" / "3 分钟前".
  * 与现在的相对时间（面向过去），如 "3 分钟前"。
  *
+ * Accepts `Date`, string, number (ms timestamp), or nullish. Returns `fallback`
+ * (default `''`) when input is null/undefined or produces an invalid date.
+ *
  * @example
  * timeAgo(new Date(Date.now() - 60000)) // '1 minute ago' or '1 分钟前'
+ * timeAgo(null, 'zh-CN') // ''
+ * timeAgo('invalid', { fallback: '-' }) // '-'
  * @since 1.0.0
  */
-const normalizeRelativeOptions = (
-  options: RelativeOptions | string = {}
-): Required<RelativeOptions> => {
-  if (typeof options === 'string') {
-    return { now: new Date(), locale: options };
-  }
-  return { now: options.now ?? new Date(), locale: options.locale ?? 'zh-CN' };
-};
-
-export function timeAgo(date: Date, options: RelativeOptions | string = {}): string {
-  const { now, locale } = normalizeRelativeOptions(options);
-  return formatRelative(date.getTime() - now.getTime(), locale);
+export function timeAgo(date: RelativeDateInput, options: RelativeOptions | string = {}): string {
+  const { now, locale, fallback } = normalizeRelativeOptions(options);
+  const d = toDate(date);
+  if (!d) return fallback;
+  return formatRelative(d.getTime() - now.getTime(), locale);
 }
 
 /**
  * Relative time from now to a future date — e.g., "in 3 days" / "3 天后".
  * 与现在的相对时间（面向未来），如 "3 天后"。
  *
+ * Accepts `Date`, string, number (ms timestamp), or nullish. Returns `fallback`
+ * (default `''`) when input is null/undefined or produces an invalid date.
+ *
  * @example
  * timeTo(new Date(Date.now() + 86400000 * 3)) // 'in 3 days' or '3 天后'
+ * timeTo(null) // ''
  * @since 1.0.0
  */
-export function timeTo(date: Date, options: RelativeOptions | string = {}): string {
-  const { now, locale } = normalizeRelativeOptions(options);
-  return formatRelative(date.getTime() - now.getTime(), locale);
+export function timeTo(date: RelativeDateInput, options: RelativeOptions | string = {}): string {
+  const { now, locale, fallback } = normalizeRelativeOptions(options);
+  const d = toDate(date);
+  if (!d) return fallback;
+  return formatRelative(d.getTime() - now.getTime(), locale);
 }
 
 /**

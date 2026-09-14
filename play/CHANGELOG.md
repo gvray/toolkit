@@ -1,5 +1,18 @@
 # play
 
+## 0.0.10
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies
+  - @gvray/eskit@1.6.0
+  - @gvray/datekit@1.4.0
+  - @gvray/mathkit@1.3.0
+  - @gvray/domkit@1.4.0
+  - @gvray/adminkit@1.3.1
+  - @gvray/pathkit@1.2.2
+
 ## 0.0.8
 
 ### Patch Changes

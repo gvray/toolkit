@@ -1,5 +1,18 @@
 # @gvray/datekit
 
+## 1.4.0
+
+### Minor Changes
+
+- Add safe variants and extend relative-time helpers across kits:
+  - **eskit**: `safeJsonParse(value, fallback?)` — parse JSON without throwing, return fallback on failure or non-string input.
+  - **datekit**: `formatDateTime(value, options?)` — locale-aware Intl formatting with `dateStyle`/`timeStyle` and fallback. `timeAgo`/`timeTo` now accept `Date | string | number | null | undefined` and return `options.fallback` (default `''`) on nullish/invalid input instead of producing `NaN` strings.
+  - **mathkit**: `safePercentage(part, total, fallback?)` — like `percentage` but returns `fallback` (default `0`) when `total <= 0` or inputs are non-finite, instead of throwing.
+
+  Extracted from gvray-vite's `utils/` so the gvray apps can consume the kit directly instead of hand-rolling defensive wrappers per app.
+
+- add new function
+
 ## 1.3.0
 
 ### Minor Changes

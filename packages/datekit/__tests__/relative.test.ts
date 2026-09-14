@@ -8,6 +8,22 @@ describe('timeAgo', () => {
     expect(timeAgo(new Date(now - 30000), { locale: 'en-US' })).toBe('just now');
   });
 
+  it('nullish input returns fallback (default empty string)', () => {
+    expect(timeAgo(null)).toBe('');
+    expect(timeAgo(undefined)).toBe('');
+    expect(timeAgo('')).toBe('');
+  });
+
+  it('invalid date input returns fallback', () => {
+    expect(timeAgo('not-a-date')).toBe('');
+    expect(timeAgo('not-a-date', { fallback: '-' })).toBe('-');
+  });
+
+  it('accepts string and number inputs', () => {
+    expect(typeof timeAgo(new Date(now - 120000).toISOString())).toBe('string');
+    expect(typeof timeAgo(now - 120000)).toBe('string');
+  });
+
   it('minutes ago', () => {
     expect(timeAgo(new Date(now - 120000), { locale: 'en-US' })).toBe('2 minutes ago');
     expect(timeAgo(new Date(now - 120000), { locale: 'zh-CN' })).toBe('2分钟前');
@@ -48,6 +64,11 @@ describe('timeTo', () => {
   it('just now (< 60s into future)', () => {
     expect(timeTo(new Date(now + 30000))).toBe('刚刚');
     expect(timeTo(new Date(now + 30000), { locale: 'en-US' })).toBe('just now');
+  });
+
+  it('nullish input returns fallback (default empty string)', () => {
+    expect(timeTo(null)).toBe('');
+    expect(timeTo(undefined, { fallback: '-' })).toBe('-');
   });
 
   it('in 2 minutes', () => {
